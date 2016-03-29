@@ -9,10 +9,11 @@
         <meta name="author" content="shv">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css" />
+        <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/darkly/bootstrap.min.css" rel="stylesheet">
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" /> -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css">
 
-        <link rel="stylesheet" href="./public/foodiary.css" >
+        <link rel="stylesheet" href="./public/foodiary.css">
 
         <title>Food diary</title>
 
@@ -23,10 +24,15 @@
         <link rel="shortcut icon" href="./ico/favicon.png">
     </head>
 
-    <body class="foodiary" ng-app="foodiaryApp">
+    <body class="foodiary" ng-app="app">
+        <navbar></navbar>
         
-        <div class="site-wrapper" ng-view></div>
+        <div class="container">
+            <ui-view></ui-view>
+        </div>
         
+        <footer></footer>
+
         <script src="./public/foodiary.js"></script>
     </body>
     
