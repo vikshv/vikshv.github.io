@@ -25,6 +25,83 @@ body {
 .foodiary__page--home {
   margin: 80px;
 }
+.calendar .calendar__toolbar {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.calendar .calendar__toolbar .toolbar__left {
+  float: left;
+}
+.calendar .calendar__toolbar .toolbar__right {
+  float: right;
+}
+.calendar .calendar__toolbar .toolbar__center {
+  display: inline-block;
+  line-height: 45px;
+  font-size: 18px;
+}
+.calendar .calendar__toolbar .toolbar__clear {
+  clear: both;
+}
+.calendar .calendar__year {
+  width: 100%;
+  table-layout: fixed;
+}
+.calendar .quarter__month {
+  min-height: 60px;
+  border: 1px solid #464545;
+  background-color: #303030;
+  line-height: 60px;
+  text-align: center;
+  margin-bottom: -1px;
+  margin-right: -1px;
+  cursor: pointer;
+  color: #00bc8c;
+}
+.calendar .quarter__month:hover {
+  background-color: transparent;
+}
+.calendar .quarter__month.active {
+  background-color: #464545;
+}
+.calendar .calendar__month {
+  width: 100%;
+  table-layout: fixed;
+}
+.calendar .header__week,
+.calendar .week__number {
+  width: 40px;
+}
+.calendar .header__week,
+.calendar .header__day,
+.calendar .week__number,
+.calendar .week__day {
+  border: 1px solid #464545;
+  background-color: #303030;
+  text-align: center;
+}
+.calendar .week__day {
+  height: 100px;
+  line-height: 100px;
+  margin-bottom: -1px;
+  margin-right: -1px;
+  cursor: pointer;
+}
+.calendar .week__day .day__number {
+  color: #00bc8c;
+}
+.calendar .week__day:hover {
+  background-color: transparent;
+}
+.calendar .week__day--otherMonth .day__number {
+  opacity: 0.3;
+}
+.calendar .week__day--weekend .day__number {
+  color: #e74c3c;
+}
+.calendar .week__day--currentDay {
+  background-color: #464545;
+}
 .foodiary__page--food .food__toolbar {
   margin-bottom: 40px;
 }
@@ -38,10 +115,6 @@ body {
 }
 .foodiary__page--food .food__table .table__loadingRow:hover {
   background-color: #3d3d3d;
-}
-.foodiary__page--food .food__form .addon--widthFixed {
-  width: 58px;
-  text-align: left;
 }
 .foodiary__page--food .food__form .form__message--error {
   margin-top: 12px;
