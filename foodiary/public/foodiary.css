@@ -1,11 +1,3 @@
-html {
-  position: relative;
-  min-height: 100%;
-}
-body {
-  padding-top: 50px;
-  margin-bottom: 120px;
-}
 .footer {
   position: absolute;
   bottom: 0;
@@ -80,6 +72,13 @@ body {
   background-color: #303030;
   text-align: center;
 }
+.calendar .week__number {
+  cursor: pointer;
+}
+.calendar .header__day--sat,
+.calendar .header__day--sun {
+  color: #e74c3c;
+}
 .calendar .week__day {
   height: 100px;
   line-height: 100px;
@@ -102,6 +101,62 @@ body {
 .calendar .week__day--currentDay {
   background-color: #464545;
 }
+.calendar .calendar__week {
+  width: 100%;
+  table-layout: fixed;
+}
+.calendar .header__week,
+.calendar .week__number {
+  width: 40px;
+}
+.calendar .header__week,
+.calendar .header__day,
+.calendar .week__number,
+.calendar .week__day {
+  border: 1px solid #464545;
+  background-color: #303030;
+  text-align: center;
+}
+.calendar .header__day--sat,
+.calendar .header__day--sun {
+  color: #e74c3c;
+}
+.calendar .week__day {
+  height: 100px;
+  line-height: 100px;
+  margin-bottom: -1px;
+  margin-right: -1px;
+  cursor: pointer;
+}
+.calendar .week__day .day__number {
+  color: #00bc8c;
+}
+.calendar .week__day:hover {
+  background-color: transparent;
+}
+.calendar .week__day--otherMonth .day__number {
+  opacity: 0.3;
+}
+.calendar .week__day--weekend .day__number {
+  color: #e74c3c;
+}
+.calendar .week__day--currentDay {
+  background-color: #464545;
+}
+.calendar .calendar__day .table__emptyRow {
+  line-height: 120px;
+  text-align: center;
+}
+.calendar .calendar__day .link {
+  cursor: pointer;
+  text-decoration: none;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: transparent;
+}
+.calendar .calendar__day .link:hover {
+  border-bottom-color: #0ce3ac;
+}
 .foodiary__page--food .food__toolbar {
   margin-bottom: 40px;
 }
@@ -119,6 +174,14 @@ body {
 .foodiary__page--food .food__form .form__message--error {
   margin-top: 12px;
   color: #e74c3c;
+}
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  padding-top: 50px;
+  margin-bottom: 120px;
 }
 
 /*# sourceMappingURL=foodiary.css.map*/
