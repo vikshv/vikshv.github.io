@@ -14,9 +14,6 @@
 .footer .footer__base {
   clear: left;
 }
-.foodiary__page--home {
-  margin: 80px;
-}
 .calendar .calendar__toolbar {
   margin-bottom: 30px;
   text-align: center;
@@ -143,9 +140,23 @@
 .calendar .week__day--currentDay {
   background-color: #464545;
 }
-.calendar .calendar__day .table__emptyRow {
-  line-height: 120px;
+.calendar .calendar__day .table__emptyRow,
+.calendar .calendar__day .table__loadingRow {
+  line-height: 140px;
   text-align: center;
+}
+.calendar .calendar__day .table__loadingRow {
+  color: #00bc8c;
+}
+.calendar .calendar__day .table__loadingRow:hover {
+  background-color: #3d3d3d;
+}
+.calendar .calendar__day .table__sumRow {
+  color: #00bc8c;
+}
+.calendar .calendar__day .table__sumRow .sumRow__title {
+  text-align: right;
+  padding-right: 20px;
 }
 .calendar .calendar__day .link {
   cursor: pointer;
@@ -157,12 +168,15 @@
 .calendar .calendar__day .link:hover {
   border-bottom-color: #0ce3ac;
 }
+.calendar {
+  margin-bottom: 20px;
+}
 .foodiary__page--food .food__toolbar {
   margin-bottom: 40px;
 }
 .foodiary__page--food .food__table .table__loadingRow,
 .foodiary__page--food .food__table .table__emptyRow {
-  padding: 50px 0;
+  line-height: 140px;
   text-align: center;
 }
 .foodiary__page--food .food__table .table__loadingRow {
@@ -175,6 +189,9 @@
   margin-top: 12px;
   color: #e74c3c;
 }
+.foodiary__page--promo {
+  margin: 80px;
+}
 html {
   position: relative;
   min-height: 100%;
@@ -182,6 +199,9 @@ html {
 body {
   padding-top: 50px;
   margin-bottom: 120px;
+}
+.foodiary .navbar-brand {
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=foodiary.css.map*/

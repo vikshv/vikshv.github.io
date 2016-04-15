@@ -50,34 +50,24 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(188);
+	__webpack_require__(193);
 	
-	__webpack_require__(189);
+	__webpack_require__(194);
+	
+	__webpack_require__(196);
+	
+	__webpack_require__(198);
+	
+	__webpack_require__(200);
+	
+	__webpack_require__(202);
+	
+	__webpack_require__(204);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	_app2.default.config(function ($stateProvider, $urlRouterProvider) {
-	    $urlRouterProvider.otherwise('/home');
-	
-	    $stateProvider.state('home', {
-	        url: '/home',
-	        template: '<home><home>'
-	    });
-	
-	    $stateProvider.state('food', {
-	        url: '/food',
-	        template: '<food></food>'
-	    }).state('food.new', {
-	        url: '/new',
-	        template: '<food-item></food-item>'
-	    }).state('food.edit', {
-	        url: '/edit/:foodId',
-	        template: '<food-item food-id="$ctrl.foodId"></food-item>',
-	        controller: function controller($stateParams) {
-	            this.foodId = $stateParams.foodId;
-	        },
-	        controllerAs: '$ctrl'
-	    });
+	    $urlRouterProvider.otherwise('/promo');
 	
 	    $stateProvider.state('about', {
 	        url: '/about',
@@ -123,19 +113,25 @@
 	
 	__webpack_require__(19);
 	
-	__webpack_require__(23);
+	var _home = __webpack_require__(23);
 	
-	__webpack_require__(27);
+	var _home2 = _interopRequireDefault(_home);
 	
-	__webpack_require__(159);
+	__webpack_require__(29);
 	
-	__webpack_require__(165);
+	__webpack_require__(161);
 	
-	__webpack_require__(169);
+	__webpack_require__(167);
+	
+	__webpack_require__(171);
+	
+	var _promo = __webpack_require__(187);
+	
+	var _promo2 = _interopRequireDefault(_promo);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	exports.default = _angular2.default.module('app', [_angularUiRouter2.default, _angularMessages2.default, _angularUiBootstrap2.default, 'firebase', 'navbar', 'footer', 'home', 'about', 'food', 'calendar', 'diary']);
+	exports.default = _angular2.default.module('app', [_angularUiRouter2.default, _angularMessages2.default, _angularUiBootstrap2.default, 'firebase', 'navbar', 'footer', _home2.default, 'about', 'food', 'calendar', 'diary', _promo2.default]);
 
 /***/ },
 /* 2 */
@@ -55979,10 +55975,6 @@
 
 	'use strict';
 	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
 	var _app = __webpack_require__(14);
 	
 	var _app2 = _interopRequireDefault(_app);
@@ -55999,8 +55991,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	exports.default = _app2.default.component('navbar', {
-	    bindings: {},
+	_app2.default.component('navbar', {
 	    template: _template2.default,
 	    controller: _NavbarController2.default
 	});
@@ -56038,16 +56029,40 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	var NavbarController = function () {
-	    function NavbarController($scope, $state) {
+	    function NavbarController($scope, $state, AuthService) {
 	        _classCallCheck(this, NavbarController);
 	
 	        this.$scope = $scope;
 	        this.$state = $state;
+	        this.AuthService = AuthService;
+	
 	        this._initState();
+	        this._initAuth();
 	        this._bindEvents();
 	    }
 	
 	    _createClass(NavbarController, [{
+	        key: 'goMainPage',
+	        value: function goMainPage() {
+	            var state = void 0;
+	            if (this.auth) {
+	                state = 'home';
+	            } else {
+	                state = 'promo';
+	            }
+	            this.$state.go(state);
+	        }
+	    }, {
+	        key: 'logout',
+	        value: function logout() {
+	            this.AuthService.logout();
+	        }
+	    }, {
+	        key: '_initAuth',
+	        value: function _initAuth() {
+	            this.auth = this.AuthService.getAuth();
+	        }
+	    }, {
 	        key: '_initState',
 	        value: function _initState() {
 	            this.state = {
@@ -56070,6 +56085,10 @@
 	            this.$scope.$on('$stateChangeSuccess', function () {
 	                _this._initState();
 	            });
+	
+	            this.AuthService.onAuth(function () {
+	                _this._initAuth();
+	            });
 	        }
 	    }]);
 	
@@ -56082,7 +56101,7 @@
 /* 16 */
 /***/ function(module, exports) {
 
-	module.exports = "<nav class=\"navbar navbar-default navbar-fixed-top\">\r\n    <div class=\"container\">\r\n        <div class=\"navbar-header\">\r\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\" aria-controls=\"navbar\">\r\n                <span class=\"sr-only\">Toggle navigation</span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n            </button>\r\n            <a class=\"navbar-brand\" href=\"#home\">Foodiary</a>\r\n        </div>\r\n        <div id=\"navbar\" class=\"navbar-collapse collapse\">\r\n            <ul class=\"nav navbar-nav navbar-right\">\r\n                <li ng-class=\"{ active: $ctrl.state.home }\"><a ui-sref=\"home\">Главная</a></li>\r\n                <li ng-class=\"{ active: $ctrl.state.diary }\"><a ui-sref=\"diary\">Дневник</a></li>\r\n                <li ng-class=\"{ active: $ctrl.state.food }\"><a ui-sref=\"food\">Еда</a></li>\r\n                <li ng-class=\"{ active: $ctrl.state.about }\"><a ui-sref=\"about\">О проекте</a></li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</nav>\r\n";
+	module.exports = "<nav class=\"navbar navbar-default navbar-fixed-top\">\r\n    <div class=\"container\">\r\n        <div class=\"navbar-header\">\r\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\" aria-controls=\"navbar\">\r\n                <span class=\"sr-only\">Toggle navigation</span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n            </button>\r\n            <a class=\"navbar-brand\" ng-click=\"$ctrl.goMainPage()\">Foodiary</a>\r\n        </div>\r\n        <div id=\"navbar\" class=\"navbar-collapse collapse\">\r\n            <ul class=\"nav navbar-nav\">\r\n                <li ng-class=\"{ active: $ctrl.state.home }\" ng-if=\"$ctrl.auth\"><a ui-sref=\"home\">Главная</a></li>\r\n                <li ng-class=\"{ active: $ctrl.state.diary }\" ng-if=\"$ctrl.auth\"><a ui-sref=\"diary\">Дневник</a></li>\r\n                <li ng-class=\"{ active: $ctrl.state.food }\" ng-if=\"$ctrl.auth\"><a ui-sref=\"food\">Еда</a></li>\r\n                <li ng-class=\"{ active: $ctrl.state.about }\"><a ui-sref=\"about\">О проекте</a></li>\r\n            </ul>\r\n            <ul class=\"nav navbar-nav navbar-right\">\r\n                <li ng-if=\"$ctrl.auth\">\r\n                    <a href=\"#\" ng-click=\"$ctrl.logout()\">\r\n                        <i class=\"fa fa-sign-out\" aria-hidden=\"true\"></i> Выход\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</nav>\r\n";
 
 /***/ },
 /* 17 */
@@ -56165,18 +56184,28 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _template = __webpack_require__(25);
+	__webpack_require__(25);
+	
+	var _homeController = __webpack_require__(26);
+	
+	var _homeController2 = _interopRequireDefault(_homeController);
+	
+	var _template = __webpack_require__(27);
 	
 	var _template2 = _interopRequireDefault(_template);
 	
-	__webpack_require__(26);
+	__webpack_require__(28);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	exports.default = _app2.default.component('home', {
+	var componentName = 'home';
+	
+	_app2.default.component(componentName, {
 	    template: _template2.default,
-	    controller: function controller() {}
+	    controller: _homeController2.default
 	});
+	
+	exports.default = componentName;
 
 /***/ },
 /* 24 */
@@ -56198,18 +56227,61 @@
 
 /***/ },
 /* 25 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	module.exports = "<div class=\"foodiary__page foodiary__page--home\">\r\n    <div>\r\n        <div class=\"row\">\r\n            <h1 class=\"cover-heading\">You food diary for every day</h1>\r\n            <p class=\"lead\">Calculate calories, fats, proteins and carbs of foods</p>\r\n            <p class=\"lead\">\r\n                <a ui-sref=\"diary\" class=\"btn btn-lg btn-success\">Start diary</a>\r\n            </p>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
+	'use strict';
+	
+	var _app = __webpack_require__(24);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	_app2.default.config(function ($stateProvider) {
+	    $stateProvider.state('home', {
+	        url: '/home',
+	        template: '<home><home>',
+	        resolve: {
+	            auth: function auth(AuthService) {
+	                return AuthService.waitForAuth();
+	            }
+	        }
+	    });
+	});
 
 /***/ },
 /* 26 */
 /***/ function(module, exports) {
 
-	// removed by extract-text-webpack-plugin
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var HomeController = function HomeController() {
+	    _classCallCheck(this, HomeController);
+	};
+	
+	exports.default = HomeController;
+	;
 
 /***/ },
 /* 27 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"foodiary__page foodiary__page--home\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-12\">\r\n            <div class=\"page-header\">\r\n                <h3>Main page</h3>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
+
+/***/ },
+/* 28 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56218,31 +56290,31 @@
 	    value: true
 	});
 	
-	var _app = __webpack_require__(28);
+	var _app = __webpack_require__(30);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(29);
+	__webpack_require__(31);
 	
-	__webpack_require__(134);
+	__webpack_require__(136);
 	
-	__webpack_require__(138);
+	__webpack_require__(140);
 	
-	__webpack_require__(142);
+	__webpack_require__(144);
 	
-	__webpack_require__(146);
+	__webpack_require__(148);
 	
-	__webpack_require__(150);
+	__webpack_require__(152);
 	
-	var _calendarController = __webpack_require__(156);
+	var _calendarController = __webpack_require__(158);
 	
 	var _calendarController2 = _interopRequireDefault(_calendarController);
 	
-	var _template = __webpack_require__(157);
+	var _template = __webpack_require__(159);
 	
 	var _template2 = _interopRequireDefault(_template);
 	
-	__webpack_require__(158);
+	__webpack_require__(160);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -56257,7 +56329,7 @@
 	});
 
 /***/ },
-/* 28 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56277,18 +56349,18 @@
 	exports.default = _angular2.default.module('calendar', []);
 
 /***/ },
-/* 29 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _app = __webpack_require__(28);
+	var _app = __webpack_require__(30);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(30);
+	__webpack_require__(32);
 	
-	__webpack_require__(132);
+	__webpack_require__(134);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -56299,16 +56371,16 @@
 	});
 
 /***/ },
-/* 30 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _app = __webpack_require__(28);
+	var _app = __webpack_require__(30);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _DateServiceController = __webpack_require__(31);
+	var _DateServiceController = __webpack_require__(33);
 	
 	var _DateServiceController2 = _interopRequireDefault(_DateServiceController);
 	
@@ -56317,7 +56389,7 @@
 	_app2.default.service('DateService', _DateServiceController2.default);
 
 /***/ },
-/* 31 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56328,7 +56400,7 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _moment = __webpack_require__(32);
+	var _moment = __webpack_require__(34);
 	
 	var _moment2 = _interopRequireDefault(_moment);
 	
@@ -56400,7 +56472,7 @@
 	exports.default = DateServiceController;
 
 /***/ },
-/* 32 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {//! moment.js
@@ -56754,7 +56826,7 @@
 	                module && module.exports) {
 	            try {
 	                oldLocale = globalLocale._abbr;
-	                __webpack_require__(34)("./" + name);
+	                __webpack_require__(36)("./" + name);
 	                // because defineLocale currently also sets the global locale, we
 	                // want to undo that for lazy loaded locales
 	                locale_locales__getSetGlobalLocale(oldLocale);
@@ -60091,10 +60163,10 @@
 	    return _moment;
 	
 	}));
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(35)(module)))
 
 /***/ },
-/* 33 */
+/* 35 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -60110,204 +60182,204 @@
 
 
 /***/ },
-/* 34 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./af": 35,
-		"./af.js": 35,
-		"./ar": 36,
-		"./ar-ma": 37,
-		"./ar-ma.js": 37,
-		"./ar-sa": 38,
-		"./ar-sa.js": 38,
-		"./ar-tn": 39,
-		"./ar-tn.js": 39,
-		"./ar.js": 36,
-		"./az": 40,
-		"./az.js": 40,
-		"./be": 41,
-		"./be.js": 41,
-		"./bg": 42,
-		"./bg.js": 42,
-		"./bn": 43,
-		"./bn.js": 43,
-		"./bo": 44,
-		"./bo.js": 44,
-		"./br": 45,
-		"./br.js": 45,
-		"./bs": 46,
-		"./bs.js": 46,
-		"./ca": 47,
-		"./ca.js": 47,
-		"./cs": 48,
-		"./cs.js": 48,
-		"./cv": 49,
-		"./cv.js": 49,
-		"./cy": 50,
-		"./cy.js": 50,
-		"./da": 51,
-		"./da.js": 51,
-		"./de": 52,
-		"./de-at": 53,
-		"./de-at.js": 53,
-		"./de.js": 52,
-		"./dv": 54,
-		"./dv.js": 54,
-		"./el": 55,
-		"./el.js": 55,
-		"./en-au": 56,
-		"./en-au.js": 56,
-		"./en-ca": 57,
-		"./en-ca.js": 57,
-		"./en-gb": 58,
-		"./en-gb.js": 58,
-		"./en-ie": 59,
-		"./en-ie.js": 59,
-		"./en-nz": 60,
-		"./en-nz.js": 60,
-		"./eo": 61,
-		"./eo.js": 61,
-		"./es": 62,
-		"./es.js": 62,
-		"./et": 63,
-		"./et.js": 63,
-		"./eu": 64,
-		"./eu.js": 64,
-		"./fa": 65,
-		"./fa.js": 65,
-		"./fi": 66,
-		"./fi.js": 66,
-		"./fo": 67,
-		"./fo.js": 67,
-		"./fr": 68,
-		"./fr-ca": 69,
-		"./fr-ca.js": 69,
-		"./fr-ch": 70,
-		"./fr-ch.js": 70,
-		"./fr.js": 68,
-		"./fy": 71,
-		"./fy.js": 71,
-		"./gd": 72,
-		"./gd.js": 72,
-		"./gl": 73,
-		"./gl.js": 73,
-		"./he": 74,
-		"./he.js": 74,
-		"./hi": 75,
-		"./hi.js": 75,
-		"./hr": 76,
-		"./hr.js": 76,
-		"./hu": 77,
-		"./hu.js": 77,
-		"./hy-am": 78,
-		"./hy-am.js": 78,
-		"./id": 79,
-		"./id.js": 79,
-		"./is": 80,
-		"./is.js": 80,
-		"./it": 81,
-		"./it.js": 81,
-		"./ja": 82,
-		"./ja.js": 82,
-		"./jv": 83,
-		"./jv.js": 83,
-		"./ka": 84,
-		"./ka.js": 84,
-		"./kk": 85,
-		"./kk.js": 85,
-		"./km": 86,
-		"./km.js": 86,
-		"./ko": 87,
-		"./ko.js": 87,
-		"./lb": 88,
-		"./lb.js": 88,
-		"./lo": 89,
-		"./lo.js": 89,
-		"./lt": 90,
-		"./lt.js": 90,
-		"./lv": 91,
-		"./lv.js": 91,
-		"./me": 92,
-		"./me.js": 92,
-		"./mk": 93,
-		"./mk.js": 93,
-		"./ml": 94,
-		"./ml.js": 94,
-		"./mr": 95,
-		"./mr.js": 95,
-		"./ms": 96,
-		"./ms-my": 97,
-		"./ms-my.js": 97,
-		"./ms.js": 96,
-		"./my": 98,
-		"./my.js": 98,
-		"./nb": 99,
-		"./nb.js": 99,
-		"./ne": 100,
-		"./ne.js": 100,
-		"./nl": 101,
-		"./nl.js": 101,
-		"./nn": 102,
-		"./nn.js": 102,
-		"./pa-in": 103,
-		"./pa-in.js": 103,
-		"./pl": 104,
-		"./pl.js": 104,
-		"./pt": 105,
-		"./pt-br": 106,
-		"./pt-br.js": 106,
-		"./pt.js": 105,
-		"./ro": 107,
-		"./ro.js": 107,
-		"./ru": 108,
-		"./ru.js": 108,
-		"./se": 109,
-		"./se.js": 109,
-		"./si": 110,
-		"./si.js": 110,
-		"./sk": 111,
-		"./sk.js": 111,
-		"./sl": 112,
-		"./sl.js": 112,
-		"./sq": 113,
-		"./sq.js": 113,
-		"./sr": 114,
-		"./sr-cyrl": 115,
-		"./sr-cyrl.js": 115,
-		"./sr.js": 114,
-		"./sv": 116,
-		"./sv.js": 116,
-		"./sw": 117,
-		"./sw.js": 117,
-		"./ta": 118,
-		"./ta.js": 118,
-		"./te": 119,
-		"./te.js": 119,
-		"./th": 120,
-		"./th.js": 120,
-		"./tl-ph": 121,
-		"./tl-ph.js": 121,
-		"./tlh": 122,
-		"./tlh.js": 122,
-		"./tr": 123,
-		"./tr.js": 123,
-		"./tzl": 124,
-		"./tzl.js": 124,
-		"./tzm": 125,
-		"./tzm-latn": 126,
-		"./tzm-latn.js": 126,
-		"./tzm.js": 125,
-		"./uk": 127,
-		"./uk.js": 127,
-		"./uz": 128,
-		"./uz.js": 128,
-		"./vi": 129,
-		"./vi.js": 129,
-		"./zh-cn": 130,
-		"./zh-cn.js": 130,
-		"./zh-tw": 131,
-		"./zh-tw.js": 131
+		"./af": 37,
+		"./af.js": 37,
+		"./ar": 38,
+		"./ar-ma": 39,
+		"./ar-ma.js": 39,
+		"./ar-sa": 40,
+		"./ar-sa.js": 40,
+		"./ar-tn": 41,
+		"./ar-tn.js": 41,
+		"./ar.js": 38,
+		"./az": 42,
+		"./az.js": 42,
+		"./be": 43,
+		"./be.js": 43,
+		"./bg": 44,
+		"./bg.js": 44,
+		"./bn": 45,
+		"./bn.js": 45,
+		"./bo": 46,
+		"./bo.js": 46,
+		"./br": 47,
+		"./br.js": 47,
+		"./bs": 48,
+		"./bs.js": 48,
+		"./ca": 49,
+		"./ca.js": 49,
+		"./cs": 50,
+		"./cs.js": 50,
+		"./cv": 51,
+		"./cv.js": 51,
+		"./cy": 52,
+		"./cy.js": 52,
+		"./da": 53,
+		"./da.js": 53,
+		"./de": 54,
+		"./de-at": 55,
+		"./de-at.js": 55,
+		"./de.js": 54,
+		"./dv": 56,
+		"./dv.js": 56,
+		"./el": 57,
+		"./el.js": 57,
+		"./en-au": 58,
+		"./en-au.js": 58,
+		"./en-ca": 59,
+		"./en-ca.js": 59,
+		"./en-gb": 60,
+		"./en-gb.js": 60,
+		"./en-ie": 61,
+		"./en-ie.js": 61,
+		"./en-nz": 62,
+		"./en-nz.js": 62,
+		"./eo": 63,
+		"./eo.js": 63,
+		"./es": 64,
+		"./es.js": 64,
+		"./et": 65,
+		"./et.js": 65,
+		"./eu": 66,
+		"./eu.js": 66,
+		"./fa": 67,
+		"./fa.js": 67,
+		"./fi": 68,
+		"./fi.js": 68,
+		"./fo": 69,
+		"./fo.js": 69,
+		"./fr": 70,
+		"./fr-ca": 71,
+		"./fr-ca.js": 71,
+		"./fr-ch": 72,
+		"./fr-ch.js": 72,
+		"./fr.js": 70,
+		"./fy": 73,
+		"./fy.js": 73,
+		"./gd": 74,
+		"./gd.js": 74,
+		"./gl": 75,
+		"./gl.js": 75,
+		"./he": 76,
+		"./he.js": 76,
+		"./hi": 77,
+		"./hi.js": 77,
+		"./hr": 78,
+		"./hr.js": 78,
+		"./hu": 79,
+		"./hu.js": 79,
+		"./hy-am": 80,
+		"./hy-am.js": 80,
+		"./id": 81,
+		"./id.js": 81,
+		"./is": 82,
+		"./is.js": 82,
+		"./it": 83,
+		"./it.js": 83,
+		"./ja": 84,
+		"./ja.js": 84,
+		"./jv": 85,
+		"./jv.js": 85,
+		"./ka": 86,
+		"./ka.js": 86,
+		"./kk": 87,
+		"./kk.js": 87,
+		"./km": 88,
+		"./km.js": 88,
+		"./ko": 89,
+		"./ko.js": 89,
+		"./lb": 90,
+		"./lb.js": 90,
+		"./lo": 91,
+		"./lo.js": 91,
+		"./lt": 92,
+		"./lt.js": 92,
+		"./lv": 93,
+		"./lv.js": 93,
+		"./me": 94,
+		"./me.js": 94,
+		"./mk": 95,
+		"./mk.js": 95,
+		"./ml": 96,
+		"./ml.js": 96,
+		"./mr": 97,
+		"./mr.js": 97,
+		"./ms": 98,
+		"./ms-my": 99,
+		"./ms-my.js": 99,
+		"./ms.js": 98,
+		"./my": 100,
+		"./my.js": 100,
+		"./nb": 101,
+		"./nb.js": 101,
+		"./ne": 102,
+		"./ne.js": 102,
+		"./nl": 103,
+		"./nl.js": 103,
+		"./nn": 104,
+		"./nn.js": 104,
+		"./pa-in": 105,
+		"./pa-in.js": 105,
+		"./pl": 106,
+		"./pl.js": 106,
+		"./pt": 107,
+		"./pt-br": 108,
+		"./pt-br.js": 108,
+		"./pt.js": 107,
+		"./ro": 109,
+		"./ro.js": 109,
+		"./ru": 110,
+		"./ru.js": 110,
+		"./se": 111,
+		"./se.js": 111,
+		"./si": 112,
+		"./si.js": 112,
+		"./sk": 113,
+		"./sk.js": 113,
+		"./sl": 114,
+		"./sl.js": 114,
+		"./sq": 115,
+		"./sq.js": 115,
+		"./sr": 116,
+		"./sr-cyrl": 117,
+		"./sr-cyrl.js": 117,
+		"./sr.js": 116,
+		"./sv": 118,
+		"./sv.js": 118,
+		"./sw": 119,
+		"./sw.js": 119,
+		"./ta": 120,
+		"./ta.js": 120,
+		"./te": 121,
+		"./te.js": 121,
+		"./th": 122,
+		"./th.js": 122,
+		"./tl-ph": 123,
+		"./tl-ph.js": 123,
+		"./tlh": 124,
+		"./tlh.js": 124,
+		"./tr": 125,
+		"./tr.js": 125,
+		"./tzl": 126,
+		"./tzl.js": 126,
+		"./tzm": 127,
+		"./tzm-latn": 128,
+		"./tzm-latn.js": 128,
+		"./tzm.js": 127,
+		"./uk": 129,
+		"./uk.js": 129,
+		"./uz": 130,
+		"./uz.js": 130,
+		"./vi": 131,
+		"./vi.js": 131,
+		"./zh-cn": 132,
+		"./zh-cn.js": 132,
+		"./zh-tw": 133,
+		"./zh-tw.js": 133
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -60320,11 +60392,11 @@
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 34;
+	webpackContext.id = 36;
 
 
 /***/ },
-/* 35 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -60332,7 +60404,7 @@
 	//! author : Werner Mollentze : https://github.com/wernerm
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -60401,7 +60473,7 @@
 	}));
 
 /***/ },
-/* 36 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -60411,7 +60483,7 @@
 	//! Native plural forms: forabi https://github.com/forabi
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -60541,7 +60613,7 @@
 	}));
 
 /***/ },
-/* 37 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -60550,7 +60622,7 @@
 	//! author : Abdel Said : https://github.com/abdelsaid
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -60604,7 +60676,7 @@
 	}));
 
 /***/ },
-/* 38 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -60612,7 +60684,7 @@
 	//! author : Suhail Alkowaileet : https://github.com/xsoh
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -60711,14 +60783,14 @@
 	}));
 
 /***/ },
-/* 39 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 	//! locale  : Tunisian Arabic (ar-tn)
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -60772,7 +60844,7 @@
 	}));
 
 /***/ },
-/* 40 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -60780,7 +60852,7 @@
 	//! author : topchiyev : https://github.com/topchiyev
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -60880,7 +60952,7 @@
 	}));
 
 /***/ },
-/* 41 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -60890,7 +60962,7 @@
 	//! Author : Menelion Elensúle : https://github.com/Oire
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -61018,7 +61090,7 @@
 	}));
 
 /***/ },
-/* 42 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -61026,7 +61098,7 @@
 	//! author : Krasen Borisov : https://github.com/kraz
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -61112,7 +61184,7 @@
 	}));
 
 /***/ },
-/* 43 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -61120,7 +61192,7 @@
 	//! author : Kaushik Gandhi : https://github.com/kaushikgandhi
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -61235,7 +61307,7 @@
 	}));
 
 /***/ },
-/* 44 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -61243,7 +61315,7 @@
 	//! author : Thupten N. Chakrishar : https://github.com/vajradog
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -61358,7 +61430,7 @@
 	}));
 
 /***/ },
-/* 45 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -61366,7 +61438,7 @@
 	//! author : Jean-Baptiste Le Duigou : https://github.com/jbleduigou
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -61469,7 +61541,7 @@
 	}));
 
 /***/ },
-/* 46 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -61478,7 +61550,7 @@
 	//! based on (hr) translation by Bojan Marković
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -61614,7 +61686,7 @@
 	}));
 
 /***/ },
-/* 47 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -61622,7 +61694,7 @@
 	//! author : Juan G. Hurtado : https://github.com/juanghurtado
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -61697,7 +61769,7 @@
 	}));
 
 /***/ },
-/* 48 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -61705,7 +61777,7 @@
 	//! author : petrbela : https://github.com/petrbela
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -61872,7 +61944,7 @@
 	}));
 
 /***/ },
-/* 49 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -61880,7 +61952,7 @@
 	//! author : Anatoly Mironov : https://github.com/mirontoli
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -61939,7 +62011,7 @@
 	}));
 
 /***/ },
-/* 50 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -61947,7 +62019,7 @@
 	//! author : Robert Allen
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -62022,7 +62094,7 @@
 	}));
 
 /***/ },
-/* 51 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -62030,7 +62102,7 @@
 	//! author : Ulrik Nielsen : https://github.com/mrbase
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -62086,7 +62158,7 @@
 	}));
 
 /***/ },
-/* 52 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -62096,7 +62168,7 @@
 	//! author : Mikolaj Dadela : https://github.com/mik01aj
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -62166,7 +62238,7 @@
 	}));
 
 /***/ },
-/* 53 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -62177,7 +62249,7 @@
 	//! author : Mikolaj Dadela : https://github.com/mik01aj
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -62247,7 +62319,7 @@
 	}));
 
 /***/ },
-/* 54 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -62255,7 +62327,7 @@
 	//! author : Jawish Hameed : https://github.com/jawish
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -62350,7 +62422,7 @@
 	}));
 
 /***/ },
-/* 55 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -62358,7 +62430,7 @@
 	//! author : Aggelos Karalias : https://github.com/mehiel
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -62452,14 +62524,14 @@
 	}));
 
 /***/ },
-/* 56 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 	//! locale : australian english (en-au)
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -62522,7 +62594,7 @@
 	}));
 
 /***/ },
-/* 57 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -62530,7 +62602,7 @@
 	//! author : Jonathan Abourbih : https://github.com/jonbca
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -62589,7 +62661,7 @@
 	}));
 
 /***/ },
-/* 58 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -62597,7 +62669,7 @@
 	//! author : Chris Gedrim : https://github.com/chrisgedrim
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -62660,7 +62732,7 @@
 	}));
 
 /***/ },
-/* 59 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -62668,7 +62740,7 @@
 	//! author : Chris Cartlidge : https://github.com/chriscartlidge
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -62731,14 +62803,14 @@
 	}));
 
 /***/ },
-/* 60 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 	//! locale : New Zealand english (en-nz)
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -62801,7 +62873,7 @@
 	}));
 
 /***/ },
-/* 61 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -62811,7 +62883,7 @@
 	//!          Se ne, bonvolu korekti kaj avizi min por ke mi povas lerni!
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -62878,7 +62950,7 @@
 	}));
 
 /***/ },
-/* 62 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -62886,7 +62958,7 @@
 	//! author : Julio Napurí : https://github.com/julionc
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -62961,7 +63033,7 @@
 	}));
 
 /***/ },
-/* 63 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -62970,7 +63042,7 @@
 	//! improvements : Illimar Tambek : https://github.com/ragulka
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -63045,7 +63117,7 @@
 	}));
 
 /***/ },
-/* 64 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -63053,7 +63125,7 @@
 	//! author : Eneko Illarramendi : https://github.com/eillarra
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -63113,7 +63185,7 @@
 	}));
 
 /***/ },
-/* 65 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -63121,7 +63193,7 @@
 	//! author : Ebrahim Byagowi : https://github.com/ebraminio
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -63222,7 +63294,7 @@
 	}));
 
 /***/ },
-/* 66 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -63230,7 +63302,7 @@
 	//! author : Tarmo Aidantausta : https://github.com/bleadof
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -63333,7 +63405,7 @@
 	}));
 
 /***/ },
-/* 67 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -63341,7 +63413,7 @@
 	//! author : Ragnar Johannesen : https://github.com/ragnar123
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -63397,7 +63469,7 @@
 	}));
 
 /***/ },
-/* 68 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -63405,7 +63477,7 @@
 	//! author : John Fischer : https://github.com/jfroffice
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -63463,7 +63535,7 @@
 	}));
 
 /***/ },
-/* 69 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -63471,7 +63543,7 @@
 	//! author : Jonathan Abourbih : https://github.com/jonbca
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -63525,7 +63597,7 @@
 	}));
 
 /***/ },
-/* 70 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -63533,7 +63605,7 @@
 	//! author : Gaspard Bucher : https://github.com/gaspard
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -63591,7 +63663,7 @@
 	}));
 
 /***/ },
-/* 71 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -63599,7 +63671,7 @@
 	//! author : Robin van der Vliet : https://github.com/robin0van0der0v
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -63666,7 +63738,7 @@
 	}));
 
 /***/ },
-/* 72 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -63674,7 +63746,7 @@
 	//! author : Jon Ashdown : https://github.com/jonashdown
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -63746,7 +63818,7 @@
 	}));
 
 /***/ },
-/* 73 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -63754,7 +63826,7 @@
 	//! author : Juan G. Hurtado : https://github.com/juanghurtado
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -63825,7 +63897,7 @@
 	}));
 
 /***/ },
-/* 74 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -63835,7 +63907,7 @@
 	//! author : Tal Ater : https://github.com/TalAter
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -63928,7 +64000,7 @@
 	}));
 
 /***/ },
-/* 75 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -63936,7 +64008,7 @@
 	//! author : Mayank Singhal : https://github.com/mayanksinghal
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -64055,7 +64127,7 @@
 	}));
 
 /***/ },
-/* 76 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -64063,7 +64135,7 @@
 	//! author : Bojan Marković : https://github.com/bmarkovic
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -64202,7 +64274,7 @@
 	}));
 
 /***/ },
-/* 77 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -64210,7 +64282,7 @@
 	//! author : Adam Brunner : https://github.com/adambrunner
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -64315,7 +64387,7 @@
 	}));
 
 /***/ },
-/* 78 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -64323,7 +64395,7 @@
 	//! author : Armendarabyan : https://github.com/armendarabyan
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -64414,7 +64486,7 @@
 	}));
 
 /***/ },
-/* 79 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -64423,7 +64495,7 @@
 	//! reference: http://id.wikisource.org/wiki/Pedoman_Umum_Ejaan_Bahasa_Indonesia_yang_Disempurnakan
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -64501,7 +64573,7 @@
 	}));
 
 /***/ },
-/* 80 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -64509,7 +64581,7 @@
 	//! author : Hinrik Örn Sigurðsson : https://github.com/hinrik
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -64632,7 +64704,7 @@
 	}));
 
 /***/ },
-/* 81 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -64641,7 +64713,7 @@
 	//! author: Mattia Larentis: https://github.com/nostalgiaz
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -64706,7 +64778,7 @@
 	}));
 
 /***/ },
-/* 82 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -64714,7 +64786,7 @@
 	//! author : LI Long : https://github.com/baryon
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -64786,7 +64858,7 @@
 	}));
 
 /***/ },
-/* 83 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -64795,7 +64867,7 @@
 	//! reference: http://jv.wikipedia.org/wiki/Basa_Jawa
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -64873,7 +64945,7 @@
 	}));
 
 /***/ },
-/* 84 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -64881,7 +64953,7 @@
 	//! author : Irakli Janiashvili : https://github.com/irakli-janiashvili
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -64966,7 +65038,7 @@
 	}));
 
 /***/ },
-/* 85 */
+/* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -64974,7 +65046,7 @@
 	//! authors : Nurlan Rakhimzhanov : https://github.com/nurlan
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -65057,7 +65129,7 @@
 	}));
 
 /***/ },
-/* 86 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -65065,7 +65137,7 @@
 	//! author : Kruy Vanna : https://github.com/kruyvanna
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -65119,7 +65191,7 @@
 	}));
 
 /***/ },
-/* 87 */
+/* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -65131,7 +65203,7 @@
 	//! - Jeeeyul Lee <jeeeyul@gmail.com>
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -65191,7 +65263,7 @@
 	}));
 
 /***/ },
-/* 88 */
+/* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -65199,7 +65271,7 @@
 	//! author : mweimerskirch : https://github.com/mweimerskirch, David Raison : https://github.com/kwisatz
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -65329,7 +65401,7 @@
 	}));
 
 /***/ },
-/* 89 */
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -65337,7 +65409,7 @@
 	//! author : Ryan Hart : https://github.com/ryanhart2
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -65402,7 +65474,7 @@
 	}));
 
 /***/ },
-/* 90 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -65410,7 +65482,7 @@
 	//! author : Mindaugas Mozūras : https://github.com/mmozuras
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -65521,7 +65593,7 @@
 	}));
 
 /***/ },
-/* 91 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -65530,7 +65602,7 @@
 	//! author : Jānis Elmeris : https://github.com/JanisE
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -65621,7 +65693,7 @@
 	}));
 
 /***/ },
-/* 92 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -65629,7 +65701,7 @@
 	//! author : Miodrag Nikač <miodrag@restartit.me> : https://github.com/miodragnikac
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -65734,7 +65806,7 @@
 	}));
 
 /***/ },
-/* 93 */
+/* 95 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -65742,7 +65814,7 @@
 	//! author : Borislav Mickov : https://github.com/B0k0
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -65828,7 +65900,7 @@
 	}));
 
 /***/ },
-/* 94 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -65836,7 +65908,7 @@
 	//! author : Floyd Pink : https://github.com/floydpink
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -65912,7 +65984,7 @@
 	}));
 
 /***/ },
-/* 95 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -65921,7 +65993,7 @@
 	//! author : Vivek Athalye : https://github.com/vnathalye
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -66074,7 +66146,7 @@
 	}));
 
 /***/ },
-/* 96 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -66082,7 +66154,7 @@
 	//! author : Weldan Jamili : https://github.com/weldan
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -66160,7 +66232,7 @@
 	}));
 
 /***/ },
-/* 97 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -66168,7 +66240,7 @@
 	//! author : Weldan Jamili : https://github.com/weldan
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -66246,7 +66318,7 @@
 	}));
 
 /***/ },
-/* 98 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -66254,7 +66326,7 @@
 	//! author : Squar team, mysquar.com
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -66343,7 +66415,7 @@
 	}));
 
 /***/ },
-/* 99 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -66352,7 +66424,7 @@
 	//!           Sigurd Gartmann : https://github.com/sigurdga
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -66408,7 +66480,7 @@
 	}));
 
 /***/ },
-/* 100 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -66416,7 +66488,7 @@
 	//! author : suvash : https://github.com/suvash
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -66533,7 +66605,7 @@
 	}));
 
 /***/ },
-/* 101 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -66541,7 +66613,7 @@
 	//! author : Joris Röling : https://github.com/jjupiter
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -66608,7 +66680,7 @@
 	}));
 
 /***/ },
-/* 102 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -66616,7 +66688,7 @@
 	//! author : https://github.com/mechuwind
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -66672,7 +66744,7 @@
 	}));
 
 /***/ },
-/* 103 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -66680,7 +66752,7 @@
 	//! author : Harpreet Singh : https://github.com/harpreetkhalsagtbit
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -66800,7 +66872,7 @@
 	}));
 
 /***/ },
-/* 104 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -66808,7 +66880,7 @@
 	//! author : Rafal Hirsz : https://github.com/evoL
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -66909,7 +66981,7 @@
 	}));
 
 /***/ },
-/* 105 */
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -66917,7 +66989,7 @@
 	//! author : Jefferson : https://github.com/jalex79
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -66977,7 +67049,7 @@
 	}));
 
 /***/ },
-/* 106 */
+/* 108 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -66985,7 +67057,7 @@
 	//! author : Caio Ribeiro Pereira : https://github.com/caio-ribeiro-pereira
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -67041,7 +67113,7 @@
 	}));
 
 /***/ },
-/* 107 */
+/* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -67050,7 +67122,7 @@
 	//! author : Valentin Agachi : https://github.com/avaly
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -67119,7 +67191,7 @@
 	}));
 
 /***/ },
-/* 108 */
+/* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -67129,7 +67201,7 @@
 	//! author : Коренберг Марк : https://github.com/socketpair
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -67291,7 +67363,7 @@
 	}));
 
 /***/ },
-/* 109 */
+/* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -67299,7 +67371,7 @@
 	//! authors : Bård Rolstad Henriksen : https://github.com/karamell
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -67356,7 +67428,7 @@
 	}));
 
 /***/ },
-/* 110 */
+/* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -67364,7 +67436,7 @@
 	//! author : Sampath Sitinamaluwa : https://github.com/sampathsris
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -67430,7 +67502,7 @@
 	}));
 
 /***/ },
-/* 111 */
+/* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -67439,7 +67511,7 @@
 	//! based on work of petrbela : https://github.com/petrbela
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -67584,7 +67656,7 @@
 	}));
 
 /***/ },
-/* 112 */
+/* 114 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -67592,7 +67664,7 @@
 	//! author : Robert Sedovšek : https://github.com/sedovsek
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -67748,7 +67820,7 @@
 	}));
 
 /***/ },
-/* 113 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -67758,7 +67830,7 @@
 	//! author : Oerd Cukalla : https://github.com/oerd (fixes)
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -67821,7 +67893,7 @@
 	}));
 
 /***/ },
-/* 114 */
+/* 116 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -67829,7 +67901,7 @@
 	//! author : Milan Janačković<milanjanackovic@gmail.com> : https://github.com/milan-j
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -67933,7 +68005,7 @@
 	}));
 
 /***/ },
-/* 115 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -67941,7 +68013,7 @@
 	//! author : Milan Janačković<milanjanackovic@gmail.com> : https://github.com/milan-j
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -68045,7 +68117,7 @@
 	}));
 
 /***/ },
-/* 116 */
+/* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -68053,7 +68125,7 @@
 	//! author : Jens Alm : https://github.com/ulmus
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -68116,7 +68188,7 @@
 	}));
 
 /***/ },
-/* 117 */
+/* 119 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -68124,7 +68196,7 @@
 	//! author : Fahad Kassim : https://github.com/fadsel
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -68178,7 +68250,7 @@
 	}));
 
 /***/ },
-/* 118 */
+/* 120 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -68186,7 +68258,7 @@
 	//! author : Arjunkumar Krishnamoorthy : https://github.com/tk120404
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -68311,7 +68383,7 @@
 	}));
 
 /***/ },
-/* 119 */
+/* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -68319,7 +68391,7 @@
 	//! author : Krishna Chaitanya Thota : https://github.com/kcthota
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -68403,7 +68475,7 @@
 	}));
 
 /***/ },
-/* 120 */
+/* 122 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -68411,7 +68483,7 @@
 	//! author : Kridsada Thanabulpong : https://github.com/sirn
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -68472,7 +68544,7 @@
 	}));
 
 /***/ },
-/* 121 */
+/* 123 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -68480,7 +68552,7 @@
 	//! author : Dan Hagman
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -68538,7 +68610,7 @@
 	}));
 
 /***/ },
-/* 122 */
+/* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -68546,7 +68618,7 @@
 	//! author : Dominika Kruk : https://github.com/amaranthrose
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -68661,7 +68733,7 @@
 	}));
 
 /***/ },
-/* 123 */
+/* 125 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -68670,7 +68742,7 @@
 	//!           Burak Yiğit Kaya: https://github.com/BYK
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -68755,7 +68827,7 @@
 	}));
 
 /***/ },
-/* 124 */
+/* 126 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -68763,7 +68835,7 @@
 	//! author : Robin van der Vliet : https://github.com/robin0van0der0v with the help of Iustì Canun
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -68850,7 +68922,7 @@
 	}));
 
 /***/ },
-/* 125 */
+/* 127 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -68858,7 +68930,7 @@
 	//! author : Abdel Said : https://github.com/abdelsaid
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -68912,7 +68984,7 @@
 	}));
 
 /***/ },
-/* 126 */
+/* 128 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -68920,7 +68992,7 @@
 	//! author : Abdel Said : https://github.com/abdelsaid
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -68974,7 +69046,7 @@
 	}));
 
 /***/ },
-/* 127 */
+/* 129 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -68983,7 +69055,7 @@
 	//! Author : Menelion Elensúle : https://github.com/Oire
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -69124,7 +69196,7 @@
 	}));
 
 /***/ },
-/* 128 */
+/* 130 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -69132,7 +69204,7 @@
 	//! author : Sardor Muminov : https://github.com/muminoff
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -69186,7 +69258,7 @@
 	}));
 
 /***/ },
-/* 129 */
+/* 131 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -69194,7 +69266,7 @@
 	//! author : Bang Nguyen : https://github.com/bangnk
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -69267,7 +69339,7 @@
 	}));
 
 /***/ },
-/* 130 */
+/* 132 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -69276,7 +69348,7 @@
 	//! author : Zeno Zeng : https://github.com/zenozeng
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -69398,7 +69470,7 @@
 	}));
 
 /***/ },
-/* 131 */
+/* 133 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -69406,7 +69478,7 @@
 	//! author : Ben : https://github.com/ben-lin
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(32)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -69503,16 +69575,16 @@
 	}));
 
 /***/ },
-/* 132 */
+/* 134 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _app = __webpack_require__(28);
+	var _app = __webpack_require__(30);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _DatePeriodServiceController = __webpack_require__(133);
+	var _DatePeriodServiceController = __webpack_require__(135);
 	
 	var _DatePeriodServiceController2 = _interopRequireDefault(_DatePeriodServiceController);
 	
@@ -69521,7 +69593,7 @@
 	_app2.default.service('DatePeriodService', _DatePeriodServiceController2.default);
 
 /***/ },
-/* 133 */
+/* 135 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -69559,24 +69631,24 @@
 	exports.default = DatePeriodServiceController;
 
 /***/ },
-/* 134 */
+/* 136 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _app = __webpack_require__(28);
+	var _app = __webpack_require__(30);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _calendarToolbarController = __webpack_require__(135);
+	var _calendarToolbarController = __webpack_require__(137);
 	
 	var _calendarToolbarController2 = _interopRequireDefault(_calendarToolbarController);
 	
-	var _template = __webpack_require__(136);
+	var _template = __webpack_require__(138);
 	
 	var _template2 = _interopRequireDefault(_template);
 	
-	__webpack_require__(137);
+	__webpack_require__(139);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -69591,7 +69663,7 @@
 	});
 
 /***/ },
-/* 135 */
+/* 137 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -69725,19 +69797,19 @@
 	exports.default = CalendarToolbarController;
 
 /***/ },
-/* 136 */
+/* 138 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"calendar__toolbar\">\r\n    <div class=\"toolbar__left\">\r\n        <div class=\"btn-toolbar\">\r\n            <div class=\"btn-group\">\r\n                <button type=\"button\" class=\"btn btn-default\" ng-click=\"$ctrl.onClickLeft()\">\r\n                    <i class=\"fa fa-chevron-left\"></i>\r\n                </button>\r\n                <button type=\"button\" class=\"btn btn-default\" ng-click=\"$ctrl.onClickRight()\">\r\n                    <i class=\"fa fa-chevron-right\"></i>\r\n                </button>\r\n            </div>\r\n            <div class=\"btn-group\">\r\n                <button type=\"button\" class=\"btn btn-default\" \r\n                    ng-class=\"{ active: $ctrl.isCurrentDate() }\" \r\n                    ng-click=\"$ctrl.onClickToday()\">Сегодня</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"toolbar__right\">\r\n        <div class=\"btn-toolbar\">\r\n            <div class=\"btn-group\">\r\n                <button type=\"button\" class=\"btn btn-default\" ng-class=\"{ active: $ctrl.isYear() }\" ng-click=\"$ctrl.onClickYear()\">Год</button>\r\n                <button type=\"button\" class=\"btn btn-default\" ng-class=\"{ active: $ctrl.isMonth() }\" ng-click=\"$ctrl.onClickMonth()\">Месяц</button>\r\n                <button type=\"button\" class=\"btn btn-default\" ng-class=\"{ active: $ctrl.isWeek() }\" ng-click=\"$ctrl.onClickWeek()\">Неделя</button>\r\n                <button type=\"button\" class=\"btn btn-default\" ng-class=\"{ active: $ctrl.isDay() }\" ng-click=\"$ctrl.onClickDay()\">День</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"toolbar__center\">\r\n        <span>{{ $ctrl.getDate() }}</span>\r\n    </div>\r\n    <div class=\"toolbar__clear\"></div>\r\n</div>\r\n";
 
 /***/ },
-/* 137 */
+/* 139 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 138 */
+/* 140 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -69746,19 +69818,19 @@
 	    value: true
 	});
 	
-	var _app = __webpack_require__(28);
+	var _app = __webpack_require__(30);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _CalendarYearController = __webpack_require__(139);
+	var _CalendarYearController = __webpack_require__(141);
 	
 	var _CalendarYearController2 = _interopRequireDefault(_CalendarYearController);
 	
-	var _template = __webpack_require__(140);
+	var _template = __webpack_require__(142);
 	
 	var _template2 = _interopRequireDefault(_template);
 	
-	__webpack_require__(141);
+	__webpack_require__(143);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -69772,7 +69844,7 @@
 	});
 
 /***/ },
-/* 139 */
+/* 141 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -69833,19 +69905,19 @@
 	;
 
 /***/ },
-/* 140 */
+/* 142 */
 /***/ function(module, exports) {
 
 	module.exports = "<table class=\"calendar__year\">\r\n    <tbody>\r\n        <tr class=\"calendar__quarter\" ng-repeat=\"quarter in [0, 3, 6, 9]\">\r\n            <td class=\"quarter__month\" \r\n                ng-repeat=\"month in [0, 1, 2]\"\r\n                ng-class=\"{ active: $ctrl.isCurrent(quarter + month) }\" \r\n                ng-click=\"$ctrl.onClickMonth(quarter + month)\">\r\n                <span>{{ $ctrl.months[quarter + month] }}</span>\r\n            </td>\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n";
 
 /***/ },
-/* 141 */
+/* 143 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 142 */
+/* 144 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -69854,19 +69926,19 @@
 	    value: true
 	});
 	
-	var _app = __webpack_require__(28);
+	var _app = __webpack_require__(30);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _calendarMonthController = __webpack_require__(143);
+	var _calendarMonthController = __webpack_require__(145);
 	
 	var _calendarMonthController2 = _interopRequireDefault(_calendarMonthController);
 	
-	var _template = __webpack_require__(144);
+	var _template = __webpack_require__(146);
 	
 	var _template2 = _interopRequireDefault(_template);
 	
-	__webpack_require__(145);
+	__webpack_require__(147);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -69880,7 +69952,7 @@
 	});
 
 /***/ },
-/* 143 */
+/* 145 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -69997,19 +70069,19 @@
 	;
 
 /***/ },
-/* 144 */
+/* 146 */
 /***/ function(module, exports) {
 
 	module.exports = "<table class=\"calendar__month\">\r\n    <thead class=\"month__header\">\r\n        <tr>\r\n            <th class=\"header__week\"><span>Нед</span></th>\r\n            <th class=\"header__day header__day--mon\">Пн</th>\r\n            <th class=\"header__day header__day--tue\">Вт</th>\r\n            <th class=\"header__day header__day--wed\">Ср</th>\r\n            <th class=\"header__day header__day--thu\">Чт</th>\r\n            <th class=\"header__day header__day--fri\">Пт</th>\r\n            <th class=\"header__day header__day--sat\">Сб</th>\r\n            <th class=\"header__day header__day--sun\">Вс</th>\r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n        <tr class=\"month__week\" ng-repeat=\"week in $ctrl.getWeeks()\">\r\n            <td class=\"week__number\" ng-click=\"$ctrl.onClickWeek(week)\">{{ $ctrl.getWeekNumber(week) }}</td>\r\n            <td class=\"week__day\" \r\n                ng-repeat=\"n in [0, 1, 2, 3, 4, 5, 6]\"\r\n                ng-class=\"[$ctrl.getWeekendClassName(n), $ctrl.getOtherMonthClassName(week, n), $ctrl.getCurrentDayClassName(week, n)]\"\r\n                ng-click=\"$ctrl.onClickDay(week, n)\">\r\n                <span class=\"day__number\">{{ $ctrl.getDay(week, n) }}</span>\r\n            </td>\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n";
 
 /***/ },
-/* 145 */
+/* 147 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 146 */
+/* 148 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -70018,19 +70090,19 @@
 	    value: true
 	});
 	
-	var _app = __webpack_require__(28);
+	var _app = __webpack_require__(30);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _calendarWeekController = __webpack_require__(147);
+	var _calendarWeekController = __webpack_require__(149);
 	
 	var _calendarWeekController2 = _interopRequireDefault(_calendarWeekController);
 	
-	var _template = __webpack_require__(148);
+	var _template = __webpack_require__(150);
 	
 	var _template2 = _interopRequireDefault(_template);
 	
-	__webpack_require__(149);
+	__webpack_require__(151);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -70044,7 +70116,7 @@
 	});
 
 /***/ },
-/* 147 */
+/* 149 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -70121,19 +70193,19 @@
 	;
 
 /***/ },
-/* 148 */
+/* 150 */
 /***/ function(module, exports) {
 
 	module.exports = "<table class=\"calendar__week\">\r\n    <thead class=\"week__header\">\r\n        <tr>\r\n            <th class=\"header__week\"><span>Нед</span></th>\r\n            <th class=\"header__day header__day--mon\">Пн</th>\r\n            <th class=\"header__day header__day--tue\">Вт</th>\r\n            <th class=\"header__day header__day--wed\">Ср</th>\r\n            <th class=\"header__day header__day--thu\">Чт</th>\r\n            <th class=\"header__day header__day--fri\">Пт</th>\r\n            <th class=\"header__day header__day--sat\">Сб</th>\r\n            <th class=\"header__day header__day--sun\">Вс</th>\r\n        </tr>\r\n    </thead>\r\n    <tbody class=\"week__body\">\r\n        <tr class=\"calendar__week\">\r\n            <td class=\"week__number\">{{ $ctrl.getWeekNumber() }}</td>\r\n            <td class=\"week__day\" \r\n                ng-repeat=\"n in [0, 1, 2, 3, 4, 5, 6]\"\r\n                ng-class=\"[$ctrl.getWeekendClassName(n), $ctrl.getCurrentDayClassName(n)]\"\r\n                ng-click=\"$ctrl.onClickDay(n)\">\r\n                <span class=\"day__number\">{{ $ctrl.getDay(n) }}</span>\r\n            </td>\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n";
 
 /***/ },
-/* 149 */
+/* 151 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 150 */
+/* 152 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -70142,30 +70214,33 @@
 	    value: true
 	});
 	
-	var _app = __webpack_require__(28);
+	var _app = __webpack_require__(30);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _calendarDayController = __webpack_require__(151);
+	var _calendarDayController = __webpack_require__(153);
 	
 	var _calendarDayController2 = _interopRequireDefault(_calendarDayController);
 	
-	var _template = __webpack_require__(154);
+	var _template = __webpack_require__(156);
 	
 	var _template2 = _interopRequireDefault(_template);
 	
-	__webpack_require__(155);
+	__webpack_require__(157);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = _app2.default.component('calendarDay', {
 	    template: _template2.default,
 	    controller: _calendarDayController2.default,
-	    bindings: {}
+	    bindings: {
+	        date: '<',
+	        handlers: '<'
+	    }
 	});
 
 /***/ },
-/* 151 */
+/* 153 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -70176,11 +70251,11 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _template = __webpack_require__(152);
+	var _template = __webpack_require__(154);
 	
 	var _template2 = _interopRequireDefault(_template);
 	
-	var _productAddDialogController = __webpack_require__(153);
+	var _productAddDialogController = __webpack_require__(155);
 	
 	var _productAddDialogController2 = _interopRequireDefault(_productAddDialogController);
 	
@@ -70189,19 +70264,47 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	var CalendarDayController = function () {
-	    function CalendarDayController(DateService, $uibModal) {
+	    function CalendarDayController(DateService, $uibModal, FoodRatioService) {
 	        _classCallCheck(this, CalendarDayController);
 	
 	        this.DateService = DateService;
 	        this.$uibModal = $uibModal;
 	        this.moment = DateService.getMoment();
+	        this.FoodRatioService = FoodRatioService;
 	
-	        this.allChecked = false;
-	
-	        this.items = [];
+	        this._initData();
 	    }
 	
 	    _createClass(CalendarDayController, [{
+	        key: '_initData',
+	        value: function _initData() {
+	            var _this = this;
+	
+	            this.items = [];
+	            this.loading = true;
+	            this.handlers.getData(this.date).then(function (result) {
+	                _this.items = result;
+	                _this.total = _this._initTotal();
+	                _this.loading = false;
+	            });
+	        }
+	    }, {
+	        key: '_initTotal',
+	        value: function _initTotal() {
+	            var carbohydrate = this._getTotal('carbohydrate');
+	            var protein = this._getTotal('protein');
+	            var fat = this._getTotal('fat');
+	            var ratio = this.FoodRatioService.getRatio(carbohydrate, protein, fat);
+	            return {
+	                weight: this._getTotal('weight'),
+	                energy: this._getTotal('energy'),
+	                carbohydrate: carbohydrate,
+	                protein: protein,
+	                fat: fat,
+	                ratio: ratio
+	            };
+	        }
+	    }, {
 	        key: 'isEmpty',
 	        value: function isEmpty() {
 	            return !this.items.length;
@@ -70209,12 +70312,65 @@
 	    }, {
 	        key: 'onClickAdd',
 	        value: function onClickAdd() {
-	            this.$uibModal.open({
+	            var _this2 = this;
+	
+	            var modal = this.$uibModal.open({
 	                animation: true,
 	                template: _template2.default,
 	                controller: _productAddDialogController2.default,
 	                controllerAs: '$ctrl'
 	            });
+	            modal.result.then(function (data) {
+	                _this2._addItem(data);
+	            });
+	        }
+	    }, {
+	        key: 'getRatio',
+	        value: function getRatio(item) {
+	            var carbohydrate = item.carbohydrate;
+	            var protein = item.protein;
+	            var fat = item.fat;
+	
+	            return this.FoodRatioService.getRatio(carbohydrate, protein, fat);
+	        }
+	    }, {
+	        key: '_getTotal',
+	        value: function _getTotal(paramName) {
+	            var result = this.items.reduce(function (sum, item) {
+	                return sum + parseFloat(item[paramName]);
+	            }, 0);
+	            return result.toFixed(0);
+	        }
+	    }, {
+	        key: '_addItem',
+	        value: function _addItem(data) {
+	            var shortName = data.shortName;
+	            var protein = data.protein;
+	            var fat = data.fat;
+	            var energy = data.energy;
+	            var carbohydrate = data.carbohydrate;
+	            var weight = data.weight;
+	            var time = data.time;
+	
+	            var k = weight / 100;
+	            var item = {
+	                shortName: shortName,
+	                protein: this._scaleValue(protein, k),
+	                fat: this._scaleValue(fat, k),
+	                energy: this._scaleValue(energy, k),
+	                carbohydrate: this._scaleValue(carbohydrate, k),
+	                weight: weight,
+	                time: time
+	            };
+	            this.handlers.setData(item, this.date).then(function (result) {
+	                debugger;
+	            });
+	        }
+	    }, {
+	        key: '_scaleValue',
+	        value: function _scaleValue(value, k) {
+	            var result = value * k;
+	            return result.toFixed(2);
 	        }
 	    }]);
 	
@@ -70225,13 +70381,13 @@
 	;
 
 /***/ },
-/* 152 */
+/* 154 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"modal-header\">\r\n    <h3 class=\"modal-title\">Добавление продукта</h3>\r\n</div>\r\n<div class=\"modal-body\">\r\n    <form name=\"foodItem\" class=\"form-horizontal\" ng-submit=\"$ctrl.submit()\" novalidate>\r\n        <fieldset>\r\n            <div class=\"form-group\">\r\n                <label for=\"inputTime\" class=\"col-md-3 control-label\">Время</label>\r\n                <div class=\"col-md-4\">\r\n                    <input type=\"text\" class=\"form-control\" id=\"inputTime\" name=\"time\">\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\" ng-class=\"{ 'has-error' : $ctrl.isHasError('shortName') }\">\r\n                <label for=\"inputShortName\" class=\"col-md-3 control-label\">Наименование</label>\r\n                <div class=\"col-md-9\">\r\n                    <input type=\"text\" class=\"form-control\" id=\"inputShortName\" name=\"shortName\" maxlength=\"40\" required ng-model=\"$ctrl.item.shortName\">\r\n                    <div ng-messages=\"foodItem.shortName.$error\" ng-if=\"$ctrl.isHasError('shortName')\" role=\"alert\">\r\n                        <div ng-message=\"required\" class=\"form__message--error\">Введите наименование</div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n                <label for=\"inputWeight\" class=\"col-md-3 control-label\">Вес</label>\r\n                <div class=\"col-md-4\">\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\">г</span>\r\n                        <input type=\"text\" class=\"form-control\" id=\"inputWeight\" name=\"weight\" required>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\" ng-class=\"{ 'has-error' : $ctrl.isHasError('carbohydrate') }\">\r\n                <label for=\"inputСarbohydrate\" class=\"col-md-3 control-label\">Углеводы</label>\r\n                <div class=\"col-md-4\">\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\">г</span>\r\n                        <input type=\"text\" float-value class=\"form-control\" id=\"inputСarbohydrate\" name=\"carbohydrate\" required ng-model=\"$ctrl.item.carbohydrate\">\r\n                    </div>\r\n                    <div ng-messages=\"foodItem.carbohydrate.$error\" ng-if=\"$ctrl.isHasError('carbohydrate')\" role=\"alert\">\r\n                        <div ng-message=\"required\" class=\"form__message--error\">Enter carbohydrate</div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\" ng-class=\"{ 'has-error' : $ctrl.isHasError('protein') }\">\r\n                <label for=\"inputProtein\" class=\"col-md-3 control-label\">Белки</label>\r\n                <div class=\"col-md-4\">\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\">г</span>\r\n                        <input type=\"text\" float-value class=\"form-control\" id=\"inputProtein\" name=\"protein\" required ng-model=\"$ctrl.item.protein\">\r\n                    </div>\r\n                    <div ng-messages=\"foodItem.protein.$error\" ng-if=\"$ctrl.isHasError('protein')\" role=\"alert\">\r\n                        <div ng-message=\"required\" class=\"form__message--error\">Enter protein</div>\r\n                        <div ng-message=\"required\" class=\"form__message--error\">More than 100 g</div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\" ng-class=\"{ 'has-error' : $ctrl.isHasError('fat') }\">\r\n                <label for=\"inputFat\" class=\"col-md-3 control-label\">Жиры</label>\r\n                <div class=\"col-md-4\">\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\">г</span>\r\n                        <input type=\"text\" float-value class=\"form-control\" id=\"inputFat\" name=\"fat\" \r\n                            required ng-model=\"$ctrl.item.fat\">\r\n                    </div>\r\n                    <div ng-messages=\"foodItem.fat.$error\" ng-if=\"$ctrl.isHasError('fat')\" role=\"alert\">\r\n                        <div ng-message=\"required\" class=\"form__message--error\">Enter fat</div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n                <label for=\"inputCalorie\" class=\"col-md-3 control-label\">Калорийность</label>\r\n                <div class=\"col-md-4\">\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\">ккал</span>\r\n                        <input type=\"text\" float-value class=\"form-control\" id=\"inputCalorie\" ng-model=\"$ctrl.item.energy\">\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </fieldset>\r\n    </form>\r\n</div>\r\n<div class=\"modal-footer\">\r\n    <button type=\"button\" class=\"btn btn-default\" ng-click=\"$ctrl.onClickCansel()\">Отмена</button>\r\n    <button type=\"button\" class=\"btn btn-primary\" ng-click=\"$ctrl.onClickOk()\">Добавить</button>\r\n</div>\r\n";
+	module.exports = "<div class=\"modal-header\">\r\n    <h3 class=\"modal-title\">Добавление продукта</h3>\r\n</div>\r\n<div class=\"modal-body\">\r\n    <form name=\"foodItem\" class=\"form-horizontal\" ng-submit=\"$ctrl.submit()\" novalidate>\r\n        <fieldset>\r\n            <div class=\"form-group\">\r\n                <label for=\"inputShortName\" class=\"col-md-3 control-label\">Наименование</label>\r\n                <div class=\"col-md-8\">\r\n                    <input type=\"text\" \r\n                        class=\"form-control\" \r\n                        id=\"inputShortName\" \r\n                        name=\"shortName\" \r\n                        maxlength=\"40\" \r\n                        autocomplete=\"off\"\r\n                        uib-typeahead=\"item as item.shortName for item in $ctrl.getItems($viewValue)\" typeahead-show-hint=\"true\" typeahead-on-select=\"$ctrl.onSelected()\"\r\n                        required \r\n                        ng-model=\"$ctrl.selectedItem\">\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n                <label for=\"inputWeight\" class=\"col-md-3 control-label\">Вес, г</label>\r\n                <div class=\"col-md-3\">\r\n                    <input type=\"text\" class=\"form-control\" id=\"inputWeight\" name=\"weight\" ng-model=\"$ctrl.weight\" autocomplete=\"off\" required>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n                <label for=\"inputTime\" class=\"col-md-3 control-label\">Время</label>\r\n                <div class=\"col-md-3\">\r\n                    <input type=\"text\" class=\"form-control\" id=\"inputTime\" ng-model=\"$ctrl.time\" name=\"time\">\r\n                </div>\r\n            </div>\r\n        </fieldset>\r\n    </form>\r\n</div>\r\n<div class=\"modal-footer\">\r\n    <button type=\"button\" class=\"btn btn-default\" ng-click=\"$ctrl.onClickCansel()\">Отмена</button>\r\n    <button type=\"button\" class=\"btn btn-primary\" ng-click=\"$ctrl.onClickOk()\">Добавить</button>\r\n</div>\r\n";
 
 /***/ },
-/* 153 */
+/* 155 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -70245,22 +70401,46 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	var ProductAddDialogController = function () {
-	    function ProductAddDialogController($uibModalInstance) {
+	    function ProductAddDialogController($uibModalInstance, FoodService) {
 	        _classCallCheck(this, ProductAddDialogController);
 	
 	        this.$uibModalInstance = $uibModalInstance;
+	        this.FoodService = FoodService;
 	    }
 	
 	    _createClass(ProductAddDialogController, [{
 	        key: 'onClickOk',
 	        value: function onClickOk() {
-	            this.$uibModalInstance.close();
+	            var _selectedItem = this.selectedItem;
+	            var shortName = _selectedItem.shortName;
+	            var protein = _selectedItem.protein;
+	            var fat = _selectedItem.fat;
+	            var energy = _selectedItem.energy;
+	            var carbohydrate = _selectedItem.carbohydrate;
+	
+	            this.$uibModalInstance.close({
+	                shortName: shortName,
+	                protein: protein,
+	                fat: fat,
+	                energy: energy,
+	                carbohydrate: carbohydrate,
+	                weight: this.weight,
+	                time: this.time
+	            });
 	        }
 	    }, {
 	        key: 'onClickCansel',
 	        value: function onClickCansel() {
 	            this.$uibModalInstance.dismiss('close');
 	        }
+	    }, {
+	        key: 'getItems',
+	        value: function getItems(value) {
+	            return this.FoodService.getList();
+	        }
+	    }, {
+	        key: 'onSelected',
+	        value: function onSelected() {}
 	    }]);
 	
 	    return ProductAddDialogController;
@@ -70269,19 +70449,19 @@
 	exports.default = ProductAddDialogController;
 
 /***/ },
-/* 154 */
+/* 156 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"calendar__day\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-12\">\r\n            <table class=\"table table-striped table-hover\">\r\n                <thead>\r\n                    <tr>\r\n                        <th class=\"text-muted\">Время</th>\r\n                        <th class=\"text-muted\">Наименование</th>\r\n                        <th class=\"text-muted\">Вес, г</th>\r\n                        <th class=\"text-muted\">Калорийность, ккал</th>\r\n                        <th class=\"text-muted\">Углеводы, г</th>\r\n                        <th class=\"text-muted\">Белки, г</th>\r\n                        <th class=\"text-muted\">Жиры, г</th>\r\n                        <th class=\"text-muted\">&nbsp;У&nbsp;/&nbsp;Б&nbsp;/&nbsp;Ж&nbsp;</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    <tr ng-if=\"$ctrl.isEmpty()\">\r\n                        <td colspan=\"8\" class=\"table__emptyRow\">\r\n                            Добавьте\r\n                            <a class=\"link link--local\" ng-click=\"$ctrl.onClickAdd()\">продукт</a>,\r\n                            <a class=\"link link--local\" ng-click=\"$ctrl.onClickAdd()\">блюдо</a>,\r\n                            <a class=\"link link--local\" ng-click=\"$ctrl.onClickAdd()\">трапезу</a>\r\n                        </td>\r\n                    </tr>\r\n                    <tr ng-repeat=\"item in $ctrl.items\">\r\n                        <td>{{ item.time }}</td>\r\n                        <td>\r\n                            <a ui-sref=\"food.edit({ foodId: item.$id })\">{{ item.shortName }}</a>\r\n                        </td>\r\n                        <td>{{ item.weight }}</td>\r\n                        <td>{{ item.energy }}</td>\r\n                        <td>{{ item.carbohydrate }}</td>\r\n                        <td>{{ item.protein }}</td>\r\n                        <td>{{ item.fat }}</td>\r\n                        <td>{{ $ctrl.getRatio(item) }}</td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\" ng-if=\"!$ctrl.isEmpty()\">\r\n        <div class=\"col-md-12\">\r\n            <div class=\"pull-right\">\r\n                <div class=\"btn-toolbar\">\r\n                    <div class=\"btn-group\">\r\n                        <button type=\"button\" class=\"btn btn-success\" ng-click=\"$ctrl.onClickAdd()\">\r\n                            Добавить\r\n                        </button>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    \r\n\r\n    <!-- <div class=\"row day__form\">\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__time\" placeholder=\"Время\">\r\n        </div>\r\n        <div class=\"col-md-4\">\r\n            <input type=\"text\" class=\"input-sm form__name\" placeholder=\"Наименование\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__weight\" placeholder=\"Вес, г\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__energy\" placeholder=\"Калорийность, ккал\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__carbohydrate\" placeholder=\"Углеводы, г\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__protein\" placeholder=\"Белки, г\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__fat\" placeholder=\"Жиры, г\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <button type=\"button\" class=\"btn btn-primary btn-sm form__button\"><i class=\"fa fa-plus\"></i> Добавить</button>\r\n        </div>\r\n    </div> -->\r\n</div>\r\n";
+	module.exports = "<div class=\"calendar__day\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-12\">\r\n            <table class=\"table table-striped table-hover\">\r\n                <thead>\r\n                    <tr>\r\n                        <th class=\"text-muted\">Время</th>\r\n                        <th class=\"text-muted\">Наименование</th>\r\n                        <th class=\"text-muted\">Вес, г</th>\r\n                        <th class=\"text-muted\">Калорийность, ккал</th>\r\n                        <th class=\"text-muted\">Углеводы, г</th>\r\n                        <th class=\"text-muted\">Белки, г</th>\r\n                        <th class=\"text-muted\">Жиры, г</th>\r\n                        <th class=\"text-muted\">&nbsp;У&nbsp;/&nbsp;Б&nbsp;/&nbsp;Ж&nbsp;</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    <tr ng-if=\"$ctrl.isEmpty() && !$ctrl.loading\">\r\n                        <td colspan=\"8\" class=\"table__emptyRow\">\r\n                            Добавьте\r\n                            <a class=\"link link--local\" ng-click=\"$ctrl.onClickAdd()\">продукт</a>,\r\n                            <a class=\"link link--local\" ng-click=\"$ctrl.onClickAdd()\">блюдо</a>,\r\n                            <a class=\"link link--local\" ng-click=\"$ctrl.onClickAdd()\">трапезу</a>\r\n                        </td>\r\n                    </tr>\r\n                    <tr ng-repeat=\"item in $ctrl.items\">\r\n                        <td>{{ item.time }}</td>\r\n                        <td>\r\n                            <a>{{ item.shortName }}</a>\r\n                        </td>\r\n                        <td>{{ item.weight }}</td>\r\n                        <td>{{ item.energy }}</td>\r\n                        <td>{{ item.carbohydrate }}</td>\r\n                        <td>{{ item.protein }}</td>\r\n                        <td>{{ item.fat }}</td>\r\n                        <td>{{ $ctrl.getRatio(item) }}</td>\r\n                    </tr>\r\n                    <tr class=\"table__sumRow\" ng-if=\"$ctrl.items.length > 1\">\r\n                        <td colspan=\"2\" class=\"sumRow__title\">\r\n                            <i>Итого:</i>\r\n                        </td>\r\n                        <td>{{ $ctrl.total.weight }}</td>\r\n                        <td>{{ $ctrl.total.energy }}</td>\r\n                        <td>{{ $ctrl.total.carbohydrate }}</td>\r\n                        <td>{{ $ctrl.total.protein }}</td>\r\n                        <td>{{ $ctrl.total.fat }}</td>\r\n                        <td>{{ $ctrl.total.ratio }}</td>\r\n                    </tr>\r\n                    <tr ng-if=\"$ctrl.loading\">\r\n                        <td colspan=\"8\" class=\"table__loadingRow\">\r\n                            <i class=\"fa fa-3x fa-spinner fa-spin\"></i>\r\n                        </td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\" ng-if=\"!$ctrl.isEmpty()\">\r\n        <div class=\"col-md-12\">\r\n            <div class=\"pull-right\">\r\n                <div class=\"btn-toolbar\">\r\n                    <div class=\"btn-group\">\r\n                        <button type=\"button\" class=\"btn btn-success\" ng-click=\"$ctrl.onClickAdd()\">\r\n                            Добавить\r\n                        </button>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    \r\n\r\n    <!-- <div class=\"row day__form\">\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__time\" placeholder=\"Время\">\r\n        </div>\r\n        <div class=\"col-md-4\">\r\n            <input type=\"text\" class=\"input-sm form__name\" placeholder=\"Наименование\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__weight\" placeholder=\"Вес, г\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__energy\" placeholder=\"Калорийность, ккал\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__carbohydrate\" placeholder=\"Углеводы, г\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__protein\" placeholder=\"Белки, г\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__fat\" placeholder=\"Жиры, г\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <button type=\"button\" class=\"btn btn-primary btn-sm form__button\"><i class=\"fa fa-plus\"></i> Добавить</button>\r\n        </div>\r\n    </div> -->\r\n</div>\r\n";
 
 /***/ },
-/* 155 */
+/* 157 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 156 */
+/* 158 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -70317,6 +70497,7 @@
 	        this._initYearHandlers();
 	        this._initMonthHandlers();
 	        this._initWeekHandlers();
+	        this._initDayHandlers();
 	    }
 	
 	    _createClass(CalendarController, [{
@@ -70392,6 +70573,14 @@
 	            };
 	        }
 	    }, {
+	        key: '_initDayHandlers',
+	        value: function _initDayHandlers() {
+	            this.dayHandlers = {
+	                getData: this.handlers.getData,
+	                setData: this.handlers.setData
+	            };
+	        }
+	    }, {
 	        key: '_onClickDay',
 	        value: function _onClickDay(date) {
 	            var formatDate = moment(date).format(this.dateFormat);
@@ -70431,19 +70620,19 @@
 	;
 
 /***/ },
-/* 157 */
+/* 159 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"calendar\">\r\n    <calendar-toolbar date=\"$ctrl.date\" period=\"$ctrl.period\" handlers=\"$ctrl.toolbarHandlers\"></calendar-toolbar>\r\n    <div class=\"calendar__body\">\r\n        <calendar-year date=\"$ctrl.date\" handlers=\"$ctrl.yearHandlers\" ng-if=\"$ctrl.isYear()\"></calendar-year>\r\n        <calendar-month date=\"$ctrl.date\" handlers=\"$ctrl.monthHandlers\" ng-if=\"$ctrl.isMonth()\"></calendar-month>\r\n        <calendar-week date=\"$ctrl.date\" handlers=\"$ctrl.weekHandlers\" ng-if=\"$ctrl.isWeek()\"></calendar-week>\r\n        <calendar-day date=\"$ctrl.date\" ng-if=\"$ctrl.isDay()\"></calendar-day>\r\n    </div>    \r\n</div>\r\n";
+	module.exports = "<div class=\"calendar\">\r\n    <calendar-toolbar date=\"$ctrl.date\" period=\"$ctrl.period\" handlers=\"$ctrl.toolbarHandlers\"></calendar-toolbar>\r\n    <div class=\"calendar__body\">\r\n        <calendar-year date=\"$ctrl.date\" handlers=\"$ctrl.yearHandlers\" ng-if=\"$ctrl.isYear()\"></calendar-year>\r\n        <calendar-month date=\"$ctrl.date\" handlers=\"$ctrl.monthHandlers\" ng-if=\"$ctrl.isMonth()\"></calendar-month>\r\n        <calendar-week date=\"$ctrl.date\" handlers=\"$ctrl.weekHandlers\" ng-if=\"$ctrl.isWeek()\"></calendar-week>\r\n        <calendar-day date=\"$ctrl.date\" handlers=\"$ctrl.dayHandlers\" ng-if=\"$ctrl.isDay()\"></calendar-day>\r\n    </div>    \r\n</div>\r\n";
 
 /***/ },
-/* 158 */
+/* 160 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 159 */
+/* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -70452,21 +70641,21 @@
 	    value: true
 	});
 	
-	var _app = __webpack_require__(160);
+	var _app = __webpack_require__(162);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(161);
+	__webpack_require__(163);
 	
-	var _diaryController = __webpack_require__(162);
+	var _diaryController = __webpack_require__(164);
 	
 	var _diaryController2 = _interopRequireDefault(_diaryController);
 	
-	var _template = __webpack_require__(163);
+	var _template = __webpack_require__(165);
 	
 	var _template2 = _interopRequireDefault(_template);
 	
-	__webpack_require__(164);
+	__webpack_require__(166);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -70480,7 +70669,7 @@
 	});
 
 /***/ },
-/* 160 */
+/* 162 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -70498,12 +70687,12 @@
 	exports.default = _angular2.default.module('diary', []);
 
 /***/ },
-/* 161 */
+/* 163 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _app = __webpack_require__(160);
+	var _app = __webpack_require__(162);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -70522,7 +70711,7 @@
 	});
 
 /***/ },
-/* 162 */
+/* 164 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -70535,15 +70724,13 @@
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	var $state = void 0;
-	var DateService = void 0;
-	
 	var DiaryController = function () {
-	    function DiaryController(_$state_, _DateService_) {
+	    function DiaryController($state, DateService, DiaryService) {
 	        _classCallCheck(this, DiaryController);
 	
-	        $state = _$state_;
-	        DateService = _DateService_;
+	        this.$state = $state;
+	        this.DateService = DateService;
+	        this.DiaryService = DiaryService;
 	
 	        this._initState();
 	        this._initCalendarHandlers();
@@ -70554,21 +70741,20 @@
 	        value: function _initState() {
 	            if (!this.date || !this.period) {
 	                var period = this.period || 'day';
-	                var date = this.date || DateService.getNowDateFormatted();
+	                var date = this.date || this.DateService.getNowDateFormatted();
 	                this._goState({ date: date, period: period });
 	            }
 	        }
 	    }, {
 	        key: '_goState',
 	        value: function _goState(options) {
-	            var _$state = $state;
-	            var params = _$state.params;
+	            var params = this.$state.params;
 	            var _options$period = options.period;
 	            var period = _options$period === undefined ? params.period : _options$period;
 	            var _options$date = options.date;
 	            var date = _options$date === undefined ? params.date : _options$date;
 	
-	            $state.go('diary', {
+	            this.$state.go('diary', {
 	                date: date,
 	                period: period
 	            });
@@ -70593,7 +70779,41 @@
 	                },
 	                goDate: function goDate(date) {
 	                    return _this._goState({ date: date });
+	                },
+	                getData: function getData(date) {
+	                    return _this._getData(date);
+	                },
+	                setData: function setData(data, date) {
+	                    return _this._setData(data, date);
 	                }
+	            };
+	        }
+	    }, {
+	        key: '_getData',
+	        value: function _getData(date) {
+	            var options = this._getDateParams(date);
+	            return this.DiaryService.getList(options);
+	        }
+	    }, {
+	        key: '_setData',
+	        value: function _setData(data, date) {
+	            var options = this._getDateParams(date);
+	            return this.DiaryService.addItem(data, options);
+	        }
+	    }, {
+	        key: '_getDateParams',
+	        value: function _getDateParams(date) {
+	            var format = this.DateService.getFormat();
+	            var moment = this.DateService.getMoment();
+	            var momentDate = moment(date, format);
+	            var year = momentDate.year();
+	            var month = momentDate.month();
+	            var day = momentDate.date();
+	
+	            return {
+	                year: year,
+	                month: month,
+	                day: day
 	            };
 	        }
 	    }]);
@@ -70604,19 +70824,19 @@
 	exports.default = DiaryController;
 
 /***/ },
-/* 163 */
+/* 165 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"foodiary__page foodiary__page--diary\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-12\">\r\n            <div class=\"page-header\">\r\n                <h3>Дневник</h3>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"row\">\r\n        <div class=\"col-md-12\">\r\n            <calendar date=\"$ctrl.date\" period=\"$ctrl.period\" handlers=\"$ctrl.calendarHandlers\"></calendar>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ },
-/* 164 */
+/* 166 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 165 */
+/* 167 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -70625,15 +70845,15 @@
 	    value: true
 	});
 	
-	var _app = __webpack_require__(166);
+	var _app = __webpack_require__(168);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _template = __webpack_require__(167);
+	var _template = __webpack_require__(169);
 	
 	var _template2 = _interopRequireDefault(_template);
 	
-	__webpack_require__(168);
+	__webpack_require__(170);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -70642,7 +70862,7 @@
 	});
 
 /***/ },
-/* 166 */
+/* 168 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -70660,19 +70880,19 @@
 	exports.default = _angular2.default.module('about', []);
 
 /***/ },
-/* 167 */
+/* 169 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"foodiary__page foodiary__page--about\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-12\">\r\n            <div class=\"page-header\">\r\n                <h3>About page</h3>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ },
-/* 168 */
+/* 170 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 169 */
+/* 171 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -70681,23 +70901,23 @@
 	    value: true
 	});
 	
-	var _app = __webpack_require__(170);
+	var _app = __webpack_require__(172);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(171);
+	__webpack_require__(173);
 	
-	__webpack_require__(175);
+	__webpack_require__(174);
 	
-	__webpack_require__(178);
+	__webpack_require__(177);
 	
-	__webpack_require__(182);
+	__webpack_require__(181);
 	
-	var _template = __webpack_require__(186);
+	var _template = __webpack_require__(185);
 	
 	var _template2 = _interopRequireDefault(_template);
 	
-	__webpack_require__(187);
+	__webpack_require__(186);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -70737,7 +70957,7 @@
 	});
 
 /***/ },
-/* 170 */
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -70755,130 +70975,49 @@
 	exports.default = _angular2.default.module('food', []);
 
 /***/ },
-/* 171 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _app = __webpack_require__(170);
-	
-	var _app2 = _interopRequireDefault(_app);
-	
-	__webpack_require__(172);
-	
-	__webpack_require__(173);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	_app2.default.run(function () {});
-
-/***/ },
-/* 172 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _app = __webpack_require__(170);
-	
-	var _app2 = _interopRequireDefault(_app);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	_app2.default.service('UrlsService', function () {
-	    this.getFoodsUrl = function () {
-	        return 'https://foodiary.firebaseio.com/food';
-	    };
-	});
-
-/***/ },
 /* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _app = __webpack_require__(170);
+	var _app = __webpack_require__(172);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _FoodServiceController = __webpack_require__(174);
-	
-	var _FoodServiceController2 = _interopRequireDefault(_FoodServiceController);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	_app2.default.service('FoodService', _FoodServiceController2.default);
+	_app2.default.config(function ($stateProvider) {
+	    $stateProvider.state('food', {
+	        url: '/food',
+	        template: '<food></food>'
+	    }).state('food.new', {
+	        url: '/new',
+	        template: '<food-item></food-item>'
+	    }).state('food.edit', {
+	        url: '/edit/:foodId',
+	        template: '<food-item food-id="$ctrl.foodId"></food-item>',
+	        controller: function controller($stateParams) {
+	            this.foodId = $stateParams.foodId;
+	        },
+	        controllerAs: '$ctrl'
+	    });
+	});
 
 /***/ },
 /* 174 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	var FoodServiceController = function () {
-	    /* @ngInject */
-	
-	    function FoodServiceController($firebaseArray, UrlsService) {
-	        _classCallCheck(this, FoodServiceController);
-	
-	        var url = UrlsService.getFoodsUrl();
-	        this.list = $firebaseArray(new Firebase(url));
-	    }
-	
-	    _createClass(FoodServiceController, [{
-	        key: "getList",
-	        value: function getList() {
-	            return this.list.$loaded();
-	        }
-	    }, {
-	        key: "getItem",
-	        value: function getItem(id) {
-	            return this.list.$getRecord(id);
-	        }
-	    }, {
-	        key: "addItem",
-	        value: function addItem(data) {
-	            return this.list.$add(data);
-	        }
-	    }, {
-	        key: "removeItem",
-	        value: function removeItem(item) {
-	            return this.list.$remove(item);
-	        }
-	    }, {
-	        key: "editItem",
-	        value: function editItem(item) {
-	            return this.list.$save(item);
-	        }
-	    }]);
-	
-	    return FoodServiceController;
-	}();
-
-	exports.default = FoodServiceController;
-
-/***/ },
-/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _app = __webpack_require__(170);
+	var _app = __webpack_require__(172);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _template = __webpack_require__(176);
+	var _template = __webpack_require__(175);
 	
 	var _template2 = _interopRequireDefault(_template);
 	
-	__webpack_require__(177);
+	__webpack_require__(176);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -70900,19 +71039,19 @@
 	});
 
 /***/ },
-/* 176 */
+/* 175 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"food__toolbar\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-8\">\r\n            <a ui-sref=\"food.new\" class=\"btn btn-success\" ng-if=\"!$ctrl.checked\">Add</a>\r\n            <button type=\"button\" class=\"btn btn-danger\" ng-click=\"$ctrl.onClickDelete()\" ng-if=\"$ctrl.checked\">Delete</button>\r\n        </div>\r\n        <div class=\"col-md-4\">\r\n            <div class=\"input-group\">\r\n                <input type=\"text\" class=\"form-control\" placeholder=\"Name\">\r\n                <span class=\"input-group-btn\">\r\n                    <button class=\"btn btn-default\" type=\"button\">\r\n                        <i class=\"fa fa-search\"></i>\r\n                    </button>\r\n                </span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <!-- <food-delete-confirm-dialog></food-delete-confirm-dialog> -->\r\n</div>\r\n";
+	module.exports = "<div class=\"food__toolbar\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-8\">\r\n            <a ui-sref=\"food.new\" class=\"btn btn-success\" ng-if=\"!$ctrl.checked\">Добавить</a>\r\n            <button type=\"button\" class=\"btn btn-danger\" ng-click=\"$ctrl.onClickDelete()\" ng-if=\"$ctrl.checked\">Удалить</button>\r\n        </div>\r\n        <div class=\"col-md-4\">\r\n            <div class=\"input-group\">\r\n                <input type=\"text\" class=\"form-control\" placeholder=\"Наименование\">\r\n                <span class=\"input-group-btn\">\r\n                    <button class=\"btn btn-default\" type=\"button\">\r\n                        <i class=\"fa fa-search\"></i>\r\n                    </button>\r\n                </span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <!-- <food-delete-confirm-dialog></food-delete-confirm-dialog> -->\r\n</div>\r\n";
 
 /***/ },
-/* 177 */
+/* 176 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 178 */
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -70921,36 +71060,34 @@
 	    value: true
 	});
 	
-	var _app = __webpack_require__(170);
+	var _app = __webpack_require__(172);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _foodTableController = __webpack_require__(179);
+	var _foodTableController = __webpack_require__(178);
 	
 	var _foodTableController2 = _interopRequireDefault(_foodTableController);
 	
-	var _template = __webpack_require__(180);
+	var _template = __webpack_require__(179);
 	
 	var _template2 = _interopRequireDefault(_template);
 	
-	__webpack_require__(181);
+	__webpack_require__(180);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = _app2.default.component('foodTable', {
 	    template: _template2.default,
-	
+	    controller: _foodTableController2.default,
 	    bindings: {
 	        list: '<',
 	        loading: '<',
 	        handlers: '<'
-	    },
-	
-	    controller: [_foodTableController2.default]
+	    }
 	});
 
 /***/ },
-/* 179 */
+/* 178 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -70964,20 +71101,21 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	var FoodTableController = function () {
-	    function FoodTableController() {
+	    function FoodTableController(FoodRatioService) {
 	        _classCallCheck(this, FoodTableController);
 	
+	        this.FoodRatioService = FoodRatioService;
 	        this.allChecked = false;
 	    }
 	
 	    _createClass(FoodTableController, [{
 	        key: "getRatio",
 	        value: function getRatio(item) {
-	            var protein = parseFloat(item.protein);
-	            var fat = parseFloat(item.fat);
-	            var carbohydrate = parseFloat(item.carbohydrate);
-	            var sum = protein + fat + carbohydrate;
-	            return this._getRatioValue(carbohydrate, sum) + "/" + this._getRatioValue(protein, sum) + "/" + this._getRatioValue(fat, sum);
+	            var carbohydrate = item.carbohydrate;
+	            var protein = item.protein;
+	            var fat = item.fat;
+	
+	            return this.FoodRatioService.getRatio(carbohydrate, protein, fat);
 	        }
 	    }, {
 	        key: "onChangeAllSelectCheckbox",
@@ -71008,12 +71146,6 @@
 	            }
 	        }
 	    }, {
-	        key: "_getRatioValue",
-	        value: function _getRatioValue(value, sum) {
-	            var n = value / sum;
-	            return n.toFixed(2);
-	        }
-	    }, {
 	        key: "isEmpty",
 	        value: function isEmpty() {
 	            return this.list && !this.list.length && !this.loading;
@@ -71026,36 +71158,36 @@
 	exports.default = FoodTableController;
 
 /***/ },
-/* 180 */
+/* 179 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"food__table\">\r\n    <table class=\"table table-striped table-hover\">\r\n        <thead>\r\n            <tr>\r\n                <th class=\"text-muted\">\r\n                    <input type=\"checkbox\" ng-model=\"$ctrl.allChecked\" ng-change=\"$ctrl.onChangeAllSelectCheckbox()\">\r\n                </th>\r\n                <th class=\"text-muted\">Наименование</th>\r\n                <th class=\"text-muted\">Калорийность, ккал</th>\r\n                <th class=\"text-muted\">Углеводы, г</th>\r\n                <th class=\"text-muted\">Белки, г</th>\r\n                <th class=\"text-muted\">Жиры, г</th>\r\n                <th class=\"text-muted\">&nbsp;У&nbsp;/&nbsp;Б&nbsp;/&nbsp;Ж&nbsp;</th>\r\n                <th class=\"text-muted\"></th>\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n            <tr ng-if=\"$ctrl.isEmpty()\">\r\n                <td colspan=\"9\" class=\"table__emptyRow\">\r\n                    <a ui-sref=\"food.new\" class=\"btn btn-link\">Add food</a>\r\n                </td>\r\n            </tr>\r\n            <tr ng-repeat=\"item in $ctrl.list\" ng-if=\"!$ctrl.loading\" ng-class=\"{ warning: item.checked }\">\r\n                <td>\r\n                    <input type=\"checkbox\" ng-model=\"item.checked\" ng-change=\"$ctrl.onChangeSelectCheckbox(item)\">\r\n                </td>\r\n                <td>\r\n                    <a ui-sref=\"food.edit({ foodId: item.$id })\">{{ item.shortName }}</a>\r\n                </td>\r\n                <td>{{ item.energy }}</td>\r\n                <td>{{ item.carbohydrate }}</td>\r\n                <td>{{ item.protein }}</td>\r\n                <td>{{ item.fat }}</td>\r\n                <td>{{ $ctrl.getRatio(item) }}</td>\r\n                <td>\r\n                    <i class=\"fa fa-ellipsis-v\"></i>\r\n                </td>\r\n            </tr>\r\n            <tr ng-if=\"$ctrl.loading\">\r\n                <td colspan=\"9\" class=\"table__loadingRow\">\r\n                    <i class=\"fa fa-3x fa-spinner fa-spin\"></i>\r\n                </td>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n</div>\r\n";
+	module.exports = "<div class=\"food__table\">\r\n    <table class=\"table table-striped table-hover\">\r\n        <thead>\r\n            <tr>\r\n                <th class=\"text-muted\">\r\n                    <input type=\"checkbox\" ng-model=\"$ctrl.allChecked\" ng-change=\"$ctrl.onChangeAllSelectCheckbox()\">\r\n                </th>\r\n                <th class=\"text-muted\">Наименование</th>\r\n                <th class=\"text-muted\">Калорийность, ккал</th>\r\n                <th class=\"text-muted\">Углеводы, г</th>\r\n                <th class=\"text-muted\">Белки, г</th>\r\n                <th class=\"text-muted\">Жиры, г</th>\r\n                <th class=\"text-muted\">&nbsp;У&nbsp;/&nbsp;Б&nbsp;/&nbsp;Ж&nbsp;</th>\r\n                <th class=\"text-muted\"></th>\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n            <tr ng-if=\"$ctrl.isEmpty()\">\r\n                <td colspan=\"9\" class=\"table__emptyRow\">\r\n                    <a ui-sref=\"food.new\" class=\"btn btn-link\">Добавить</a>\r\n                </td>\r\n            </tr>\r\n            <tr ng-repeat=\"item in $ctrl.list\" ng-if=\"!$ctrl.loading\" ng-class=\"{ warning: item.checked }\">\r\n                <td>\r\n                    <input type=\"checkbox\" ng-model=\"item.checked\" ng-change=\"$ctrl.onChangeSelectCheckbox(item)\">\r\n                </td>\r\n                <td>\r\n                    <a ui-sref=\"food.edit({ foodId: item.$id })\">{{ item.shortName }}</a>\r\n                </td>\r\n                <td>{{ item.energy }}</td>\r\n                <td>{{ item.carbohydrate }}</td>\r\n                <td>{{ item.protein }}</td>\r\n                <td>{{ item.fat }}</td>\r\n                <td>{{ $ctrl.getRatio(item) }}</td>\r\n                <td>\r\n                    <i class=\"fa fa-ellipsis-v\"></i>\r\n                </td>\r\n            </tr>\r\n            <tr ng-if=\"$ctrl.loading\">\r\n                <td colspan=\"9\" class=\"table__loadingRow\">\r\n                    <i class=\"fa fa-3x fa-spinner fa-spin\"></i>\r\n                </td>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n</div>\r\n";
 
 /***/ },
-/* 181 */
+/* 180 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 182 */
+/* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _app = __webpack_require__(170);
+	var _app = __webpack_require__(172);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _FoodItemController = __webpack_require__(183);
+	var _FoodItemController = __webpack_require__(182);
 	
 	var _FoodItemController2 = _interopRequireDefault(_FoodItemController);
 	
-	var _template = __webpack_require__(184);
+	var _template = __webpack_require__(183);
 	
 	var _template2 = _interopRequireDefault(_template);
 	
-	__webpack_require__(185);
+	__webpack_require__(184);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -71070,7 +71202,7 @@
 	});
 
 /***/ },
-/* 183 */
+/* 182 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -71185,31 +71317,192 @@
 	exports.default = FoodItem;
 
 /***/ },
+/* 183 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"food__form\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-6\">\r\n            <div class=\"well\">\r\n                <form name=\"foodItem\" class=\"form-horizontal\" ng-submit=\"$ctrl.submit()\" novalidate>\r\n                    <fieldset>\r\n                        <legend>\r\n                            <span ng-if=\"!$ctrl.foodId\">Добавление нового продукта</span>\r\n                            <span ng-if=\"$ctrl.foodId\">Редактирование продукта</span>\r\n                        </legend>\r\n\r\n                        <div class=\"form-group\" ng-class=\"{ 'has-error' : $ctrl.isHasError('shortName') }\">\r\n                            <label for=\"inputShortName\" class=\"col-md-3 control-label\">Наименование</label>\r\n                            <div class=\"col-md-9\">\r\n                                <input type=\"text\" class=\"form-control\" id=\"inputShortName\" name=\"shortName\" maxlength=\"40\" required ng-model=\"$ctrl.item.shortName\">\r\n                                <div ng-messages=\"foodItem.shortName.$error\" ng-if=\"$ctrl.isHasError('shortName')\" role=\"alert\">\r\n                                    <div ng-message=\"required\" class=\"form__message--error\">Enter short name</div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"form-group\" ng-class=\"{ 'has-error' : $ctrl.isHasError('protein') }\">\r\n                            <label for=\"inputProtein\" class=\"col-md-3 control-label\">Белки</label>\r\n                            <div class=\"col-md-7\">\r\n                                <div class=\"input-group\">\r\n                                    <span class=\"input-group-addon\">г</span>\r\n                                    <input type=\"text\" float-value class=\"form-control\" id=\"inputProtein\" name=\"protein\" required ng-model=\"$ctrl.item.protein\" placeholder=\"в 100 г\">\r\n                                </div>\r\n                                <div ng-messages=\"foodItem.protein.$error\" ng-if=\"$ctrl.isHasError('protein')\" role=\"alert\">\r\n                                    <div ng-message=\"required\" class=\"form__message--error\">Enter protein</div>\r\n                                    <div ng-message=\"required\" class=\"form__message--error\">More than 100 g</div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"form-group\" ng-class=\"{ 'has-error' : $ctrl.isHasError('fat') }\">\r\n                            <label for=\"inputFat\" class=\"col-md-3 control-label\">Жиры</label>\r\n                            <div class=\"col-md-7\">\r\n                                <div class=\"input-group\">\r\n                                    <span class=\"input-group-addon\">г</span>\r\n                                    <input type=\"text\" float-value class=\"form-control\" id=\"inputFat\" name=\"fat\" required ng-model=\"$ctrl.item.fat\" placeholder=\"в 100 г\">\r\n                                </div>\r\n                                <div ng-messages=\"foodItem.fat.$error\" ng-if=\"$ctrl.isHasError('fat')\" role=\"alert\">\r\n                                    <div ng-message=\"required\" class=\"form__message--error\">Enter fat</div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"form-group\" ng-class=\"{ 'has-error' : $ctrl.isHasError('carbohydrate') }\">\r\n                            <label for=\"inputСarbohydrate\" class=\"col-md-3 control-label\">Углеводы</label>\r\n                            <div class=\"col-md-7\">\r\n                                <div class=\"input-group\">\r\n                                    <span class=\"input-group-addon\">г</span>\r\n                                    <input type=\"text\" float-value class=\"form-control\" id=\"inputСarbohydrate\" name=\"carbohydrate\" required ng-model=\"$ctrl.item.carbohydrate\" placeholder=\"в 100 г\">\r\n                                </div>\r\n                                <div ng-messages=\"foodItem.carbohydrate.$error\" ng-if=\"$ctrl.isHasError('carbohydrate')\" role=\"alert\">\r\n                                    <div ng-message=\"required\" class=\"form__message--error\">Enter carbohydrate</div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"form-group\">\r\n                            <label for=\"inputCalorie\" class=\"col-md-3 control-label\">Калорийность</label>\r\n                            <div class=\"col-md-7\">\r\n                                <div class=\"input-group\">\r\n                                    <span class=\"input-group-addon\">ккал</span>\r\n                                    <input type=\"text\" float-value class=\"form-control\" id=\"inputCalorie\" ng-model=\"$ctrl.item.energy\" placeholder=\"на 100 г\">\r\n                                    <span class=\"input-group-btn\">\r\n                                        <button class=\"btn btn-default\" type=\"button\" ng-click=\"$ctrl.item.energy = $ctrl.calcEnergy()\">Вычислить</button>\r\n                                    </span>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"form-group\">\r\n                            <div class=\"col-md-9 col-md-offset-3\">\r\n                                <button type=\"submit\" class=\"btn btn-primary\" ng-disabled=\"foodItem.$invalid\">Сохранить</button>\r\n                                <a ui-sref=\"food\" class=\"btn btn-link\">Отмена</a>\r\n                            </div>\r\n                        </div>\r\n                    </fieldset>\r\n                </form>\r\n            \r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
+
+/***/ },
 /* 184 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"food__form\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-6\">\r\n            <div class=\"well\">\r\n                <form name=\"foodItem\" class=\"form-horizontal\" ng-submit=\"$ctrl.submit()\" novalidate>\r\n                    <fieldset>\r\n                        <legend>\r\n                            <span ng-if=\"!$ctrl.foodId\">Add new food</span>\r\n                            <span ng-if=\"$ctrl.foodId\">Edit food</span>\r\n                        </legend>\r\n\r\n                        <div class=\"form-group\" ng-class=\"{ 'has-error' : $ctrl.isHasError('shortName') }\">\r\n                            <label for=\"inputShortName\" class=\"col-md-3 control-label\">Name</label>\r\n                            <div class=\"col-md-9\">\r\n                                <input type=\"text\" class=\"form-control\" id=\"inputShortName\" name=\"shortName\" maxlength=\"40\" placeholder=\"short name\" required ng-model=\"$ctrl.item.shortName\">\r\n                                <div ng-messages=\"foodItem.shortName.$error\" ng-if=\"$ctrl.isHasError('shortName')\" role=\"alert\">\r\n                                    <div ng-message=\"required\" class=\"form__message--error\">Enter short name</div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"form-group\" ng-class=\"{ 'has-error' : $ctrl.isHasError('protein') }\">\r\n                            <label for=\"inputProtein\" class=\"col-md-3 control-label\">Protein</label>\r\n                            <div class=\"col-md-7\">\r\n                                <div class=\"input-group\">\r\n                                    <span class=\"input-group-addon\">g</span>\r\n                                    <input type=\"text\" float-value class=\"form-control\" id=\"inputProtein\" name=\"protein\" required ng-model=\"$ctrl.item.protein\" placeholder=\"in 100 g\">\r\n                                </div>\r\n                                <div ng-messages=\"foodItem.protein.$error\" ng-if=\"$ctrl.isHasError('protein')\" role=\"alert\">\r\n                                    <div ng-message=\"required\" class=\"form__message--error\">Enter protein</div>\r\n                                    <div ng-message=\"required\" class=\"form__message--error\">More than 100 g</div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"form-group\" ng-class=\"{ 'has-error' : $ctrl.isHasError('fat') }\">\r\n                            <label for=\"inputFat\" class=\"col-md-3 control-label\">Fat</label>\r\n                            <div class=\"col-md-7\">\r\n                                <div class=\"input-group\">\r\n                                    <span class=\"input-group-addon\">g</span>\r\n                                    <input type=\"text\" float-value class=\"form-control\" id=\"inputFat\" name=\"fat\" required ng-model=\"$ctrl.item.fat\" placeholder=\"in 100 g\">\r\n                                </div>\r\n                                <div ng-messages=\"foodItem.fat.$error\" ng-if=\"$ctrl.isHasError('fat')\" role=\"alert\">\r\n                                    <div ng-message=\"required\" class=\"form__message--error\">Enter fat</div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"form-group\" ng-class=\"{ 'has-error' : $ctrl.isHasError('carbohydrate') }\">\r\n                            <label for=\"inputСarbohydrate\" class=\"col-md-3 control-label\">Сarbohydrate</label>\r\n                            <div class=\"col-md-7\">\r\n                                <div class=\"input-group\">\r\n                                    <span class=\"input-group-addon\">g</span>\r\n                                    <input type=\"text\" float-value class=\"form-control\" id=\"inputСarbohydrate\" name=\"carbohydrate\" required ng-model=\"$ctrl.item.carbohydrate\" placeholder=\"in 100 g\">\r\n                                </div>\r\n                                <div ng-messages=\"foodItem.carbohydrate.$error\" ng-if=\"$ctrl.isHasError('carbohydrate')\" role=\"alert\">\r\n                                    <div ng-message=\"required\" class=\"form__message--error\">Enter carbohydrate</div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"form-group\">\r\n                            <label for=\"inputCalorie\" class=\"col-md-3 control-label\">Energy</label>\r\n                            <div class=\"col-md-7\">\r\n                                <div class=\"input-group\">\r\n                                    <span class=\"input-group-addon\">kcal</span>\r\n                                    <input type=\"text\" float-value class=\"form-control\" id=\"inputCalorie\" ng-model=\"$ctrl.item.energy\" placeholder=\"per 100 g\">\r\n                                    <span class=\"input-group-btn\">\r\n                                        <button class=\"btn btn-default\" type=\"button\" ng-click=\"$ctrl.item.energy = $ctrl.calcEnergy()\">Calc</button>\r\n                                    </span>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"form-group\">\r\n                            <div class=\"col-md-9 col-md-offset-3\">\r\n                                <button type=\"submit\" class=\"btn btn-primary\" ng-disabled=\"foodItem.$invalid\">Save</button>\r\n                                <a ui-sref=\"food\" class=\"btn btn-link\">Cancel</a>\r\n                            </div>\r\n                        </div>\r\n                    </fieldset>\r\n                </form>\r\n            \r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
+	// removed by extract-text-webpack-plugin
 
 /***/ },
 /* 185 */
 /***/ function(module, exports) {
 
-	// removed by extract-text-webpack-plugin
+	module.exports = "<div class=\"foodiary__page foodiary__page--food\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-12\">\r\n            <div class=\"page-header\">\r\n                <h3>Еда</h3>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <ui-view>\r\n        <food-toolbar checked=\"$ctrl.checked\" handlers=\"$ctrl.toolbarHandlers\"></food-toolbar>\r\n        <food-table list=\"$ctrl.list\" loading=\"$ctrl.loading\" handlers=\"$ctrl.tableHandlers\"></food-table>\r\n    </ui-view>\r\n</div>\r\n";
 
 /***/ },
 /* 186 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"foodiary__page foodiary__page--food\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-12\">\r\n            <div class=\"page-header\">\r\n                <h3>Food</h3>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <ui-view>\r\n        <food-toolbar checked=\"$ctrl.checked\" handlers=\"$ctrl.toolbarHandlers\"></food-toolbar>\r\n        <food-table list=\"$ctrl.list\" loading=\"$ctrl.loading\" handlers=\"$ctrl.tableHandlers\"></food-table>\r\n    </ui-view>\r\n</div>\r\n";
+	// removed by extract-text-webpack-plugin
 
 /***/ },
 /* 187 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _app = __webpack_require__(188);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	__webpack_require__(189);
+	
+	var _PromoController = __webpack_require__(190);
+	
+	var _PromoController2 = _interopRequireDefault(_PromoController);
+	
+	var _template = __webpack_require__(191);
+	
+	var _template2 = _interopRequireDefault(_template);
+	
+	__webpack_require__(192);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var componentName = 'promo';
+	
+	_app2.default.component(componentName, {
+	    template: _template2.default,
+	    controller: _PromoController2.default
+	});
+	
+	exports.default = componentName;
+
+/***/ },
+/* 188 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _angular = __webpack_require__(2);
+	
+	var _angular2 = _interopRequireDefault(_angular);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _angular2.default.module('promo', []);
+
+/***/ },
+/* 189 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _app = __webpack_require__(188);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	_app2.default.config(function ($stateProvider) {
+	    $stateProvider.state('promo', {
+	        url: '/promo',
+	        template: '<promo></promo>',
+	        resolve: {
+	            auth: function auth($q, AuthService) {
+	                return $q(function (resolve, reject) {
+	                    AuthService.onAuth(function (result) {
+	                        if (result) {
+	                            reject();
+	                        } else {
+	                            resolve();
+	                        }
+	                    });
+	                });
+	            }
+	        }
+	    });
+	});
+
+/***/ },
+/* 190 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var PromoController = function () {
+	    function PromoController(AuthService, $state) {
+	        _classCallCheck(this, PromoController);
+	
+	        this.AuthService = AuthService;
+	        this.$state = $state;
+	    }
+	
+	    _createClass(PromoController, [{
+	        key: 'begin',
+	        value: function begin() {
+	            var _this = this;
+	
+	            this._startBeginProgress();
+	            this.AuthService.authAnonymously().then(function () {
+	                _this._gotoDiaryState();
+	            }).catch(function (error) {
+	                _this._stopBeginProgress();
+	                throw Error(error);
+	            });
+	        }
+	    }, {
+	        key: 'login',
+	        value: function login() {}
+	    }, {
+	        key: '_startBeginProgress',
+	        value: function _startBeginProgress() {
+	            this.progress = true;
+	            this.beginProgress = true;
+	        }
+	    }, {
+	        key: '_stopBeginProgress',
+	        value: function _stopBeginProgress() {
+	            this.progress = false;
+	            this.beginProgress = false;
+	        }
+	    }, {
+	        key: '_gotoDiaryState',
+	        value: function _gotoDiaryState() {
+	            this.$state.go('diary');
+	        }
+	    }]);
+	
+	    return PromoController;
+	}();
+
+	exports.default = PromoController;
+
+/***/ },
+/* 191 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"foodiary__page foodiary__page--promo\">\r\n    <div class=\"row\">\r\n        <h1 class=\"cover-heading\">Ваш дневник питания на каждый день</h1>\r\n        <p class=\"lead\">Учёт калорий, жиров, белков и углеводов</p>\r\n        <p class=\"lead\">\r\n            <button type=\"button\" class=\"btn btn-lg btn-success\" ng-click=\"$ctrl.begin()\" ng-disabled=\"$ctrl.progress\">\r\n                <i class=\"fa fa-lg fa-spinner fa-spin\" ng-if=\"$ctrl.beginProgress\"></i> Начать\r\n            </button>\r\n            <button type=\"button\" class=\"btn btn-lg btn-primary\" ng-click=\"$ctrl.login()\" ng-disabled=\"$ctrl.progress\">\r\n                <i class=\"fa fa-lg fa-spinner fa-spin\" ng-if=\"$ctrl.loginProgress\"></i> Войти\r\n            </button>\r\n        </p>\r\n    </div>\r\n</div>\r\n";
+
+/***/ },
+/* 192 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 188 */
+/* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -71246,7 +71539,412 @@
 	});
 
 /***/ },
-/* 189 */
+/* 194 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _app = __webpack_require__(1);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	var _AuthServiceController = __webpack_require__(195);
+	
+	var _AuthServiceController2 = _interopRequireDefault(_AuthServiceController);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _app2.default.service('AuthService', _AuthServiceController2.default);
+
+/***/ },
+/* 195 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var AuthServiceController = function () {
+	    /* @ngInject */
+	
+	    function AuthServiceController($firebaseAuth, UrlsService) {
+	        _classCallCheck(this, AuthServiceController);
+	
+	        var url = UrlsService.getAuthUrl();
+	        this.auth = $firebaseAuth(new Firebase(url));
+	    }
+	
+	    _createClass(AuthServiceController, [{
+	        key: 'getAuth',
+	        value: function getAuth() {
+	            return this.auth.$getAuth();
+	        }
+	    }, {
+	        key: 'waitForAuth',
+	        value: function waitForAuth() {
+	            return this.auth.$waitForAuth();
+	        }
+	    }, {
+	        key: 'requireAuth',
+	        value: function requireAuth() {
+	            return this.auth.$requireAuth();
+	        }
+	    }, {
+	        key: 'authAnonymously',
+	        value: function authAnonymously() {
+	            var _this = this;
+	
+	            return this.auth.$authAnonymously({ remember: 'sessionOnly' }).then(function (authData) {
+	                _this.authData = authData;
+	            });
+	        }
+	    }, {
+	        key: 'logout',
+	        value: function logout() {
+	            this.auth.$unauth();
+	        }
+	    }, {
+	        key: 'onAuth',
+	        value: function onAuth(callback) {
+	            this.auth.$onAuth(callback);
+	        }
+	    }]);
+	
+	    return AuthServiceController;
+	}();
+
+	exports.default = AuthServiceController;
+
+/***/ },
+/* 196 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _app = __webpack_require__(1);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	var _FoodServiceController = __webpack_require__(197);
+	
+	var _FoodServiceController2 = _interopRequireDefault(_FoodServiceController);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _app2.default.service('FoodService', _FoodServiceController2.default);
+
+/***/ },
+/* 197 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var FoodServiceController = function () {
+	    /* @ngInject */
+	
+	    function FoodServiceController($firebaseArray, UrlsService, AuthService) {
+	        _classCallCheck(this, FoodServiceController);
+	
+	        this.$firebaseArray = $firebaseArray;
+	        this.UrlsService = UrlsService;
+	        this.AuthService = AuthService;
+	    }
+	
+	    _createClass(FoodServiceController, [{
+	        key: "getList",
+	        value: function getList() {
+	            return this._getList().$loaded();
+	        }
+	    }, {
+	        key: "getItem",
+	        value: function getItem(id) {
+	            return this._getList().$getRecord(id);
+	        }
+	    }, {
+	        key: "addItem",
+	        value: function addItem(data) {
+	            return this._getList().$add(data);
+	        }
+	    }, {
+	        key: "removeItem",
+	        value: function removeItem(item) {
+	            return this._getList().$remove(item);
+	        }
+	    }, {
+	        key: "editItem",
+	        value: function editItem(item) {
+	            return this._getList().$save(item);
+	        }
+	    }, {
+	        key: "_getList",
+	        value: function _getList() {
+	            if (!this.list) {
+	                this.list = this._createList();
+	            }
+	            return this.list;
+	        }
+	    }, {
+	        key: "_createList",
+	        value: function _createList() {
+	            var auth = this.AuthService.getAuth();
+	            var url = this.UrlsService.getFoodsUrl(auth.uid);
+	            return this.$firebaseArray(new Firebase(url));
+	        }
+	    }]);
+	
+	    return FoodServiceController;
+	}();
+
+	exports.default = FoodServiceController;
+
+/***/ },
+/* 198 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _app = __webpack_require__(1);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	var _DiaryServiceController = __webpack_require__(199);
+	
+	var _DiaryServiceController2 = _interopRequireDefault(_DiaryServiceController);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var serviceName = 'DiaryService';
+	
+	_app2.default.service(serviceName, _DiaryServiceController2.default);
+	
+	exports.default = serviceName;
+
+/***/ },
+/* 199 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var DiaryServiceController = function () {
+	    /* @ngInject */
+	
+	    function DiaryServiceController($firebaseArray, UrlsService, AuthService) {
+	        _classCallCheck(this, DiaryServiceController);
+	
+	        this.$firebaseArray = $firebaseArray;
+	        this.UrlsService = UrlsService;
+	        this.AuthService = AuthService;
+	    }
+	
+	    _createClass(DiaryServiceController, [{
+	        key: "getList",
+	        value: function getList(options) {
+	            return this._getList(options).$loaded();
+	        }
+	
+	        // getItem(id) {
+	        //     return this._getList().$getRecord(id);
+	        // }
+	
+	    }, {
+	        key: "addItem",
+	        value: function addItem(data, options) {
+	            return this._getList(options).$add(data);
+	        }
+	
+	        // removeItem(item) {
+	        //     return this._getList().$remove(item);
+	        // }
+	
+	        // editItem(item) {
+	        //     return this._getList().$save(item);
+	        // }
+	
+	    }, {
+	        key: "_getList",
+	        value: function _getList(options) {
+	            var auth = this.AuthService.getAuth();
+	            var diaryUrl = this.UrlsService.getDiaryUrl(auth.uid);
+	            var year = options.year;
+	            var month = options.month;
+	            var day = options.day;
+	
+	            var url = diaryUrl + "/" + year + "/" + month + "/" + day;
+	            return this.$firebaseArray(new Firebase(url));
+	        }
+	    }]);
+	
+	    return DiaryServiceController;
+	}();
+
+	exports.default = DiaryServiceController;
+
+/***/ },
+/* 200 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _app = __webpack_require__(1);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	var _UrlsServiceController = __webpack_require__(201);
+	
+	var _UrlsServiceController2 = _interopRequireDefault(_UrlsServiceController);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	_app2.default.service('UrlsService', _UrlsServiceController2.default);
+
+/***/ },
+/* 201 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var UrlsServiceController = function () {
+	    function UrlsServiceController() {
+	        _classCallCheck(this, UrlsServiceController);
+	
+	        this.baseUrl = 'https://foodiary.firebaseio.com';
+	    }
+	
+	    _createClass(UrlsServiceController, [{
+	        key: 'getAuthUrl',
+	        value: function getAuthUrl() {
+	            return this.baseUrl;
+	        }
+	    }, {
+	        key: 'getFoodsUrl',
+	        value: function getFoodsUrl(uid) {
+	            return this.baseUrl + '/' + uid + '/food';
+	        }
+	    }, {
+	        key: 'getDiaryUrl',
+	        value: function getDiaryUrl(uid) {
+	            return this.baseUrl + '/' + uid + '/diary';
+	        }
+	    }]);
+	
+	    return UrlsServiceController;
+	}();
+
+	exports.default = UrlsServiceController;
+
+/***/ },
+/* 202 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _app = __webpack_require__(1);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	var _FoodRatioServiceController = __webpack_require__(203);
+	
+	var _FoodRatioServiceController2 = _interopRequireDefault(_FoodRatioServiceController);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var serviceName = 'FoodRatioService';
+	
+	_app2.default.service(serviceName, _FoodRatioServiceController2.default);
+	
+	exports.default = serviceName;
+
+/***/ },
+/* 203 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var FoodRatioServiceController = function () {
+	    /* @ngInject */
+	
+	    function FoodRatioServiceController() {
+	        _classCallCheck(this, FoodRatioServiceController);
+	    }
+	
+	    _createClass(FoodRatioServiceController, [{
+	        key: "getRatio",
+	        value: function getRatio(carbohydrate, protein, fat) {
+	            var p = parseFloat(protein);
+	            var f = parseFloat(fat);
+	            var c = parseFloat(carbohydrate);
+	            var sum = p + f + c;
+	            return this._getRatioValue(c, sum) + "/" + this._getRatioValue(p, sum) + "/" + this._getRatioValue(f, sum);
+	        }
+	    }, {
+	        key: "_getRatioValue",
+	        value: function _getRatioValue(value, sum) {
+	            var n = value / sum;
+	            return n.toFixed(2);
+	        }
+	    }]);
+	
+	    return FoodRatioServiceController;
+	}();
+
+	exports.default = FoodRatioServiceController;
+
+/***/ },
+/* 204 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
