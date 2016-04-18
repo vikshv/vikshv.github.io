@@ -30866,7 +30866,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-	 * jQuery JavaScript Library v2.2.2
+	 * jQuery JavaScript Library v2.2.3
 	 * http://jquery.com/
 	 *
 	 * Includes Sizzle.js
@@ -30876,7 +30876,7 @@
 	 * Released under the MIT license
 	 * http://jquery.org/license
 	 *
-	 * Date: 2016-03-17T17:51Z
+	 * Date: 2016-04-05T19:26Z
 	 */
 	
 	(function( global, factory ) {
@@ -30932,7 +30932,7 @@
 	
 	
 	var
-		version = "2.2.2",
+		version = "2.2.3",
 	
 		// Define a local copy of jQuery
 		jQuery = function( selector, context ) {
@@ -40342,7 +40342,7 @@
 			// If it fails, this function gets "jqXHR", "status", "error"
 			} ).always( callback && function( jqXHR, status ) {
 				self.each( function() {
-					callback.apply( self, response || [ jqXHR.responseText, status, jqXHR ] );
+					callback.apply( this, response || [ jqXHR.responseText, status, jqXHR ] );
 				} );
 			} );
 		}
@@ -48644,7 +48644,7 @@
 	 * angular-ui-bootstrap
 	 * http://angular-ui.github.io/bootstrap/
 	
-	 * Version: 1.3.1 - 2016-04-05
+	 * Version: 1.3.2 - 2016-04-14
 	 * License: MIT
 	 */angular.module("ui.bootstrap", ["ui.bootstrap.tpls", "ui.bootstrap.collapse","ui.bootstrap.accordion","ui.bootstrap.alert","ui.bootstrap.buttons","ui.bootstrap.carousel","ui.bootstrap.dateparser","ui.bootstrap.isClass","ui.bootstrap.datepicker","ui.bootstrap.position","ui.bootstrap.datepickerPopup","ui.bootstrap.debounce","ui.bootstrap.dropdown","ui.bootstrap.stackedMap","ui.bootstrap.modal","ui.bootstrap.paging","ui.bootstrap.pager","ui.bootstrap.pagination","ui.bootstrap.tooltip","ui.bootstrap.popover","ui.bootstrap.progressbar","ui.bootstrap.rating","ui.bootstrap.tabs","ui.bootstrap.timepicker","ui.bootstrap.typeahead"]);
 	angular.module("ui.bootstrap.tpls", ["uib/template/accordion/accordion-group.html","uib/template/accordion/accordion.html","uib/template/alert/alert.html","uib/template/carousel/carousel.html","uib/template/carousel/slide.html","uib/template/datepicker/datepicker.html","uib/template/datepicker/day.html","uib/template/datepicker/month.html","uib/template/datepicker/year.html","uib/template/datepickerPopup/popup.html","uib/template/modal/backdrop.html","uib/template/modal/window.html","uib/template/pager/pager.html","uib/template/pagination/pagination.html","uib/template/tooltip/tooltip-html-popup.html","uib/template/tooltip/tooltip-popup.html","uib/template/tooltip/tooltip-template-popup.html","uib/template/popover/popover-html.html","uib/template/popover/popover-template.html","uib/template/popover/popover.html","uib/template/progressbar/bar.html","uib/template/progressbar/progress.html","uib/template/progressbar/progressbar.html","uib/template/rating/rating.html","uib/template/tabs/tab.html","uib/template/tabs/tabset.html","uib/template/timepicker/timepicker.html","uib/template/typeahead/typeahead-match.html","uib/template/typeahead/typeahead-popup.html"]);
@@ -49860,7 +49860,7 @@
 	
 	  return {
 	    restrict: 'A',
-	    compile: function (tElement, tAttrs) {
+	    compile: function(tElement, tAttrs) {
 	      var linkedScopes = [];
 	      var instances = [];
 	      var expToData = {};
@@ -49879,7 +49879,7 @@
 	          element: element
 	        });
 	
-	        exps.forEach(function (exp, k) {
+	        exps.forEach(function(exp, k) {
 	          addForExp(exp, scope);
 	        });
 	
@@ -49892,9 +49892,9 @@
 	        var compareWithExp = matches[2];
 	        var data = expToData[exp];
 	        if (!data) {
-	          var watchFn = function (compareWithVal) {
+	          var watchFn = function(compareWithVal) {
 	            var newActivated = null;
-	            instances.some(function (instance) {
+	            instances.some(function(instance) {
 	              var thisVal = instance.scope.$eval(onExp);
 	              if (thisVal === compareWithVal) {
 	                newActivated = instance;
@@ -49929,14 +49929,13 @@
 	        instances.splice(index, 1);
 	        if (linkedScopes.length) {
 	          var newWatchScope = linkedScopes[0];
-	          angular.forEach(expToData, function (data) {
+	          angular.forEach(expToData, function(data) {
 	            if (data.scope === removedScope) {
 	              data.watcher = newWatchScope.$watch(data.compareWithExp, data.watchFn);
 	              data.scope = newWatchScope;
 	            }
 	          });
-	        }
-	        else {
+	        } else {
 	          expToData = {};
 	        }
 	      }
@@ -50213,6 +50212,8 @@
 	
 	      $scope.$emit('uib:datepicker.mode');
 	    }
+	
+	    $scope.$broadcast('uib:datepicker.focus');
 	  };
 	
 	  $scope.move = function(direction) {
@@ -50270,7 +50271,7 @@
 	    }
 	  };
 	
-	  $scope.$on("$destroy", function() {
+	  $scope.$on('$destroy', function() {
 	    //Clear all watch listeners on destroy
 	    while (watchListeners.length) {
 	      watchListeners.shift()();
@@ -51385,7 +51386,7 @@
 	
 	    var dates = {};
 	    angular.forEach(['minDate', 'maxDate'], function(key) {
-	      if ($scope.datepickerOptions[key] === null) {
+	      if (!$scope.datepickerOptions[key]) {
 	        dates[key] = null;
 	      } else if (angular.isDate($scope.datepickerOptions[key])) {
 	        dates[key] = dateParser.fromTimezone(new Date($scope.datepickerOptions[key]), timezone);
@@ -51675,10 +51676,10 @@
 	.service('uibDropdownService', ['$document', '$rootScope', function($document, $rootScope) {
 	  var openScope = null;
 	
-	  this.open = function(dropdownScope) {
+	  this.open = function(dropdownScope, element) {
 	    if (!openScope) {
 	      $document.on('click', closeDropdown);
-	      $document.on('keydown', keybindFilter);
+	      element.on('keydown', keybindFilter);
 	    }
 	
 	    if (openScope && openScope !== dropdownScope) {
@@ -51688,11 +51689,11 @@
 	    openScope = dropdownScope;
 	  };
 	
-	  this.close = function(dropdownScope) {
+	  this.close = function(dropdownScope, element) {
 	    if (openScope === dropdownScope) {
 	      openScope = null;
 	      $document.off('click', closeDropdown);
-	      $document.off('keydown', keybindFilter);
+	      element.off('keydown', keybindFilter);
 	    }
 	  };
 	
@@ -51725,6 +51726,7 @@
 	
 	  var keybindFilter = function(evt) {
 	    if (evt.which === 27) {
+	      evt.stopPropagation();
 	      openScope.focusToggleElement();
 	      closeDropdown();
 	    } else if (openScope.isKeynavEnabled() && [38, 40].indexOf(evt.which) !== -1 && openScope.isOpen) {
@@ -51916,7 +51918,7 @@
 	      }
 	
 	      scope.focusToggleElement();
-	      uibDropdownService.open(scope);
+	      uibDropdownService.open(scope, $element);
 	    } else {
 	      if (self.dropdownMenuTemplateUrl) {
 	        if (templateScope) {
@@ -51927,7 +51929,7 @@
 	        self.dropdownMenu = newEl;
 	      }
 	
-	      uibDropdownService.close(scope);
+	      uibDropdownService.close(scope, $element);
 	      self.selectedOption = null;
 	    }
 	
@@ -52371,8 +52373,9 @@
 	        removeAfterAnimate(modalWindow.modalDomEl, modalWindow.modalScope, function() {
 	          var modalBodyClass = modalWindow.openedClass || OPENED_MODAL_CLASS;
 	          openedClasses.remove(modalBodyClass, modalInstance);
-	          appendToElement.toggleClass(modalBodyClass, openedClasses.hasKey(modalBodyClass));
-	          if (scrollbarPadding && scrollbarPadding.heightOverflow && scrollbarPadding.scrollbarWidth) {
+	          var areAnyOpen = openedClasses.hasKey(modalBodyClass);
+	          appendToElement.toggleClass(modalBodyClass, areAnyOpen);
+	          if (!areAnyOpen && scrollbarPadding && scrollbarPadding.heightOverflow && scrollbarPadding.scrollbarWidth) {
 	            if (scrollbarPadding.originalRight) {
 	              appendToElement.css({paddingRight: scrollbarPadding.originalRight + 'px'});
 	            } else {
@@ -52506,7 +52509,7 @@
 	          modalBodyClass = modal.openedClass || OPENED_MODAL_CLASS;
 	
 	        toggleTopWindowClass(false);
-	        
+	
 	        // Store the current top first, to determine what index we ought to use
 	        // for the current top modal
 	        previousTopOpenedModal = openedWindows.top();
@@ -52544,6 +52547,10 @@
 	          }
 	          $compile(backdropDomEl)(backdropScope);
 	          $animate.enter(backdropDomEl, appendToElement);
+	          scrollbarPadding = $uibPosition.scrollbarPadding(appendToElement);
+	          if (scrollbarPadding.heightOverflow && scrollbarPadding.scrollbarWidth) {
+	            appendToElement.css({paddingRight: scrollbarPadding.right + 'px'});
+	          }
 	        }
 	
 	        // Set the top modal index based on the index of the previous top modal
@@ -52561,10 +52568,6 @@
 	          angularDomEl.attr('modal-animation', 'true');
 	        }
 	
-	        scrollbarPadding = $uibPosition.scrollbarPadding(appendToElement);
-	        if (scrollbarPadding.heightOverflow && scrollbarPadding.scrollbarWidth) {
-	          appendToElement.css({paddingRight: scrollbarPadding.right + 'px'});
-	        }
 	        appendToElement.addClass(modalBodyClass);
 	        $animate.enter($compile(angularDomEl)(modal.scope), appendToElement);
 	
@@ -53563,8 +53566,6 @@
 	              observers.push(
 	                attrs.$observe(prefix + 'Placement', function(val) {
 	                  ttScope.placement = val ? val : options.placement;
-	                  var placement = $position.parsePlacement(ttScope.placement);
-	                  lastPlacement = placement[1] ? placement[0] + '-' + placement[1] : placement[0];
 	                  if (ttScope.isOpen) {
 	                    positionTooltip();
 	                  }
@@ -55321,7 +55322,7 @@
 	        });
 	      }
 	      if (!isEditable && modelCtrl.$error.editable) {
-	        modelCtrl.$viewValue = '';
+	        modelCtrl.$setViewValue();
 	        // Reset validity as we are clearing
 	        modelCtrl.$setValidity('editable', true);
 	        modelCtrl.$setValidity('parse', true);
@@ -55918,15 +55919,15 @@
 	    "    </tr>\n" +
 	    "    <tr>\n" +
 	    "      <td class=\"form-group uib-time hours\" ng-class=\"{'has-error': invalidHours}\">\n" +
-	    "        <input style=\"width:50px;\" type=\"text\" placeholder=\"HH\" ng-model=\"hours\" ng-change=\"updateHours()\" class=\"form-control text-center\" ng-readonly=\"::readonlyInput\" maxlength=\"2\" tabindex=\"{{::tabindex}}\" ng-disabled=\"noIncrementHours()\" ng-blur=\"blur()\">\n" +
+	    "        <input type=\"text\" placeholder=\"HH\" ng-model=\"hours\" ng-change=\"updateHours()\" class=\"form-control text-center\" ng-readonly=\"::readonlyInput\" maxlength=\"2\" tabindex=\"{{::tabindex}}\" ng-disabled=\"noIncrementHours()\" ng-blur=\"blur()\">\n" +
 	    "      </td>\n" +
 	    "      <td class=\"uib-separator\">:</td>\n" +
 	    "      <td class=\"form-group uib-time minutes\" ng-class=\"{'has-error': invalidMinutes}\">\n" +
-	    "        <input style=\"width:50px;\" type=\"text\" placeholder=\"MM\" ng-model=\"minutes\" ng-change=\"updateMinutes()\" class=\"form-control text-center\" ng-readonly=\"::readonlyInput\" maxlength=\"2\" tabindex=\"{{::tabindex}}\" ng-disabled=\"noIncrementMinutes()\" ng-blur=\"blur()\">\n" +
+	    "        <input type=\"text\" placeholder=\"MM\" ng-model=\"minutes\" ng-change=\"updateMinutes()\" class=\"form-control text-center\" ng-readonly=\"::readonlyInput\" maxlength=\"2\" tabindex=\"{{::tabindex}}\" ng-disabled=\"noIncrementMinutes()\" ng-blur=\"blur()\">\n" +
 	    "      </td>\n" +
 	    "      <td ng-show=\"showSeconds\" class=\"uib-separator\">:</td>\n" +
 	    "      <td class=\"form-group uib-time seconds\" ng-class=\"{'has-error': invalidSeconds}\" ng-show=\"showSeconds\">\n" +
-	    "        <input style=\"width:50px;\" type=\"text\" placeholder=\"SS\" ng-model=\"seconds\" ng-change=\"updateSeconds()\" class=\"form-control text-center\" ng-readonly=\"readonlyInput\" maxlength=\"2\" tabindex=\"{{::tabindex}}\" ng-disabled=\"noIncrementSeconds()\" ng-blur=\"blur()\">\n" +
+	    "        <input type=\"text\" placeholder=\"SS\" ng-model=\"seconds\" ng-change=\"updateSeconds()\" class=\"form-control text-center\" ng-readonly=\"readonlyInput\" maxlength=\"2\" tabindex=\"{{::tabindex}}\" ng-disabled=\"noIncrementSeconds()\" ng-blur=\"blur()\">\n" +
 	    "      </td>\n" +
 	    "      <td ng-show=\"showMeridian\" class=\"uib-time am-pm\"><button type=\"button\" ng-class=\"{disabled: noToggleMeridian()}\" class=\"btn btn-default text-center\" ng-click=\"toggleMeridian()\" ng-disabled=\"noToggleMeridian()\" tabindex=\"{{::tabindex}}\">{{meridian}}</button></td>\n" +
 	    "    </tr>\n" +
@@ -70310,19 +70311,45 @@
 	            return !this.items.length;
 	        }
 	    }, {
-	        key: 'onClickAdd',
-	        value: function onClickAdd() {
+	        key: 'addItem',
+	        value: function addItem() {
 	            var _this2 = this;
 	
+	            this._showItemDialog().then(function (data) {
+	                var k = data.weight / 100;
+	                var item = _this2._getItemData(data, k);
+	                _this2.handlers.addData(item, _this2.date);
+	            });
+	        }
+	    }, {
+	        key: 'editItem',
+	        value: function editItem(item) {
+	            var _this3 = this;
+	
+	            var oldWeight = item.weight;
+	            this._showItemDialog(item).then(function (data) {
+	                var k = data.weight / oldWeight;
+	                var item = _this3._getItemData(data, k);
+	                _this3.handlers.editData(item, _this3.date);
+	            });
+	        }
+	    }, {
+	        key: '_showItemDialog',
+	        value: function _showItemDialog(data) {
 	            var modal = this.$uibModal.open({
 	                animation: true,
 	                template: _template2.default,
-	                controller: _productAddDialogController2.default,
+	                controller: function controller($uibModalInstance, FoodService) {
+	                    return new _productAddDialogController2.default($uibModalInstance, FoodService, data);
+	                },
 	                controllerAs: '$ctrl'
 	            });
-	            modal.result.then(function (data) {
-	                _this2._addItem(data);
-	            });
+	            return modal.result;
+	        }
+	    }, {
+	        key: 'removeItem',
+	        value: function removeItem(item) {
+	            this.handlers.removeData(item, this.date);
 	        }
 	    }, {
 	        key: 'getRatio',
@@ -70342,28 +70369,18 @@
 	            return result.toFixed(0);
 	        }
 	    }, {
-	        key: '_addItem',
-	        value: function _addItem(data) {
-	            var shortName = data.shortName;
+	        key: '_getItemData',
+	        value: function _getItemData(data, k) {
 	            var protein = data.protein;
 	            var fat = data.fat;
 	            var energy = data.energy;
 	            var carbohydrate = data.carbohydrate;
-	            var weight = data.weight;
-	            var time = data.time;
 	
-	            var k = weight / 100;
-	            var item = {
-	                shortName: shortName,
+	            return Object.assign(data, {
 	                protein: this._scaleValue(protein, k),
 	                fat: this._scaleValue(fat, k),
 	                energy: this._scaleValue(energy, k),
-	                carbohydrate: this._scaleValue(carbohydrate, k),
-	                weight: weight,
-	                time: time
-	            };
-	            this.handlers.setData(item, this.date).then(function (result) {
-	                debugger;
+	                carbohydrate: this._scaleValue(carbohydrate, k)
 	            });
 	        }
 	    }, {
@@ -70384,7 +70401,7 @@
 /* 154 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"modal-header\">\r\n    <h3 class=\"modal-title\">Добавление продукта</h3>\r\n</div>\r\n<div class=\"modal-body\">\r\n    <form name=\"foodItem\" class=\"form-horizontal\" ng-submit=\"$ctrl.submit()\" novalidate>\r\n        <fieldset>\r\n            <div class=\"form-group\">\r\n                <label for=\"inputShortName\" class=\"col-md-3 control-label\">Наименование</label>\r\n                <div class=\"col-md-8\">\r\n                    <input type=\"text\" \r\n                        class=\"form-control\" \r\n                        id=\"inputShortName\" \r\n                        name=\"shortName\" \r\n                        maxlength=\"40\" \r\n                        autocomplete=\"off\"\r\n                        uib-typeahead=\"item as item.shortName for item in $ctrl.getItems($viewValue)\" typeahead-show-hint=\"true\" typeahead-on-select=\"$ctrl.onSelected()\"\r\n                        required \r\n                        ng-model=\"$ctrl.selectedItem\">\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n                <label for=\"inputWeight\" class=\"col-md-3 control-label\">Вес, г</label>\r\n                <div class=\"col-md-3\">\r\n                    <input type=\"text\" class=\"form-control\" id=\"inputWeight\" name=\"weight\" ng-model=\"$ctrl.weight\" autocomplete=\"off\" required>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n                <label for=\"inputTime\" class=\"col-md-3 control-label\">Время</label>\r\n                <div class=\"col-md-3\">\r\n                    <input type=\"text\" class=\"form-control\" id=\"inputTime\" ng-model=\"$ctrl.time\" name=\"time\">\r\n                </div>\r\n            </div>\r\n        </fieldset>\r\n    </form>\r\n</div>\r\n<div class=\"modal-footer\">\r\n    <button type=\"button\" class=\"btn btn-default\" ng-click=\"$ctrl.onClickCansel()\">Отмена</button>\r\n    <button type=\"button\" class=\"btn btn-primary\" ng-click=\"$ctrl.onClickOk()\">Добавить</button>\r\n</div>\r\n";
+	module.exports = "<div class=\"modal-header\">\r\n    <h3 class=\"modal-title\">Добавление продукта</h3>\r\n</div>\r\n<div class=\"modal-body\">\r\n    <form name=\"foodItem\" class=\"form-horizontal\" ng-submit=\"$ctrl.submit()\" novalidate>\r\n        <fieldset>\r\n            <div class=\"form-group\">\r\n                <label for=\"inputShortName\" class=\"col-md-3 control-label\">Наименование</label>\r\n                <div class=\"col-md-8\">\r\n                    <input type=\"text\" \r\n                        class=\"form-control\" \r\n                        id=\"inputShortName\" \r\n                        name=\"shortName\" \r\n                        maxlength=\"40\" \r\n                        autocomplete=\"off\"\r\n                        uib-typeahead=\"item as item.shortName for item in $ctrl.getItems($viewValue)\"\r\n                        typeahead-show-hint=\"true\"\r\n                        typeahead-on-select=\"$ctrl.onSelected()\"\r\n                        typeahead-editable=\"false\"\r\n                        required \r\n                        ng-model=\"$ctrl.selectedItem\">\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n                <label for=\"inputWeight\" class=\"col-md-3 control-label\">Вес, г</label>\r\n                <div class=\"col-md-3\">\r\n                    <input type=\"text\" class=\"form-control\" id=\"inputWeight\" name=\"weight\" ng-model=\"$ctrl.weight\" autocomplete=\"off\" required>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n                <label for=\"inputTime\" class=\"col-md-3 control-label\">Время</label>\r\n                <div class=\"col-md-3\">\r\n                    <input type=\"text\" class=\"form-control\" id=\"inputTime\" ng-model=\"$ctrl.time\" name=\"time\">\r\n                </div>\r\n            </div>\r\n        </fieldset>\r\n    </form>\r\n</div>\r\n<div class=\"modal-footer\">\r\n    <button type=\"button\" class=\"btn btn-default\" ng-click=\"$ctrl.onClickCansel()\">Отмена</button>\r\n    <button type=\"button\" class=\"btn btn-primary\" ng-click=\"$ctrl.onClickOk()\">Сохранить</button>\r\n</div>\r\n";
 
 /***/ },
 /* 155 */
@@ -70401,32 +70418,31 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	var ProductAddDialogController = function () {
-	    function ProductAddDialogController($uibModalInstance, FoodService) {
+	    function ProductAddDialogController($uibModalInstance, FoodService, data) {
 	        _classCallCheck(this, ProductAddDialogController);
 	
 	        this.$uibModalInstance = $uibModalInstance;
 	        this.FoodService = FoodService;
+	        this._initForm(data);
 	    }
 	
 	    _createClass(ProductAddDialogController, [{
+	        key: '_initForm',
+	        value: function _initForm(data) {
+	            if (data) {
+	                this.selectedItem = data;
+	                this.weight = data.weight;
+	                this.time = data.time;
+	            }
+	        }
+	    }, {
 	        key: 'onClickOk',
 	        value: function onClickOk() {
-	            var _selectedItem = this.selectedItem;
-	            var shortName = _selectedItem.shortName;
-	            var protein = _selectedItem.protein;
-	            var fat = _selectedItem.fat;
-	            var energy = _selectedItem.energy;
-	            var carbohydrate = _selectedItem.carbohydrate;
-	
-	            this.$uibModalInstance.close({
-	                shortName: shortName,
-	                protein: protein,
-	                fat: fat,
-	                energy: energy,
-	                carbohydrate: carbohydrate,
+	            var options = Object.assign({}, this.selectedItem, {
 	                weight: this.weight,
 	                time: this.time
 	            });
+	            this.$uibModalInstance.close(options);
 	        }
 	    }, {
 	        key: 'onClickCansel',
@@ -70452,7 +70468,7 @@
 /* 156 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"calendar__day\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-12\">\r\n            <table class=\"table table-striped table-hover\">\r\n                <thead>\r\n                    <tr>\r\n                        <th class=\"text-muted\">Время</th>\r\n                        <th class=\"text-muted\">Наименование</th>\r\n                        <th class=\"text-muted\">Вес, г</th>\r\n                        <th class=\"text-muted\">Калорийность, ккал</th>\r\n                        <th class=\"text-muted\">Углеводы, г</th>\r\n                        <th class=\"text-muted\">Белки, г</th>\r\n                        <th class=\"text-muted\">Жиры, г</th>\r\n                        <th class=\"text-muted\">&nbsp;У&nbsp;/&nbsp;Б&nbsp;/&nbsp;Ж&nbsp;</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    <tr ng-if=\"$ctrl.isEmpty() && !$ctrl.loading\">\r\n                        <td colspan=\"8\" class=\"table__emptyRow\">\r\n                            Добавьте\r\n                            <a class=\"link link--local\" ng-click=\"$ctrl.onClickAdd()\">продукт</a>,\r\n                            <a class=\"link link--local\" ng-click=\"$ctrl.onClickAdd()\">блюдо</a>,\r\n                            <a class=\"link link--local\" ng-click=\"$ctrl.onClickAdd()\">трапезу</a>\r\n                        </td>\r\n                    </tr>\r\n                    <tr ng-repeat=\"item in $ctrl.items\">\r\n                        <td>{{ item.time }}</td>\r\n                        <td>\r\n                            <a>{{ item.shortName }}</a>\r\n                        </td>\r\n                        <td>{{ item.weight }}</td>\r\n                        <td>{{ item.energy }}</td>\r\n                        <td>{{ item.carbohydrate }}</td>\r\n                        <td>{{ item.protein }}</td>\r\n                        <td>{{ item.fat }}</td>\r\n                        <td>{{ $ctrl.getRatio(item) }}</td>\r\n                    </tr>\r\n                    <tr class=\"table__sumRow\" ng-if=\"$ctrl.items.length > 1\">\r\n                        <td colspan=\"2\" class=\"sumRow__title\">\r\n                            <i>Итого:</i>\r\n                        </td>\r\n                        <td>{{ $ctrl.total.weight }}</td>\r\n                        <td>{{ $ctrl.total.energy }}</td>\r\n                        <td>{{ $ctrl.total.carbohydrate }}</td>\r\n                        <td>{{ $ctrl.total.protein }}</td>\r\n                        <td>{{ $ctrl.total.fat }}</td>\r\n                        <td>{{ $ctrl.total.ratio }}</td>\r\n                    </tr>\r\n                    <tr ng-if=\"$ctrl.loading\">\r\n                        <td colspan=\"8\" class=\"table__loadingRow\">\r\n                            <i class=\"fa fa-3x fa-spinner fa-spin\"></i>\r\n                        </td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\" ng-if=\"!$ctrl.isEmpty()\">\r\n        <div class=\"col-md-12\">\r\n            <div class=\"pull-right\">\r\n                <div class=\"btn-toolbar\">\r\n                    <div class=\"btn-group\">\r\n                        <button type=\"button\" class=\"btn btn-success\" ng-click=\"$ctrl.onClickAdd()\">\r\n                            Добавить\r\n                        </button>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    \r\n\r\n    <!-- <div class=\"row day__form\">\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__time\" placeholder=\"Время\">\r\n        </div>\r\n        <div class=\"col-md-4\">\r\n            <input type=\"text\" class=\"input-sm form__name\" placeholder=\"Наименование\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__weight\" placeholder=\"Вес, г\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__energy\" placeholder=\"Калорийность, ккал\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__carbohydrate\" placeholder=\"Углеводы, г\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__protein\" placeholder=\"Белки, г\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__fat\" placeholder=\"Жиры, г\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <button type=\"button\" class=\"btn btn-primary btn-sm form__button\"><i class=\"fa fa-plus\"></i> Добавить</button>\r\n        </div>\r\n    </div> -->\r\n</div>\r\n";
+	module.exports = "<div class=\"calendar__day\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-12\">\r\n            <table class=\"table table-striped table-hover\">\r\n                <thead>\r\n                    <tr>\r\n                        <th class=\"text-muted\">Время</th>\r\n                        <th class=\"text-muted\">Наименование</th>\r\n                        <th class=\"text-muted\">Вес, г</th>\r\n                        <th class=\"text-muted\">Калорийность, ккал</th>\r\n                        <th class=\"text-muted\">Углеводы, г</th>\r\n                        <th class=\"text-muted\">Белки, г</th>\r\n                        <th class=\"text-muted\">Жиры, г</th>\r\n                        <th class=\"text-muted\">&nbsp;У&nbsp;/&nbsp;Б&nbsp;/&nbsp;Ж&nbsp;</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    <tr ng-if=\"$ctrl.isEmpty() && !$ctrl.loading\">\r\n                        <td colspan=\"8\" class=\"table__emptyRow\">\r\n                            Добавьте\r\n                            <a class=\"link link--local\" ng-click=\"$ctrl.addItem()\">продукт</a>,\r\n                            <a class=\"link link--local\" ng-click=\"$ctrl.addItem()\">блюдо</a>,\r\n                            <a class=\"link link--local\" ng-click=\"$ctrl.addItem()\">трапезу</a>\r\n                        </td>\r\n                    </tr>\r\n                    <tr ng-repeat=\"item in $ctrl.items\">\r\n                        <td>{{ item.time }}</td>\r\n                        <td>\r\n                            <a>{{ item.shortName }}</a>\r\n                        </td>\r\n                        <td>{{ item.weight }}</td>\r\n                        <td>{{ item.energy }}</td>\r\n                        <td>{{ item.carbohydrate }}</td>\r\n                        <td>{{ item.protein }}</td>\r\n                        <td>{{ item.fat }}</td>\r\n                        <td>{{ $ctrl.getRatio(item) }}</td>\r\n                        <td>\r\n                            <div class=\"table__toolbar\">\r\n                                <span class=\"toolbar__item text-success\" ng-click=\"$ctrl.editItem(item)\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></span>\r\n                                <span class=\"toolbar__item text-danger\" ng-click=\"$ctrl.removeItem(item)\"><i class=\"fa fa-trash-o\" aria-hidden=\"true\"></i></span>\r\n                            </div>\r\n                        </td>\r\n                    </tr>\r\n                    <tr class=\"table__sumRow\" ng-if=\"$ctrl.items.length > 1\">\r\n                        <td colspan=\"2\" class=\"sumRow__title\">\r\n                            <i>Итого:</i>\r\n                        </td>\r\n                        <td>{{ $ctrl.total.weight }}</td>\r\n                        <td>{{ $ctrl.total.energy }}</td>\r\n                        <td>{{ $ctrl.total.carbohydrate }}</td>\r\n                        <td>{{ $ctrl.total.protein }}</td>\r\n                        <td>{{ $ctrl.total.fat }}</td>\r\n                        <td>{{ $ctrl.total.ratio }}</td>\r\n                        <td></td>\r\n                    </tr>\r\n                    <tr ng-if=\"$ctrl.loading\">\r\n                        <td colspan=\"8\" class=\"table__loadingRow\">\r\n                            <i class=\"fa fa-3x fa-spinner fa-spin\"></i>\r\n                        </td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\" ng-if=\"!$ctrl.isEmpty()\">\r\n        <div class=\"col-md-12\">\r\n            <div class=\"pull-right\">\r\n                <div class=\"btn-toolbar\">\r\n                    <div class=\"btn-group\">\r\n                        <button type=\"button\" class=\"btn btn-success\" ng-click=\"$ctrl.addItem()\">\r\n                            Добавить\r\n                        </button>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    \r\n\r\n    <!-- <div class=\"row day__form\">\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__time\" placeholder=\"Время\">\r\n        </div>\r\n        <div class=\"col-md-4\">\r\n            <input type=\"text\" class=\"input-sm form__name\" placeholder=\"Наименование\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__weight\" placeholder=\"Вес, г\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__energy\" placeholder=\"Калорийность, ккал\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__carbohydrate\" placeholder=\"Углеводы, г\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__protein\" placeholder=\"Белки, г\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__fat\" placeholder=\"Жиры, г\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <button type=\"button\" class=\"btn btn-primary btn-sm form__button\"><i class=\"fa fa-plus\"></i> Добавить</button>\r\n        </div>\r\n    </div> -->\r\n</div>\r\n";
 
 /***/ },
 /* 157 */
@@ -70577,7 +70593,9 @@
 	        value: function _initDayHandlers() {
 	            this.dayHandlers = {
 	                getData: this.handlers.getData,
-	                setData: this.handlers.setData
+	                addData: this.handlers.addData,
+	                editData: this.handlers.editData,
+	                removeData: this.handlers.removeData
 	            };
 	        }
 	    }, {
@@ -70780,11 +70798,18 @@
 	                goDate: function goDate(date) {
 	                    return _this._goState({ date: date });
 	                },
+	
 	                getData: function getData(date) {
 	                    return _this._getData(date);
 	                },
-	                setData: function setData(data, date) {
-	                    return _this._setData(data, date);
+	                addData: function addData(data, date) {
+	                    return _this._addData(data, date);
+	                },
+	                editData: function editData(data, date) {
+	                    return _this._editData(data, date);
+	                },
+	                removeData: function removeData(data, date) {
+	                    return _this._removeData(data, date);
 	                }
 	            };
 	        }
@@ -70795,10 +70820,22 @@
 	            return this.DiaryService.getList(options);
 	        }
 	    }, {
-	        key: '_setData',
-	        value: function _setData(data, date) {
+	        key: '_addData',
+	        value: function _addData(data, date) {
 	            var options = this._getDateParams(date);
 	            return this.DiaryService.addItem(data, options);
+	        }
+	    }, {
+	        key: '_editData',
+	        value: function _editData(data, date) {
+	            var options = this._getDateParams(date);
+	            return this.DiaryService.editItem(data, options);
+	        }
+	    }, {
+	        key: '_removeData',
+	        value: function _removeData(data, date) {
+	            var options = this._getDateParams(date);
+	            return this.DiaryService.removeItem(data, options);
 	        }
 	    }, {
 	        key: '_getDateParams',
@@ -71785,15 +71822,45 @@
 	        value: function addItem(data, options) {
 	            return this._getList(options).$add(data);
 	        }
+	    }, {
+	        key: "removeItem",
+	        value: function removeItem(item, options) {
+	            var list = this._getList(options);
+	            return list.$loaded().then(function () {
+	                var record = list.$getRecord(item.$id);
+	                return list.$remove(record);
+	            }).catch(function (error) {
+	                throw Error(error);
+	            });
+	        }
+	    }, {
+	        key: "editItem",
+	        value: function editItem(data, options) {
+	            var list = this._getList(options);
+	            return list.$loaded().then(function () {
+	                var record = list.$getRecord(data.$id);
+	                var time = data.time;
+	                var shortName = data.shortName;
+	                var weight = data.weight;
+	                var energy = data.energy;
+	                var carbohydrate = data.carbohydrate;
+	                var fat = data.fat;
+	                var protein = data.protein;
 	
-	        // removeItem(item) {
-	        //     return this._getList().$remove(item);
-	        // }
-	
-	        // editItem(item) {
-	        //     return this._getList().$save(item);
-	        // }
-	
+	                Object.assign(record, {
+	                    shortName: shortName,
+	                    carbohydrate: carbohydrate,
+	                    fat: fat,
+	                    protein: protein,
+	                    energy: energy,
+	                    time: time,
+	                    weight: weight
+	                });
+	                return list.$save(record);
+	            }).catch(function (error) {
+	                throw Error(error);
+	            });
+	        }
 	    }, {
 	        key: "_getList",
 	        value: function _getList(options) {

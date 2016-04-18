@@ -168,6 +168,16 @@
 .calendar .calendar__day .link:hover {
   border-bottom-color: #0ce3ac;
 }
+.calendar .calendar__day .table__toolbar {
+  text-align: right;
+}
+.calendar .calendar__day .table__toolbar .toolbar__item {
+  margin-right: 12px;
+  cursor: pointer;
+}
+.calendar .calendar__day .table__toolbar .toolbar__item:last-child {
+  margin-right: 0;
+}
 .calendar {
   margin-bottom: 20px;
 }
