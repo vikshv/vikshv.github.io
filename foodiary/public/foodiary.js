@@ -50,19 +50,19 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(193);
+	__webpack_require__(205);
 	
-	__webpack_require__(194);
+	__webpack_require__(206);
 	
-	__webpack_require__(196);
+	__webpack_require__(208);
 	
-	__webpack_require__(198);
+	__webpack_require__(210);
 	
-	__webpack_require__(200);
+	__webpack_require__(212);
 	
-	__webpack_require__(202);
+	__webpack_require__(214);
 	
-	__webpack_require__(204);
+	__webpack_require__(216);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -129,9 +129,17 @@
 	
 	var _promo2 = _interopRequireDefault(_promo);
 	
+	var _login = __webpack_require__(193);
+	
+	var _login2 = _interopRequireDefault(_login);
+	
+	var _register = __webpack_require__(199);
+	
+	var _register2 = _interopRequireDefault(_register);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	exports.default = _angular2.default.module('app', [_angularUiRouter2.default, _angularMessages2.default, _angularUiBootstrap2.default, 'firebase', 'navbar', 'footer', _home2.default, 'about', 'food', 'calendar', 'diary', _promo2.default]);
+	exports.default = _angular2.default.module('app', [_angularUiRouter2.default, _angularMessages2.default, _angularUiBootstrap2.default, 'firebase', 'navbar', 'footer', _home2.default, 'about', 'food', 'calendar', 'diary', _promo2.default, _login2.default, _register2.default]);
 
 /***/ },
 /* 2 */
@@ -30866,7 +30874,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-	 * jQuery JavaScript Library v2.2.3
+	 * jQuery JavaScript Library v2.2.2
 	 * http://jquery.com/
 	 *
 	 * Includes Sizzle.js
@@ -30876,7 +30884,7 @@
 	 * Released under the MIT license
 	 * http://jquery.org/license
 	 *
-	 * Date: 2016-04-05T19:26Z
+	 * Date: 2016-03-17T17:51Z
 	 */
 	
 	(function( global, factory ) {
@@ -30932,7 +30940,7 @@
 	
 	
 	var
-		version = "2.2.3",
+		version = "2.2.2",
 	
 		// Define a local copy of jQuery
 		jQuery = function( selector, context ) {
@@ -40342,7 +40350,7 @@
 			// If it fails, this function gets "jqXHR", "status", "error"
 			} ).always( callback && function( jqXHR, status ) {
 				self.each( function() {
-					callback.apply( this, response || [ jqXHR.responseText, status, jqXHR ] );
+					callback.apply( self, response || [ jqXHR.responseText, status, jqXHR ] );
 				} );
 			} );
 		}
@@ -48644,7 +48652,7 @@
 	 * angular-ui-bootstrap
 	 * http://angular-ui.github.io/bootstrap/
 	
-	 * Version: 1.3.2 - 2016-04-14
+	 * Version: 1.3.1 - 2016-04-05
 	 * License: MIT
 	 */angular.module("ui.bootstrap", ["ui.bootstrap.tpls", "ui.bootstrap.collapse","ui.bootstrap.accordion","ui.bootstrap.alert","ui.bootstrap.buttons","ui.bootstrap.carousel","ui.bootstrap.dateparser","ui.bootstrap.isClass","ui.bootstrap.datepicker","ui.bootstrap.position","ui.bootstrap.datepickerPopup","ui.bootstrap.debounce","ui.bootstrap.dropdown","ui.bootstrap.stackedMap","ui.bootstrap.modal","ui.bootstrap.paging","ui.bootstrap.pager","ui.bootstrap.pagination","ui.bootstrap.tooltip","ui.bootstrap.popover","ui.bootstrap.progressbar","ui.bootstrap.rating","ui.bootstrap.tabs","ui.bootstrap.timepicker","ui.bootstrap.typeahead"]);
 	angular.module("ui.bootstrap.tpls", ["uib/template/accordion/accordion-group.html","uib/template/accordion/accordion.html","uib/template/alert/alert.html","uib/template/carousel/carousel.html","uib/template/carousel/slide.html","uib/template/datepicker/datepicker.html","uib/template/datepicker/day.html","uib/template/datepicker/month.html","uib/template/datepicker/year.html","uib/template/datepickerPopup/popup.html","uib/template/modal/backdrop.html","uib/template/modal/window.html","uib/template/pager/pager.html","uib/template/pagination/pagination.html","uib/template/tooltip/tooltip-html-popup.html","uib/template/tooltip/tooltip-popup.html","uib/template/tooltip/tooltip-template-popup.html","uib/template/popover/popover-html.html","uib/template/popover/popover-template.html","uib/template/popover/popover.html","uib/template/progressbar/bar.html","uib/template/progressbar/progress.html","uib/template/progressbar/progressbar.html","uib/template/rating/rating.html","uib/template/tabs/tab.html","uib/template/tabs/tabset.html","uib/template/timepicker/timepicker.html","uib/template/typeahead/typeahead-match.html","uib/template/typeahead/typeahead-popup.html"]);
@@ -49860,7 +49868,7 @@
 	
 	  return {
 	    restrict: 'A',
-	    compile: function(tElement, tAttrs) {
+	    compile: function (tElement, tAttrs) {
 	      var linkedScopes = [];
 	      var instances = [];
 	      var expToData = {};
@@ -49879,7 +49887,7 @@
 	          element: element
 	        });
 	
-	        exps.forEach(function(exp, k) {
+	        exps.forEach(function (exp, k) {
 	          addForExp(exp, scope);
 	        });
 	
@@ -49892,9 +49900,9 @@
 	        var compareWithExp = matches[2];
 	        var data = expToData[exp];
 	        if (!data) {
-	          var watchFn = function(compareWithVal) {
+	          var watchFn = function (compareWithVal) {
 	            var newActivated = null;
-	            instances.some(function(instance) {
+	            instances.some(function (instance) {
 	              var thisVal = instance.scope.$eval(onExp);
 	              if (thisVal === compareWithVal) {
 	                newActivated = instance;
@@ -49929,13 +49937,14 @@
 	        instances.splice(index, 1);
 	        if (linkedScopes.length) {
 	          var newWatchScope = linkedScopes[0];
-	          angular.forEach(expToData, function(data) {
+	          angular.forEach(expToData, function (data) {
 	            if (data.scope === removedScope) {
 	              data.watcher = newWatchScope.$watch(data.compareWithExp, data.watchFn);
 	              data.scope = newWatchScope;
 	            }
 	          });
-	        } else {
+	        }
+	        else {
 	          expToData = {};
 	        }
 	      }
@@ -50212,8 +50221,6 @@
 	
 	      $scope.$emit('uib:datepicker.mode');
 	    }
-	
-	    $scope.$broadcast('uib:datepicker.focus');
 	  };
 	
 	  $scope.move = function(direction) {
@@ -50271,7 +50278,7 @@
 	    }
 	  };
 	
-	  $scope.$on('$destroy', function() {
+	  $scope.$on("$destroy", function() {
 	    //Clear all watch listeners on destroy
 	    while (watchListeners.length) {
 	      watchListeners.shift()();
@@ -51386,7 +51393,7 @@
 	
 	    var dates = {};
 	    angular.forEach(['minDate', 'maxDate'], function(key) {
-	      if (!$scope.datepickerOptions[key]) {
+	      if ($scope.datepickerOptions[key] === null) {
 	        dates[key] = null;
 	      } else if (angular.isDate($scope.datepickerOptions[key])) {
 	        dates[key] = dateParser.fromTimezone(new Date($scope.datepickerOptions[key]), timezone);
@@ -51676,10 +51683,10 @@
 	.service('uibDropdownService', ['$document', '$rootScope', function($document, $rootScope) {
 	  var openScope = null;
 	
-	  this.open = function(dropdownScope, element) {
+	  this.open = function(dropdownScope) {
 	    if (!openScope) {
 	      $document.on('click', closeDropdown);
-	      element.on('keydown', keybindFilter);
+	      $document.on('keydown', keybindFilter);
 	    }
 	
 	    if (openScope && openScope !== dropdownScope) {
@@ -51689,11 +51696,11 @@
 	    openScope = dropdownScope;
 	  };
 	
-	  this.close = function(dropdownScope, element) {
+	  this.close = function(dropdownScope) {
 	    if (openScope === dropdownScope) {
 	      openScope = null;
 	      $document.off('click', closeDropdown);
-	      element.off('keydown', keybindFilter);
+	      $document.off('keydown', keybindFilter);
 	    }
 	  };
 	
@@ -51726,7 +51733,6 @@
 	
 	  var keybindFilter = function(evt) {
 	    if (evt.which === 27) {
-	      evt.stopPropagation();
 	      openScope.focusToggleElement();
 	      closeDropdown();
 	    } else if (openScope.isKeynavEnabled() && [38, 40].indexOf(evt.which) !== -1 && openScope.isOpen) {
@@ -51918,7 +51924,7 @@
 	      }
 	
 	      scope.focusToggleElement();
-	      uibDropdownService.open(scope, $element);
+	      uibDropdownService.open(scope);
 	    } else {
 	      if (self.dropdownMenuTemplateUrl) {
 	        if (templateScope) {
@@ -51929,7 +51935,7 @@
 	        self.dropdownMenu = newEl;
 	      }
 	
-	      uibDropdownService.close(scope, $element);
+	      uibDropdownService.close(scope);
 	      self.selectedOption = null;
 	    }
 	
@@ -52373,9 +52379,8 @@
 	        removeAfterAnimate(modalWindow.modalDomEl, modalWindow.modalScope, function() {
 	          var modalBodyClass = modalWindow.openedClass || OPENED_MODAL_CLASS;
 	          openedClasses.remove(modalBodyClass, modalInstance);
-	          var areAnyOpen = openedClasses.hasKey(modalBodyClass);
-	          appendToElement.toggleClass(modalBodyClass, areAnyOpen);
-	          if (!areAnyOpen && scrollbarPadding && scrollbarPadding.heightOverflow && scrollbarPadding.scrollbarWidth) {
+	          appendToElement.toggleClass(modalBodyClass, openedClasses.hasKey(modalBodyClass));
+	          if (scrollbarPadding && scrollbarPadding.heightOverflow && scrollbarPadding.scrollbarWidth) {
 	            if (scrollbarPadding.originalRight) {
 	              appendToElement.css({paddingRight: scrollbarPadding.originalRight + 'px'});
 	            } else {
@@ -52509,7 +52514,7 @@
 	          modalBodyClass = modal.openedClass || OPENED_MODAL_CLASS;
 	
 	        toggleTopWindowClass(false);
-	
+	        
 	        // Store the current top first, to determine what index we ought to use
 	        // for the current top modal
 	        previousTopOpenedModal = openedWindows.top();
@@ -52547,10 +52552,6 @@
 	          }
 	          $compile(backdropDomEl)(backdropScope);
 	          $animate.enter(backdropDomEl, appendToElement);
-	          scrollbarPadding = $uibPosition.scrollbarPadding(appendToElement);
-	          if (scrollbarPadding.heightOverflow && scrollbarPadding.scrollbarWidth) {
-	            appendToElement.css({paddingRight: scrollbarPadding.right + 'px'});
-	          }
 	        }
 	
 	        // Set the top modal index based on the index of the previous top modal
@@ -52568,6 +52569,10 @@
 	          angularDomEl.attr('modal-animation', 'true');
 	        }
 	
+	        scrollbarPadding = $uibPosition.scrollbarPadding(appendToElement);
+	        if (scrollbarPadding.heightOverflow && scrollbarPadding.scrollbarWidth) {
+	          appendToElement.css({paddingRight: scrollbarPadding.right + 'px'});
+	        }
 	        appendToElement.addClass(modalBodyClass);
 	        $animate.enter($compile(angularDomEl)(modal.scope), appendToElement);
 	
@@ -53566,6 +53571,8 @@
 	              observers.push(
 	                attrs.$observe(prefix + 'Placement', function(val) {
 	                  ttScope.placement = val ? val : options.placement;
+	                  var placement = $position.parsePlacement(ttScope.placement);
+	                  lastPlacement = placement[1] ? placement[0] + '-' + placement[1] : placement[0];
 	                  if (ttScope.isOpen) {
 	                    positionTooltip();
 	                  }
@@ -55322,7 +55329,7 @@
 	        });
 	      }
 	      if (!isEditable && modelCtrl.$error.editable) {
-	        modelCtrl.$setViewValue();
+	        modelCtrl.$viewValue = '';
 	        // Reset validity as we are clearing
 	        modelCtrl.$setValidity('editable', true);
 	        modelCtrl.$setValidity('parse', true);
@@ -55919,15 +55926,15 @@
 	    "    </tr>\n" +
 	    "    <tr>\n" +
 	    "      <td class=\"form-group uib-time hours\" ng-class=\"{'has-error': invalidHours}\">\n" +
-	    "        <input type=\"text\" placeholder=\"HH\" ng-model=\"hours\" ng-change=\"updateHours()\" class=\"form-control text-center\" ng-readonly=\"::readonlyInput\" maxlength=\"2\" tabindex=\"{{::tabindex}}\" ng-disabled=\"noIncrementHours()\" ng-blur=\"blur()\">\n" +
+	    "        <input style=\"width:50px;\" type=\"text\" placeholder=\"HH\" ng-model=\"hours\" ng-change=\"updateHours()\" class=\"form-control text-center\" ng-readonly=\"::readonlyInput\" maxlength=\"2\" tabindex=\"{{::tabindex}}\" ng-disabled=\"noIncrementHours()\" ng-blur=\"blur()\">\n" +
 	    "      </td>\n" +
 	    "      <td class=\"uib-separator\">:</td>\n" +
 	    "      <td class=\"form-group uib-time minutes\" ng-class=\"{'has-error': invalidMinutes}\">\n" +
-	    "        <input type=\"text\" placeholder=\"MM\" ng-model=\"minutes\" ng-change=\"updateMinutes()\" class=\"form-control text-center\" ng-readonly=\"::readonlyInput\" maxlength=\"2\" tabindex=\"{{::tabindex}}\" ng-disabled=\"noIncrementMinutes()\" ng-blur=\"blur()\">\n" +
+	    "        <input style=\"width:50px;\" type=\"text\" placeholder=\"MM\" ng-model=\"minutes\" ng-change=\"updateMinutes()\" class=\"form-control text-center\" ng-readonly=\"::readonlyInput\" maxlength=\"2\" tabindex=\"{{::tabindex}}\" ng-disabled=\"noIncrementMinutes()\" ng-blur=\"blur()\">\n" +
 	    "      </td>\n" +
 	    "      <td ng-show=\"showSeconds\" class=\"uib-separator\">:</td>\n" +
 	    "      <td class=\"form-group uib-time seconds\" ng-class=\"{'has-error': invalidSeconds}\" ng-show=\"showSeconds\">\n" +
-	    "        <input type=\"text\" placeholder=\"SS\" ng-model=\"seconds\" ng-change=\"updateSeconds()\" class=\"form-control text-center\" ng-readonly=\"readonlyInput\" maxlength=\"2\" tabindex=\"{{::tabindex}}\" ng-disabled=\"noIncrementSeconds()\" ng-blur=\"blur()\">\n" +
+	    "        <input style=\"width:50px;\" type=\"text\" placeholder=\"SS\" ng-model=\"seconds\" ng-change=\"updateSeconds()\" class=\"form-control text-center\" ng-readonly=\"readonlyInput\" maxlength=\"2\" tabindex=\"{{::tabindex}}\" ng-disabled=\"noIncrementSeconds()\" ng-blur=\"blur()\">\n" +
 	    "      </td>\n" +
 	    "      <td ng-show=\"showMeridian\" class=\"uib-time am-pm\"><button type=\"button\" ng-class=\"{disabled: noToggleMeridian()}\" class=\"btn btn-default text-center\" ng-click=\"toggleMeridian()\" ng-disabled=\"noToggleMeridian()\" tabindex=\"{{::tabindex}}\">{{meridian}}</button></td>\n" +
 	    "    </tr>\n" +
@@ -56070,7 +56077,9 @@
 	                home: this._getState('home'),
 	                diary: this._getState('diary'),
 	                food: this._getState('food'),
-	                about: this._getState('about')
+	                about: this._getState('about'),
+	                login: this._getState('login'),
+	                register: this._getState('register')
 	            };
 	        }
 	    }, {
@@ -56085,6 +56094,10 @@
 	
 	            this.$scope.$on('$stateChangeSuccess', function () {
 	                _this._initState();
+	            });
+	
+	            this.$scope.$on('$stateChangeError', function () {
+	                debugger;
 	            });
 	
 	            this.AuthService.onAuth(function () {
@@ -56102,7 +56115,7 @@
 /* 16 */
 /***/ function(module, exports) {
 
-	module.exports = "<nav class=\"navbar navbar-default navbar-fixed-top\">\r\n    <div class=\"container\">\r\n        <div class=\"navbar-header\">\r\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\" aria-controls=\"navbar\">\r\n                <span class=\"sr-only\">Toggle navigation</span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n            </button>\r\n            <a class=\"navbar-brand\" ng-click=\"$ctrl.goMainPage()\">Foodiary</a>\r\n        </div>\r\n        <div id=\"navbar\" class=\"navbar-collapse collapse\">\r\n            <ul class=\"nav navbar-nav\">\r\n                <li ng-class=\"{ active: $ctrl.state.home }\" ng-if=\"$ctrl.auth\"><a ui-sref=\"home\">Главная</a></li>\r\n                <li ng-class=\"{ active: $ctrl.state.diary }\" ng-if=\"$ctrl.auth\"><a ui-sref=\"diary\">Дневник</a></li>\r\n                <li ng-class=\"{ active: $ctrl.state.food }\" ng-if=\"$ctrl.auth\"><a ui-sref=\"food\">Еда</a></li>\r\n                <li ng-class=\"{ active: $ctrl.state.about }\"><a ui-sref=\"about\">О проекте</a></li>\r\n            </ul>\r\n            <ul class=\"nav navbar-nav navbar-right\">\r\n                <li ng-if=\"$ctrl.auth\">\r\n                    <a href=\"#\" ng-click=\"$ctrl.logout()\">\r\n                        <i class=\"fa fa-sign-out\" aria-hidden=\"true\"></i> Выход\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</nav>\r\n";
+	module.exports = "<nav class=\"navbar navbar-default navbar-fixed-top\">\r\n    <div class=\"container\">\r\n        <div class=\"navbar-header\">\r\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\" aria-controls=\"navbar\">\r\n                <span class=\"sr-only\">Toggle navigation</span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n            </button>\r\n            <a class=\"navbar-brand\" ng-click=\"$ctrl.goMainPage()\">Foodiary</a>\r\n        </div>\r\n        <div id=\"navbar\" class=\"navbar-collapse collapse\">\r\n            <ul class=\"nav navbar-nav\">\r\n                <li ng-class=\"{ active: $ctrl.state.home }\" ng-if=\"$ctrl.auth\"><a ui-sref=\"home\">Главная</a></li>\r\n                <li ng-class=\"{ active: $ctrl.state.diary }\" ng-if=\"$ctrl.auth\"><a ui-sref=\"diary\">Дневник</a></li>\r\n                <li ng-class=\"{ active: $ctrl.state.food }\" ng-if=\"$ctrl.auth\"><a ui-sref=\"food\">Еда</a></li>\r\n                <li ng-class=\"{ active: $ctrl.state.about }\"><a ui-sref=\"about\">О проекте</a></li>\r\n            </ul>\r\n            <ul class=\"nav navbar-nav navbar-right\">\r\n                <li ng-if=\"!$ctrl.auth\" ng-class=\"{ active: $ctrl.state.login }\">\r\n                    <a ui-sref=\"login\">\r\n                        <i class=\"fa fa-sign-in\" aria-hidden=\"true\"></i> Вход\r\n                    </a>\r\n                </li>\r\n                <li ng-if=\"!$ctrl.auth\" ng-class=\"{ active: $ctrl.state.register }\">\r\n                    <a ui-sref=\"register\">\r\n                        Регистрация\r\n                    </a>\r\n                </li>\r\n                <li ng-if=\"$ctrl.auth\">\r\n                    <a href=\"#\" ng-click=\"$ctrl.logout()\">\r\n                        <i class=\"fa fa-sign-out\" aria-hidden=\"true\"></i> Выход\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</nav>\r\n";
 
 /***/ },
 /* 17 */
@@ -71449,7 +71462,7 @@
 	        url: '/promo',
 	        template: '<promo></promo>',
 	        resolve: {
-	            auth: function auth($q, AuthService) {
+	            promo: function promo($q, AuthService) {
 	                return $q(function (resolve, reject) {
 	                    AuthService.onAuth(function (result) {
 	                        if (result) {
@@ -71491,28 +71504,18 @@
 	        value: function begin() {
 	            var _this = this;
 	
-	            this._startBeginProgress();
+	            this.progress = true;
 	            this.AuthService.authAnonymously().then(function () {
 	                _this._gotoDiaryState();
 	            }).catch(function (error) {
-	                _this._stopBeginProgress();
+	                _this.progress = false;
 	                throw Error(error);
 	            });
 	        }
 	    }, {
 	        key: 'login',
-	        value: function login() {}
-	    }, {
-	        key: '_startBeginProgress',
-	        value: function _startBeginProgress() {
-	            this.progress = true;
-	            this.beginProgress = true;
-	        }
-	    }, {
-	        key: '_stopBeginProgress',
-	        value: function _stopBeginProgress() {
-	            this.progress = false;
-	            this.beginProgress = false;
+	        value: function login() {
+	            this.$state.go('login');
 	        }
 	    }, {
 	        key: '_gotoDiaryState',
@@ -71530,7 +71533,7 @@
 /* 191 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"foodiary__page foodiary__page--promo\">\r\n    <div class=\"row\">\r\n        <h1 class=\"cover-heading\">Ваш дневник питания на каждый день</h1>\r\n        <p class=\"lead\">Учёт калорий, жиров, белков и углеводов</p>\r\n        <p class=\"lead\">\r\n            <button type=\"button\" class=\"btn btn-lg btn-success\" ng-click=\"$ctrl.begin()\" ng-disabled=\"$ctrl.progress\">\r\n                <i class=\"fa fa-lg fa-spinner fa-spin\" ng-if=\"$ctrl.beginProgress\"></i> Начать\r\n            </button>\r\n            <button type=\"button\" class=\"btn btn-lg btn-primary\" ng-click=\"$ctrl.login()\" ng-disabled=\"$ctrl.progress\">\r\n                <i class=\"fa fa-lg fa-spinner fa-spin\" ng-if=\"$ctrl.loginProgress\"></i> Войти\r\n            </button>\r\n        </p>\r\n    </div>\r\n</div>\r\n";
+	module.exports = "<div class=\"foodiary__page foodiary__page--promo\">\r\n    <div class=\"row\">\r\n        <h1 class=\"cover-heading\">Ваш дневник питания на каждый день</h1>\r\n        <p class=\"lead\">Учёт калорий, жиров, белков и углеводов</p>\r\n        <p class=\"lead\">\r\n            <button type=\"button\" class=\"btn btn-lg btn-success\" ng-click=\"$ctrl.begin()\" ng-disabled=\"$ctrl.progress\">\r\n                <i class=\"fa fa-lg fa-spinner fa-spin\" ng-if=\"$ctrl.progress\"></i> Попробовать\r\n            </button>\r\n        </p>\r\n    </div>\r\n</div>\r\n";
 
 /***/ },
 /* 192 */
@@ -71540,6 +71543,333 @@
 
 /***/ },
 /* 193 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _app = __webpack_require__(194);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	__webpack_require__(195);
+	
+	var _loginController = __webpack_require__(196);
+	
+	var _loginController2 = _interopRequireDefault(_loginController);
+	
+	var _template = __webpack_require__(197);
+	
+	var _template2 = _interopRequireDefault(_template);
+	
+	__webpack_require__(198);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var componentName = 'login';
+	
+	_app2.default.component(componentName, {
+	    template: _template2.default,
+	    controller: _loginController2.default
+	});
+	
+	exports.default = componentName;
+
+/***/ },
+/* 194 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _angular = __webpack_require__(2);
+	
+	var _angular2 = _interopRequireDefault(_angular);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _angular2.default.module('login', []);
+
+/***/ },
+/* 195 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _app = __webpack_require__(194);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	_app2.default.config(function ($stateProvider) {
+	    $stateProvider.state('login', {
+	        url: '/login',
+	        template: '<login></login>',
+	        resolve: {
+	            login: function login($q, AuthService) {
+	                return $q(function (resolve, reject) {
+	                    AuthService.onAuth(function (result) {
+	                        if (result) {
+	                            reject();
+	                        } else {
+	                            resolve();
+	                        }
+	                    });
+	                });
+	            }
+	        }
+	    });
+	});
+
+/***/ },
+/* 196 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var LoginController = function () {
+	    function LoginController($scope, AuthService, $state) {
+	        _classCallCheck(this, LoginController);
+	
+	        this.$scope = $scope;
+	        this.AuthService = AuthService;
+	        this.$state = $state;
+	
+	        this._initForm();
+	    }
+	
+	    _createClass(LoginController, [{
+	        key: '_initForm',
+	        value: function _initForm() {
+	            this.auth = {
+	                email: null,
+	                password: null,
+	                remember: false
+	            };
+	        }
+	    }, {
+	        key: 'isHasError',
+	        value: function isHasError(attrName) {
+	            var item = this.$scope.auth[attrName];
+	            return item.$invalid && item.$dirty && item.$touched;
+	        }
+	    }, {
+	        key: 'submit',
+	        value: function submit() {
+	            var _this = this;
+	
+	            this.progress = true;
+	            this.AuthService.authWithPassword(this.auth).then(function () {
+	                _this._gotoDiaryState();
+	            }).catch(function (error) {
+	                _this.progress = false;
+	                throw Error(error);
+	            });
+	        }
+	    }, {
+	        key: '_gotoDiaryState',
+	        value: function _gotoDiaryState() {
+	            this.$state.go('diary');
+	        }
+	    }]);
+	
+	    return LoginController;
+	}();
+
+	exports.default = LoginController;
+
+/***/ },
+/* 197 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"foodiary__page foodiary__page--login\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-6\">\r\n            <div class=\"well\">\r\n                <form name=\"auth\" class=\"form-horizontal from--auth\" ng-submit=\"$ctrl.submit()\">\r\n                    <fieldset>\r\n                        <legend>Авторизация</legend>\r\n                        \r\n                        <div class=\"form-group\" ng-class=\"{ 'has-error' : $ctrl.isHasError('email') }\">\r\n                            <label for=\"inputEmail\" class=\"col-md-2 control-label\">Email</label>\r\n                            <div class=\"col-md-10\">\r\n                                <input type=\"text\" class=\"form-control\" id=\"inputEmail\" name=\"email\" placeholder=\"Email\" required ng-model=\"$ctrl.auth.email\" ng-disabled=\"$ctrl.progress\" autocomplete=\"off\">\r\n                                <div ng-messages=\"auth.email.$error\" ng-if=\"$ctrl.isHasError('email')\" role=\"alert\">\r\n                                    <div ng-message=\"required\" class=\"form__message--error\">Введите email</div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        \r\n                        <div class=\"form-group\" ng-class=\"{ 'has-error' : $ctrl.isHasError('password') }\">\r\n                            <label for=\"inputPassword\" class=\"col-md-2 control-label\">Пароль</label>\r\n                            <div class=\"col-md-10\">\r\n                                <input type=\"password\" class=\"form-control\" id=\"inputPassword\" name=\"password\" required placeholder=\"Password\" ng-model=\"$ctrl.auth.password\" ng-disabled=\"$ctrl.progress\" autocomplete=\"off\">\r\n                                <div ng-messages=\"auth.password.$error\" ng-if=\"$ctrl.isHasError('password')\" role=\"alert\">\r\n                                    <div ng-message=\"required\" class=\"form__message--error\">Введите пароль</div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        \r\n                        <div class=\"form-group\">\r\n                            <div class=\"col-md-10 col-md-offset-2\">\r\n                                <div class=\"checkbox\">\r\n                                    <label>\r\n                                        <input type=\"checkbox\" ng-model=\"$ctrl.auth.remember\" ng-disabled=\"$ctrl.progress\"> Запомнить\r\n                                    </label>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"form-group\">\r\n                            <div class=\"col-md-10 col-md-offset-2\">\r\n                                <button type=\"submit\" class=\"btn btn-primary\" ng-disabled=\"$ctrl.progress\">\r\n                                    <i class=\"fa fa-lg fa-spinner fa-spin\" ng-if=\"$ctrl.progress\"></i> Войти\r\n                                </button>\r\n                            </div>\r\n                        </div>\r\n                    </fieldset>\r\n                </form>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
+
+/***/ },
+/* 198 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 199 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _app = __webpack_require__(200);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	__webpack_require__(201);
+	
+	var _registerController = __webpack_require__(202);
+	
+	var _registerController2 = _interopRequireDefault(_registerController);
+	
+	var _template = __webpack_require__(203);
+	
+	var _template2 = _interopRequireDefault(_template);
+	
+	__webpack_require__(204);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var componentName = 'register';
+	
+	_app2.default.component(componentName, {
+	    template: _template2.default,
+	    controller: _registerController2.default
+	});
+	
+	exports.default = componentName;
+
+/***/ },
+/* 200 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _angular = __webpack_require__(2);
+	
+	var _angular2 = _interopRequireDefault(_angular);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _angular2.default.module('register', []);
+
+/***/ },
+/* 201 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _app = __webpack_require__(200);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	_app2.default.config(function ($stateProvider) {
+	    $stateProvider.state('register', {
+	        url: '/register',
+	        template: '<register></register>',
+	        resolve: {
+	            register: function register($q, AuthService) {
+	                return $q(function (resolve, reject) {
+	                    AuthService.onAuth(function (result) {
+	                        if (result) {
+	                            reject();
+	                        } else {
+	                            resolve();
+	                        }
+	                    });
+	                });
+	            }
+	        }
+	    });
+	});
+
+/***/ },
+/* 202 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var RegisterController = function () {
+	    function RegisterController($scope, AuthService, $state) {
+	        _classCallCheck(this, RegisterController);
+	
+	        this.$scope = $scope;
+	        this.AuthService = AuthService;
+	        this.$state = $state;
+	
+	        this._initForm();
+	    }
+	
+	    _createClass(RegisterController, [{
+	        key: '_initForm',
+	        value: function _initForm() {
+	            this.auth = {
+	                email: null,
+	                password: null
+	            };
+	        }
+	    }, {
+	        key: 'isHasError',
+	        value: function isHasError(attrName) {
+	            var item = this.$scope.auth[attrName];
+	            return item.$invalid && item.$dirty && item.$touched;
+	        }
+	    }, {
+	        key: 'submit',
+	        value: function submit() {
+	            var _this = this;
+	
+	            this.progress = true;
+	            this.AuthService.createUser(this.auth).then(function () {
+	                _this._gotoDiaryState();
+	            }).catch(function (error) {
+	                _this.progress = false;
+	                throw Error(error);
+	            });
+	        }
+	    }, {
+	        key: '_gotoDiaryState',
+	        value: function _gotoDiaryState() {
+	            this.$state.go('diary');
+	        }
+	    }]);
+	
+	    return RegisterController;
+	}();
+
+	exports.default = RegisterController;
+
+/***/ },
+/* 203 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"foodiary__page foodiary__page--register\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-6\">\r\n            <div class=\"well\">\r\n                <form name=\"auth\" class=\"form-horizontal from--auth\" ng-submit=\"$ctrl.submit()\">\r\n                    <fieldset>\r\n                        <legend>Регистрация</legend>\r\n                        \r\n                        <div class=\"form-group\" ng-class=\"{ 'has-error' : $ctrl.isHasError('email') }\">\r\n                            <label for=\"inputEmail\" class=\"col-md-2 control-label\">Email</label>\r\n                            <div class=\"col-md-10\">\r\n                                <input type=\"text\" class=\"form-control\" id=\"inputEmail\" name=\"email\" placeholder=\"Email\" required ng-model=\"$ctrl.auth.email\" ng-disabled=\"$ctrl.progress\" autocomplete=\"off\">\r\n                                <div ng-messages=\"auth.email.$error\" ng-if=\"$ctrl.isHasError('email')\" role=\"alert\">\r\n                                    <div ng-message=\"required\" class=\"form__message--error\">Введите email</div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        \r\n                        <div class=\"form-group\" ng-class=\"{ 'has-error' : $ctrl.isHasError('password') }\">\r\n                            <label for=\"inputPassword\" class=\"col-md-2 control-label\">Пароль</label>\r\n                            <div class=\"col-md-10\">\r\n                                <input type=\"password\" class=\"form-control\" id=\"inputPassword\" name=\"password\" required placeholder=\"Password\" ng-model=\"$ctrl.auth.password\" ng-disabled=\"$ctrl.progress\" autocomplete=\"off\">\r\n                                <div ng-messages=\"auth.password.$error\" ng-if=\"$ctrl.isHasError('password')\" role=\"alert\">\r\n                                    <div ng-message=\"required\" class=\"form__message--error\">Введите пароль</div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"form-group\">\r\n                            <div class=\"col-md-10 col-md-offset-2\">\r\n                                <button type=\"submit\" class=\"btn btn-primary\" ng-disabled=\"$ctrl.progress\">\r\n                                    <i class=\"fa fa-lg fa-spinner fa-spin\" ng-if=\"$ctrl.progress\"></i> Войти\r\n                                </button>\r\n                            </div>\r\n                        </div>\r\n                    </fieldset>\r\n                </form>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
+
+/***/ },
+/* 204 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -71576,7 +71906,7 @@
 	});
 
 /***/ },
-/* 194 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -71589,7 +71919,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _AuthServiceController = __webpack_require__(195);
+	var _AuthServiceController = __webpack_require__(207);
 	
 	var _AuthServiceController2 = _interopRequireDefault(_AuthServiceController);
 	
@@ -71598,7 +71928,7 @@
 	exports.default = _app2.default.service('AuthService', _AuthServiceController2.default);
 
 /***/ },
-/* 195 */
+/* 207 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -71655,6 +71985,43 @@
 	        value: function onAuth(callback) {
 	            this.auth.$onAuth(callback);
 	        }
+	    }, {
+	        key: 'authWithPassword',
+	        value: function authWithPassword(options) {
+	            var _this2 = this;
+	
+	            var email = options.email;
+	            var password = options.password;
+	            var remember = options.remember;
+	
+	            return this.auth.$authWithPassword({
+	                email: email,
+	                password: password
+	            }).then(function (authData) {
+	                _this2.authData = authData;
+	            }).catch(function (error) {
+	                throw Error(error);
+	            });
+	        }
+	    }, {
+	        key: 'createUser',
+	        value: function createUser(options) {
+	            var _this3 = this;
+	
+	            var email = options.email;
+	            var password = options.password;
+	
+	            return this.auth.$createUser({
+	                email: email,
+	                password: password
+	            }).then(function (userData) {
+	                return _this3.authWithPassword(options);
+	            }).then(function (authData) {
+	                _this3.authData = authData;
+	            }).catch(function (error) {
+	                throw Error(error);
+	            });
+	        }
 	    }]);
 	
 	    return AuthServiceController;
@@ -71663,7 +72030,7 @@
 	exports.default = AuthServiceController;
 
 /***/ },
-/* 196 */
+/* 208 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -71676,7 +72043,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _FoodServiceController = __webpack_require__(197);
+	var _FoodServiceController = __webpack_require__(209);
 	
 	var _FoodServiceController2 = _interopRequireDefault(_FoodServiceController);
 	
@@ -71685,7 +72052,7 @@
 	exports.default = _app2.default.service('FoodService', _FoodServiceController2.default);
 
 /***/ },
-/* 197 */
+/* 209 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -71757,7 +72124,7 @@
 	exports.default = FoodServiceController;
 
 /***/ },
-/* 198 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -71770,7 +72137,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _DiaryServiceController = __webpack_require__(199);
+	var _DiaryServiceController = __webpack_require__(211);
 	
 	var _DiaryServiceController2 = _interopRequireDefault(_DiaryServiceController);
 	
@@ -71783,7 +72150,7 @@
 	exports.default = serviceName;
 
 /***/ },
-/* 199 */
+/* 211 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -71881,7 +72248,7 @@
 	exports.default = DiaryServiceController;
 
 /***/ },
-/* 200 */
+/* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -71890,7 +72257,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _UrlsServiceController = __webpack_require__(201);
+	var _UrlsServiceController = __webpack_require__(213);
 	
 	var _UrlsServiceController2 = _interopRequireDefault(_UrlsServiceController);
 	
@@ -71899,7 +72266,7 @@
 	_app2.default.service('UrlsService', _UrlsServiceController2.default);
 
 /***/ },
-/* 201 */
+/* 213 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -71942,7 +72309,7 @@
 	exports.default = UrlsServiceController;
 
 /***/ },
-/* 202 */
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -71955,7 +72322,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _FoodRatioServiceController = __webpack_require__(203);
+	var _FoodRatioServiceController = __webpack_require__(215);
 	
 	var _FoodRatioServiceController2 = _interopRequireDefault(_FoodRatioServiceController);
 	
@@ -71968,7 +72335,7 @@
 	exports.default = serviceName;
 
 /***/ },
-/* 203 */
+/* 215 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -72011,7 +72378,7 @@
 	exports.default = FoodRatioServiceController;
 
 /***/ },
-/* 204 */
+/* 216 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
