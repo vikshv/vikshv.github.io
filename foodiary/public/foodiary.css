@@ -140,6 +140,10 @@
 .calendar .week__day--currentDay {
   background-color: #464545;
 }
+.form--addProduct .form__message--error {
+  margin-top: 12px;
+  color: #e74c3c;
+}
 .calendar .calendar__day .table__emptyRow,
 .calendar .calendar__day .table__loadingRow {
   line-height: 140px;

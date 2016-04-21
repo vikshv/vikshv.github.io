@@ -50,19 +50,19 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(205);
-	
 	__webpack_require__(206);
 	
-	__webpack_require__(208);
+	__webpack_require__(207);
 	
-	__webpack_require__(210);
+	__webpack_require__(209);
 	
-	__webpack_require__(212);
+	__webpack_require__(211);
 	
-	__webpack_require__(214);
+	__webpack_require__(213);
 	
-	__webpack_require__(216);
+	__webpack_require__(215);
+	
+	__webpack_require__(217);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -119,21 +119,21 @@
 	
 	__webpack_require__(29);
 	
-	__webpack_require__(161);
+	__webpack_require__(162);
 	
-	__webpack_require__(167);
+	__webpack_require__(168);
 	
-	__webpack_require__(171);
+	__webpack_require__(172);
 	
-	var _promo = __webpack_require__(187);
+	var _promo = __webpack_require__(188);
 	
 	var _promo2 = _interopRequireDefault(_promo);
 	
-	var _login = __webpack_require__(193);
+	var _login = __webpack_require__(194);
 	
 	var _login2 = _interopRequireDefault(_login);
 	
-	var _register = __webpack_require__(199);
+	var _register = __webpack_require__(200);
 	
 	var _register2 = _interopRequireDefault(_register);
 	
@@ -56320,15 +56320,15 @@
 	
 	__webpack_require__(152);
 	
-	var _calendarController = __webpack_require__(158);
+	var _calendarController = __webpack_require__(159);
 	
 	var _calendarController2 = _interopRequireDefault(_calendarController);
 	
-	var _template = __webpack_require__(159);
+	var _template = __webpack_require__(160);
 	
 	var _template2 = _interopRequireDefault(_template);
 	
-	__webpack_require__(160);
+	__webpack_require__(161);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -70236,11 +70236,11 @@
 	
 	var _calendarDayController2 = _interopRequireDefault(_calendarDayController);
 	
-	var _template = __webpack_require__(156);
+	var _template = __webpack_require__(157);
 	
 	var _template2 = _interopRequireDefault(_template);
 	
-	__webpack_require__(157);
+	__webpack_require__(158);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -70272,6 +70272,8 @@
 	var _productAddDialogController = __webpack_require__(155);
 	
 	var _productAddDialogController2 = _interopRequireDefault(_productAddDialogController);
+	
+	__webpack_require__(156);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -70329,9 +70331,11 @@
 	            var _this2 = this;
 	
 	            this._showItemDialog().then(function (data) {
-	                var k = data.weight / 100;
-	                var item = _this2._getItemData(data, k);
-	                _this2.handlers.addData(item, _this2.date);
+	                if (data.weight) {
+	                    var k = data.weight / 100;
+	                    var item = _this2._getItemData(data, k);
+	                    _this2.handlers.addData(item, _this2.date);
+	                }
 	            });
 	        }
 	    }, {
@@ -70341,9 +70345,11 @@
 	
 	            var oldWeight = item.weight;
 	            this._showItemDialog(item).then(function (data) {
-	                var k = data.weight / oldWeight;
-	                var item = _this3._getItemData(data, k);
-	                _this3.handlers.editData(item, _this3.date);
+	                if (data.weight) {
+	                    var k = data.weight / oldWeight;
+	                    var _item = _this3._getItemData(data, k);
+	                    _this3.handlers.editData(_item, _this3.date);
+	                }
 	            });
 	        }
 	    }, {
@@ -70352,8 +70358,8 @@
 	            var modal = this.$uibModal.open({
 	                animation: true,
 	                template: _template2.default,
-	                controller: function controller($uibModalInstance, FoodService) {
-	                    return new _productAddDialogController2.default($uibModalInstance, FoodService, data);
+	                controller: function controller($scope, $uibModalInstance, FoodService) {
+	                    return new _productAddDialogController2.default($scope, $uibModalInstance, FoodService, data);
 	                },
 	                controllerAs: '$ctrl'
 	            });
@@ -70414,7 +70420,7 @@
 /* 154 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"modal-header\">\r\n    <h3 class=\"modal-title\">Добавление продукта</h3>\r\n</div>\r\n<div class=\"modal-body\">\r\n    <form name=\"foodItem\" class=\"form-horizontal\" ng-submit=\"$ctrl.submit()\" novalidate>\r\n        <fieldset>\r\n            <div class=\"form-group\">\r\n                <label for=\"inputShortName\" class=\"col-md-3 control-label\">Наименование</label>\r\n                <div class=\"col-md-8\">\r\n                    <input type=\"text\" \r\n                        class=\"form-control\" \r\n                        id=\"inputShortName\" \r\n                        name=\"shortName\" \r\n                        maxlength=\"40\" \r\n                        autocomplete=\"off\"\r\n                        uib-typeahead=\"item as item.shortName for item in $ctrl.getItems($viewValue)\"\r\n                        typeahead-show-hint=\"true\"\r\n                        typeahead-on-select=\"$ctrl.onSelected()\"\r\n                        typeahead-editable=\"false\"\r\n                        required \r\n                        ng-model=\"$ctrl.selectedItem\">\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n                <label for=\"inputWeight\" class=\"col-md-3 control-label\">Вес, г</label>\r\n                <div class=\"col-md-3\">\r\n                    <input type=\"text\" class=\"form-control\" id=\"inputWeight\" name=\"weight\" ng-model=\"$ctrl.weight\" autocomplete=\"off\" required>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n                <label for=\"inputTime\" class=\"col-md-3 control-label\">Время</label>\r\n                <div class=\"col-md-3\">\r\n                    <input type=\"text\" class=\"form-control\" id=\"inputTime\" ng-model=\"$ctrl.time\" name=\"time\">\r\n                </div>\r\n            </div>\r\n        </fieldset>\r\n    </form>\r\n</div>\r\n<div class=\"modal-footer\">\r\n    <button type=\"button\" class=\"btn btn-default\" ng-click=\"$ctrl.onClickCansel()\">Отмена</button>\r\n    <button type=\"button\" class=\"btn btn-primary\" ng-click=\"$ctrl.onClickOk()\">Сохранить</button>\r\n</div>\r\n";
+	module.exports = "<div class=\"modal-header\">\r\n    <h3 class=\"modal-title\">Добавление продукта</h3>\r\n</div>\r\n<form name=\"foodItem\" class=\"form-horizontal form--addProduct\" ng-submit=\"$ctrl.submit()\" novalidate>\r\n    <fieldset>\r\n        <div class=\"modal-body\">\r\n    \r\n            <div class=\"form-group\">\r\n                <label for=\"inputShortName\" class=\"col-md-3 control-label\">Наименование</label>\r\n                <div class=\"col-md-8\">\r\n                    <input type=\"text\" \r\n                        class=\"form-control\" \r\n                        id=\"inputShortName\" \r\n                        name=\"shortName\" \r\n                        maxlength=\"40\" \r\n                        autocomplete=\"off\"\r\n                        uib-typeahead=\"item as item.shortName for item in $ctrl.getItems($viewValue)\"\r\n                        typeahead-show-hint=\"true\"\r\n                        typeahead-on-select=\"$ctrl.onSelected()\"\r\n                        typeahead-editable=\"false\"\r\n                        required \r\n                        ng-model=\"$ctrl.selectedItem\">\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\" ng-class=\"{ 'has-error' : $ctrl.isHasError('weight') }\">\r\n                <label for=\"inputWeight\" class=\"col-md-3 control-label\">Вес, г</label>\r\n                <div class=\"col-md-3\">\r\n                    <input type=\"text\" class=\"form-control\" id=\"inputWeight\" name=\"weight\" ng-model=\"$ctrl.weight\" autocomplete=\"off\" required>\r\n                    <div ng-messages=\"foodItem.weight.$error\" ng-if=\"$ctrl.isHasError('weight')\" role=\"alert\">\r\n                        <div ng-message=\"required\" class=\"form__message--error\">Введите вес</div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n                <label for=\"inputTime\" class=\"col-md-3 control-label\">Время</label>\r\n                <div class=\"col-md-3\">\r\n                    <input type=\"text\" class=\"form-control\" id=\"inputTime\" ng-model=\"$ctrl.time\" name=\"time\">\r\n                </div>\r\n            </div>\r\n        \r\n        </div>\r\n        <div class=\"modal-footer\">\r\n            <button type=\"button\" class=\"btn btn-default\" ng-click=\"$ctrl.onClickCansel()\">Отмена</button>\r\n            <button type=\"submit\" class=\"btn btn-primary\">Сохранить</button>\r\n        </div>\r\n    </fieldset>\r\n</form>\r\n";
 
 /***/ },
 /* 155 */
@@ -70431,26 +70437,35 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	var ProductAddDialogController = function () {
-	    function ProductAddDialogController($uibModalInstance, FoodService, data) {
+	    function ProductAddDialogController($scope, $uibModalInstance, FoodService, data) {
 	        _classCallCheck(this, ProductAddDialogController);
 	
+	        this.$scope = $scope;
 	        this.$uibModalInstance = $uibModalInstance;
 	        this.FoodService = FoodService;
 	        this._initForm(data);
 	    }
 	
 	    _createClass(ProductAddDialogController, [{
+	        key: 'isHasError',
+	        value: function isHasError(attrName) {
+	            var item = this.$scope.foodItem[attrName];
+	            return item.$invalid && item.$dirty && item.$touched;
+	        }
+	    }, {
 	        key: '_initForm',
 	        value: function _initForm(data) {
 	            if (data) {
 	                this.selectedItem = data;
 	                this.weight = data.weight;
 	                this.time = data.time;
+	            } else {
+	                this.weight = null;
 	            }
 	        }
 	    }, {
-	        key: 'onClickOk',
-	        value: function onClickOk() {
+	        key: 'submit',
+	        value: function submit() {
 	            var options = Object.assign({}, this.selectedItem, {
 	                weight: this.weight,
 	                time: this.time
@@ -70481,16 +70496,22 @@
 /* 156 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"calendar__day\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-12\">\r\n            <table class=\"table table-striped table-hover\">\r\n                <thead>\r\n                    <tr>\r\n                        <th class=\"text-muted\">Время</th>\r\n                        <th class=\"text-muted\">Наименование</th>\r\n                        <th class=\"text-muted\">Вес, г</th>\r\n                        <th class=\"text-muted\">Калорийность, ккал</th>\r\n                        <th class=\"text-muted\">Углеводы, г</th>\r\n                        <th class=\"text-muted\">Белки, г</th>\r\n                        <th class=\"text-muted\">Жиры, г</th>\r\n                        <th class=\"text-muted\">&nbsp;У&nbsp;/&nbsp;Б&nbsp;/&nbsp;Ж&nbsp;</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    <tr ng-if=\"$ctrl.isEmpty() && !$ctrl.loading\">\r\n                        <td colspan=\"8\" class=\"table__emptyRow\">\r\n                            Добавьте\r\n                            <a class=\"link link--local\" ng-click=\"$ctrl.addItem()\">продукт</a>,\r\n                            <a class=\"link link--local\" ng-click=\"$ctrl.addItem()\">блюдо</a>,\r\n                            <a class=\"link link--local\" ng-click=\"$ctrl.addItem()\">трапезу</a>\r\n                        </td>\r\n                    </tr>\r\n                    <tr ng-repeat=\"item in $ctrl.items\">\r\n                        <td>{{ item.time }}</td>\r\n                        <td>\r\n                            <a>{{ item.shortName }}</a>\r\n                        </td>\r\n                        <td>{{ item.weight }}</td>\r\n                        <td>{{ item.energy }}</td>\r\n                        <td>{{ item.carbohydrate }}</td>\r\n                        <td>{{ item.protein }}</td>\r\n                        <td>{{ item.fat }}</td>\r\n                        <td>{{ $ctrl.getRatio(item) }}</td>\r\n                        <td>\r\n                            <div class=\"table__toolbar\">\r\n                                <span class=\"toolbar__item text-success\" ng-click=\"$ctrl.editItem(item)\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></span>\r\n                                <span class=\"toolbar__item text-danger\" ng-click=\"$ctrl.removeItem(item)\"><i class=\"fa fa-trash-o\" aria-hidden=\"true\"></i></span>\r\n                            </div>\r\n                        </td>\r\n                    </tr>\r\n                    <tr class=\"table__sumRow\" ng-if=\"$ctrl.items.length > 1\">\r\n                        <td colspan=\"2\" class=\"sumRow__title\">\r\n                            <i>Итого:</i>\r\n                        </td>\r\n                        <td>{{ $ctrl.total.weight }}</td>\r\n                        <td>{{ $ctrl.total.energy }}</td>\r\n                        <td>{{ $ctrl.total.carbohydrate }}</td>\r\n                        <td>{{ $ctrl.total.protein }}</td>\r\n                        <td>{{ $ctrl.total.fat }}</td>\r\n                        <td>{{ $ctrl.total.ratio }}</td>\r\n                        <td></td>\r\n                    </tr>\r\n                    <tr ng-if=\"$ctrl.loading\">\r\n                        <td colspan=\"8\" class=\"table__loadingRow\">\r\n                            <i class=\"fa fa-3x fa-spinner fa-spin\"></i>\r\n                        </td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\" ng-if=\"!$ctrl.isEmpty()\">\r\n        <div class=\"col-md-12\">\r\n            <div class=\"pull-right\">\r\n                <div class=\"btn-toolbar\">\r\n                    <div class=\"btn-group\">\r\n                        <button type=\"button\" class=\"btn btn-success\" ng-click=\"$ctrl.addItem()\">\r\n                            Добавить\r\n                        </button>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    \r\n\r\n    <!-- <div class=\"row day__form\">\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__time\" placeholder=\"Время\">\r\n        </div>\r\n        <div class=\"col-md-4\">\r\n            <input type=\"text\" class=\"input-sm form__name\" placeholder=\"Наименование\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__weight\" placeholder=\"Вес, г\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__energy\" placeholder=\"Калорийность, ккал\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__carbohydrate\" placeholder=\"Углеводы, г\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__protein\" placeholder=\"Белки, г\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__fat\" placeholder=\"Жиры, г\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <button type=\"button\" class=\"btn btn-primary btn-sm form__button\"><i class=\"fa fa-plus\"></i> Добавить</button>\r\n        </div>\r\n    </div> -->\r\n</div>\r\n";
+	// removed by extract-text-webpack-plugin
 
 /***/ },
 /* 157 */
 /***/ function(module, exports) {
 
-	// removed by extract-text-webpack-plugin
+	module.exports = "<div class=\"calendar__day\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-12\">\r\n            <table class=\"table table-striped table-hover\">\r\n                <thead>\r\n                    <tr>\r\n                        <th class=\"text-muted\">Время</th>\r\n                        <th class=\"text-muted\">Наименование</th>\r\n                        <th class=\"text-muted\">Вес, г</th>\r\n                        <th class=\"text-muted\">Калорийность, ккал</th>\r\n                        <th class=\"text-muted\">Углеводы, г</th>\r\n                        <th class=\"text-muted\">Белки, г</th>\r\n                        <th class=\"text-muted\">Жиры, г</th>\r\n                        <th class=\"text-muted\">&nbsp;У&nbsp;/&nbsp;Б&nbsp;/&nbsp;Ж&nbsp;</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    <tr ng-if=\"$ctrl.isEmpty() && !$ctrl.loading\">\r\n                        <td colspan=\"8\" class=\"table__emptyRow\">\r\n                            Добавьте\r\n                            <a class=\"link link--local\" ng-click=\"$ctrl.addItem()\">продукт</a>,\r\n                            <a class=\"link link--local\" ng-click=\"$ctrl.addItem()\">блюдо</a>,\r\n                            <a class=\"link link--local\" ng-click=\"$ctrl.addItem()\">трапезу</a>\r\n                        </td>\r\n                    </tr>\r\n                    <tr ng-repeat=\"item in $ctrl.items\">\r\n                        <td>{{ item.time }}</td>\r\n                        <td>\r\n                            <a>{{ item.shortName }}</a>\r\n                        </td>\r\n                        <td>{{ item.weight }}</td>\r\n                        <td>{{ item.energy }}</td>\r\n                        <td>{{ item.carbohydrate }}</td>\r\n                        <td>{{ item.protein }}</td>\r\n                        <td>{{ item.fat }}</td>\r\n                        <td>{{ $ctrl.getRatio(item) }}</td>\r\n                        <td>\r\n                            <div class=\"table__toolbar\">\r\n                                <span class=\"toolbar__item text-success\" ng-click=\"$ctrl.editItem(item)\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></span>\r\n                                <span class=\"toolbar__item text-danger\" ng-click=\"$ctrl.removeItem(item)\"><i class=\"fa fa-trash-o\" aria-hidden=\"true\"></i></span>\r\n                            </div>\r\n                        </td>\r\n                    </tr>\r\n                    <tr class=\"table__sumRow\" ng-if=\"$ctrl.items.length > 1\">\r\n                        <td colspan=\"2\" class=\"sumRow__title\">\r\n                            <i>Итого:</i>\r\n                        </td>\r\n                        <td>{{ $ctrl.total.weight }}</td>\r\n                        <td>{{ $ctrl.total.energy }}</td>\r\n                        <td>{{ $ctrl.total.carbohydrate }}</td>\r\n                        <td>{{ $ctrl.total.protein }}</td>\r\n                        <td>{{ $ctrl.total.fat }}</td>\r\n                        <td>{{ $ctrl.total.ratio }}</td>\r\n                        <td></td>\r\n                    </tr>\r\n                    <tr ng-if=\"$ctrl.loading\">\r\n                        <td colspan=\"8\" class=\"table__loadingRow\">\r\n                            <i class=\"fa fa-3x fa-spinner fa-spin\"></i>\r\n                        </td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\" ng-if=\"!$ctrl.isEmpty()\">\r\n        <div class=\"col-md-12\">\r\n            <div class=\"pull-right\">\r\n                <div class=\"btn-toolbar\">\r\n                    <div class=\"btn-group\">\r\n                        <button type=\"button\" class=\"btn btn-success\" ng-click=\"$ctrl.addItem()\">\r\n                            Добавить\r\n                        </button>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    \r\n\r\n    <!-- <div class=\"row day__form\">\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__time\" placeholder=\"Время\">\r\n        </div>\r\n        <div class=\"col-md-4\">\r\n            <input type=\"text\" class=\"input-sm form__name\" placeholder=\"Наименование\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__weight\" placeholder=\"Вес, г\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__energy\" placeholder=\"Калорийность, ккал\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__carbohydrate\" placeholder=\"Углеводы, г\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__protein\" placeholder=\"Белки, г\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <input type=\"text\" class=\"input-sm form__fat\" placeholder=\"Жиры, г\">\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <button type=\"button\" class=\"btn btn-primary btn-sm form__button\"><i class=\"fa fa-plus\"></i> Добавить</button>\r\n        </div>\r\n    </div> -->\r\n</div>\r\n";
 
 /***/ },
 /* 158 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 159 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -70651,19 +70672,19 @@
 	;
 
 /***/ },
-/* 159 */
+/* 160 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"calendar\">\r\n    <calendar-toolbar date=\"$ctrl.date\" period=\"$ctrl.period\" handlers=\"$ctrl.toolbarHandlers\"></calendar-toolbar>\r\n    <div class=\"calendar__body\">\r\n        <calendar-year date=\"$ctrl.date\" handlers=\"$ctrl.yearHandlers\" ng-if=\"$ctrl.isYear()\"></calendar-year>\r\n        <calendar-month date=\"$ctrl.date\" handlers=\"$ctrl.monthHandlers\" ng-if=\"$ctrl.isMonth()\"></calendar-month>\r\n        <calendar-week date=\"$ctrl.date\" handlers=\"$ctrl.weekHandlers\" ng-if=\"$ctrl.isWeek()\"></calendar-week>\r\n        <calendar-day date=\"$ctrl.date\" handlers=\"$ctrl.dayHandlers\" ng-if=\"$ctrl.isDay()\"></calendar-day>\r\n    </div>    \r\n</div>\r\n";
 
 /***/ },
-/* 160 */
+/* 161 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 161 */
+/* 162 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -70672,21 +70693,21 @@
 	    value: true
 	});
 	
-	var _app = __webpack_require__(162);
+	var _app = __webpack_require__(163);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(163);
+	__webpack_require__(164);
 	
-	var _diaryController = __webpack_require__(164);
+	var _diaryController = __webpack_require__(165);
 	
 	var _diaryController2 = _interopRequireDefault(_diaryController);
 	
-	var _template = __webpack_require__(165);
+	var _template = __webpack_require__(166);
 	
 	var _template2 = _interopRequireDefault(_template);
 	
-	__webpack_require__(166);
+	__webpack_require__(167);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -70700,7 +70721,7 @@
 	});
 
 /***/ },
-/* 162 */
+/* 163 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -70718,12 +70739,12 @@
 	exports.default = _angular2.default.module('diary', []);
 
 /***/ },
-/* 163 */
+/* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _app = __webpack_require__(162);
+	var _app = __webpack_require__(163);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -70742,7 +70763,7 @@
 	});
 
 /***/ },
-/* 164 */
+/* 165 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -70874,19 +70895,19 @@
 	exports.default = DiaryController;
 
 /***/ },
-/* 165 */
+/* 166 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"foodiary__page foodiary__page--diary\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-12\">\r\n            <div class=\"page-header\">\r\n                <h3>Дневник</h3>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"row\">\r\n        <div class=\"col-md-12\">\r\n            <calendar date=\"$ctrl.date\" period=\"$ctrl.period\" handlers=\"$ctrl.calendarHandlers\"></calendar>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ },
-/* 166 */
+/* 167 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 167 */
+/* 168 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -70895,15 +70916,15 @@
 	    value: true
 	});
 	
-	var _app = __webpack_require__(168);
+	var _app = __webpack_require__(169);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _template = __webpack_require__(169);
+	var _template = __webpack_require__(170);
 	
 	var _template2 = _interopRequireDefault(_template);
 	
-	__webpack_require__(170);
+	__webpack_require__(171);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -70912,7 +70933,7 @@
 	});
 
 /***/ },
-/* 168 */
+/* 169 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -70930,19 +70951,19 @@
 	exports.default = _angular2.default.module('about', []);
 
 /***/ },
-/* 169 */
+/* 170 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"foodiary__page foodiary__page--about\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-12\">\r\n            <div class=\"page-header\">\r\n                <h3>About page</h3>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ },
-/* 170 */
+/* 171 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 171 */
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -70951,23 +70972,23 @@
 	    value: true
 	});
 	
-	var _app = __webpack_require__(172);
+	var _app = __webpack_require__(173);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(173);
-	
 	__webpack_require__(174);
 	
-	__webpack_require__(177);
+	__webpack_require__(175);
 	
-	__webpack_require__(181);
+	__webpack_require__(178);
 	
-	var _template = __webpack_require__(185);
+	__webpack_require__(182);
+	
+	var _template = __webpack_require__(186);
 	
 	var _template2 = _interopRequireDefault(_template);
 	
-	__webpack_require__(186);
+	__webpack_require__(187);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -71007,7 +71028,7 @@
 	});
 
 /***/ },
-/* 172 */
+/* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -71025,12 +71046,12 @@
 	exports.default = _angular2.default.module('food', []);
 
 /***/ },
-/* 173 */
+/* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _app = __webpack_require__(172);
+	var _app = __webpack_require__(173);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -71054,20 +71075,20 @@
 	});
 
 /***/ },
-/* 174 */
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _app = __webpack_require__(172);
+	var _app = __webpack_require__(173);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _template = __webpack_require__(175);
+	var _template = __webpack_require__(176);
 	
 	var _template2 = _interopRequireDefault(_template);
 	
-	__webpack_require__(176);
+	__webpack_require__(177);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -71089,19 +71110,19 @@
 	});
 
 /***/ },
-/* 175 */
+/* 176 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"food__toolbar\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-8\">\r\n            <a ui-sref=\"food.new\" class=\"btn btn-success\" ng-if=\"!$ctrl.checked\">Добавить</a>\r\n            <button type=\"button\" class=\"btn btn-danger\" ng-click=\"$ctrl.onClickDelete()\" ng-if=\"$ctrl.checked\">Удалить</button>\r\n        </div>\r\n        <div class=\"col-md-4\">\r\n            <div class=\"input-group\">\r\n                <input type=\"text\" class=\"form-control\" placeholder=\"Наименование\" disabled=\"disabled\">\r\n                <span class=\"input-group-btn\">\r\n                    <button class=\"btn btn-default\" type=\"button\" disabled>\r\n                        <i class=\"fa fa-search\"></i>\r\n                    </button>\r\n                </span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ },
-/* 176 */
+/* 177 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 177 */
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -71110,19 +71131,19 @@
 	    value: true
 	});
 	
-	var _app = __webpack_require__(172);
+	var _app = __webpack_require__(173);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _foodTableController = __webpack_require__(178);
+	var _foodTableController = __webpack_require__(179);
 	
 	var _foodTableController2 = _interopRequireDefault(_foodTableController);
 	
-	var _template = __webpack_require__(179);
+	var _template = __webpack_require__(180);
 	
 	var _template2 = _interopRequireDefault(_template);
 	
-	__webpack_require__(180);
+	__webpack_require__(181);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -71137,7 +71158,7 @@
 	});
 
 /***/ },
-/* 178 */
+/* 179 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -71208,36 +71229,36 @@
 	exports.default = FoodTableController;
 
 /***/ },
-/* 179 */
+/* 180 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"food__table\">\r\n    <table class=\"table table-striped table-hover\">\r\n        <thead>\r\n            <tr>\r\n                <th class=\"text-muted\">\r\n                    <input type=\"checkbox\" ng-model=\"$ctrl.allChecked\" ng-change=\"$ctrl.onChangeAllSelectCheckbox()\">\r\n                </th>\r\n                <th class=\"text-muted\">Наименование</th>\r\n                <th class=\"text-muted\">Калорийность, ккал</th>\r\n                <th class=\"text-muted\">Углеводы, г</th>\r\n                <th class=\"text-muted\">Белки, г</th>\r\n                <th class=\"text-muted\">Жиры, г</th>\r\n                <th class=\"text-muted\">&nbsp;У&nbsp;/&nbsp;Б&nbsp;/&nbsp;Ж&nbsp;</th>\r\n                <th class=\"text-muted\"></th>\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n            <tr ng-if=\"$ctrl.isEmpty()\">\r\n                <td colspan=\"9\" class=\"table__emptyRow\">\r\n                    <a ui-sref=\"food.new\" class=\"btn btn-link\">Добавить</a>\r\n                </td>\r\n            </tr>\r\n            <tr ng-repeat=\"item in $ctrl.list\" ng-if=\"!$ctrl.loading\" ng-class=\"{ warning: item.checked }\">\r\n                <td>\r\n                    <input type=\"checkbox\" ng-model=\"item.checked\" ng-change=\"$ctrl.onChangeSelectCheckbox(item)\">\r\n                </td>\r\n                <td>\r\n                    <a ui-sref=\"food.edit({ foodId: item.$id })\">{{ item.shortName }}</a>\r\n                </td>\r\n                <td>{{ item.energy }}</td>\r\n                <td>{{ item.carbohydrate }}</td>\r\n                <td>{{ item.protein }}</td>\r\n                <td>{{ item.fat }}</td>\r\n                <td>{{ $ctrl.getRatio(item) }}</td>\r\n                <td>\r\n                    <i class=\"fa fa-ellipsis-v\"></i>\r\n                </td>\r\n            </tr>\r\n            <tr ng-if=\"$ctrl.loading\">\r\n                <td colspan=\"9\" class=\"table__loadingRow\">\r\n                    <i class=\"fa fa-3x fa-spinner fa-spin\"></i>\r\n                </td>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n</div>\r\n";
 
 /***/ },
-/* 180 */
+/* 181 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 181 */
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _app = __webpack_require__(172);
+	var _app = __webpack_require__(173);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _FoodItemController = __webpack_require__(182);
+	var _FoodItemController = __webpack_require__(183);
 	
 	var _FoodItemController2 = _interopRequireDefault(_FoodItemController);
 	
-	var _template = __webpack_require__(183);
+	var _template = __webpack_require__(184);
 	
 	var _template2 = _interopRequireDefault(_template);
 	
-	__webpack_require__(184);
+	__webpack_require__(185);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -71252,7 +71273,7 @@
 	});
 
 /***/ },
-/* 182 */
+/* 183 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -71367,31 +71388,31 @@
 	exports.default = FoodItem;
 
 /***/ },
-/* 183 */
+/* 184 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"food__form\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-6\">\r\n            <div class=\"well\">\r\n                <form name=\"foodItem\" class=\"form-horizontal\" ng-submit=\"$ctrl.submit()\" novalidate>\r\n                    <fieldset>\r\n                        <legend>\r\n                            <span ng-if=\"!$ctrl.foodId\">Добавление нового продукта</span>\r\n                            <span ng-if=\"$ctrl.foodId\">Редактирование продукта</span>\r\n                        </legend>\r\n\r\n                        <div class=\"form-group\" ng-class=\"{ 'has-error' : $ctrl.isHasError('shortName') }\">\r\n                            <label for=\"inputShortName\" class=\"col-md-3 control-label\">Наименование</label>\r\n                            <div class=\"col-md-9\">\r\n                                <input type=\"text\" class=\"form-control\" id=\"inputShortName\" name=\"shortName\" maxlength=\"40\" required ng-model=\"$ctrl.item.shortName\">\r\n                                <div ng-messages=\"foodItem.shortName.$error\" ng-if=\"$ctrl.isHasError('shortName')\" role=\"alert\">\r\n                                    <div ng-message=\"required\" class=\"form__message--error\">Enter short name</div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"form-group\" ng-class=\"{ 'has-error' : $ctrl.isHasError('protein') }\">\r\n                            <label for=\"inputProtein\" class=\"col-md-3 control-label\">Белки</label>\r\n                            <div class=\"col-md-7\">\r\n                                <div class=\"input-group\">\r\n                                    <span class=\"input-group-addon\">г</span>\r\n                                    <input type=\"text\" float-value class=\"form-control\" id=\"inputProtein\" name=\"protein\" required ng-model=\"$ctrl.item.protein\" placeholder=\"в 100 г\">\r\n                                </div>\r\n                                <div ng-messages=\"foodItem.protein.$error\" ng-if=\"$ctrl.isHasError('protein')\" role=\"alert\">\r\n                                    <div ng-message=\"required\" class=\"form__message--error\">Enter protein</div>\r\n                                    <div ng-message=\"required\" class=\"form__message--error\">More than 100 g</div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"form-group\" ng-class=\"{ 'has-error' : $ctrl.isHasError('fat') }\">\r\n                            <label for=\"inputFat\" class=\"col-md-3 control-label\">Жиры</label>\r\n                            <div class=\"col-md-7\">\r\n                                <div class=\"input-group\">\r\n                                    <span class=\"input-group-addon\">г</span>\r\n                                    <input type=\"text\" float-value class=\"form-control\" id=\"inputFat\" name=\"fat\" required ng-model=\"$ctrl.item.fat\" placeholder=\"в 100 г\">\r\n                                </div>\r\n                                <div ng-messages=\"foodItem.fat.$error\" ng-if=\"$ctrl.isHasError('fat')\" role=\"alert\">\r\n                                    <div ng-message=\"required\" class=\"form__message--error\">Enter fat</div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"form-group\" ng-class=\"{ 'has-error' : $ctrl.isHasError('carbohydrate') }\">\r\n                            <label for=\"inputСarbohydrate\" class=\"col-md-3 control-label\">Углеводы</label>\r\n                            <div class=\"col-md-7\">\r\n                                <div class=\"input-group\">\r\n                                    <span class=\"input-group-addon\">г</span>\r\n                                    <input type=\"text\" float-value class=\"form-control\" id=\"inputСarbohydrate\" name=\"carbohydrate\" required ng-model=\"$ctrl.item.carbohydrate\" placeholder=\"в 100 г\">\r\n                                </div>\r\n                                <div ng-messages=\"foodItem.carbohydrate.$error\" ng-if=\"$ctrl.isHasError('carbohydrate')\" role=\"alert\">\r\n                                    <div ng-message=\"required\" class=\"form__message--error\">Enter carbohydrate</div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"form-group\">\r\n                            <label for=\"inputCalorie\" class=\"col-md-3 control-label\">Калорийность</label>\r\n                            <div class=\"col-md-7\">\r\n                                <div class=\"input-group\">\r\n                                    <span class=\"input-group-addon\">ккал</span>\r\n                                    <input type=\"text\" float-value class=\"form-control\" id=\"inputCalorie\" ng-model=\"$ctrl.item.energy\" placeholder=\"на 100 г\">\r\n                                    <span class=\"input-group-btn\">\r\n                                        <button class=\"btn btn-default\" type=\"button\" ng-click=\"$ctrl.item.energy = $ctrl.calcEnergy()\">Вычислить</button>\r\n                                    </span>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"form-group\">\r\n                            <div class=\"col-md-9 col-md-offset-3\">\r\n                                <button type=\"submit\" class=\"btn btn-primary\" ng-disabled=\"foodItem.$invalid\">Сохранить</button>\r\n                                <a ui-sref=\"food\" class=\"btn btn-link\">Отмена</a>\r\n                            </div>\r\n                        </div>\r\n                    </fieldset>\r\n                </form>\r\n            \r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ },
-/* 184 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
 /* 185 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"foodiary__page foodiary__page--food\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-12\">\r\n            <div class=\"page-header\">\r\n                <h3>Еда</h3>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <ui-view>\r\n        <food-toolbar checked=\"$ctrl.checked\" handlers=\"$ctrl.toolbarHandlers\"></food-toolbar>\r\n        <food-table list=\"$ctrl.list\" loading=\"$ctrl.loading\" handlers=\"$ctrl.tableHandlers\"></food-table>\r\n    </ui-view>\r\n</div>\r\n";
+	// removed by extract-text-webpack-plugin
 
 /***/ },
 /* 186 */
 /***/ function(module, exports) {
 
-	// removed by extract-text-webpack-plugin
+	module.exports = "<div class=\"foodiary__page foodiary__page--food\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-12\">\r\n            <div class=\"page-header\">\r\n                <h3>Еда</h3>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <ui-view>\r\n        <food-toolbar checked=\"$ctrl.checked\" handlers=\"$ctrl.toolbarHandlers\"></food-toolbar>\r\n        <food-table list=\"$ctrl.list\" loading=\"$ctrl.loading\" handlers=\"$ctrl.tableHandlers\"></food-table>\r\n    </ui-view>\r\n</div>\r\n";
 
 /***/ },
 /* 187 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -71400,21 +71421,21 @@
 	    value: true
 	});
 	
-	var _app = __webpack_require__(188);
+	var _app = __webpack_require__(189);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(189);
+	__webpack_require__(190);
 	
-	var _PromoController = __webpack_require__(190);
+	var _PromoController = __webpack_require__(191);
 	
 	var _PromoController2 = _interopRequireDefault(_PromoController);
 	
-	var _template = __webpack_require__(191);
+	var _template = __webpack_require__(192);
 	
 	var _template2 = _interopRequireDefault(_template);
 	
-	__webpack_require__(192);
+	__webpack_require__(193);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -71428,7 +71449,7 @@
 	exports.default = componentName;
 
 /***/ },
-/* 188 */
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -71446,12 +71467,12 @@
 	exports.default = _angular2.default.module('promo', []);
 
 /***/ },
-/* 189 */
+/* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _app = __webpack_require__(188);
+	var _app = __webpack_require__(189);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -71478,7 +71499,7 @@
 	});
 
 /***/ },
-/* 190 */
+/* 191 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -71530,19 +71551,19 @@
 	exports.default = PromoController;
 
 /***/ },
-/* 191 */
+/* 192 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"foodiary__page foodiary__page--promo\">\r\n    <div class=\"row\">\r\n        <h1 class=\"cover-heading\">Ваш дневник питания на каждый день</h1>\r\n        <p class=\"lead\">Учёт калорий, жиров, белков и углеводов</p>\r\n        <p class=\"lead\">\r\n            <button type=\"button\" class=\"btn btn-lg btn-success\" ng-click=\"$ctrl.begin()\" ng-disabled=\"$ctrl.progress\">\r\n                <i class=\"fa fa-lg fa-spinner fa-spin\" ng-if=\"$ctrl.progress\"></i> Попробовать\r\n            </button>\r\n            <a ui-sref=\"login\" class=\"btn btn-lg btn-primary\" ng-disabled=\"$ctrl.progress\">Войти</a>\r\n        </p>\r\n    </div>\r\n</div>\r\n";
 
 /***/ },
-/* 192 */
+/* 193 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 193 */
+/* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -71551,21 +71572,21 @@
 	    value: true
 	});
 	
-	var _app = __webpack_require__(194);
+	var _app = __webpack_require__(195);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(195);
+	__webpack_require__(196);
 	
-	var _loginController = __webpack_require__(196);
+	var _loginController = __webpack_require__(197);
 	
 	var _loginController2 = _interopRequireDefault(_loginController);
 	
-	var _template = __webpack_require__(197);
+	var _template = __webpack_require__(198);
 	
 	var _template2 = _interopRequireDefault(_template);
 	
-	__webpack_require__(198);
+	__webpack_require__(199);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -71579,7 +71600,7 @@
 	exports.default = componentName;
 
 /***/ },
-/* 194 */
+/* 195 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -71597,12 +71618,12 @@
 	exports.default = _angular2.default.module('login', []);
 
 /***/ },
-/* 195 */
+/* 196 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _app = __webpack_require__(194);
+	var _app = __webpack_require__(195);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -71629,7 +71650,7 @@
 	});
 
 /***/ },
-/* 196 */
+/* 197 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -71657,8 +71678,8 @@
 	        key: '_initForm',
 	        value: function _initForm() {
 	            this.auth = {
-	                email: null,
-	                password: null,
+	                email: 'viksignal@yandex.ru',
+	                password: '1234567890',
 	                remember: false
 	            };
 	        }
@@ -71694,19 +71715,19 @@
 	exports.default = LoginController;
 
 /***/ },
-/* 197 */
+/* 198 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"foodiary__page foodiary__page--login\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-6\">\r\n            <div class=\"well\">\r\n                <form name=\"auth\" class=\"form-horizontal from--auth\" ng-submit=\"$ctrl.submit()\">\r\n                    <fieldset>\r\n                        <legend>Авторизация</legend>\r\n                        \r\n                        <div class=\"form-group\" ng-class=\"{ 'has-error' : $ctrl.isHasError('email') }\">\r\n                            <label for=\"inputEmail\" class=\"col-md-2 control-label\">Email</label>\r\n                            <div class=\"col-md-10\">\r\n                                <input type=\"text\" class=\"form-control\" id=\"inputEmail\" name=\"email\" placeholder=\"Email\" required ng-model=\"$ctrl.auth.email\" ng-disabled=\"$ctrl.progress\" autocomplete=\"off\">\r\n                                <div ng-messages=\"auth.email.$error\" ng-if=\"$ctrl.isHasError('email')\" role=\"alert\">\r\n                                    <div ng-message=\"required\" class=\"form__message--error\">Введите email</div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        \r\n                        <div class=\"form-group\" ng-class=\"{ 'has-error' : $ctrl.isHasError('password') }\">\r\n                            <label for=\"inputPassword\" class=\"col-md-2 control-label\">Пароль</label>\r\n                            <div class=\"col-md-10\">\r\n                                <input type=\"password\" class=\"form-control\" id=\"inputPassword\" name=\"password\" required placeholder=\"Password\" ng-model=\"$ctrl.auth.password\" ng-disabled=\"$ctrl.progress\" autocomplete=\"off\">\r\n                                <div ng-messages=\"auth.password.$error\" ng-if=\"$ctrl.isHasError('password')\" role=\"alert\">\r\n                                    <div ng-message=\"required\" class=\"form__message--error\">Введите пароль</div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        \r\n                        <div class=\"form-group\">\r\n                            <div class=\"col-md-10 col-md-offset-2\">\r\n                                <div class=\"checkbox\">\r\n                                    <label>\r\n                                        <input type=\"checkbox\" ng-model=\"$ctrl.auth.remember\" ng-disabled=\"$ctrl.progress\"> Запомнить\r\n                                    </label>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"form-group\">\r\n                            <div class=\"col-md-10 col-md-offset-2\">\r\n                                <button type=\"submit\" class=\"btn btn-primary\" ng-disabled=\"$ctrl.progress\">\r\n                                    <i class=\"fa fa-lg fa-spinner fa-spin\" ng-if=\"$ctrl.progress\"></i> Войти\r\n                                </button>\r\n                            </div>\r\n                        </div>\r\n                    </fieldset>\r\n                </form>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ },
-/* 198 */
+/* 199 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 199 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -71715,21 +71736,21 @@
 	    value: true
 	});
 	
-	var _app = __webpack_require__(200);
+	var _app = __webpack_require__(201);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(201);
+	__webpack_require__(202);
 	
-	var _registerController = __webpack_require__(202);
+	var _registerController = __webpack_require__(203);
 	
 	var _registerController2 = _interopRequireDefault(_registerController);
 	
-	var _template = __webpack_require__(203);
+	var _template = __webpack_require__(204);
 	
 	var _template2 = _interopRequireDefault(_template);
 	
-	__webpack_require__(204);
+	__webpack_require__(205);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -71743,7 +71764,7 @@
 	exports.default = componentName;
 
 /***/ },
-/* 200 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -71761,12 +71782,12 @@
 	exports.default = _angular2.default.module('register', []);
 
 /***/ },
-/* 201 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _app = __webpack_require__(200);
+	var _app = __webpack_require__(201);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -71793,7 +71814,7 @@
 	});
 
 /***/ },
-/* 202 */
+/* 203 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -71857,19 +71878,19 @@
 	exports.default = RegisterController;
 
 /***/ },
-/* 203 */
+/* 204 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"foodiary__page foodiary__page--register\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-6\">\r\n            <div class=\"well\">\r\n                <form name=\"auth\" class=\"form-horizontal from--auth\" ng-submit=\"$ctrl.submit()\">\r\n                    <fieldset>\r\n                        <legend>Регистрация</legend>\r\n                        \r\n                        <div class=\"form-group\" ng-class=\"{ 'has-error' : $ctrl.isHasError('email') }\">\r\n                            <label for=\"inputEmail\" class=\"col-md-2 control-label\">Email</label>\r\n                            <div class=\"col-md-10\">\r\n                                <input type=\"text\" class=\"form-control\" id=\"inputEmail\" name=\"email\" placeholder=\"Email\" required ng-model=\"$ctrl.auth.email\" ng-disabled=\"$ctrl.progress\" autocomplete=\"off\">\r\n                                <div ng-messages=\"auth.email.$error\" ng-if=\"$ctrl.isHasError('email')\" role=\"alert\">\r\n                                    <div ng-message=\"required\" class=\"form__message--error\">Введите email</div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        \r\n                        <div class=\"form-group\" ng-class=\"{ 'has-error' : $ctrl.isHasError('password') }\">\r\n                            <label for=\"inputPassword\" class=\"col-md-2 control-label\">Пароль</label>\r\n                            <div class=\"col-md-10\">\r\n                                <input type=\"password\" class=\"form-control\" id=\"inputPassword\" name=\"password\" required placeholder=\"Password\" ng-model=\"$ctrl.auth.password\" ng-disabled=\"$ctrl.progress\" autocomplete=\"off\">\r\n                                <div ng-messages=\"auth.password.$error\" ng-if=\"$ctrl.isHasError('password')\" role=\"alert\">\r\n                                    <div ng-message=\"required\" class=\"form__message--error\">Введите пароль</div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"form-group\">\r\n                            <div class=\"col-md-10 col-md-offset-2\">\r\n                                <button type=\"submit\" class=\"btn btn-primary\" ng-disabled=\"$ctrl.progress\">\r\n                                    <i class=\"fa fa-lg fa-spinner fa-spin\" ng-if=\"$ctrl.progress\"></i> Войти\r\n                                </button>\r\n                            </div>\r\n                        </div>\r\n                    </fieldset>\r\n                </form>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ },
-/* 204 */
+/* 205 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 205 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -71906,7 +71927,7 @@
 	});
 
 /***/ },
-/* 206 */
+/* 207 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -71919,7 +71940,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _AuthServiceController = __webpack_require__(207);
+	var _AuthServiceController = __webpack_require__(208);
 	
 	var _AuthServiceController2 = _interopRequireDefault(_AuthServiceController);
 	
@@ -71928,7 +71949,7 @@
 	exports.default = _app2.default.service('AuthService', _AuthServiceController2.default);
 
 /***/ },
-/* 207 */
+/* 208 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -72030,7 +72051,7 @@
 	exports.default = AuthServiceController;
 
 /***/ },
-/* 208 */
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -72043,7 +72064,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _FoodServiceController = __webpack_require__(209);
+	var _FoodServiceController = __webpack_require__(210);
 	
 	var _FoodServiceController2 = _interopRequireDefault(_FoodServiceController);
 	
@@ -72052,7 +72073,7 @@
 	exports.default = _app2.default.service('FoodService', _FoodServiceController2.default);
 
 /***/ },
-/* 209 */
+/* 210 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -72124,7 +72145,7 @@
 	exports.default = FoodServiceController;
 
 /***/ },
-/* 210 */
+/* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -72137,7 +72158,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _DiaryServiceController = __webpack_require__(211);
+	var _DiaryServiceController = __webpack_require__(212);
 	
 	var _DiaryServiceController2 = _interopRequireDefault(_DiaryServiceController);
 	
@@ -72150,7 +72171,7 @@
 	exports.default = serviceName;
 
 /***/ },
-/* 211 */
+/* 212 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -72248,7 +72269,7 @@
 	exports.default = DiaryServiceController;
 
 /***/ },
-/* 212 */
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -72257,7 +72278,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _UrlsServiceController = __webpack_require__(213);
+	var _UrlsServiceController = __webpack_require__(214);
 	
 	var _UrlsServiceController2 = _interopRequireDefault(_UrlsServiceController);
 	
@@ -72266,7 +72287,7 @@
 	_app2.default.service('UrlsService', _UrlsServiceController2.default);
 
 /***/ },
-/* 213 */
+/* 214 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -72309,7 +72330,7 @@
 	exports.default = UrlsServiceController;
 
 /***/ },
-/* 214 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -72322,7 +72343,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _FoodRatioServiceController = __webpack_require__(215);
+	var _FoodRatioServiceController = __webpack_require__(216);
 	
 	var _FoodRatioServiceController2 = _interopRequireDefault(_FoodRatioServiceController);
 	
@@ -72335,7 +72356,7 @@
 	exports.default = serviceName;
 
 /***/ },
-/* 215 */
+/* 216 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -72378,7 +72399,7 @@
 	exports.default = FoodRatioServiceController;
 
 /***/ },
-/* 216 */
+/* 217 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
