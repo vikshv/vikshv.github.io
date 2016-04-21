@@ -71092,7 +71092,7 @@
 /* 175 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"food__toolbar\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-8\">\r\n            <a ui-sref=\"food.new\" class=\"btn btn-success\" ng-if=\"!$ctrl.checked\">Добавить</a>\r\n            <button type=\"button\" class=\"btn btn-danger\" ng-click=\"$ctrl.onClickDelete()\" ng-if=\"$ctrl.checked\">Удалить</button>\r\n        </div>\r\n        <div class=\"col-md-4\">\r\n            <div class=\"input-group\">\r\n                <input type=\"text\" class=\"form-control\" placeholder=\"Наименование\">\r\n                <span class=\"input-group-btn\">\r\n                    <button class=\"btn btn-default\" type=\"button\">\r\n                        <i class=\"fa fa-search\"></i>\r\n                    </button>\r\n                </span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <!-- <food-delete-confirm-dialog></food-delete-confirm-dialog> -->\r\n</div>\r\n";
+	module.exports = "<div class=\"food__toolbar\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-8\">\r\n            <a ui-sref=\"food.new\" class=\"btn btn-success\" ng-if=\"!$ctrl.checked\">Добавить</a>\r\n            <button type=\"button\" class=\"btn btn-danger\" ng-click=\"$ctrl.onClickDelete()\" ng-if=\"$ctrl.checked\">Удалить</button>\r\n        </div>\r\n        <div class=\"col-md-4\">\r\n            <div class=\"input-group\">\r\n                <input type=\"text\" class=\"form-control\" placeholder=\"Наименование\" disabled=\"disabled\">\r\n                <span class=\"input-group-btn\">\r\n                    <button class=\"btn btn-default\" type=\"button\" disabled>\r\n                        <i class=\"fa fa-search\"></i>\r\n                    </button>\r\n                </span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ },
 /* 176 */
@@ -71533,7 +71533,7 @@
 /* 191 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"foodiary__page foodiary__page--promo\">\r\n    <div class=\"row\">\r\n        <h1 class=\"cover-heading\">Ваш дневник питания на каждый день</h1>\r\n        <p class=\"lead\">Учёт калорий, жиров, белков и углеводов</p>\r\n        <p class=\"lead\">\r\n            <button type=\"button\" class=\"btn btn-lg btn-success\" ng-click=\"$ctrl.begin()\" ng-disabled=\"$ctrl.progress\">\r\n                <i class=\"fa fa-lg fa-spinner fa-spin\" ng-if=\"$ctrl.progress\"></i> Попробовать\r\n            </button>\r\n        </p>\r\n    </div>\r\n</div>\r\n";
+	module.exports = "<div class=\"foodiary__page foodiary__page--promo\">\r\n    <div class=\"row\">\r\n        <h1 class=\"cover-heading\">Ваш дневник питания на каждый день</h1>\r\n        <p class=\"lead\">Учёт калорий, жиров, белков и углеводов</p>\r\n        <p class=\"lead\">\r\n            <button type=\"button\" class=\"btn btn-lg btn-success\" ng-click=\"$ctrl.begin()\" ng-disabled=\"$ctrl.progress\">\r\n                <i class=\"fa fa-lg fa-spinner fa-spin\" ng-if=\"$ctrl.progress\"></i> Попробовать\r\n            </button>\r\n            <a ui-sref=\"login\" class=\"btn btn-lg btn-primary\" ng-disabled=\"$ctrl.progress\">Войти</a>\r\n        </p>\r\n    </div>\r\n</div>\r\n";
 
 /***/ },
 /* 192 */
