@@ -9,13 +9,13 @@
         <meta name="author" content="shv">
 
         <!-- Styles -->
-        <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/cerulean/bootstrap.min.css" rel="stylesheet">
+        <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/darkly/bootstrap.min.css" rel="stylesheet">
         <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" /> -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css">
 
-        <link rel="stylesheet" href="./static/transaction.css">
+        <link rel="stylesheet" href="./public/foodiary.css">
 
-        <title>Transaction Work</title>
+        <title>Food diary</title>
 
         <!--[if lt IE 9]>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -24,22 +24,16 @@
         <link rel="shortcut icon" href="./ico/favicon.png">
     </head>
 
-    <body class="transaction">
-        <div class="app" id="root"></div>
+    <body class="foodiary" ng-app="app">
+        <navbar></navbar>
+        
+        <div class="container">
+            <ui-view></ui-view>
+        </div>
+        
+        <footer></footer>
 
-        <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
-        <script>
-            // Initialize Firebase
-            var config = {
-                apiKey: "AIzaSyAnKbIx_zdLzov-GA57DiPz2nys_j3LIgc",
-                authDomain: "transaction-2d847.firebaseapp.com",
-                databaseURL: "https://transaction-2d847.firebaseio.com",
-                storageBucket: "transaction-2d847.appspot.com"
-            };
-            firebase.initializeApp(config);
-        </script>
-
-        <script src="./static/transaction.js"></script>
+        <script src="./public/foodiary.js"></script>
     </body>
     
 </html>
