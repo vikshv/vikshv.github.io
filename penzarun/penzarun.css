@@ -1,0 +1,96 @@
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 120px;
+  padding: 30px 0 0 0;
+  background-color: #4e5d6c;
+  border-top: 1px dotted #404040;
+  color: #ffffff;
+  opacity: 0.9;
+}
+.eventsList__event .well--event {
+  min-height: 140px;
+}
+.eventsList__event .event__title {
+  position: relative;
+}
+.eventsList__event .event__date {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 220px;
+  background-color: rgba(224, 105, 26, 0.3);
+  padding: 2px 0 2px 24px;
+  color: #d2d2d2;
+}
+.progress-bar--full {
+  width: 100%;
+}
+.penzarun .page.page--eventCard {
+  margin-top: 0;
+}
+.eventCard__header,
+.eventCard__body {
+  margin-bottom: 40px;
+}
+.eventCard__header {
+  text-align: left;
+}
+.eventCard__header--event {
+  background-color: #4e5d6c;
+  background-image: linear-gradient(to bottom, #3a4958 0, #4e5d6c 100%);
+  background-repeat: repeat-x;
+}
+.eventCard__header--training {
+  background-color: #5cb85c;
+  background-repeat: repeat-x;
+}
+.eventCard__header--probeg {
+  background-color: #f0ad4e;
+  background-repeat: repeat-x;
+}
+.eventCard__header--marathon {
+  background-color: #d9534f;
+  background-image: linear-gradient(to bottom, #ba5e5b 0, #d9534f 100%);
+  background-repeat: repeat-x;
+}
+.eventCard__jumbotron {
+  padding: 80px 0;
+}
+.eventCard__title {
+  font-size: 36px;
+  line-height: 36px;
+  margin-bottom: 8px;
+}
+.eventCard__abstract {
+  margin: 0;
+  font-size: 22px;
+}
+.eventCard__description {
+  margin: 0;
+  text-align: justify;
+}
+.eventCard__footer {
+  padding-bottom: 40px;
+}
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  padding-top: 40px;
+  margin-bottom: 120px;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAOVBMVEUoOUk/UGFAUWE3SFgnOEgoOUk2R1cnOEgpOkopOko4SVk2R1coOUknOEg3SFkpOkpAUWE2SFj///8o/IqTAAAAAWJLR0QSe7xsAAAAATRJREFUKM9FUguShSAMa/mIqPve7v0vu0lacBygkhaSFDO3YqWWmBvmVt4dKx0f46MMzCfmiYzqZlUY0YOrs4b/UVt3ZmelX87IfJZq5iuzC63Y5fk9Mpxxw9/0rjNHucTEUNmR2ZLXHavXQHlb8ue4NacOs43Z1sfxZNaUPrLuqj2CX7kt9sjyCobChj+qh8pkeXhUDKxk8oM7AzMpGMl6lM/WDh8Rz1AAvQM39/JYU+UtFy64Dt3wyIQG/yb11a28341K9vCUEp75XQ74Urw6tDoGLX6yixY9lvPp7twucKx4/HbxICpFRn040b/q5l9kxatQXHVXV4fDzWP1M9+V6eYH547s2NgdNCltQu+l3cI5KlieUBPzP+lzdKUmhy70A4feN71Rj648+eKDQbyrdQuwf9svCbUeCDrJAAAAAElFTkSuQmCC');
+}
+.penzarun .form__message--error {
+  font-size: 12px;
+  margin-top: 8px;
+  color: #d9534f;
+}
+.penzarun .page {
+  margin-top: 30px;
+}
+.label--md {
+  font-size: 12px;
+}
