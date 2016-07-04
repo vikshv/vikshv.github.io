@@ -4,10 +4,9 @@
   width: 100%;
   height: 120px;
   padding: 30px 0 0 0;
-  background-color: #4e5d6c;
+  background-color: rgba(78, 93, 108, 0.5);
   border-top: 1px dotted #404040;
   color: #ffffff;
-  opacity: 0.9;
 }
 .eventsList__event .well--event {
   min-height: 140px;
@@ -39,21 +38,23 @@
 }
 .eventCard__header--event {
   background-color: #4e5d6c;
-  background-image: linear-gradient(to bottom, #3a4958 0, #4e5d6c 100%);
-  background-repeat: repeat-x;
 }
 .eventCard__header--training {
   background-color: #5cb85c;
-  background-repeat: repeat-x;
 }
 .eventCard__header--probeg {
   background-color: #f0ad4e;
-  background-repeat: repeat-x;
 }
 .eventCard__header--marathon {
   background-color: #d9534f;
-  background-image: linear-gradient(to bottom, #ba5e5b 0, #d9534f 100%);
-  background-repeat: repeat-x;
+}
+.eventCard__body .body__paragraph {
+  margin-bottom: 20px;
+}
+.eventCard__body .body__title {
+  font-size: 22px;
+  line-height: 22px;
+  margin-bottom: 8px;
 }
 .eventCard__jumbotron {
   padding: 80px 0;
@@ -68,7 +69,7 @@
   font-size: 22px;
 }
 .eventCard__description {
-  margin: 0;
+  margin: 0 0 40px 0;
   text-align: justify;
 }
 .eventCard__footer {
