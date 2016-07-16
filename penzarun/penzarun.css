@@ -2,11 +2,21 @@
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 120px;
+  height: 200px;
   padding: 30px 0 0 0;
   background-color: rgba(78, 93, 108, 0.5);
   border-top: 1px dotted #404040;
   color: #ffffff;
+}
+.footer__address {
+  font-size: small;
+  margin: 0;
+}
+.footer__centerBlock {
+  text-align: left;
+  font-size: small;
+  line-height: 20px;
+  margin: 16px 0 0;
 }
 .eventsList__event .well--event {
   min-height: 140px;
@@ -23,38 +33,128 @@
   padding: 2px 0 2px 24px;
   color: #d2d2d2;
 }
+.eventsList__event .event__distances {
+  display: inline-block;
+  padding: 0px 8px;
+  margin-left: 8px;
+  background-color: rgba(224, 105, 26, 0.2);
+}
+.eventsList__empty {
+  text-align: center;
+}
 .progress-bar--full {
   width: 100%;
+}
+.uploadFileButton:hover .uploadFileButton__button {
+  color: #ffffff;
+  background-color: #b15315;
+  border-color: rgba(0, 0, 0, 0);
+  text-decoration: none;
+}
+.uploadFileButton__file {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+}
+.calendarDatepicker {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 32px;
+}
+.calendarDatepicker .well {
+  margin: 0;
+}
+.calendarDatepicker .text-muted {
+  color: rgba(255, 255, 255, 0.3);
+}
+.calendarDatepicker .text-info {
+  color: #ffffff;
+}
+.calendarDatepicker table.uib-daypicker:focus {
+  outline: none;
+}
+.calendarDatepicker .datepicker--calendar .btn {
+  box-shadow: none;
+}
+.calendarDatepicker .datepicker--calendar .btn:focus {
+  outline: none;
+}
+.pageCalendar__nav {
+  margin-bottom: 24px;
+}
+.pageCalendar__datepickers {
+  margin-bottom: 24px;
+}
+.page--eventForm .well--form {
+  background-color: rgba(78, 93, 108, 0.5);
 }
 .penzarun .page.page--eventCard {
   margin-top: 0;
 }
-.eventCard__header,
-.eventCard__body {
-  margin-bottom: 40px;
-}
 .eventCard__header {
   text-align: left;
+  margin-bottom: 40px;
 }
-.eventCard__header--event {
-  background-color: #4e5d6c;
+.eventCard--event .eventCard__header {
+  background-color: rgba(78, 93, 108, 0.5);
 }
-.eventCard__header--training {
-  background-color: #5cb85c;
+.eventCard--event .eventCard__header .info__division {
+  border-color: #4e5d6c;
 }
-.eventCard__header--probeg {
-  background-color: #f0ad4e;
+.eventCard--event .eventCard__header .col--date {
+  background-color: rgba(78, 93, 108, 0.8);
 }
-.eventCard__header--marathon {
-  background-color: #d9534f;
+.eventCard--event .eventCard__header .col--place {
+  background-color: rgba(78, 93, 108, 0.5);
 }
-.eventCard__body .body__paragraph {
-  margin-bottom: 20px;
+.eventCard--event .eventCard__header .col--master {
+  background-color: rgba(78, 93, 108, 0.3);
 }
-.eventCard__body .body__title {
-  font-size: 22px;
-  line-height: 22px;
-  margin-bottom: 8px;
+.eventCard--training .eventCard__header {
+  background-color: rgba(92, 184, 92, 0.5);
+}
+.eventCard--training .eventCard__header .info__division {
+  border-color: #5cb85c;
+}
+.eventCard--training .eventCard__header .col--date {
+  background-color: rgba(92, 184, 92, 0.8);
+}
+.eventCard--training .eventCard__header .col--place {
+  background-color: rgba(92, 184, 92, 0.5);
+}
+.eventCard--training .eventCard__header .col--master {
+  background-color: rgba(92, 184, 92, 0.3);
+}
+.eventCard--probeg .eventCard__header {
+  background-color: rgba(240, 173, 78, 0.5);
+}
+.eventCard--probeg .eventCard__header .info__division {
+  border-color: #f0ad4e;
+}
+.eventCard--probeg .eventCard__header .col--date {
+  background-color: rgba(240, 173, 78, 0.8);
+}
+.eventCard--probeg .eventCard__header .col--place {
+  background-color: rgba(240, 173, 78, 0.5);
+}
+.eventCard--probeg .eventCard__header .col--master {
+  background-color: rgba(240, 173, 78, 0.3);
+}
+.eventCard--marathon .eventCard__header {
+  background-color: rgba(217, 83, 79, 0.5);
+}
+.eventCard--marathon .eventCard__header .info__division {
+  border-color: #d9534f;
+}
+.eventCard--marathon .eventCard__header .col--date {
+  background-color: rgba(217, 83, 79, 0.8);
+}
+.eventCard--marathon .eventCard__header .col--place {
+  background-color: rgba(217, 83, 79, 0.5);
+}
+.eventCard--marathon .eventCard__header .col--master {
+  background-color: rgba(217, 83, 79, 0.3);
 }
 .eventCard__jumbotron {
   padding: 80px 0;
@@ -62,18 +162,68 @@
 .eventCard__title {
   font-size: 36px;
   line-height: 36px;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 }
 .eventCard__abstract {
   margin: 0;
   font-size: 22px;
-}
-.eventCard__description {
-  margin: 0 0 40px 0;
   text-align: justify;
+}
+.eventHeader__info {
+  text-align: left;
+}
+.eventHeader__info .info__title {
+  margin-bottom: 8px;
+}
+.eventHeader__info .info__division {
+  border-top-style: dotted;
+  border-top-width: 1px;
+}
+.eventHeader__info .content__item {
+  height: 60px;
+  line-height: 60px;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.eventCard__body {
+  margin-bottom: 40px;
+}
+.eventCard__body .body__paragraph {
+  margin-bottom: 20px;
+}
+.eventCard__body .body__title {
+  font-size: 18px;
+  line-height: 18px;
+  margin-bottom: 8px;
+}
+.eventCard__body .eventCard__description {
+  text-align: justify;
+}
+.eventCard__body .eventCard__description table {
+  font-size: 14px;
+  margin: 0;
+}
+.eventCard__body .leftBlock {
+  min-height: 316px;
+  border-right: 1px solid #ebebeb;
+}
+.eventCard__body .rightBlock__buttons .btn:last-child {
+  margin-bottom: 32px;
+}
+.eventCard__body .rightBlock__address .address__title {
+  margin: 0 0 16px;
 }
 .eventCard__footer {
   padding-bottom: 40px;
+}
+.page.page--eventRegister .well--form {
+  background-color: rgba(78, 93, 108, 0.5);
+}
+.page.page--eventRegister .form-control-static--event {
+  padding: 9px 17px;
+  background-color: #4e5d6c;
 }
 html {
   position: relative;
@@ -81,7 +231,7 @@ html {
 }
 body {
   padding-top: 40px;
-  margin-bottom: 120px;
+  margin-bottom: 200px;
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAOVBMVEUoOUk/UGFAUWE3SFgnOEgoOUk2R1cnOEgpOkopOko4SVk2R1coOUknOEg3SFkpOkpAUWE2SFj///8o/IqTAAAAAWJLR0QSe7xsAAAAATRJREFUKM9FUguShSAMa/mIqPve7v0vu0lacBygkhaSFDO3YqWWmBvmVt4dKx0f46MMzCfmiYzqZlUY0YOrs4b/UVt3ZmelX87IfJZq5iuzC63Y5fk9Mpxxw9/0rjNHucTEUNmR2ZLXHavXQHlb8ue4NacOs43Z1sfxZNaUPrLuqj2CX7kt9sjyCobChj+qh8pkeXhUDKxk8oM7AzMpGMl6lM/WDh8Rz1AAvQM39/JYU+UtFy64Dt3wyIQG/yb11a28341K9vCUEp75XQ74Urw6tDoGLX6yixY9lvPp7twucKx4/HbxICpFRn040b/q5l9kxatQXHVXV4fDzWP1M9+V6eYH547s2NgdNCltQu+l3cI5KlieUBPzP+lzdKUmhy70A4feN71Rj648+eKDQbyrdQuwf9svCbUeCDrJAAAAAElFTkSuQmCC');
 }
 .penzarun .form__message--error {
