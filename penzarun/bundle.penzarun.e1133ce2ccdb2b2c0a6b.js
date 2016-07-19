@@ -32,15 +32,15 @@ webpackJsonp([0],[
 
 	var _components2 = _interopRequireDefault(_components);
 
-	var _directives = __webpack_require__(425);
+	var _directives = __webpack_require__(465);
 
 	var _directives2 = _interopRequireDefault(_directives);
 
-	var _services = __webpack_require__(426);
+	var _services = __webpack_require__(466);
 
 	var _services2 = _interopRequireDefault(_services);
 
-	__webpack_require__(437);
+	__webpack_require__(481);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -546,7 +546,7 @@ webpackJsonp([0],[
 /* 313 */
 /***/ function(module, exports) {
 
-	module.exports = "<nav class=\"navbar navbar-inverse navbar-fixed-top\"> <div class=container> <div class=navbar-header> <button type=button class=\"navbar-toggle collapsed\" data-toggle=collapse data-target=#navbar aria-expanded=false aria-controls=navbar> <span class=sr-only>Toggle navigation</span> <span class=icon-bar></span> <span class=icon-bar></span> <span class=icon-bar></span> </button> <a class=navbar-brand ui-sref=home>Бег в Пензе</a> </div> <div id=navbar class=\"navbar-collapse collapse\"> <ul class=\"nav navbar-nav\"> <li ng-class=\"{ active: $ctrl.state.news }\"><a ui-sref=news>НОВОСТИ</a></li> <li ng-class=\"{ active: $ctrl.state.calendar }\"><a ui-sref=calendar>КАЛЕНДАРЬ</a></li> <li ng-class=\"{ active: $ctrl.state.events }\"><a ui-sref=events.list>СОБЫТИЯ</a></li> <li ng-class=\"{ active: $ctrl.state.about }\"><a ui-sref=about>О ПРОЕКТЕ</a></li> </ul> <ul class=\"nav navbar-nav navbar-right\"> <li ng-if=!$ctrl.auth ng-class=\"{ active: $ctrl.state.login }\"> <a ui-sref=login> <i class=\"fa fa-sign-in\" aria-hidden=true></i> ВХОД </a> </li> <li ng-class=\"{ active: $ctrl.state.user }\" ng-if=$ctrl.auth> <a ui-sref=user> <i class=\"fa fa-user\" aria-hidden=true></i> </a> </li> <li ng-if=$ctrl.auth> <a href=# ng-click=$ctrl.logout()> <i class=\"fa fa-sign-out\" aria-hidden=true></i> ВЫХОД </a> </li> </ul> </div> </div> </nav>";
+	module.exports = "<nav class=\"navbar navbar-inverse navbar-fixed-top\"> <div class=container> <div class=navbar-header> <button type=button class=\"navbar-toggle collapsed\" data-toggle=collapse data-target=#navbar aria-expanded=false aria-controls=navbar> <span class=sr-only>Toggle navigation</span> <span class=icon-bar></span> <span class=icon-bar></span> <span class=icon-bar></span> </button> <a class=navbar-brand ui-sref=home>Бег в Пензе</a> </div> <div id=navbar class=\"navbar-collapse collapse\"> <ul class=\"nav navbar-nav\"> <li ng-class=\"{ active: $ctrl.state.news }\"><a ui-sref=news.list>НОВОСТИ</a></li> <li ng-class=\"{ active: $ctrl.state.calendar }\"><a ui-sref=calendar>КАЛЕНДАРЬ</a></li> <li ng-class=\"{ active: $ctrl.state.events }\"><a ui-sref=events.list>СОБЫТИЯ</a></li> <li ng-class=\"{ active: $ctrl.state.about }\"><a ui-sref=about>О ПРОЕКТЕ</a></li> </ul> <ul class=\"nav navbar-nav navbar-right\"> <li ng-if=!$ctrl.auth ng-class=\"{ active: $ctrl.state.login }\"> <a ui-sref=login> <i class=\"fa fa-sign-in\" aria-hidden=true></i> ВХОД </a> </li> <li ng-class=\"{ active: $ctrl.state.user }\" ng-if=$ctrl.auth> <a ui-sref=user> <i class=\"fa fa-user\" aria-hidden=true></i> </a> </li> <li ng-if=$ctrl.auth> <a href=# ng-click=$ctrl.logout()> <i class=\"fa fa-sign-out\" aria-hidden=true></i> ВЫХОД </a> </li> </ul> </div> </div> </nav>";
 
 /***/ },
 /* 314 */
@@ -611,7 +611,7 @@ webpackJsonp([0],[
 /* 318 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=footer> <div class=container> <div class=row> <div class=col-md-3> <div class=\"\"> <p>Мы в социальных сетях:</p> <ul class=list-inline> <li> <a target=_blank href=https://vk.com/penzarun title=\"В контакте\" rel=nofollow> <i class=\"fa fa-2x fa-vk\" aria-hidden=true></i> </a> </li> </ul> </div> </div> <div class=col-md-3> <div class=\"\"> <p>Контакты:</p> <address class=footer__address> <abbr title=Телефон>Тел:</abbr> 8-909-319-63-54<br> <abbr title=\"Электронная почта\">Эл. почта:</abbr> <a href=mailto:#>info@penzarun.ru</a> </address> </div> </div> </div> <div class=row> <div class=col-md-12> <div class=footer__centerBlock> <div> Бег в Пензе <span class=hide-xs>·</span> Автор и разработчик &#169; <a href=https://vk.com/vikshv>Виктор Швецов</a> </div> <div> Style based on <a target=_blank href=http://bootswatch.com/superhero/ rel=nofollow>Bootswatch</a> <span class=hide-xs>·</span> Icons from <a target=_blank href=http://fortawesome.github.io/Font-Awesome/ rel=nofollow>Font Awesome</a> <span class=hide-xs>·</span> Backend from <a target=_blank href=https://console.firebase.google.com/project/project-5043437142388192252/overview rel=nofollow>Firebase</a> </div> <div> <a href=https://github.com/vikshv/penzarun>GitHub Project</a> <span class=hide-xs>·</span> <a href=https://github.com/vikshv/penzarun/issues>Issues</a> </div> </div> </div> </div> </div> </div>";
+	module.exports = "<div class=footer> <div class=container> <div class=row> <div class=\"col-md-3 col-sm-4 col-xs-6\"> <div class=\"\"> <p>Мы в социальных сетях:</p> <ul class=list-inline> <li> <a target=_blank href=https://vk.com/penzarun title=\"В контакте\" rel=nofollow> <i class=\"fa fa-2x fa-vk\" aria-hidden=true></i> </a> </li> </ul> </div> </div> <div class=\"col-md-3 col-sm-4 col-xs-6\"> <div class=footer__contacts> <p>Контакты:</p> <address class=footer__address> <abbr title=Телефон>Тел:</abbr> 8-909-319-63-54<br> <abbr title=\"Электронная почта\">Эл. почта:</abbr> <a href=mailto:#>info@penzarun.ru</a> </address> </div> </div> </div> <div class=row> <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\"> <div class=footer__centerBlock> Бег в Пензе · Автор и разработчик <a href=https://vk.com/vikshv>Виктор&nbsp;Швецов</a> </div> </div> </div> <div class=row> <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\"> <div class=footer__centerBlock> Style based on <a target=_blank href=http://bootswatch.com/superhero/ rel=nofollow>Bootswatch</a> · Icons from <a target=_blank href=http://fortawesome.github.io/Font-Awesome/ rel=nofollow>Font Awesome</a> · Backend from <a target=_blank href=https://console.firebase.google.com/project/project-5043437142388192252/overview rel=nofollow>Firebase</a> </div> </div> </div> <div class=row> <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\"> <div class=footer__centerBlock> <a href=https://github.com/vikshv/penzarun>GitHub Project</a> · <a href=https://github.com/vikshv/penzarun/issues>Issues</a> </div> </div> </div> </div> </div>";
 
 /***/ },
 /* 319 */
@@ -697,7 +697,7 @@ webpackJsonp([0],[
 /* 323 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=eventsList> <div class=eventsList__event ng-repeat=\"event in $ctrl.events\"> <div class=event__title> <div class=event__date> {{ event.date | date: 'dd MMMM yyyy' }} </div> <div class=\"well well-lg well--event\"> <h4><a ui-sref=\"events.card({ id: event.$id })\"> {{ event.title }} </a></h4> <p>{{ event.abstract }}</p> <p>Дистанция: <span class=event__distances>{{ event.distances }}</span></p> </div> </div> </div> <div class=eventsList__empty ng-if=!$ctrl.events.length> <div class=\"alert alert-warning\"> <strong>{{ $ctrl.emptyListMessage || 'Нет данных' }}</strong> </div> </div> </div>";
+	module.exports = "<div class=eventsList> <div class=eventsList__event ng-repeat=\"event in $ctrl.events\"> <div class=event__title> <div class=event__date> {{ event.date | date: 'd MMMM yyyy' }} </div> <div class=\"well well-lg well--event\"> <h4><a ui-sref=\"events.card({ id: event.id })\"> {{ event.title }} </a></h4> <p>{{ event.abstract }}</p> <p>Дистанция: <span class=event__distances>{{ event.distances }}</span></p> </div> </div> </div> <div class=eventsList__empty ng-if=!$ctrl.events.length> <div class=\"alert alert-warning\"> <strong>{{ $ctrl.emptyListMessage || 'Нет данных' }}</strong> </div> </div> </div>";
 
 /***/ },
 /* 324 */
@@ -779,7 +779,7 @@ webpackJsonp([0],[
 /* 328 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=page> <div class=container> <div class=row> <div class=\"col-md-offset-3 col-md-6\"> <div class=progress> <div class=\"progress-bar progress-bar-striped progress-bar--full active\" role=progressbar aria-valuenow=45 aria-valuemin=0 aria-valuemax=100> {{ $ctrl.text }} </div> </div> </div> </div> </div> </div>";
+	module.exports = "<div class=spinerContainer> <i class=\"fa fa-circle-o-notch fa-spin fa-4x fa-fw\"></i><br><span>{{ $ctrl.text }}</span> </div>";
 
 /***/ },
 /* 329 */
@@ -960,33 +960,33 @@ webpackJsonp([0],[
 
 	var _home2 = _interopRequireDefault(_home);
 
-	var _news = __webpack_require__(343);
+	var _news = __webpack_require__(371);
 
 	var _news2 = _interopRequireDefault(_news);
 
-	var _calendarPage = __webpack_require__(347);
+	var _calendar = __webpack_require__(387);
 
-	var _calendarPage2 = _interopRequireDefault(_calendarPage);
+	var _calendar2 = _interopRequireDefault(_calendar);
 
-	var _eventsPage = __webpack_require__(361);
+	var _events = __webpack_require__(401);
 
-	var _eventsPage2 = _interopRequireDefault(_eventsPage);
+	var _events2 = _interopRequireDefault(_events);
 
-	var _about = __webpack_require__(412);
+	var _about = __webpack_require__(452);
 
 	var _about2 = _interopRequireDefault(_about);
 
-	var _login = __webpack_require__(416);
+	var _login = __webpack_require__(456);
 
 	var _login2 = _interopRequireDefault(_login);
 
-	var _userPage = __webpack_require__(420);
+	var _user = __webpack_require__(460);
 
-	var _userPage2 = _interopRequireDefault(_userPage);
+	var _user2 = _interopRequireDefault(_user);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = _angular2.default.module('app.components.pages', [_home2.default.name, _news2.default.name, _calendarPage2.default.name, _eventsPage2.default.name, _about2.default.name, _login2.default.name, _userPage2.default.name]);
+	exports.default = _angular2.default.module('app.components.pages', [_home2.default.name, _news2.default.name, _calendar2.default.name, _events2.default.name, _about2.default.name, _login2.default.name, _user2.default.name]);
 
 /***/ },
 /* 339 */
@@ -1002,35 +1002,58 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _controller = __webpack_require__(340);
+	var _component = __webpack_require__(340);
 
-	var _controller2 = _interopRequireDefault(_controller);
+	var _component2 = _interopRequireDefault(_component);
 
-	var _template = __webpack_require__(341);
+	var _components = __webpack_require__(344);
 
-	var _template2 = _interopRequireDefault(_template);
-
-	__webpack_require__(342);
+	var _components2 = _interopRequireDefault(_components);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = _angular2.default.module('app.components.pages.home', []).config(["$stateProvider", function ($stateProvider) {
+	exports.default = _angular2.default.module('app.components.pages.home', [_components2.default.name]).config(["$stateProvider", function ($stateProvider) {
 	    'ngInject';
 
 	    $stateProvider.state('home', {
 	        url: '/home',
 	        template: '<home></home>'
 	    });
-	}]).component('home', {
-	    template: _template2.default,
-	    controller: _controller2.default
-	});
+	}]).component('home', _component2.default);
 
 /***/ },
 /* 340 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _controller = __webpack_require__(341);
+
+	var _controller2 = _interopRequireDefault(_controller);
+
+	var _template = __webpack_require__(342);
+
+	var _template2 = _interopRequireDefault(_template);
+
+	__webpack_require__(343);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = {
+	    template: _template2.default,
+	    controller: _controller2.default,
+	    bindings: {}
+	};
+
+/***/ },
+/* 341 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -1039,6 +1062,8 @@ webpackJsonp([0],[
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	var HomePageController = function HomePageController() {
+	    'ngInject';
+
 	    _classCallCheck(this, HomePageController);
 	};
 
@@ -1046,19 +1071,45 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 341 */
+/* 342 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"page page--eventsList\"> <div class=container> <div class=row> <div class=col-md-12> Home page </div> </div> <div> </div></div></div>";
+	module.exports = "<div class=\"page page--home\"> <jumbotron></jumbotron> <info></info> </div>";
 
 /***/ },
-/* 342 */
+/* 343 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 343 */
+/* 344 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	        value: true
+	});
+
+	var _angular = __webpack_require__(299);
+
+	var _angular2 = _interopRequireDefault(_angular);
+
+	var _jumbotron = __webpack_require__(345);
+
+	var _jumbotron2 = _interopRequireDefault(_jumbotron);
+
+	var _info = __webpack_require__(350);
+
+	var _info2 = _interopRequireDefault(_info);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _angular2.default.module('app.components.pages.home.components', [_jumbotron2.default.name, _info2.default.name]);
+
+/***/ },
+/* 345 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1071,35 +1122,174 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _controller = __webpack_require__(344);
+	var _component = __webpack_require__(346);
 
-	var _controller2 = _interopRequireDefault(_controller);
-
-	var _template = __webpack_require__(345);
-
-	var _template2 = _interopRequireDefault(_template);
-
-	__webpack_require__(346);
+	var _component2 = _interopRequireDefault(_component);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = _angular2.default.module('app.components.pages.news', []).config(["$stateProvider", function ($stateProvider) {
-	    'ngInject';
-
-	    $stateProvider.state('news', {
-	        url: '/news',
-	        template: '<news></news>'
-	    });
-	}]).component('news', {
-	    template: _template2.default,
-	    controller: _controller2.default
-	});
+	exports.default = _angular2.default.module('app.components.pages.home.components.jumbotron', []).component('jumbotron', _component2.default);
 
 /***/ },
-/* 344 */
+/* 346 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _controller = __webpack_require__(347);
+
+	var _controller2 = _interopRequireDefault(_controller);
+
+	var _template = __webpack_require__(348);
+
+	var _template2 = _interopRequireDefault(_template);
+
+	__webpack_require__(349);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = {
+	    template: _template2.default,
+	    controller: _controller2.default,
+	    bindings: {}
+	};
+
+/***/ },
+/* 347 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var JumbotronController = function () {
+	    JumbotronController.$inject = ["EventService"];
+	    function JumbotronController(EventService) {
+	        'ngInject';
+
+	        _classCallCheck(this, JumbotronController);
+
+	        this._loadEvent(EventService);
+	    }
+
+	    _createClass(JumbotronController, [{
+	        key: '_loadEvent',
+	        value: function _loadEvent(EventService) {
+	            var _this = this;
+
+	            var options = {
+	                dateBegin: Date.now(),
+	                limitToFirst: 1
+	            };
+	            this._startLoadProgress();
+	            EventService.loadEvents(options).then(function (result) {
+	                _this.event = result[0];
+	            }).then(function () {
+	                _this._stopLoadProgress();
+	            }).catch(function (error) {
+	                _this._stopLoadProgress();
+	                throw Error(error);
+	            });
+	        }
+	    }, {
+	        key: '_startLoadProgress',
+	        value: function _startLoadProgress() {
+	            this.loadProgress = true;
+	        }
+	    }, {
+	        key: '_stopLoadProgress',
+	        value: function _stopLoadProgress() {
+	            this.loadProgress = false;
+	        }
+	    }]);
+
+	    return JumbotronController;
+	}();
+
+	exports.default = JumbotronController;
+	;
+
+/***/ },
+/* 348 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=container> <div class=row> <div class=col-md-12> <div class=jumbotron> <div class=jumbotron__spinner ng-if=$ctrl.loadProgress> <i class=\"fa fa-circle-o-notch fa-spin fa-5x fa-fw\"></i> </div> <div ng-if=!$ctrl.loadProgress> <h1>{{ $ctrl.event.title }}</h1> <p> {{ $ctrl.event.date | date: 'EEEE, d MMMM yyyy' }}, {{ $ctrl.event.time }} </p> <p>{{ $ctrl.event.abstract }}</p> <p> <a class=\"btn btn-primary btn-lg\" ui-sref=\"events.card({ id: $ctrl.event.id })\"> Узнать больше </a> </p> </div> </div> </div> </div> <div></div></div>";
+
+/***/ },
+/* 349 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 350 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	        value: true
+	});
+
+	var _angular = __webpack_require__(299);
+
+	var _angular2 = _interopRequireDefault(_angular);
+
+	var _component = __webpack_require__(351);
+
+	var _component2 = _interopRequireDefault(_component);
+
+	var _components = __webpack_require__(355);
+
+	var _components2 = _interopRequireDefault(_components);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _angular2.default.module('app.components.pages.home.components.info', [_components2.default.name]).component('info', _component2.default);
+
+/***/ },
+/* 351 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _controller = __webpack_require__(352);
+
+	var _controller2 = _interopRequireDefault(_controller);
+
+	var _template = __webpack_require__(353);
+
+	var _template2 = _interopRequireDefault(_template);
+
+	__webpack_require__(354);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = {
+	    template: _template2.default,
+	    controller: _controller2.default,
+	    bindings: {}
+	};
+
+/***/ },
+/* 352 */
+/***/ function(module, exports) {
+
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -1107,27 +1297,762 @@ webpackJsonp([0],[
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var NewsPageController = function NewsPageController() {
-	    _classCallCheck(this, NewsPageController);
+	var InfoController = function InfoController() {
+	    'ngInject';
+
+	    _classCallCheck(this, InfoController);
 	};
 
-	exports.default = NewsPageController;
+	exports.default = InfoController;
 	;
 
 /***/ },
-/* 345 */
+/* 353 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"page page--eventsList\"> <div class=container> <div class=row> <div class=col-md-12> News page </div> </div> <div> </div></div></div>";
+	module.exports = "<div class=\"container homeInfo\"> <div class=row> <div class=col-md-4> <info-news></info-news> </div> <div class=col-md-4> <info-event></info-event> </div> <div class=col-md-4> <info-update></info-update> </div> </div> </div>";
 
 /***/ },
-/* 346 */
+/* 354 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 347 */
+/* 355 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	        value: true
+	});
+
+	var _angular = __webpack_require__(299);
+
+	var _angular2 = _interopRequireDefault(_angular);
+
+	var _infoNews = __webpack_require__(356);
+
+	var _infoNews2 = _interopRequireDefault(_infoNews);
+
+	var _infoEvent = __webpack_require__(361);
+
+	var _infoEvent2 = _interopRequireDefault(_infoEvent);
+
+	var _infoUpdate = __webpack_require__(366);
+
+	var _infoUpdate2 = _interopRequireDefault(_infoUpdate);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _angular2.default.module('app.components.pages.home.components.info.components', [_infoNews2.default.name, _infoEvent2.default.name, _infoUpdate2.default.name]);
+
+/***/ },
+/* 356 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _angular = __webpack_require__(299);
+
+	var _angular2 = _interopRequireDefault(_angular);
+
+	var _component = __webpack_require__(357);
+
+	var _component2 = _interopRequireDefault(_component);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _angular2.default.module('app.components.pages.home.components.info.components.news', []).component('infoNews', _component2.default);
+
+/***/ },
+/* 357 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _controller = __webpack_require__(358);
+
+	var _controller2 = _interopRequireDefault(_controller);
+
+	var _template = __webpack_require__(359);
+
+	var _template2 = _interopRequireDefault(_template);
+
+	__webpack_require__(360);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = {
+	    template: _template2.default,
+	    controller: _controller2.default,
+	    bindings: {}
+	};
+
+/***/ },
+/* 358 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var NewsController = function () {
+	    NewsController.$inject = ["NewsService"];
+	    function NewsController(NewsService) {
+	        'ngInject';
+
+	        _classCallCheck(this, NewsController);
+
+	        this._loadNews(NewsService);
+	    }
+
+	    _createClass(NewsController, [{
+	        key: '_loadNews',
+	        value: function _loadNews(NewsService) {
+	            var _this = this;
+
+	            var options = {
+	                dateBegin: Date.now(),
+	                limitToLast: 3
+	            };
+	            this._startLoadProgress();
+	            NewsService.loadNews(options).then(function (result) {
+	                _this.news = result;
+	            }).then(function () {
+	                _this._stopLoadProgress();
+	            }).catch(function (error) {
+	                _this._stopLoadProgress();
+	                throw Error(error);
+	            });
+	        }
+	    }, {
+	        key: '_startLoadProgress',
+	        value: function _startLoadProgress() {
+	            this.loadProgress = true;
+	        }
+	    }, {
+	        key: '_stopLoadProgress',
+	        value: function _stopLoadProgress() {
+	            this.loadProgress = false;
+	        }
+	    }]);
+
+	    return NewsController;
+	}();
+
+	exports.default = NewsController;
+	;
+
+/***/ },
+/* 359 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=homeInfo__news> <h3>Новости</h3> <div class=list-group> <div class=\"list-group-item info__spiner\" ng-if=$ctrl.loadProgress> <i class=\"fa fa-circle-o-notch fa-spin fa-3x fa-fw\"></i> </div> <div ng-if=!$ctrl.loadProgress> <a class=list-group-item ui-sref=\"news.id({ id: news.id })\" ng-repeat=\"news in $ctrl.news\"> <h4 class=list-group-item-heading>{{ news.title }}</h4> <p class=list-group-item-text>{{ news.content }}</p> </a> <div class=list-group-item ng-if=!$ctrl.updates.length> <p class=list-group-item-text>Новостей пока нет</p> </div> </div> </div> </div>";
+
+/***/ },
+/* 360 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 361 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _angular = __webpack_require__(299);
+
+	var _angular2 = _interopRequireDefault(_angular);
+
+	var _component = __webpack_require__(362);
+
+	var _component2 = _interopRequireDefault(_component);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _angular2.default.module('app.components.pages.home.components.info.components.event', []).component('infoEvent', _component2.default);
+
+/***/ },
+/* 362 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _controller = __webpack_require__(363);
+
+	var _controller2 = _interopRequireDefault(_controller);
+
+	var _template = __webpack_require__(364);
+
+	var _template2 = _interopRequireDefault(_template);
+
+	__webpack_require__(365);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = {
+	    template: _template2.default,
+	    controller: _controller2.default,
+	    bindings: {}
+	};
+
+/***/ },
+/* 363 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var InfoEventController = function () {
+	    InfoEventController.$inject = ["EventService"];
+	    function InfoEventController(EventService) {
+	        'ngInject';
+
+	        _classCallCheck(this, InfoEventController);
+
+	        this._loadEvents(EventService);
+	    }
+
+	    _createClass(InfoEventController, [{
+	        key: '_loadEvents',
+	        value: function _loadEvents(EventService) {
+	            var _this = this;
+
+	            var options = {
+	                dateBegin: Date.now(),
+	                limitToFirst: 4
+	            };
+	            this._startLoadProgress();
+	            EventService.loadEvents(options).then(function (result) {
+	                _this.events = result.slice(1, options.limitToFirst);
+	            }).then(function () {
+	                _this._stopLoadProgress();
+	            }).catch(function (error) {
+	                _this._stopLoadProgress();
+	                throw Error(error);
+	            });
+	        }
+	    }, {
+	        key: '_startLoadProgress',
+	        value: function _startLoadProgress() {
+	            this.loadProgress = true;
+	        }
+	    }, {
+	        key: '_stopLoadProgress',
+	        value: function _stopLoadProgress() {
+	            this.loadProgress = false;
+	        }
+	    }]);
+
+	    return InfoEventController;
+	}();
+
+	exports.default = InfoEventController;
+	;
+
+/***/ },
+/* 364 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=homeInfo__events> <h3>Ближайшие события</h3> <div class=list-group> <div class=\"list-group-item info__spiner\" ng-if=$ctrl.loadProgress> <i class=\"fa fa-circle-o-notch fa-spin fa-3x fa-fw\"></i> </div> <a class=list-group-item ui-sref=\"events.card({ id: event.id })\" ng-repeat=\"event in $ctrl.events\"> <h4 class=list-group-item-heading>{{ event.title }}</h4> <p class=list-group-item-text>{{ event.abstract }}</p> </a> </div> </div>";
+
+/***/ },
+/* 365 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 366 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _angular = __webpack_require__(299);
+
+	var _angular2 = _interopRequireDefault(_angular);
+
+	var _component = __webpack_require__(367);
+
+	var _component2 = _interopRequireDefault(_component);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _angular2.default.module('app.components.pages.home.components.info.components.update', []).component('infoUpdate', _component2.default);
+
+/***/ },
+/* 367 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _controller = __webpack_require__(368);
+
+	var _controller2 = _interopRequireDefault(_controller);
+
+	var _template = __webpack_require__(369);
+
+	var _template2 = _interopRequireDefault(_template);
+
+	__webpack_require__(370);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = {
+	    template: _template2.default,
+	    controller: _controller2.default,
+	    bindings: {}
+	};
+
+/***/ },
+/* 368 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var UpdatesController = function () {
+	    UpdatesController.$inject = ["UpdateService"];
+	    function UpdatesController(UpdateService) {
+	        'ngInject';
+
+	        _classCallCheck(this, UpdatesController);
+
+	        this._loadUpdates(UpdateService);
+	    }
+
+	    _createClass(UpdatesController, [{
+	        key: '_loadUpdates',
+	        value: function _loadUpdates(UpdateService) {
+	            var _this = this;
+
+	            var options = {
+	                dateBegin: Date.now(),
+	                limitToLast: 3
+	            };
+	            this._startLoadProgress();
+	            UpdateService.loadUpdates(options).then(function (result) {
+	                _this.updates = result;
+	            }).then(function () {
+	                _this._stopLoadProgress();
+	            }).catch(function (error) {
+	                _this._stopLoadProgress();
+	                throw Error(error);
+	            });
+	        }
+	    }, {
+	        key: '_startLoadProgress',
+	        value: function _startLoadProgress() {
+	            this.loadProgress = true;
+	        }
+	    }, {
+	        key: '_stopLoadProgress',
+	        value: function _stopLoadProgress() {
+	            this.loadProgress = false;
+	        }
+	    }]);
+
+	    return UpdatesController;
+	}();
+
+	exports.default = UpdatesController;
+	;
+
+/***/ },
+/* 369 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=homeInfo__updates> <h3>Обновления</h3> <div class=list-group> <div class=\"list-group-item info__spiner\" ng-if=$ctrl.loadProgress> <i class=\"fa fa-circle-o-notch fa-spin fa-3x fa-fw\"></i> </div> <div ng-if=!$ctrl.loadProgress> <div class=list-group-item ng-repeat=\"update in $ctrl.updates\"> <h4 class=list-group-item-heading>{{ update.title }}</h4> <p class=list-group-item-text>{{ update.content }}</p> </div> <div class=list-group-item ng-if=!$ctrl.updates.length> <p class=list-group-item-text>Обновлений пока нет</p> </div> </div> </div> </div>";
+
+/***/ },
+/* 370 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 371 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	idStateController.$inject = ["$stateParams"];
+	authResolve.$inject = ["AuthService"];
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _angular = __webpack_require__(299);
+
+	var _angular2 = _interopRequireDefault(_angular);
+
+	var _angularUiRouter = __webpack_require__(302);
+
+	var _angularUiRouter2 = _interopRequireDefault(_angularUiRouter);
+
+	var _newsList = __webpack_require__(372);
+
+	var _newsList2 = _interopRequireDefault(_newsList);
+
+	var _newsCard = __webpack_require__(377);
+
+	var _newsCard2 = _interopRequireDefault(_newsCard);
+
+	var _newsForm = __webpack_require__(382);
+
+	var _newsForm2 = _interopRequireDefault(_newsForm);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _angular2.default.module('app.components.pages.news', [_angularUiRouter2.default, _newsList2.default.name, _newsCard2.default.name, _newsForm2.default.name]).config(["$stateProvider", function ($stateProvider) {
+	    'ngInject';
+
+	    $stateProvider.state('news', {
+	        abstract: true,
+	        url: '/news',
+	        template: '<ui-view />'
+	    }).state('news.list', {
+	        url: '/list',
+	        template: '<news-list-page></news-list-page>'
+	    }).state('news.card', {
+	        url: '/card/:id',
+	        template: '<news-card-page id="$ctrl.id"></news-card-page>',
+	        controller: idStateController,
+	        controllerAs: '$ctrl'
+	    }).state('news.new', {
+	        url: '/new',
+	        template: '<news-form-page></news-form-page>',
+	        resolve: {
+	            authResolve: authResolve
+	        }
+	    }).state('news.edit', {
+	        url: '/edit/:id',
+	        template: '<news-form-page id="$ctrl.id"></news-form-page>',
+	        resolve: {
+	            authResolve: authResolve
+	        },
+	        controller: idStateController,
+	        controllerAs: '$ctrl'
+	    });
+	}]);
+
+
+	function idStateController($stateParams) {
+	    'ngInject';
+
+	    this.id = $stateParams.id;
+	}
+
+	function authResolve(AuthService) {
+	    'ngInject';
+
+	    return AuthService.requireSignIn();
+	}
+
+/***/ },
+/* 372 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _angular = __webpack_require__(299);
+
+	var _angular2 = _interopRequireDefault(_angular);
+
+	var _component = __webpack_require__(373);
+
+	var _component2 = _interopRequireDefault(_component);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _angular2.default.module('app.components.pages.news.list', []).component('newsListPage', _component2.default);
+
+/***/ },
+/* 373 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _controller = __webpack_require__(374);
+
+	var _controller2 = _interopRequireDefault(_controller);
+
+	var _template = __webpack_require__(375);
+
+	var _template2 = _interopRequireDefault(_template);
+
+	__webpack_require__(376);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = {
+	    template: _template2.default,
+	    controller: _controller2.default
+	};
+
+/***/ },
+/* 374 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var NewsListPageController = function NewsListPageController(NewsService) {
+	    'ngInject';
+
+	    _classCallCheck(this, NewsListPageController);
+	};
+	NewsListPageController.$inject = ["NewsService"];
+
+	exports.default = NewsListPageController;
+	;
+
+/***/ },
+/* 375 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"page page--newsList\"> <div class=container> <div class=row> <div class=col-md-12> News list page </div> </div> <div> </div></div></div>";
+
+/***/ },
+/* 376 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 377 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _angular = __webpack_require__(299);
+
+	var _angular2 = _interopRequireDefault(_angular);
+
+	var _component = __webpack_require__(378);
+
+	var _component2 = _interopRequireDefault(_component);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _angular2.default.module('app.components.pages.news.card', []).component('newsCardPage', _component2.default);
+
+/***/ },
+/* 378 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _controller = __webpack_require__(379);
+
+	var _controller2 = _interopRequireDefault(_controller);
+
+	var _template = __webpack_require__(380);
+
+	var _template2 = _interopRequireDefault(_template);
+
+	__webpack_require__(381);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = {
+	    template: _template2.default,
+	    controller: _controller2.default,
+	    bindings: {
+	        id: '<'
+	    }
+	};
+
+/***/ },
+/* 379 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var NewsCardPageController = function NewsCardPageController(NewsService) {
+	    'ngInject';
+
+	    _classCallCheck(this, NewsCardPageController);
+	};
+	NewsCardPageController.$inject = ["NewsService"];
+
+	exports.default = NewsCardPageController;
+	;
+
+/***/ },
+/* 380 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"page page--newsList\"> <div class=container> <div class=row> <div class=col-md-12> News card page </div> </div> <div> </div></div></div>";
+
+/***/ },
+/* 381 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 382 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _angular = __webpack_require__(299);
+
+	var _angular2 = _interopRequireDefault(_angular);
+
+	var _component = __webpack_require__(383);
+
+	var _component2 = _interopRequireDefault(_component);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _angular2.default.module('app.components.pages.news.form', []).component('newsFormPage', _component2.default);
+
+/***/ },
+/* 383 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _controller = __webpack_require__(384);
+
+	var _controller2 = _interopRequireDefault(_controller);
+
+	var _template = __webpack_require__(385);
+
+	var _template2 = _interopRequireDefault(_template);
+
+	__webpack_require__(386);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = {
+	    template: _template2.default,
+	    controller: _controller2.default,
+	    bindings: {
+	        id: '<'
+	    }
+	};
+
+/***/ },
+/* 384 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var NewsFormPageController = function NewsFormPageController(NewsService) {
+	    'ngInject';
+
+	    _classCallCheck(this, NewsFormPageController);
+	};
+	NewsFormPageController.$inject = ["NewsService"];
+
+	exports.default = NewsFormPageController;
+	;
+
+/***/ },
+/* 385 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"page page--newsList\"> <div class=container> <div class=row> <div class=col-md-12> News form page </div> </div> <div> </div></div></div>";
+
+/***/ },
+/* 386 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 387 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1144,11 +2069,11 @@ webpackJsonp([0],[
 
 	var _angularUiRouter2 = _interopRequireDefault(_angularUiRouter);
 
-	var _components = __webpack_require__(348);
+	var _components = __webpack_require__(388);
 
 	var _components2 = _interopRequireDefault(_components);
 
-	var _component = __webpack_require__(357);
+	var _component = __webpack_require__(397);
 
 	var _component2 = _interopRequireDefault(_component);
 
@@ -1179,7 +2104,7 @@ webpackJsonp([0],[
 	}).component('calendar', _component2.default);
 
 /***/ },
-/* 348 */
+/* 388 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1192,7 +2117,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _calendarDatepicker = __webpack_require__(349);
+	var _calendarDatepicker = __webpack_require__(389);
 
 	var _calendarDatepicker2 = _interopRequireDefault(_calendarDatepicker);
 
@@ -1201,7 +2126,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages.calendar.components', [_calendarDatepicker2.default.name]);
 
 /***/ },
-/* 349 */
+/* 389 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1214,23 +2139,20 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _component = __webpack_require__(350);
+	var _component = __webpack_require__(390);
 
 	var _component2 = _interopRequireDefault(_component);
 
-	var _templates = __webpack_require__(354);
+	var _templates = __webpack_require__(394);
 
 	var _templates2 = _interopRequireDefault(_templates);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = _angular2.default.module('app.components.pages.calendar.components.calendarDatepicker', [
-	//directives.name,
-	_templates2.default.name]).component('calendarDatepicker', _component2.default);
-	//import directives from './directives';
+	exports.default = _angular2.default.module('app.components.pages.calendar.components.calendarDatepicker', [_templates2.default.name]).component('calendarDatepicker', _component2.default);
 
 /***/ },
-/* 350 */
+/* 390 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1239,15 +2161,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(351);
+	var _controller = __webpack_require__(391);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(352);
+	var _template = __webpack_require__(392);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(353);
+	__webpack_require__(393);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1262,7 +2184,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 351 */
+/* 391 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1309,19 +2231,19 @@ webpackJsonp([0],[
 	exports.default = CalendarDatepickerController;
 
 /***/ },
-/* 352 */
+/* 392 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=calendarDatepicker> <uib-datepicker class=\"well well-sm\" ng-model=$ctrl.date datepicker-options=$ctrl.options template-url=calendarDatepicker/templates/datepicker.html></uib-datepicker> </div>";
 
 /***/ },
-/* 353 */
+/* 393 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 354 */
+/* 394 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1334,11 +2256,11 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _datepicker = __webpack_require__(355);
+	var _datepicker = __webpack_require__(395);
 
 	var _datepicker2 = _interopRequireDefault(_datepicker);
 
-	var _day = __webpack_require__(356);
+	var _day = __webpack_require__(396);
 
 	var _day2 = _interopRequireDefault(_day);
 
@@ -1352,19 +2274,19 @@ webpackJsonp([0],[
 	}]);
 
 /***/ },
-/* 355 */
+/* 395 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=uib-datepicker ng-switch=datepickerMode role=application ng-keydown=keydown($event)> <uib-daypicker ng-switch-when=day tabindex=0 template-url=calendarDatepicker/templates/day.html></uib-daypicker> <uib-monthpicker ng-switch-when=month tabindex=0></uib-monthpicker> <uib-yearpicker ng-switch-when=year tabindex=0></uib-yearpicker> </div>";
 
 /***/ },
-/* 356 */
+/* 396 */
 /***/ function(module, exports) {
 
 	module.exports = "<table class=uib-daypicker role=grid aria-labelledby={{::uniqueId}}-title aria-activedescendant={{activeDateId}}> <thead> <tr> <th><button type=button class=\"btn btn-default btn-sm pull-left uib-left\" ng-click=move(-1) tabindex=-1><i class=\"glyphicon glyphicon-chevron-left\"></i></button></th> <th colspan=\"{{::5 + showWeeks}}\"><button id={{::uniqueId}}-title role=heading aria-live=assertive aria-atomic=true type=button class=\"btn btn-default btn-sm uib-title\" ng-click=toggleMode() ng-disabled=\"datepickerMode === maxMode\" tabindex=-1><strong>{{title}}</strong></button></th> <th><button type=button class=\"btn btn-default btn-sm pull-right uib-right\" ng-click=move(1) tabindex=-1><i class=\"glyphicon glyphicon-chevron-right\"></i></button></th> </tr> <tr> <th ng-if=showWeeks class=text-center></th> <th ng-repeat=\"label in ::labels track by $index\" class=text-center><span aria-label={{::label.full}}>{{::label.abbr}}</span></th> </tr> </thead> <tbody> <tr class=uib-weeks ng-repeat=\"row in rows track by $index\"> <td ng-if=showWeeks class=\"text-center h6\"><em>{{ weekNumbers[$index] }}</em></td> <td ng-repeat=\"dt in row\" class=\"uib-day text-center\" role=gridcell id={{::dt.uid}} ng-class=::dt.customClass> <button type=button class=\"btn btn-default btn-sm\" uib-is-class=\"\r\n            'btn-primary' for selectedDt,\r\n            'active' for activeDt\r\n            on dt\" ng-click=select(dt.date) ng-disabled=::dt.disabled tabindex=-1><span ng-class=\"::{'text-muted': dt.secondary, 'text-info': dt.current}\">{{::dt.label}}</span></button> </td> </tr> </tbody> </table>";
 
 /***/ },
-/* 357 */
+/* 397 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1373,15 +2295,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(358);
+	var _controller = __webpack_require__(398);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(359);
+	var _template = __webpack_require__(399);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(360);
+	__webpack_require__(400);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1396,7 +2318,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 358 */
+/* 398 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1554,19 +2476,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 359 */
+/* 399 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"page page--calendar\"> <div class=container> <div class=row> <div class=col-md-12> <div class=pageCalendar__nav> <ul class=\"nav nav-pills\"> <li role=presentation ng-class=\"{ active: $ctrl.filterIs('events') }\"> <a ui-sref=\"calendar($ctrl.getSrefOptions('events'))\">СОБЫТИЯ</a> </li> <li role=presentation ng-class=\"{ active: $ctrl.filterIs('probegs') }\"> <a ui-sref=\"calendar($ctrl.getSrefOptions('probegs'))\">ПРОБЕГИ</a> </li> <li role=presentation ng-class=\"{ active: $ctrl.filterIs('marathons') }\"> <a ui-sref=\"calendar($ctrl.getSrefOptions('marathons'))\">МАРАФОНЫ</a> </li> <li role=presentation ng-class=\"{ active: $ctrl.filterIs('trainings') }\"> <a ui-sref=\"calendar($ctrl.getSrefOptions('trainings'))\">ТРЕНИРОВКИ</a> </li> </ul> </div> </div> </div> <div class=row> <div class=col-md-10> <div class=pageCalendar__datepickers> <div class=\"well well-lg well--datepickers\"> <calendar-datepicker date=$ctrl.dateBegin options=$ctrl.datepickerOptions on-change=$ctrl.onChangeDateBegin(date)></calendar-datepicker> <calendar-datepicker date=$ctrl.dateEnd options=$ctrl.datepickerOptions on-change=$ctrl.onChangeDateEnd(date)></calendar-datepicker> </div> </div> </div> </div> <div class=row> <div class=\"col-md-10 col-sm-12 col-xs-12\"> <div class=pageCalendar__eventList> <progress-bar text=\"Загрузка списка событий...\" ng-if=$ctrl.loadProgress></progress-bar> <events-list events=$ctrl.getEvents() empty-list-message=\"Ничего не найдено\" ng-if=!$ctrl.loadProgress></events-list> </div> </div> </div> </div> </div>";
 
 /***/ },
-/* 360 */
+/* 400 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 361 */
+/* 401 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1585,23 +2507,23 @@ webpackJsonp([0],[
 
 	var _angularUiRouter2 = _interopRequireDefault(_angularUiRouter);
 
-	var _eventFormPage = __webpack_require__(362);
+	var _eventFormPage = __webpack_require__(402);
 
 	var _eventFormPage2 = _interopRequireDefault(_eventFormPage);
 
-	var _eventCardPage = __webpack_require__(370);
+	var _eventCardPage = __webpack_require__(410);
 
 	var _eventCardPage2 = _interopRequireDefault(_eventCardPage);
 
-	var _eventsListPage = __webpack_require__(392);
+	var _eventsListPage = __webpack_require__(432);
 
 	var _eventsListPage2 = _interopRequireDefault(_eventsListPage);
 
-	var _eventStartlistPage = __webpack_require__(402);
+	var _eventStartlistPage = __webpack_require__(442);
 
 	var _eventStartlistPage2 = _interopRequireDefault(_eventStartlistPage);
 
-	var _eventRegisterPage = __webpack_require__(407);
+	var _eventRegisterPage = __webpack_require__(447);
 
 	var _eventRegisterPage2 = _interopRequireDefault(_eventRegisterPage);
 
@@ -1666,7 +2588,7 @@ webpackJsonp([0],[
 	}
 
 /***/ },
-/* 362 */
+/* 402 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1679,13 +2601,13 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _angularMessages = __webpack_require__(363);
+	var _angularMessages = __webpack_require__(403);
 
 	var _angularMessages2 = _interopRequireDefault(_angularMessages);
 
-	__webpack_require__(365);
+	__webpack_require__(405);
 
-	var _component = __webpack_require__(366);
+	var _component = __webpack_require__(406);
 
 	var _component2 = _interopRequireDefault(_component);
 
@@ -1694,10 +2616,10 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages.events.event.form', [_angularMessages2.default, 'ckeditor']).component('eventFormPage', _component2.default);
 
 /***/ },
-/* 363 */,
-/* 364 */,
-/* 365 */,
-/* 366 */
+/* 403 */,
+/* 404 */,
+/* 405 */,
+/* 406 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1706,15 +2628,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(367);
+	var _controller = __webpack_require__(407);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(368);
+	var _template = __webpack_require__(408);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(369);
+	__webpack_require__(409);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1727,7 +2649,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 367 */
+/* 407 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1754,7 +2676,7 @@ webpackJsonp([0],[
 
 	        this._initEvent();
 
-	        this.dateFormat = 'EEEE, dd MMMM yyyy';
+	        this.dateFormat = 'EEEE, d MMMM yyyy';
 	        this.datePopupIsOpen = false;
 
 	        this._initCkeditorOptions();
@@ -1971,19 +2893,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 368 */
+/* 408 */
 /***/ function(module, exports) {
 
 	module.exports = "<progress-bar text=\"Загрузка события...\" ng-if=$ctrl.loadProgress></progress-bar> <div class=\"page page--eventForm\" ng-hide=$ctrl.loadProgress> <div class=container> <div class=row> <div class=col-md-12> <div class=\"well well--form\"> <form name=event class=form-horizontal ng-submit=$ctrl.submit()> <fieldset> <legend>{{ $ctrl.id ? 'Редактирование события' : 'Добавление нового события' }}</legend> <div class=form-group ng-class=\"{ 'has-error' : $ctrl.isHasError('title') }\"> <label for=title class=\"col-md-2 control-label\">Заголовок</label> <div class=col-md-8> <input type=text class=form-control id=title name=title required ng-model=$ctrl.event.title ng-disabled=$ctrl.disabledForm autocomplete=off> <div ng-messages=event.title.$error ng-if=\"$ctrl.isHasError('title')\" role=alert> <div ng-message=required class=form__message--error>Введите заголовок</div> </div> </div> </div> <div class=form-group ng-class=\"{ 'has-error' : $ctrl.isHasError('date') }\"> <label for=date class=\"col-md-2 control-label\">Дата события</label> <div class=col-md-4> <div class=input-group> <input type=text id=date name=date required class=form-control autocomplete=off uib-datepicker-popup=\"{{ $ctrl.dateFormat }}\" ng-model=$ctrl.event.date is-open=$ctrl.datePopupIsOpen show-button-bar=false on-open-focus=true> <span class=input-group-btn> <button class=\"btn btn-primary\" type=button ng-click=$ctrl.openDatePopup()> <i class=\"fa fa-calendar\" aria-hidden=true></i> </button> </span> </div> <div ng-messages=event.date.$error ng-if=\"$ctrl.isHasError('date')\" role=alert> <div ng-message=required class=form__message--error>Введите дату события</div> </div> </div> </div> <div class=form-group ng-class=\"{ 'has-error' : $ctrl.isHasError('time') }\"> <label for=time class=\"col-md-2 control-label\">Время начала</label> <div class=col-md-4> <input type=text class=form-control id=time name=time required placeholder=11:00 ng-model=$ctrl.event.time ng-disabled=$ctrl.disabledForm autocomplete=off> <div ng-messages=event.time.$error ng-if=\"$ctrl.isHasError('time')\" role=alert> <div ng-message=required class=form__message--error>Введите время начала события</div> </div> </div> </div> <div class=form-group> <label for=place class=\"col-md-2 control-label\">Место проведения</label> <div class=col-md-4> <input type=text class=form-control id=place name=place placeholder=\"г. Пенза, Олимпийская аллея\" ng-model=$ctrl.event.place ng-disabled=$ctrl.disabledForm autocomplete=off> </div> </div> <div class=form-group> <label for=distances class=\"col-md-2 control-label\">Дистанции</label> <div class=col-md-4> <input type=text class=form-control id=distances name=distances placeholder=\"1 км, 3 км, 5 км, 10 км, полумарафон, марафон\" ng-model=$ctrl.event.distances ng-disabled=$ctrl.disabledForm autocomplete=off> </div> </div> <div class=form-group> <label for=tag class=\"col-md-2 control-label\">Теги</label> <div class=col-md-8> <label class=radio-inline> <input type=radio name=tag id=inlineRadio1 value=event ng-model=$ctrl.event.tag> <span class=\"label label-default label--md\">Событие</span> </label> <label class=radio-inline> <input type=radio name=tag id=inlineRadio1 value=probeg ng-model=$ctrl.event.tag> <span class=\"label label-warning label--md\">Пробег</span> </label> <label class=radio-inline> <input type=radio name=tag id=inlineRadio2 value=marathon ng-model=$ctrl.event.tag> <span class=\"label label-danger label--md\">Марафон</span> </label> <label class=radio-inline> <input type=radio name=tag id=inlineRadio3 value=training ng-model=$ctrl.event.tag> <span class=\"label label-success label--md\">Тренировка</span> </label> </div> </div> <div class=form-group></div> <div class=form-group ng-class=\"{ 'has-error' : $ctrl.isHasError('master') }\"> <label for=master class=\"col-md-2 control-label\">Организаторы</label> <div class=col-md-8> <input type=text class=form-control id=master name=master placeholder=\"Сообщество &ldquo;Бег в Пензе&rdquo;\" required ng-model=$ctrl.event.master ng-disabled=$ctrl.disabledForm> <div ng-messages=event.master.$error ng-if=\"$ctrl.isHasError('master')\" role=alert> <div ng-message=required class=form__message--error>Укажите организаторов</div> </div> </div> </div> <div class=form-group> <label for=masterUrl class=\"col-md-2 control-label\">Сайт организаторов</label> <div class=col-md-4> <div class=input-group> <span class=input-group-addon>www</span> <input type=text class=form-control id=masterUrl name=masterUrl ng-model=$ctrl.event.masterUrl ng-disabled=$ctrl.disabledForm> </div> </div> </div> <div class=form-group> <label for=masterPerson class=\"col-md-2 control-label\">Контактное лицо</label> <div class=col-md-4> <input type=text class=form-control id=masterPerson name=masterPerson ng-model=$ctrl.event.masterPerson ng-disabled=$ctrl.disabledForm> </div> </div> <div class=form-group> <label for=masterPhone class=\"col-md-2 control-label\">Телефон</label> <div class=col-md-4> <input type=text class=form-control id=masterPhone name=masterPhone ng-model=$ctrl.event.masterPhone ng-disabled=$ctrl.disabledForm> </div> </div> <div class=form-group> <label for=masterEmail class=\"col-md-2 control-label\">Адрес эл. почты</label> <div class=col-md-4> <input type=text class=form-control id=masterEmail name=masterEmail placeholder=info@penzarun.ru ng-model=$ctrl.event.masterEmail ng-disabled=$ctrl.disabledForm> </div> </div> <div class=form-group></div> <div class=form-group> <label for=abstract class=\"col-md-2 control-label\">Краткое описание</label> <div class=col-md-8> <textarea class=form-control id=abstract name=abstract rows=2 ng-model=$ctrl.event.abstract ng-disabled=$ctrl.disabledForm autocomplete=off></textarea> </div> </div> <div class=form-group> <label for=description class=\"col-md-2 control-label\">Подробное описание</label> <div class=col-md-8> <div ckeditor=$ctrl.ckeditorOptions id=eventDescription ng-model=$ctrl.event.description></div> </div> </div> <div class=form-group> <label for=description class=\"col-md-2 control-label\">Положение</label> <div class=col-md-8> <div class=input-group> <input type=text class=form-control readonly=readonly ng-value=$ctrl.provisionFile.name> <span class=input-group-btn> <upload-file-button upload-file=$ctrl.provisionFile></upload-file-button> </span> <span class=input-group-btn> <button class=\"btn btn-danger\" type=button ng-click=$ctrl.removeProvision() ng-disabled=!$ctrl.provisionFile.name> <i class=\"fa fa-times\" aria-hidden=true></i> </button> </span> </div> </div> </div> <div class=form-group></div> <div class=form-group> <div class=\"col-md-8 col-md-offset-2\"> <button type=submit class=\"btn btn-primary\" ng-disabled=\"event.$invalid || $ctrl.disabledForm\"> <i class=\"fa fa-lg fa-spinner fa-spin\" ng-if=$ctrl.saveProgress></i> Сохранить </button> <button type=button class=\"btn btn-danger\" ng-if=$ctrl.id ng-click=$ctrl.onClickRemoveButton() ng-disabled=$ctrl.disabledForm> <i class=\"fa fa-lg fa-spinner fa-spin\" ng-if=$ctrl.removeProgress></i> Удалить </button> <button type=button class=\"btn btn-default\" ng-click=$ctrl.onClickCancelButton() ng-disabled=$ctrl.disabledForm>Отмена</button> </div> </div> </fieldset> </form> </div> </div> </div> </div> </div>";
 
 /***/ },
-/* 369 */
+/* 409 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 370 */
+/* 410 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1996,19 +2918,19 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _component = __webpack_require__(371);
+	var _component = __webpack_require__(411);
 
 	var _component2 = _interopRequireDefault(_component);
 
-	var _eventCardHeader = __webpack_require__(375);
+	var _eventCardHeader = __webpack_require__(415);
 
 	var _eventCardHeader2 = _interopRequireDefault(_eventCardHeader);
 
-	var _eventCardBody = __webpack_require__(380);
+	var _eventCardBody = __webpack_require__(420);
 
 	var _eventCardBody2 = _interopRequireDefault(_eventCardBody);
 
-	var _eventCardFooter = __webpack_require__(387);
+	var _eventCardFooter = __webpack_require__(427);
 
 	var _eventCardFooter2 = _interopRequireDefault(_eventCardFooter);
 
@@ -2017,7 +2939,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages.events.event.card', [_eventCardHeader2.default.name, _eventCardBody2.default.name, _eventCardFooter2.default.name]).component('eventCardPage', _component2.default);
 
 /***/ },
-/* 371 */
+/* 411 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2026,15 +2948,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(372);
+	var _controller = __webpack_require__(412);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(373);
+	var _template = __webpack_require__(413);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(374);
+	__webpack_require__(414);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2047,7 +2969,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 372 */
+/* 412 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2129,19 +3051,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 373 */
+/* 413 */
 /***/ function(module, exports) {
 
 	module.exports = "<progress-bar text=\"Загрузка события...\" ng-if=$ctrl.loadProgress></progress-bar> <div class=\"page page--eventCard eventCard--{{ $ctrl.event.tag }}\" ng-if=!$ctrl.loadProgress> <event-card-header event=$ctrl.event></event-card-header> <event-card-body event=$ctrl.event provision-file-url=$ctrl.provisionFileUrl provision-file-size=$ctrl.provisionFileSize startlist-length=$ctrl.startlistLength></event-card-body> <event-card-footer event-id=$ctrl.event.id></event-card-footer> </div>";
 
 /***/ },
-/* 374 */
+/* 414 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 375 */
+/* 415 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2154,7 +3076,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _component = __webpack_require__(376);
+	var _component = __webpack_require__(416);
 
 	var _component2 = _interopRequireDefault(_component);
 
@@ -2163,7 +3085,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages.events.event.card.header', []).component('eventCardHeader', _component2.default);
 
 /***/ },
-/* 376 */
+/* 416 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2172,15 +3094,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(377);
+	var _controller = __webpack_require__(417);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(378);
+	var _template = __webpack_require__(418);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(379);
+	__webpack_require__(419);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2193,7 +3115,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 377 */
+/* 417 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2214,19 +3136,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 378 */
+/* 418 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=eventCard__header> <div class=container> <div class=row> <div class=\"col-lg-9 col-md-9 col-sm-12 col-xs-12\"> <div class=eventCard__jumbotron> <div class=eventCard__title> {{ $ctrl.event.title }} </div> <div class=eventCard__abstract>{{ $ctrl.event.abstract }}</div> </div> </div> </div> </div> <div class=eventHeader__info> <div class=info__title> <div class=container> <div class=row> <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"> Дата и время события </div> <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"> Место проведения </div> <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"> Организаторы </div> </div> </div> </div> <div class=info__division></div> <div class=info__content> <div class=container> <div class=row> <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4 col--date\"> <h4 class=content__item> {{ $ctrl.event.date | date: 'EEEE, dd MMMM yyyy' }}, {{ $ctrl.event.time }} </h4> </div> <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4 col--place\"> <h4 class=content__item> {{ $ctrl.event.place }} </h4> </div> <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4 col--master\"> <h4 class=content__item> {{ $ctrl.event.master }} </h4> </div> </div> </div> </div> </div> </div>";
+	module.exports = "<div class=eventCard__header> <div class=container> <div class=row> <div class=\"col-lg-9 col-md-9 col-sm-12 col-xs-12\"> <div class=eventCard__jumbotron> <div class=eventCard__title> {{ $ctrl.event.title }} </div> <div class=eventCard__abstract>{{ $ctrl.event.abstract }}</div> </div> </div> </div> </div> <div class=eventHeader__info> <div class=info__title> <div class=container> <div class=row> <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"> Дата и время события </div> <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"> Место проведения </div> <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"> Организаторы </div> </div> </div> </div> <div class=info__division></div> <div class=info__content> <div class=container> <div class=row> <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12 col--date\"> <h4 class=content__item> {{ $ctrl.event.date | date: 'EEEE, d MMMM yyyy' }}, {{ $ctrl.event.time }} </h4> </div> <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12 col--place\"> <h4 class=content__item> {{ $ctrl.event.place }} </h4> </div> <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12 col--master\"> <h4 class=content__item> {{ $ctrl.event.master }} </h4> </div> </div> </div> </div> </div> </div>";
 
 /***/ },
-/* 379 */
+/* 419 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 380 */
+/* 420 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2239,11 +3161,11 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _angularSanitize = __webpack_require__(381);
+	var _angularSanitize = __webpack_require__(421);
 
 	var _angularSanitize2 = _interopRequireDefault(_angularSanitize);
 
-	var _component = __webpack_require__(383);
+	var _component = __webpack_require__(423);
 
 	var _component2 = _interopRequireDefault(_component);
 
@@ -2252,9 +3174,9 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages.events.event.card.body', [_angularSanitize2.default]).component('eventCardBody', _component2.default);
 
 /***/ },
-/* 381 */,
-/* 382 */,
-/* 383 */
+/* 421 */,
+/* 422 */,
+/* 423 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2263,15 +3185,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(384);
+	var _controller = __webpack_require__(424);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(385);
+	var _template = __webpack_require__(425);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(386);
+	__webpack_require__(426);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2287,7 +3209,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 384 */
+/* 424 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2340,19 +3262,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 385 */
+/* 425 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=eventCard__body> <div class=container> <div class=row> <div class=\"col-lg-9 col-md-9 col-sm-12 col-xs-12 leftBlock\"> <div class=eventCard__description ng-if=$ctrl.event.description ng-bind-html=$ctrl.getDescriptionHtml()></div> </div> <div class=\"col-lg-3 col-md-3 col-sm-12 col-xs-12 rightBlock\"> <div class=rightBlock__buttons> <a ng-href=\"{{ $ctrl.provisionFileUrl }}\" class=\"btn btn-default btn-lg btn-block\" ng-if=$ctrl.provisionFileUrl> <i class=\"fa fa-download\" aria-hidden=true></i> Положение ({{ $ctrl.getFileSize() }}) </a> <a class=\"btn btn-info btn-lg btn-block\" ng-if=$ctrl.startlistLength ui-sref=\"events.startlist({ id: $ctrl.event.id })\"> Список участников ({{ $ctrl.startlistLength }}) </a> </div> <div class=rightBlock__address> <h4 class=address__title>Контакты</h4> <address> <div> <strong>{{ $ctrl.event.master }}</strong> </div> <div ng-if=$ctrl.event.masterUrl> <abbr title=\"Адрес в сети Интернет\">www:</abbr> <a target=_blank rel=nofollow ng-href=\"http://www.{{ $ctrl.event.masterUrl }}\">{{ $ctrl.event.masterUrl }}</a> </div> </address> <address ng-if=$ctrl.event.masterPerson> <div> <strong>{{ $ctrl.event.masterPerson }}</strong> </div> <div ng-if=$ctrl.event.masterPhone> <abbr title=Телефон>Тел:</abbr> {{ $ctrl.event.masterPhone }} </div> <div ng-if=$ctrl.event.masterEmail> <abbr title=\"Электронная почта\">Эл. почта:</abbr> <a href=mailto:#>{{ $ctrl.event.masterEmail }}</a> </div> </address> </div> </div> </div> </div> </div>";
+	module.exports = "<div class=eventCard__body> <div class=container> <div class=row> <div class=\"col-lg-9 col-md-9 col-sm-12 col-xs-12 leftBlock\"> <div class=eventCard__description ng-if=$ctrl.event.description ng-bind-html=$ctrl.getDescriptionHtml()></div> <div class=\"verticalLine hidden-sm hidden-xs\"></div> </div> <div class=\"col-lg-3 col-md-3 col-sm-12 col-xs-12 rightBlock\"> <div class=\"rightBlock__margin--top hidden-lg hidden-md\"></div> <div class=rightBlock__buttons> <a ng-href=\"{{ $ctrl.provisionFileUrl }}\" class=\"btn btn-default btn-lg btn-block btn--overflow\" ng-if=$ctrl.provisionFileUrl> <i class=\"fa fa-download\" aria-hidden=true></i> Положение ({{ $ctrl.getFileSize() }}) </a> <a class=\"btn btn-info btn-lg btn-block btn--overflow\" ng-if=$ctrl.startlistLength ui-sref=\"events.startlist({ id: $ctrl.event.id })\"> Список участников ({{ $ctrl.startlistLength }}) </a> </div> <div class=rightBlock__address> <h4 class=address__title>Контакты</h4> <address> <div> <strong>{{ $ctrl.event.master }}</strong> </div> <div ng-if=$ctrl.event.masterUrl> <abbr title=\"Адрес в сети Интернет\">www:</abbr> <a target=_blank rel=nofollow ng-href=\"http://www.{{ $ctrl.event.masterUrl }}\">{{ $ctrl.event.masterUrl }}</a> </div> </address> <address ng-if=$ctrl.event.masterPerson> <div> <strong>{{ $ctrl.event.masterPerson }}</strong> </div> <div ng-if=$ctrl.event.masterPhone> <abbr title=Телефон>Тел:</abbr> {{ $ctrl.event.masterPhone }} </div> <div ng-if=$ctrl.event.masterEmail> <abbr title=\"Электронная почта\">Эл. почта:</abbr> <a href=mailto:#>{{ $ctrl.event.masterEmail }}</a> </div> </address> </div> </div> </div> </div> </div>";
 
 /***/ },
-/* 386 */
+/* 426 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 387 */
+/* 427 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2365,7 +3287,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _component = __webpack_require__(388);
+	var _component = __webpack_require__(428);
 
 	var _component2 = _interopRequireDefault(_component);
 
@@ -2374,7 +3296,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages.events.event.card.footer', []).component('eventCardFooter', _component2.default);
 
 /***/ },
-/* 388 */
+/* 428 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2383,15 +3305,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(389);
+	var _controller = __webpack_require__(429);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(390);
+	var _template = __webpack_require__(430);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(391);
+	__webpack_require__(431);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2404,7 +3326,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 389 */
+/* 429 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2441,19 +3363,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 390 */
+/* 430 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=eventCard__footer> <div class=container> <div class=row> <div class=\"col-lg-9 col-md-9 col-sm-12 col-xs-12\"> <div class=btn-toolbar role=toolbar> <div class=btn-group role=group> <a class=\"btn btn-lg btn-primary\" ui-sref=\"events.register({ id: $ctrl.eventId })\" ng-if=$ctrl.isAuth()>Регистрация</a> </div> </div> </div> </div> </div> </div>";
 
 /***/ },
-/* 391 */
+/* 431 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 392 */
+/* 432 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2466,11 +3388,11 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _component = __webpack_require__(393);
+	var _component = __webpack_require__(433);
 
 	var _component2 = _interopRequireDefault(_component);
 
-	var _filter = __webpack_require__(397);
+	var _filter = __webpack_require__(437);
 
 	var _filter2 = _interopRequireDefault(_filter);
 
@@ -2479,7 +3401,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages.events.list', [_filter2.default.name]).component('eventsListPage', _component2.default);
 
 /***/ },
-/* 393 */
+/* 433 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2488,15 +3410,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(394);
+	var _controller = __webpack_require__(434);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(395);
+	var _template = __webpack_require__(435);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(396);
+	__webpack_require__(436);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2506,7 +3428,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 394 */
+/* 434 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2578,19 +3500,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 395 */
+/* 435 */
 /***/ function(module, exports) {
 
 	module.exports = "<progress-bar text=\"Загрузка списка событий...\" ng-if=$ctrl.progress></progress-bar> <div class=\"page page--eventsList\"> <div class=container ng-if=!$ctrl.progress> <div class=row> <div class=\"col-md-2 col-sm-3 col-xs-12\"> <events-list-filter handlers=$ctrl.filterHandlers></events-list-filter> </div> <div class=\"col-md-10 col-sm-9 col-xs-12\"> <events-list events=$ctrl.filtredEvents></events-list> </div> </div> </div> </div>";
 
 /***/ },
-/* 396 */
+/* 436 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 397 */
+/* 437 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2603,7 +3525,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _component = __webpack_require__(398);
+	var _component = __webpack_require__(438);
 
 	var _component2 = _interopRequireDefault(_component);
 
@@ -2612,7 +3534,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages.events.list.filter', []).component('eventsListFilter', _component2.default);
 
 /***/ },
-/* 398 */
+/* 438 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2621,15 +3543,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(399);
+	var _controller = __webpack_require__(439);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(400);
+	var _template = __webpack_require__(440);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(401);
+	__webpack_require__(441);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2642,7 +3564,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 399 */
+/* 439 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2718,19 +3640,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 400 */
+/* 440 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=eventsFilter> <div class=\"panel panel-primary\"> <div class=panel-heading> <h3 class=panel-title>Фильтр</h3> </div> <div class=panel-body> <div class=checkbox> <label class=label--filter> <input type=checkbox value=probeg ng-click=$ctrl.onClickTag() ng-model=$ctrl.filter.probeg> Пробеги </label> </div> <div class=checkbox> <label class=label--filter> <input type=checkbox value=marathon ng-click=$ctrl.onClickTag() ng-model=$ctrl.filter.marathon> Марафоны </label> </div> <div class=checkbox> <label class=label--filter> <input type=checkbox value=training ng-click=$ctrl.onClickTag() ng-model=$ctrl.filter.training> Тренировки </label> </div> </div> <div class=panel-footer ng-if=$ctrl.isActive()> <button type=button class=\"btn btn-block btn-default\" ng-click=$ctrl.resetFilter()>Очистить</button> </div> </div> </div>";
+	module.exports = "<div class=eventsFilter> <div class=\"panel panel-primary\"> <div class=panel-heading> <h3 class=panel-title>Фильтр</h3> </div> <div class=panel-body> <div class=eventsFilter__block> <div class=checkbox> <label class=label--filter> <input type=checkbox value=probeg ng-click=$ctrl.onClickTag() ng-model=$ctrl.filter.probeg> Пробеги </label> </div> <div class=checkbox> <label class=label--filter> <input type=checkbox value=marathon ng-click=$ctrl.onClickTag() ng-model=$ctrl.filter.marathon> Марафоны </label> </div> <div class=checkbox> <label class=label--filter> <input type=checkbox value=training ng-click=$ctrl.onClickTag() ng-model=$ctrl.filter.training> Тренировки </label> </div> </div> </div> <div class=panel-footer ng-if=$ctrl.isActive()> <button type=button class=\"btn btn-block btn-default\" ng-click=$ctrl.resetFilter()>Очистить</button> </div> </div> </div>";
 
 /***/ },
-/* 401 */
+/* 441 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 402 */
+/* 442 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2743,7 +3665,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _component = __webpack_require__(403);
+	var _component = __webpack_require__(443);
 
 	var _component2 = _interopRequireDefault(_component);
 
@@ -2752,7 +3674,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages.events.startlist', []).component('eventStartlistPage', _component2.default);
 
 /***/ },
-/* 403 */
+/* 443 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2761,15 +3683,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(404);
+	var _controller = __webpack_require__(444);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(405);
+	var _template = __webpack_require__(445);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(406);
+	__webpack_require__(446);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2779,7 +3701,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 404 */
+/* 444 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2834,19 +3756,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 405 */
+/* 445 */
 /***/ function(module, exports) {
 
 	module.exports = "<progress-bar text=\"Загрузка списка участников...\" ng-if=$ctrl.progress></progress-bar> <div class=\"page page--eventStartlist\"> <div class=container ng-if=!$ctrl.progress> <div class=row> <div class=col-md-12> Здесь будет список участников </div> </div> </div> </div>";
 
 /***/ },
-/* 406 */
+/* 446 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 407 */
+/* 447 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2859,11 +3781,11 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _angularMessages = __webpack_require__(363);
+	var _angularMessages = __webpack_require__(403);
 
 	var _angularMessages2 = _interopRequireDefault(_angularMessages);
 
-	var _component = __webpack_require__(408);
+	var _component = __webpack_require__(448);
 
 	var _component2 = _interopRequireDefault(_component);
 
@@ -2872,7 +3794,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages.events.register', [_angularMessages2.default]).component('eventRegisterPage', _component2.default);
 
 /***/ },
-/* 408 */
+/* 448 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2881,15 +3803,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(409);
+	var _controller = __webpack_require__(449);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(410);
+	var _template = __webpack_require__(450);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(411);
+	__webpack_require__(451);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2902,7 +3824,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 409 */
+/* 449 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2987,19 +3909,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 410 */
+/* 450 */
 /***/ function(module, exports) {
 
-	module.exports = "<progress-bar text=\"Загрузка информации о событии...\" ng-if=$ctrl.progress></progress-bar> <div class=\"page page--eventRegister\"> <div class=container ng-hide=$ctrl.progress> <div class=row> <div class=col-md-12> <div class=\"well well--form\"> <form name=member class=form-horizontal ng-submit=$ctrl.submit()> <fieldset> <legend>Регистрация</legend> <div class=form-group> <label for=place class=\"col-md-2 control-label\">Событие</label> <div class=col-md-8> <p class=\"form-control-static form-control-static--event\"> {{ $ctrl.event.title }} </p> </div> </div> <div class=form-group> <label for=place class=\"col-md-2 control-label\">Дата и время</label> <div class=col-md-4> <p class=\"form-control-static form-control-static--event\"> {{ $ctrl.event.date | date: 'EEEE, dd MMMM yyyy' }}, {{ $ctrl.event.time }} </p> </div> </div> <div class=form-group> <label for=place class=\"col-md-2 control-label\">Место проведения</label> <div class=col-md-4> <p class=\"form-control-static form-control-static--event\"> {{ $ctrl.event.place }} </p> </div> </div> <div class=form-group> <label for=place class=\"col-md-2 control-label\">Дистанции</label> <div class=col-md-4> <p class=\"form-control-static form-control-static--event\"> {{ $ctrl.event.distances }} </p> </div> </div> <div class=form-group ng-class=\"{ 'has-error' : $ctrl.isHasError('fio') }\"> <label for=fio class=\"col-md-2 control-label\">ФИО</label> <div class=col-md-8> <input type=text class=form-control name=fio required ng-model=$ctrl.member.fio ng-disabled=$ctrl.disabledForm autocomplete=off> <div ng-messages=member.fio.$error ng-if=\"$ctrl.isHasError('fio')\" role=alert> <div ng-message=required class=form__message--error>Введите ФИО</div> </div> </div> </div> <div class=form-group ng-class=\"{ 'has-error' : $ctrl.isHasError('age') }\"> <label for=age class=\"col-md-2 control-label\">Год рождения</label> <div class=col-md-4> <input type=text maxlength=4 class=form-control name=age required ng-model=$ctrl.member.age ng-disabled=$ctrl.disabledForm autocomplete=off> <div ng-messages=member.age.$error ng-if=\"$ctrl.isHasError('age')\" role=alert> <div ng-message=required class=form__message--error>Введите год рождения</div> </div> </div> </div> <div class=form-group> <label for=gender class=\"col-md-2 control-label\">Пол</label> <div class=col-md-4> <label class=radio-inline> <input type=radio name=gender value=муж checked=checked ng-model=$ctrl.member.gender> муж </label> <label class=radio-inline> <input type=radio name=gender value=жен ng-model=$ctrl.member.gender> жен </label> </div> </div> <div class=form-group ng-class=\"{ 'has-error' : $ctrl.isHasError('distance') }\"> <label for=distance class=\"col-md-2 control-label\">Дистанция</label> <div class=col-md-4> <input type=text maxlength=32 class=form-control name=distance required ng-model=$ctrl.member.distance ng-disabled=$ctrl.disabledForm autocomplete=off> <div ng-messages=member.distance.$error ng-if=\"$ctrl.isHasError('distance')\" role=alert> <div ng-message=required class=form__message--error>Введите дистанцию</div> </div> </div> </div> <div class=form-group> <label for=startNumber class=\"col-md-2 control-label\">Стартовый номер</label> <div class=col-md-4> <input type=text maxlength=8 class=form-control name=startNumber placeholder=\"без номера\"> </div> </div> <div class=form-group> <label for=city class=\"col-md-2 control-label\">Город</label> <div class=col-md-4> <input type=text maxlength=32 class=form-control name=city placeholder=Пенза> </div> </div> <div class=form-group> <label for=club class=\"col-md-2 control-label\">Клуб</label> <div class=col-md-4> <input type=text maxlength=64 class=form-control name=club placeholder=\"Не состою в клубе\"> </div> </div> <div class=form-group> <label for=сountry class=\"col-md-2 control-label\">Страна/Регион</label> <div class=col-md-4> <input type=text maxlength=64 class=form-control name=сountry placeholder=Россия> </div> </div> <div class=form-group></div> <div class=form-group> <div class=\"col-md-8 col-md-offset-2\"> <button type=submit class=\"btn btn-primary\" ng-disabled=\"member.$invalid || $ctrl.disabledForm\"> <i class=\"fa fa-lg fa-spinner fa-spin\" ng-if=$ctrl.registerProgress></i> Регистрация </button> <button type=button class=\"btn btn-default\" ng-click=$ctrl.onClickCancelButton() ng-disabled=$ctrl.disabledForm>Отмена</button> </div> </div> </fieldset> </form> </div> </div> </div> </div> </div>";
+	module.exports = "<progress-bar text=\"Загрузка информации о событии...\" ng-if=$ctrl.progress></progress-bar> <div class=\"page page--eventRegister\"> <div class=container ng-hide=$ctrl.progress> <div class=row> <div class=col-md-12> <div class=\"well well--form\"> <form name=member class=form-horizontal ng-submit=$ctrl.submit()> <fieldset> <legend>Регистрация</legend> <div class=form-group> <label for=place class=\"col-md-2 control-label\">Событие</label> <div class=col-md-8> <p class=\"form-control-static form-control-static--event\"> {{ $ctrl.event.title }} </p> </div> </div> <div class=form-group> <label for=place class=\"col-md-2 control-label\">Дата и время</label> <div class=col-md-4> <p class=\"form-control-static form-control-static--event\"> {{ $ctrl.event.date | date: 'EEEE, d MMMM yyyy' }}, {{ $ctrl.event.time }} </p> </div> </div> <div class=form-group> <label for=place class=\"col-md-2 control-label\">Место проведения</label> <div class=col-md-4> <p class=\"form-control-static form-control-static--event\"> {{ $ctrl.event.place }} </p> </div> </div> <div class=form-group> <label for=place class=\"col-md-2 control-label\">Дистанции</label> <div class=col-md-4> <p class=\"form-control-static form-control-static--event\"> {{ $ctrl.event.distances }} </p> </div> </div> <div class=form-group ng-class=\"{ 'has-error' : $ctrl.isHasError('fio') }\"> <label for=fio class=\"col-md-2 control-label\">ФИО</label> <div class=col-md-8> <input type=text class=form-control name=fio required ng-model=$ctrl.member.fio ng-disabled=$ctrl.disabledForm autocomplete=off> <div ng-messages=member.fio.$error ng-if=\"$ctrl.isHasError('fio')\" role=alert> <div ng-message=required class=form__message--error>Введите ФИО</div> </div> </div> </div> <div class=form-group ng-class=\"{ 'has-error' : $ctrl.isHasError('age') }\"> <label for=age class=\"col-md-2 control-label\">Год рождения</label> <div class=col-md-4> <input type=text maxlength=4 class=form-control name=age required ng-model=$ctrl.member.age ng-disabled=$ctrl.disabledForm autocomplete=off> <div ng-messages=member.age.$error ng-if=\"$ctrl.isHasError('age')\" role=alert> <div ng-message=required class=form__message--error>Введите год рождения</div> </div> </div> </div> <div class=form-group> <label for=gender class=\"col-md-2 control-label\">Пол</label> <div class=col-md-4> <label class=radio-inline> <input type=radio name=gender value=муж checked=checked ng-model=$ctrl.member.gender> муж </label> <label class=radio-inline> <input type=radio name=gender value=жен ng-model=$ctrl.member.gender> жен </label> </div> </div> <div class=form-group ng-class=\"{ 'has-error' : $ctrl.isHasError('distance') }\"> <label for=distance class=\"col-md-2 control-label\">Дистанция</label> <div class=col-md-4> <input type=text maxlength=32 class=form-control name=distance required ng-model=$ctrl.member.distance ng-disabled=$ctrl.disabledForm autocomplete=off> <div ng-messages=member.distance.$error ng-if=\"$ctrl.isHasError('distance')\" role=alert> <div ng-message=required class=form__message--error>Введите дистанцию</div> </div> </div> </div> <div class=form-group> <label for=startNumber class=\"col-md-2 control-label\">Стартовый номер</label> <div class=col-md-4> <input type=text maxlength=8 class=form-control name=startNumber placeholder=\"без номера\"> </div> </div> <div class=form-group> <label for=city class=\"col-md-2 control-label\">Город</label> <div class=col-md-4> <input type=text maxlength=32 class=form-control name=city placeholder=Пенза> </div> </div> <div class=form-group> <label for=club class=\"col-md-2 control-label\">Клуб</label> <div class=col-md-4> <input type=text maxlength=64 class=form-control name=club placeholder=\"Не состою в клубе\"> </div> </div> <div class=form-group> <label for=сountry class=\"col-md-2 control-label\">Страна/Регион</label> <div class=col-md-4> <input type=text maxlength=64 class=form-control name=сountry placeholder=Россия> </div> </div> <div class=form-group></div> <div class=form-group> <div class=\"col-md-8 col-md-offset-2\"> <button type=submit class=\"btn btn-primary\" ng-disabled=\"member.$invalid || $ctrl.disabledForm\"> <i class=\"fa fa-lg fa-spinner fa-spin\" ng-if=$ctrl.registerProgress></i> Регистрация </button> <button type=button class=\"btn btn-default\" ng-click=$ctrl.onClickCancelButton() ng-disabled=$ctrl.disabledForm>Отмена</button> </div> </div> </fieldset> </form> </div> </div> </div> </div> </div>";
 
 /***/ },
-/* 411 */
+/* 451 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 412 */
+/* 452 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3012,15 +3934,15 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _controller = __webpack_require__(413);
+	var _controller = __webpack_require__(453);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(414);
+	var _template = __webpack_require__(454);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(415);
+	__webpack_require__(455);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3037,7 +3959,7 @@ webpackJsonp([0],[
 	});
 
 /***/ },
-/* 413 */
+/* 453 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -3056,19 +3978,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 414 */
+/* 454 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=page> <div class=container> <div class=row> <div class=col-md-12> About page </div> </div> <div> </div></div></div>";
 
 /***/ },
-/* 415 */
+/* 455 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 416 */
+/* 456 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3081,15 +4003,15 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _controller = __webpack_require__(417);
+	var _controller = __webpack_require__(457);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(418);
+	var _template = __webpack_require__(458);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(419);
+	__webpack_require__(459);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3106,7 +4028,7 @@ webpackJsonp([0],[
 	});
 
 /***/ },
-/* 417 */
+/* 457 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3183,19 +4105,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 418 */
+/* 458 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"page page--login\"> <div class=container> <div class=row> <div class=col-md-6> <div class=well> <form name=auth class=\"form-horizontal from--auth\" ng-submit=$ctrl.submit()> <fieldset> <legend>Авторизация</legend> <div class=form-group ng-class=\"{ 'has-error' : $ctrl.isHasError('email') }\"> <label for=inputEmail class=\"col-md-2 control-label\">Email</label> <div class=col-md-10> <input type=text class=form-control id=inputEmail name=email placeholder=Email required ng-model=$ctrl.auth.email ng-disabled=$ctrl.progress autocomplete=off> <div ng-messages=auth.email.$error ng-if=\"$ctrl.isHasError('email')\" role=alert> <div ng-message=required class=form__message--error>Введите email</div> </div> </div> </div> <div class=form-group ng-class=\"{ 'has-error' : $ctrl.isHasError('password') }\"> <label for=inputPassword class=\"col-md-2 control-label\">Пароль</label> <div class=col-md-10> <input type=password class=form-control id=inputPassword name=password required placeholder=Password ng-model=$ctrl.auth.password ng-disabled=$ctrl.progress autocomplete=off> <div ng-messages=auth.password.$error ng-if=\"$ctrl.isHasError('password')\" role=alert> <div ng-message=required class=form__message--error>Введите пароль</div> </div> </div> </div> <div class=form-group> <div class=\"col-md-10 col-md-offset-2\"> <button type=submit class=\"btn btn-success\" ng-disabled=\"auth.$invalid || $ctrl.progress\"> <i class=\"fa fa-lg fa-spinner fa-spin\" ng-if=$ctrl.progress></i> Войти </button> </div> </div> </fieldset> </form> </div> </div> </div> </div> </div>";
 
 /***/ },
-/* 419 */
+/* 459 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 420 */
+/* 460 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3212,7 +4134,7 @@ webpackJsonp([0],[
 
 	var _angularUiRouter2 = _interopRequireDefault(_angularUiRouter);
 
-	var _component = __webpack_require__(421);
+	var _component = __webpack_require__(461);
 
 	var _component2 = _interopRequireDefault(_component);
 
@@ -3228,7 +4150,7 @@ webpackJsonp([0],[
 	}]).component('userPage', _component2.default);
 
 /***/ },
-/* 421 */
+/* 461 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3237,15 +4159,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(422);
+	var _controller = __webpack_require__(462);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(423);
+	var _template = __webpack_require__(463);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(424);
+	__webpack_require__(464);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3255,7 +4177,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 422 */
+/* 462 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -3273,19 +4195,19 @@ webpackJsonp([0],[
 	exports.default = UserPageController;
 
 /***/ },
-/* 423 */
+/* 463 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"page page--user\"> <div class=container> <div class=row> <div class=col-md-12> <div class=btn-toolbar role=toolbar> <div class=btn-group role=group> <a ui-sref=events.new class=\"btn btn-primary\">Добавить событие</a> </div> <div class=btn-group role=group> <a ui-sref=news.new class=\"btn btn-primary\">Добавить новость</a> </div> </div> </div> </div> </div> </div>";
 
 /***/ },
-/* 424 */
+/* 464 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 425 */
+/* 465 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3303,7 +4225,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.directives', []);
 
 /***/ },
-/* 426 */
+/* 466 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3316,32 +4238,40 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _authService = __webpack_require__(427);
+	var _authService = __webpack_require__(467);
 
 	var _authService2 = _interopRequireDefault(_authService);
 
-	var _eventService = __webpack_require__(429);
+	var _eventService = __webpack_require__(469);
 
 	var _eventService2 = _interopRequireDefault(_eventService);
 
-	var _firebaseService = __webpack_require__(431);
+	var _firebaseService = __webpack_require__(471);
 
 	var _firebaseService2 = _interopRequireDefault(_firebaseService);
 
-	var _fileStorageService = __webpack_require__(433);
+	var _fileStorageService = __webpack_require__(473);
 
 	var _fileStorageService2 = _interopRequireDefault(_fileStorageService);
 
-	var _startlistService = __webpack_require__(435);
+	var _startlistService = __webpack_require__(475);
 
 	var _startlistService2 = _interopRequireDefault(_startlistService);
 
+	var _updateService = __webpack_require__(477);
+
+	var _updateService2 = _interopRequireDefault(_updateService);
+
+	var _newsService = __webpack_require__(479);
+
+	var _newsService2 = _interopRequireDefault(_newsService);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = _angular2.default.module('app.services', [_authService2.default.name, _eventService2.default.name, _firebaseService2.default.name, _fileStorageService2.default.name, _startlistService2.default.name]);
+	exports.default = _angular2.default.module('app.services', [_authService2.default.name, _eventService2.default.name, _firebaseService2.default.name, _fileStorageService2.default.name, _startlistService2.default.name, _updateService2.default.name, _newsService2.default.name]);
 
 /***/ },
-/* 427 */
+/* 467 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3354,7 +4284,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _controller = __webpack_require__(428);
+	var _controller = __webpack_require__(468);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
@@ -3363,7 +4293,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.services.auth', []).service('AuthService', _controller2.default);
 
 /***/ },
-/* 428 */
+/* 468 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3427,7 +4357,7 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 429 */
+/* 469 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3440,7 +4370,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _controller = __webpack_require__(430);
+	var _controller = __webpack_require__(470);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
@@ -3449,7 +4379,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.services.event', []).service('EventService', _controller2.default);
 
 /***/ },
-/* 430 */
+/* 470 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3483,57 +4413,75 @@ webpackJsonp([0],[
 	    _createClass(EventService, [{
 	        key: 'loadEvents',
 	        value: function loadEvents(options) {
-	            var ref = options ? this._getOptionsRef(options) : this.ref;
+	            var _this = this;
+
+	            var ref = options ? this._getRefByOptions(options) : this.ref;
 	            var list = this.$firebaseArray(ref);
-	            return list.$loaded();
+	            return list.$loaded().then(function (result) {
+	                return result.map(function (event) {
+	                    return _this._mapEvent(event);
+	                });
+	            });
 	        }
 	    }, {
-	        key: '_getOptionsRef',
-	        value: function _getOptionsRef(_ref) {
+	        key: '_getRefByOptions',
+	        value: function _getRefByOptions(_ref) {
 	            var dateBegin = _ref.dateBegin;
 	            var dateEnd = _ref.dateEnd;
+	            var limitToFirst = _ref.limitToFirst;
 
-	            var result = void 0;
-	            if (dateBegin && dateEnd) {
-	                result = this.ref.startAt(dateBegin).endAt(dateEnd);
-	            } else {
-	                result = this.ref;
+	            var result = this.ref;
+	            if (dateBegin) {
+	                result = result.startAt(dateBegin);
+	            }
+	            if (dateEnd) {
+	                result = result.endAt(dateEnd);
+	            }
+	            if (limitToFirst) {
+	                result = result.limitToFirst(limitToFirst);
 	            }
 	            return result;
 	        }
 	    }, {
+	        key: '_mapEvent',
+	        value: function _mapEvent(event) {
+	            var _ref2;
+
+	            var $id = event.$id;
+	            var date = event.date;
+	            var time = event.time;
+	            var title = event.title;
+	            var abstract = event.abstract;
+	            var description = event.description;
+	            var _event$tag = event.tag;
+	            var tag = _event$tag === undefined ? 'event' : _event$tag;
+	            var place = event.place;
+	            var distances = event.distances;
+	            var master = event.master;
+	            var masterUrl = event.masterUrl;
+	            var masterPerson = event.masterPerson;
+	            var masterPhone = event.masterPhone;
+	            var masterEmail = event.masterEmail;
+
+
+	            return _ref2 = {
+	                id: $id,
+	                date: date,
+	                time: time,
+	                title: title,
+	                abstract: abstract,
+	                description: description,
+	                tag: tag
+	            }, _defineProperty(_ref2, 'date', new Date(date)), _defineProperty(_ref2, 'place', place), _defineProperty(_ref2, 'distances', distances), _defineProperty(_ref2, 'master', master), _defineProperty(_ref2, 'masterUrl', masterUrl), _defineProperty(_ref2, 'masterPerson', masterPerson), _defineProperty(_ref2, 'masterPhone', masterPhone), _defineProperty(_ref2, 'masterEmail', masterEmail), _ref2;
+	        }
+	    }, {
 	        key: 'getEvent',
 	        value: function getEvent(key) {
+	            var _this2 = this;
+
 	            var obj = this._getEventObj(key);
 	            return obj.$loaded().then(function (result) {
-	                var _ref2;
-
-	                var $id = result.$id;
-	                var date = result.date;
-	                var time = result.time;
-	                var title = result.title;
-	                var abstract = result.abstract;
-	                var description = result.description;
-	                var _result$tag = result.tag;
-	                var tag = _result$tag === undefined ? 'event' : _result$tag;
-	                var place = result.place;
-	                var distances = result.distances;
-	                var master = result.master;
-	                var masterUrl = result.masterUrl;
-	                var masterPerson = result.masterPerson;
-	                var masterPhone = result.masterPhone;
-	                var masterEmail = result.masterEmail;
-
-
-	                return _ref2 = {
-	                    id: $id,
-	                    date: date,
-	                    time: time,
-	                    title: title,
-	                    abstract: abstract,
-	                    description: description,
-	                    tag: tag
-	                }, _defineProperty(_ref2, 'date', new Date(date)), _defineProperty(_ref2, 'place', place), _defineProperty(_ref2, 'distances', distances), _defineProperty(_ref2, 'master', master), _defineProperty(_ref2, 'masterUrl', masterUrl), _defineProperty(_ref2, 'masterPerson', masterPerson), _defineProperty(_ref2, 'masterPhone', masterPhone), _defineProperty(_ref2, 'masterEmail', masterEmail), _ref2;
+	                return _this2._mapEvent(result);
 	            });
 	        }
 	    }, {
@@ -3586,7 +4534,7 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 431 */
+/* 471 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3599,7 +4547,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _controller = __webpack_require__(432);
+	var _controller = __webpack_require__(472);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
@@ -3608,7 +4556,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.firebaseService', []).service('FirebaseService', _controller2.default);
 
 /***/ },
-/* 432 */
+/* 472 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -3640,7 +4588,7 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 433 */
+/* 473 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3653,7 +4601,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _controller = __webpack_require__(434);
+	var _controller = __webpack_require__(474);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
@@ -3662,7 +4610,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.services.fileStorage', []).service('FileStorageService', _controller2.default);
 
 /***/ },
-/* 434 */
+/* 474 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3802,7 +4750,7 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 435 */
+/* 475 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3815,7 +4763,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _controller = __webpack_require__(436);
+	var _controller = __webpack_require__(476);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
@@ -3824,7 +4772,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.services.startlistService', []).service('StartlistService', _controller2.default);
 
 /***/ },
-/* 436 */
+/* 476 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3866,7 +4814,171 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 437 */
+/* 477 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _angular = __webpack_require__(299);
+
+	var _angular2 = _interopRequireDefault(_angular);
+
+	var _controller = __webpack_require__(478);
+
+	var _controller2 = _interopRequireDefault(_controller);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _angular2.default.module('app.services.update', []).service('UpdateService', _controller2.default);
+
+/***/ },
+/* 478 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var UpdateService = function () {
+	    UpdateService.$inject = ["FirebaseService", "$firebaseArray"];
+	    function UpdateService(FirebaseService, $firebaseArray) {
+	        'ngInject';
+
+	        _classCallCheck(this, UpdateService);
+
+	        var firebase = FirebaseService.getFirebase();
+	        this.ref = firebase.database().ref('updates').orderByChild('date');
+	        this.$firebaseArray = $firebaseArray;
+	    }
+
+	    _createClass(UpdateService, [{
+	        key: 'loadUpdates',
+	        value: function loadUpdates(options) {
+	            var ref = options ? this._getRefByOptions(options) : this.ref;
+	            var list = this.$firebaseArray(ref);
+	            return list.$loaded();
+	        }
+	    }, {
+	        key: '_getRefByOptions',
+	        value: function _getRefByOptions(_ref) {
+	            var dateBegin = _ref.dateBegin;
+	            var dateEnd = _ref.dateEnd;
+	            var limitToLast = _ref.limitToLast;
+
+	            var result = this.ref;
+	            if (dateBegin) {
+	                result = result.startAt(dateBegin);
+	            }
+	            if (dateEnd) {
+	                result = result.endAt(dateEnd);
+	            }
+	            if (limitToLast) {
+	                result = result.limitToLast(limitToLast);
+	            }
+	            return result;
+	        }
+	    }]);
+
+	    return UpdateService;
+	}();
+
+	exports.default = UpdateService;
+	;
+
+/***/ },
+/* 479 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _angular = __webpack_require__(299);
+
+	var _angular2 = _interopRequireDefault(_angular);
+
+	var _controller = __webpack_require__(480);
+
+	var _controller2 = _interopRequireDefault(_controller);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _angular2.default.module('app.services.news', []).service('NewsService', _controller2.default);
+
+/***/ },
+/* 480 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var NewsService = function () {
+	    NewsService.$inject = ["FirebaseService", "$firebaseArray"];
+	    function NewsService(FirebaseService, $firebaseArray) {
+	        'ngInject';
+
+	        _classCallCheck(this, NewsService);
+
+	        var firebase = FirebaseService.getFirebase();
+	        this.ref = firebase.database().ref('news').orderByChild('date');
+	        this.$firebaseArray = $firebaseArray;
+	    }
+
+	    _createClass(NewsService, [{
+	        key: 'loadNews',
+	        value: function loadNews(options) {
+	            var ref = options ? this._getRefByOptions(options) : this.ref;
+	            var list = this.$firebaseArray(ref);
+	            return list.$loaded();
+	        }
+	    }, {
+	        key: '_getRefByOptions',
+	        value: function _getRefByOptions(_ref) {
+	            var dateBegin = _ref.dateBegin;
+	            var dateEnd = _ref.dateEnd;
+	            var limitToLast = _ref.limitToLast;
+
+	            var result = this.ref;
+	            if (dateBegin) {
+	                result = result.startAt(dateBegin);
+	            }
+	            if (dateEnd) {
+	                result = result.endAt(dateEnd);
+	            }
+	            if (limitToLast) {
+	                result = result.limitToLast(limitToLast);
+	            }
+	            return result;
+	        }
+	    }]);
+
+	    return NewsService;
+	}();
+
+	exports.default = NewsService;
+	;
+
+/***/ },
+/* 481 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

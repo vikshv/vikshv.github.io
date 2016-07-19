@@ -76,7 +76,7 @@
 /******/ 			script.charset = 'utf-8';
 /******/ 			script.async = true;
 
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + ".bundle." + ({"0":"penzarun"}[chunkId]||chunkId) + "." + {"0":"dd8ed7197d8f615b76c1"}[chunkId] + ".js";
+/******/ 			script.src = __webpack_require__.p + "" + chunkId + ".bundle." + ({"0":"penzarun"}[chunkId]||chunkId) + "." + {"0":"e1133ce2ccdb2b2c0a6b"}[chunkId] + ".js";
 /******/ 			head.appendChild(script);
 /******/ 		}
 /******/ 	};
@@ -102,13 +102,13 @@
 	__webpack_require__(305);
 	__webpack_require__(302);
 	__webpack_require__(301);
-	__webpack_require__(381);
-	__webpack_require__(363);
+	__webpack_require__(421);
+	__webpack_require__(403);
 	__webpack_require__(303);
 	__webpack_require__(307);
 	__webpack_require__(1);
-	__webpack_require__(438);
-	module.exports = __webpack_require__(365);
+	__webpack_require__(482);
+	module.exports = __webpack_require__(405);
 
 
 /***/ },
@@ -54685,15 +54685,55 @@
 /* 360 */,
 /* 361 */,
 /* 362 */,
-/* 363 */
+/* 363 */,
+/* 364 */,
+/* 365 */,
+/* 366 */,
+/* 367 */,
+/* 368 */,
+/* 369 */,
+/* 370 */,
+/* 371 */,
+/* 372 */,
+/* 373 */,
+/* 374 */,
+/* 375 */,
+/* 376 */,
+/* 377 */,
+/* 378 */,
+/* 379 */,
+/* 380 */,
+/* 381 */,
+/* 382 */,
+/* 383 */,
+/* 384 */,
+/* 385 */,
+/* 386 */,
+/* 387 */,
+/* 388 */,
+/* 389 */,
+/* 390 */,
+/* 391 */,
+/* 392 */,
+/* 393 */,
+/* 394 */,
+/* 395 */,
+/* 396 */,
+/* 397 */,
+/* 398 */,
+/* 399 */,
+/* 400 */,
+/* 401 */,
+/* 402 */,
+/* 403 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(364);
+	__webpack_require__(404);
 	module.exports = 'ngMessages';
 
 
 /***/ },
-/* 364 */
+/* 404 */
 /***/ function(module, exports) {
 
 	/**
@@ -55434,37 +55474,37 @@
 
 
 /***/ },
-/* 365 */
+/* 405 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!function(a,b){ true?!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(299)], __WEBPACK_AMD_DEFINE_FACTORY__ = (b), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):b(angular)}(this,function(a){function b(a){return{restrict:"A",require:["ckeditor","ngModel"],controller:["$scope","$element","$attrs","$parse","$q",c],link:function(b,c,e,f){var g=f[0],h=f[1];g.ready().then(function(){["dataReady","change","saveSnapshot"].forEach(function(a){g.$on(a,function(){h.$setViewValue(g.instance.getData()||"")})}),g.instance.setReadOnly(!1),d(function(){a(e.ready)(b)})}),h.$render=function(){g.ready().then(function(){g.instance.setData(h.$viewValue||"")})}}}}function c(a,b,c,e,f){var g,h=e(c.ckeditor)(a)||{},i=b[0];g=this.instance=i.hasAttribute("contenteditable")&&"true"==i.getAttribute("contenteditable").toLowerCase()?CKEDITOR.inline(i,h):CKEDITOR.replace(i,h),this.$on=function(b,c){function e(){var a=arguments;d(function(){f.apply(null,a)})}function f(){var b=arguments;a.$apply(function(){c.apply(null,b)})}return g.on(b,e),function(){g.removeListener(b,f)}},this.ready=function(){if(this.readyDefer)return this.readyDefer.promise;var a=this.readyDefer=f.defer();return"ready"===this.instance.status?a.resolve():this.$on("instanceReady",a.resolve),a.promise},a.$on("$destroy",function(){g.destroy(!1)})}a.module("ckeditor",[]).directive("ckeditor",["$parse",b]);var d=window&&window.setImmediate?window.setImmediate:function(a){setTimeout(a,0)}});
 	//# sourceMappingURL=angular-ckeditor.min.map
 
 /***/ },
-/* 366 */,
-/* 367 */,
-/* 368 */,
-/* 369 */,
-/* 370 */,
-/* 371 */,
-/* 372 */,
-/* 373 */,
-/* 374 */,
-/* 375 */,
-/* 376 */,
-/* 377 */,
-/* 378 */,
-/* 379 */,
-/* 380 */,
-/* 381 */
+/* 406 */,
+/* 407 */,
+/* 408 */,
+/* 409 */,
+/* 410 */,
+/* 411 */,
+/* 412 */,
+/* 413 */,
+/* 414 */,
+/* 415 */,
+/* 416 */,
+/* 417 */,
+/* 418 */,
+/* 419 */,
+/* 420 */,
+/* 421 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(382);
+	__webpack_require__(422);
 	module.exports = 'ngSanitize';
 
 
 /***/ },
-/* 382 */
+/* 422 */
 /***/ function(module, exports) {
 
 	/**
@@ -56187,46 +56227,6 @@
 
 
 /***/ },
-/* 383 */,
-/* 384 */,
-/* 385 */,
-/* 386 */,
-/* 387 */,
-/* 388 */,
-/* 389 */,
-/* 390 */,
-/* 391 */,
-/* 392 */,
-/* 393 */,
-/* 394 */,
-/* 395 */,
-/* 396 */,
-/* 397 */,
-/* 398 */,
-/* 399 */,
-/* 400 */,
-/* 401 */,
-/* 402 */,
-/* 403 */,
-/* 404 */,
-/* 405 */,
-/* 406 */,
-/* 407 */,
-/* 408 */,
-/* 409 */,
-/* 410 */,
-/* 411 */,
-/* 412 */,
-/* 413 */,
-/* 414 */,
-/* 415 */,
-/* 416 */,
-/* 417 */,
-/* 418 */,
-/* 419 */,
-/* 420 */,
-/* 421 */,
-/* 422 */,
 /* 423 */,
 /* 424 */,
 /* 425 */,
@@ -56242,7 +56242,51 @@
 /* 435 */,
 /* 436 */,
 /* 437 */,
-/* 438 */
+/* 438 */,
+/* 439 */,
+/* 440 */,
+/* 441 */,
+/* 442 */,
+/* 443 */,
+/* 444 */,
+/* 445 */,
+/* 446 */,
+/* 447 */,
+/* 448 */,
+/* 449 */,
+/* 450 */,
+/* 451 */,
+/* 452 */,
+/* 453 */,
+/* 454 */,
+/* 455 */,
+/* 456 */,
+/* 457 */,
+/* 458 */,
+/* 459 */,
+/* 460 */,
+/* 461 */,
+/* 462 */,
+/* 463 */,
+/* 464 */,
+/* 465 */,
+/* 466 */,
+/* 467 */,
+/* 468 */,
+/* 469 */,
+/* 470 */,
+/* 471 */,
+/* 472 */,
+/* 473 */,
+/* 474 */,
+/* 475 */,
+/* 476 */,
+/* 477 */,
+/* 478 */,
+/* 479 */,
+/* 480 */,
+/* 481 */,
+/* 482 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
