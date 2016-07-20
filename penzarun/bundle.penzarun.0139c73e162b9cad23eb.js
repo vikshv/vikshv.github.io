@@ -1281,8 +1281,7 @@ webpackJsonp([0],[
 
 	exports.default = {
 	    template: _template2.default,
-	    controller: _controller2.default,
-	    bindings: {}
+	    controller: _controller2.default
 	};
 
 /***/ },
@@ -1428,7 +1427,6 @@ webpackJsonp([0],[
 	            var _this = this;
 
 	            var options = {
-	                dateBegin: Date.now(),
 	                limitToLast: 3
 	            };
 	            this._startLoadProgress();
@@ -1463,7 +1461,7 @@ webpackJsonp([0],[
 /* 359 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=homeInfo__news> <h3>Новости</h3> <div class=list-group> <div class=\"list-group-item info__spiner\" ng-if=$ctrl.loadProgress> <i class=\"fa fa-circle-o-notch fa-spin fa-3x fa-fw\"></i> </div> <div ng-if=!$ctrl.loadProgress> <a class=list-group-item ui-sref=\"news.id({ id: news.id })\" ng-repeat=\"news in $ctrl.news\"> <h4 class=list-group-item-heading>{{ news.title }}</h4> <p class=list-group-item-text>{{ news.content }}</p> </a> <div class=list-group-item ng-if=!$ctrl.updates.length> <p class=list-group-item-text>Новостей пока нет</p> </div> </div> </div> </div>";
+	module.exports = "<div class=homeInfo__news> <h3>Новости</h3> <div class=list-group> <div class=\"list-group-item info__spiner\" ng-if=$ctrl.loadProgress> <i class=\"fa fa-circle-o-notch fa-spin fa-3x fa-fw\"></i> </div> <div ng-if=!$ctrl.loadProgress> <div class=list-group-item ng-repeat=\"news in $ctrl.news\"> <h4 class=list-group-item-heading> <a ui-sref=\"news.card({ id: news.id })\">{{ news.title }}</a> </h4> <p class=list-group-item-text>{{ news.abstract }}</p> </div> <div class=list-group-item ng-if=!$ctrl.news.length> <p class=list-group-item-text>Новостей пока нет</p> </div> </div> </div> </div>";
 
 /***/ },
 /* 360 */
@@ -1586,7 +1584,7 @@ webpackJsonp([0],[
 /* 364 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=homeInfo__events> <h3>Ближайшие события</h3> <div class=list-group> <div class=\"list-group-item info__spiner\" ng-if=$ctrl.loadProgress> <i class=\"fa fa-circle-o-notch fa-spin fa-3x fa-fw\"></i> </div> <a class=list-group-item ui-sref=\"events.card({ id: event.id })\" ng-repeat=\"event in $ctrl.events\"> <h4 class=list-group-item-heading>{{ event.title }}</h4> <p class=list-group-item-text>{{ event.abstract }}</p> </a> </div> </div>";
+	module.exports = "<div class=homeInfo__events> <h3>Ближайшие события</h3> <div class=list-group> <div class=\"list-group-item info__spiner\" ng-if=$ctrl.loadProgress> <i class=\"fa fa-circle-o-notch fa-spin fa-3x fa-fw\"></i> </div> <div class=list-group-item ng-repeat=\"event in $ctrl.events\"> <h4 class=list-group-item-heading> <a ui-sref=\"events.card({ id: event.id })\">{{ event.title }}</a> </h4> <p class=list-group-item-text>{{ event.abstract }}</p> </div> </div> </div>";
 
 /***/ },
 /* 365 */
@@ -1674,7 +1672,6 @@ webpackJsonp([0],[
 	            var _this = this;
 
 	            var options = {
-	                dateBegin: Date.now(),
 	                limitToLast: 3
 	            };
 	            this._startLoadProgress();
@@ -2027,14 +2024,182 @@ webpackJsonp([0],[
 	    value: true
 	});
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var NewsFormPageController = function NewsFormPageController(NewsService) {
-	    'ngInject';
+	var NewsFormPageController = function () {
+	    NewsFormPageController.$inject = ["$q", "$scope", "$state", "NewsService"];
+	    function NewsFormPageController($q, $scope, $state, NewsService) {
+	        'ngInject';
 
-	    _classCallCheck(this, NewsFormPageController);
-	};
-	NewsFormPageController.$inject = ["NewsService"];
+	        _classCallCheck(this, NewsFormPageController);
+
+	        this.$q = $q;
+	        this.$scope = $scope;
+	        this.$state = $state;
+	        this.NewsService = NewsService;
+
+	        this._initNews();
+	        this.ckeditorOptions = this._initCkeditorOptions();
+	    }
+
+	    _createClass(NewsFormPageController, [{
+	        key: '_initCkeditorOptions',
+	        value: function _initCkeditorOptions() {
+	            return {
+	                language: 'ru',
+	                allowedContent: true,
+	                entities: false,
+	                height: 300
+	            };
+	        }
+	    }, {
+	        key: '_initNews',
+	        value: function _initNews() {
+	            var _this = this;
+
+	            return this.$q.resolve(this.id).then(function (id) {
+	                var result = void 0;
+	                if (id) {
+	                    _this._startLoadProgress();
+	                    result = _this.NewsService.getNewsById(id);
+	                } else {
+	                    result = {};
+	                }
+	                return result;
+	            }).then(function (result) {
+	                _this._stopLoadProgress();
+	                _this.news = result;
+	            }).catch(function (error) {
+	                _this._stopLoadProgress();
+	                throw Error(error);
+	            });
+	        }
+	    }, {
+	        key: '_startLoadProgress',
+	        value: function _startLoadProgress() {
+	            this.loadProgress = true;
+	        }
+	    }, {
+	        key: '_stopLoadProgress',
+	        value: function _stopLoadProgress() {
+	            this.loadProgress = false;
+	        }
+	    }, {
+	        key: 'isHasError',
+	        value: function isHasError(attrName) {
+	            var item = this.$scope.news[attrName];
+	            return item.$invalid && item.$dirty && item.$touched;
+	        }
+	    }, {
+	        key: 'submit',
+	        value: function submit() {
+	            var _this2 = this;
+
+	            var _news = this.news;
+	            var title = _news.title;
+	            var _news$abstract = _news.abstract;
+	            var abstract = _news$abstract === undefined ? '' : _news$abstract;
+	            var _news$content = _news.content;
+	            var content = _news$content === undefined ? '' : _news$content;
+
+
+	            this._startSaveProgress();
+
+	            this._saveNews({
+	                title: title,
+	                abstract: abstract,
+	                content: content
+	            }).then(function (id) {
+	                _this2._gotoNews(id);
+	            }).catch(function (error) {
+	                _this2._stopSaveProgress();
+	                throw Error(error);
+	            });
+	        }
+	    }, {
+	        key: 'onClickRemoveButton',
+	        value: function onClickRemoveButton() {
+	            // TODO: edd confirm dialog
+	            this._removeNews();
+	        }
+	    }, {
+	        key: 'onClickCancelButton',
+	        value: function onClickCancelButton() {
+	            this._gotoNewsList();
+	        }
+	    }, {
+	        key: '_saveNews',
+	        value: function _saveNews(data) {
+	            var _this3 = this;
+
+	            return this.$q.resolve(this.id).then(function (id) {
+	                var result = void 0;
+	                if (id) {
+	                    result = _this3.NewsService.saveNews(id, data);
+	                } else {
+	                    result = _this3.NewsService.addNews(data);
+	                }
+	                return result;
+	            });
+	        }
+	    }, {
+	        key: '_removeNews',
+	        value: function _removeNews() {
+	            var _this4 = this;
+
+	            this._startRemoveProgress();
+	            this.NewsService.removeNews(this.id).then(function () {
+	                _this4._gotoNewsList();
+	            }).catch(function (error) {
+	                _this4._stopRemoveProgress();
+	                throw Error(error);
+	            });
+	        }
+	    }, {
+	        key: '_startSaveProgress',
+	        value: function _startSaveProgress() {
+	            this.saveProgress = this.disabledForm = true;
+	            this._setReadOnlyCKEDITOR(this.disabledForm);
+	        }
+	    }, {
+	        key: '_stopSaveProgress',
+	        value: function _stopSaveProgress() {
+	            this.saveProgress = this.disabledForm = false;
+	            this._setReadOnlyCKEDITOR(this.disabledForm);
+	        }
+	    }, {
+	        key: '_startRemoveProgress',
+	        value: function _startRemoveProgress() {
+	            this.removeProgress = this.disabledForm = true;
+	            this._setReadOnlyCKEDITOR(this.disabledForm);
+	        }
+	    }, {
+	        key: '_stopRemoveProgress',
+	        value: function _stopRemoveProgress() {
+	            this.removeProgress = this.disabledForm = false;
+	            this._setReadOnlyCKEDITOR(this.disabledForm);
+	        }
+	    }, {
+	        key: '_setReadOnlyCKEDITOR',
+	        value: function _setReadOnlyCKEDITOR(val) {
+	            CKEDITOR.instances.newsContent.setReadOnly(val);
+	        }
+	    }, {
+	        key: '_gotoNews',
+	        value: function _gotoNews(id) {
+	            this.$state.go('news.card', { id: id });
+	        }
+	    }, {
+	        key: '_gotoNewsList',
+	        value: function _gotoNewsList() {
+	            this.$state.go('news.list');
+	        }
+	    }]);
+
+	    return NewsFormPageController;
+	}();
 
 	exports.default = NewsFormPageController;
 	;
@@ -2043,7 +2208,7 @@ webpackJsonp([0],[
 /* 385 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"page page--newsList\"> <div class=container> <div class=row> <div class=col-md-12> News form page </div> </div> <div> </div></div></div>";
+	module.exports = "<progress-bar text=\"Загрузка новости...\" ng-if=$ctrl.loadProgress></progress-bar> <div class=\"page page--newsForm\" ng-hide=$ctrl.loadProgress> <div class=container> <div class=row> <div class=col-md-12> <div class=\"well well--form\"> <form name=news class=\"\" ng-submit=$ctrl.submit()> <fieldset> <legend>{{ $ctrl.id ? 'Редактирование новости' : 'Добавление новости' }}</legend> <div class=form-group ng-class=\"{ 'has-error' : $ctrl.isHasError('title') }\"> <label for=title class=control-label>Заголовок</label> <input type=text class=form-control id=title name=title required ng-model=$ctrl.news.title ng-disabled=$ctrl.disabledForm autocomplete=off> <div ng-messages=news.title.$error ng-if=\"$ctrl.isHasError('title')\" role=alert> <div ng-message=required class=form__message--error>Введите заголовок</div> </div> </div> <div class=form-group> <label for=abstract class=control-label>Краткое описание</label> <textarea class=form-control id=abstract name=abstract rows=2 required ng-model=$ctrl.news.abstract ng-disabled=$ctrl.disabledForm autocomplete=off></textarea> <div ng-messages=news.abstract.$error ng-if=\"$ctrl.isHasError('abstract')\" role=alert> <div ng-message=required class=form__message--error>Введите краткое описание</div> </div> </div> <div class=form-group> <label for=newsContent class=control-label>Содержание</label> <div ckeditor=$ctrl.ckeditorOptions id=newsContent ng-model=$ctrl.news.content></div> </div> <div class=form-group> <button type=submit class=\"btn btn-primary\" ng-disabled=\"news.$invalid || $ctrl.disabledForm\"> <i class=\"fa fa-lg fa-spinner fa-spin\" ng-if=$ctrl.saveProgress></i> Сохранить </button> <button type=button class=\"btn btn-danger\" ng-if=$ctrl.id ng-click=$ctrl.onClickRemoveButton() ng-disabled=$ctrl.disabledForm> <i class=\"fa fa-lg fa-spinner fa-spin\" ng-if=$ctrl.removeProgress></i> Удалить </button> <button type=button class=\"btn btn-default\" ng-click=$ctrl.onClickCancelButton() ng-disabled=$ctrl.disabledForm>Отмена</button> </div> </fieldset> </form> </div> </div> </div> </div> </div>";
 
 /***/ },
 /* 386 */
@@ -4496,10 +4661,12 @@ webpackJsonp([0],[
 	        key: 'saveEvent',
 	        value: function saveEvent(key, data) {
 	            var obj = this._getEventObj(key);
-	            Object.assign(obj, data, {
-	                editTimestamp: Date.now()
-	            });
-	            return obj.$save().then(function (ref) {
+	            return obj.$loaded().then(function (result) {
+	                Object.assign(result, data, {
+	                    editTimestamp: Date.now()
+	                });
+	                return obj.$save();
+	            }).then(function (ref) {
 	                return ref.key;
 	            });
 	        }
@@ -4857,7 +5024,7 @@ webpackJsonp([0],[
 	        _classCallCheck(this, UpdateService);
 
 	        var firebase = FirebaseService.getFirebase();
-	        this.ref = firebase.database().ref('updates').orderByChild('date');
+	        this.ref = firebase.database().ref('updates');
 	        this.$firebaseArray = $firebaseArray;
 	    }
 
@@ -4927,28 +5094,37 @@ webpackJsonp([0],[
 	    value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	var NewsService = function () {
-	    NewsService.$inject = ["FirebaseService", "$firebaseArray"];
-	    function NewsService(FirebaseService, $firebaseArray) {
+	    NewsService.$inject = ["FirebaseService", "$firebaseArray", "$firebaseObject"];
+	    function NewsService(FirebaseService, $firebaseArray, $firebaseObject) {
 	        'ngInject';
 
 	        _classCallCheck(this, NewsService);
 
 	        var firebase = FirebaseService.getFirebase();
-	        this.ref = firebase.database().ref('news').orderByChild('date');
+	        this.ref = firebase.database().ref('news');
 	        this.$firebaseArray = $firebaseArray;
+	        this.$firebaseObject = $firebaseObject;
 	    }
 
 	    _createClass(NewsService, [{
 	        key: 'loadNews',
 	        value: function loadNews(options) {
+	            var _this = this;
+
 	            var ref = options ? this._getRefByOptions(options) : this.ref;
-	            var list = this.$firebaseArray(ref);
-	            return list.$loaded();
+	            var list = this.$firebaseArray(ref.orderByChild('createTimestamp'));
+	            return list.$loaded().then(function (result) {
+	                return result.map(function (news) {
+	                    return _this._mapNews(news);
+	                });
+	            });
 	        }
 	    }, {
 	        key: '_getRefByOptions',
@@ -4968,6 +5144,65 @@ webpackJsonp([0],[
 	                result = result.limitToLast(limitToLast);
 	            }
 	            return result;
+	        }
+	    }, {
+	        key: 'getNewsById',
+	        value: function getNewsById(id) {
+	            var _this2 = this;
+
+	            var obj = this._getNewsObj(id);
+	            return obj.$loaded().then(function (result) {
+	                return _this2._mapNews(result);
+	            });
+	        }
+	    }, {
+	        key: '_getNewsObj',
+	        value: function _getNewsObj(key) {
+	            var ref = this.ref.child(key);
+	            return this.$firebaseObject(ref);
+	        }
+	    }, {
+	        key: '_mapNews',
+	        value: function _mapNews(news) {
+	            var title = news.title;
+	            var abstract = news.abstract;
+	            var content = news.content;
+
+	            return {
+	                id: news.$id,
+	                title: title,
+	                abstract: abstract,
+	                content: content
+	            };
+	        }
+	    }, {
+	        key: 'addNews',
+	        value: function addNews(data) {
+	            var list = this.$firebaseArray(this.ref);
+	            return list.$add(_extends({}, data, {
+	                createTimestamp: Date.now()
+	            })).then(function (ref) {
+	                return ref.key;
+	            });
+	        }
+	    }, {
+	        key: 'saveNews',
+	        value: function saveNews(id, data) {
+	            var obj = this._getNewsObj(id);
+	            return obj.$loaded().then(function (result) {
+	                Object.assign(result, data, {
+	                    editTimestamp: Date.now()
+	                });
+	                return obj.$save();
+	            }).then(function (ref) {
+	                return ref.key;
+	            });
+	        }
+	    }, {
+	        key: 'removeNews',
+	        value: function removeNews(id) {
+	            var obj = this._getNewsObj(id);
+	            return obj.$remove();
 	        }
 	    }]);
 
