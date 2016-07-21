@@ -10,37 +10,41 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	__webpack_require__(301);
+	__webpack_require__(302);
 
-	var _angularUiRouter = __webpack_require__(302);
+	var _angularUiRouter = __webpack_require__(303);
 
 	var _angularUiRouter2 = _interopRequireDefault(_angularUiRouter);
 
-	var _firebase = __webpack_require__(303);
+	var _firebase = __webpack_require__(304);
 
 	var _firebase2 = _interopRequireDefault(_firebase);
 
-	var _angularfire = __webpack_require__(305);
+	var _angularfire = __webpack_require__(306);
 
 	var _angularfire2 = _interopRequireDefault(_angularfire);
 
-	var _angularUiBootstrap = __webpack_require__(307);
+	var _angularUiBootstrap = __webpack_require__(308);
 
 	var _angularUiBootstrap2 = _interopRequireDefault(_angularUiBootstrap);
 
-	var _components = __webpack_require__(309);
+	__webpack_require__(310);
+
+	__webpack_require__(311);
+
+	var _components = __webpack_require__(312);
 
 	var _components2 = _interopRequireDefault(_components);
 
-	var _directives = __webpack_require__(465);
+	var _directives = __webpack_require__(468);
 
 	var _directives2 = _interopRequireDefault(_directives);
 
-	var _services = __webpack_require__(466);
+	var _services = __webpack_require__(469);
 
 	var _services2 = _interopRequireDefault(_services);
 
-	__webpack_require__(481);
+	__webpack_require__(484);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -375,7 +379,292 @@ webpackJsonp([0],[
 /* 306 */,
 /* 307 */,
 /* 308 */,
-/* 309 */
+/* 309 */,
+/* 310 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(jQuery) {/* ========================================================================
+	 * Bootstrap: collapse.js v3.3.6
+	 * http://getbootstrap.com/javascript/#collapse
+	 * ========================================================================
+	 * Copyright 2011-2015 Twitter, Inc.
+	 * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+	 * ======================================================================== */
+
+
+	+function ($) {
+	  'use strict';
+
+	  // COLLAPSE PUBLIC CLASS DEFINITION
+	  // ================================
+
+	  var Collapse = function (element, options) {
+	    this.$element      = $(element)
+	    this.options       = $.extend({}, Collapse.DEFAULTS, options)
+	    this.$trigger      = $('[data-toggle="collapse"][href="#' + element.id + '"],' +
+	                           '[data-toggle="collapse"][data-target="#' + element.id + '"]')
+	    this.transitioning = null
+
+	    if (this.options.parent) {
+	      this.$parent = this.getParent()
+	    } else {
+	      this.addAriaAndCollapsedClass(this.$element, this.$trigger)
+	    }
+
+	    if (this.options.toggle) this.toggle()
+	  }
+
+	  Collapse.VERSION  = '3.3.6'
+
+	  Collapse.TRANSITION_DURATION = 350
+
+	  Collapse.DEFAULTS = {
+	    toggle: true
+	  }
+
+	  Collapse.prototype.dimension = function () {
+	    var hasWidth = this.$element.hasClass('width')
+	    return hasWidth ? 'width' : 'height'
+	  }
+
+	  Collapse.prototype.show = function () {
+	    if (this.transitioning || this.$element.hasClass('in')) return
+
+	    var activesData
+	    var actives = this.$parent && this.$parent.children('.panel').children('.in, .collapsing')
+
+	    if (actives && actives.length) {
+	      activesData = actives.data('bs.collapse')
+	      if (activesData && activesData.transitioning) return
+	    }
+
+	    var startEvent = $.Event('show.bs.collapse')
+	    this.$element.trigger(startEvent)
+	    if (startEvent.isDefaultPrevented()) return
+
+	    if (actives && actives.length) {
+	      Plugin.call(actives, 'hide')
+	      activesData || actives.data('bs.collapse', null)
+	    }
+
+	    var dimension = this.dimension()
+
+	    this.$element
+	      .removeClass('collapse')
+	      .addClass('collapsing')[dimension](0)
+	      .attr('aria-expanded', true)
+
+	    this.$trigger
+	      .removeClass('collapsed')
+	      .attr('aria-expanded', true)
+
+	    this.transitioning = 1
+
+	    var complete = function () {
+	      this.$element
+	        .removeClass('collapsing')
+	        .addClass('collapse in')[dimension]('')
+	      this.transitioning = 0
+	      this.$element
+	        .trigger('shown.bs.collapse')
+	    }
+
+	    if (!$.support.transition) return complete.call(this)
+
+	    var scrollSize = $.camelCase(['scroll', dimension].join('-'))
+
+	    this.$element
+	      .one('bsTransitionEnd', $.proxy(complete, this))
+	      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)[dimension](this.$element[0][scrollSize])
+	  }
+
+	  Collapse.prototype.hide = function () {
+	    if (this.transitioning || !this.$element.hasClass('in')) return
+
+	    var startEvent = $.Event('hide.bs.collapse')
+	    this.$element.trigger(startEvent)
+	    if (startEvent.isDefaultPrevented()) return
+
+	    var dimension = this.dimension()
+
+	    this.$element[dimension](this.$element[dimension]())[0].offsetHeight
+
+	    this.$element
+	      .addClass('collapsing')
+	      .removeClass('collapse in')
+	      .attr('aria-expanded', false)
+
+	    this.$trigger
+	      .addClass('collapsed')
+	      .attr('aria-expanded', false)
+
+	    this.transitioning = 1
+
+	    var complete = function () {
+	      this.transitioning = 0
+	      this.$element
+	        .removeClass('collapsing')
+	        .addClass('collapse')
+	        .trigger('hidden.bs.collapse')
+	    }
+
+	    if (!$.support.transition) return complete.call(this)
+
+	    this.$element
+	      [dimension](0)
+	      .one('bsTransitionEnd', $.proxy(complete, this))
+	      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)
+	  }
+
+	  Collapse.prototype.toggle = function () {
+	    this[this.$element.hasClass('in') ? 'hide' : 'show']()
+	  }
+
+	  Collapse.prototype.getParent = function () {
+	    return $(this.options.parent)
+	      .find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]')
+	      .each($.proxy(function (i, element) {
+	        var $element = $(element)
+	        this.addAriaAndCollapsedClass(getTargetFromTrigger($element), $element)
+	      }, this))
+	      .end()
+	  }
+
+	  Collapse.prototype.addAriaAndCollapsedClass = function ($element, $trigger) {
+	    var isOpen = $element.hasClass('in')
+
+	    $element.attr('aria-expanded', isOpen)
+	    $trigger
+	      .toggleClass('collapsed', !isOpen)
+	      .attr('aria-expanded', isOpen)
+	  }
+
+	  function getTargetFromTrigger($trigger) {
+	    var href
+	    var target = $trigger.attr('data-target')
+	      || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
+
+	    return $(target)
+	  }
+
+
+	  // COLLAPSE PLUGIN DEFINITION
+	  // ==========================
+
+	  function Plugin(option) {
+	    return this.each(function () {
+	      var $this   = $(this)
+	      var data    = $this.data('bs.collapse')
+	      var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
+
+	      if (!data && options.toggle && /show|hide/.test(option)) options.toggle = false
+	      if (!data) $this.data('bs.collapse', (data = new Collapse(this, options)))
+	      if (typeof option == 'string') data[option]()
+	    })
+	  }
+
+	  var old = $.fn.collapse
+
+	  $.fn.collapse             = Plugin
+	  $.fn.collapse.Constructor = Collapse
+
+
+	  // COLLAPSE NO CONFLICT
+	  // ====================
+
+	  $.fn.collapse.noConflict = function () {
+	    $.fn.collapse = old
+	    return this
+	  }
+
+
+	  // COLLAPSE DATA-API
+	  // =================
+
+	  $(document).on('click.bs.collapse.data-api', '[data-toggle="collapse"]', function (e) {
+	    var $this   = $(this)
+
+	    if (!$this.attr('data-target')) e.preventDefault()
+
+	    var $target = getTargetFromTrigger($this)
+	    var data    = $target.data('bs.collapse')
+	    var option  = data ? 'toggle' : $this.data()
+
+	    Plugin.call($target, option)
+	  })
+
+	}(jQuery);
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(301)))
+
+/***/ },
+/* 311 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(jQuery) {/* ========================================================================
+	 * Bootstrap: transition.js v3.3.6
+	 * http://getbootstrap.com/javascript/#transitions
+	 * ========================================================================
+	 * Copyright 2011-2015 Twitter, Inc.
+	 * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+	 * ======================================================================== */
+
+
+	+function ($) {
+	  'use strict';
+
+	  // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
+	  // ============================================================
+
+	  function transitionEnd() {
+	    var el = document.createElement('bootstrap')
+
+	    var transEndEventNames = {
+	      WebkitTransition : 'webkitTransitionEnd',
+	      MozTransition    : 'transitionend',
+	      OTransition      : 'oTransitionEnd otransitionend',
+	      transition       : 'transitionend'
+	    }
+
+	    for (var name in transEndEventNames) {
+	      if (el.style[name] !== undefined) {
+	        return { end: transEndEventNames[name] }
+	      }
+	    }
+
+	    return false // explicit for ie8 (  ._.)
+	  }
+
+	  // http://blog.alexmaccaw.com/css-transitions
+	  $.fn.emulateTransitionEnd = function (duration) {
+	    var called = false
+	    var $el = this
+	    $(this).one('bsTransitionEnd', function () { called = true })
+	    var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
+	    setTimeout(callback, duration)
+	    return this
+	  }
+
+	  $(function () {
+	    $.support.transition = transitionEnd()
+
+	    if (!$.support.transition) return
+
+	    $.event.special.bsTransitionEnd = {
+	      bindType: $.support.transition.end,
+	      delegateType: $.support.transition.end,
+	      handle: function (e) {
+	        if ($(e.target).is(this)) return e.handleObj.handler.apply(this, arguments)
+	      }
+	    }
+	  })
+
+	}(jQuery);
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(301)))
+
+/***/ },
+/* 312 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -388,11 +677,11 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _common = __webpack_require__(310);
+	var _common = __webpack_require__(313);
 
 	var _common2 = _interopRequireDefault(_common);
 
-	var _pages = __webpack_require__(338);
+	var _pages = __webpack_require__(341);
 
 	var _pages2 = _interopRequireDefault(_pages);
 
@@ -401,7 +690,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components', [_common2.default.name, _pages2.default.name]);
 
 /***/ },
-/* 310 */
+/* 313 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -414,23 +703,23 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _navbar = __webpack_require__(311);
+	var _navbar = __webpack_require__(314);
 
 	var _navbar2 = _interopRequireDefault(_navbar);
 
-	var _footer = __webpack_require__(316);
+	var _footer = __webpack_require__(319);
 
 	var _footer2 = _interopRequireDefault(_footer);
 
-	var _eventsList = __webpack_require__(320);
+	var _eventsList = __webpack_require__(323);
 
 	var _eventsList2 = _interopRequireDefault(_eventsList);
 
-	var _progressBar = __webpack_require__(325);
+	var _progressBar = __webpack_require__(328);
 
 	var _progressBar2 = _interopRequireDefault(_progressBar);
 
-	var _uploadFileButton = __webpack_require__(330);
+	var _uploadFileButton = __webpack_require__(333);
 
 	var _uploadFileButton2 = _interopRequireDefault(_uploadFileButton);
 
@@ -439,7 +728,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.common', [_navbar2.default.name, _footer2.default.name, _eventsList2.default.name, _progressBar2.default.name, _uploadFileButton2.default.name]);
 
 /***/ },
-/* 311 */
+/* 314 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -452,15 +741,15 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _controller = __webpack_require__(312);
+	var _controller = __webpack_require__(315);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(313);
+	var _template = __webpack_require__(316);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(314);
+	__webpack_require__(317);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -470,7 +759,7 @@ webpackJsonp([0],[
 	});
 
 /***/ },
-/* 312 */
+/* 315 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -543,20 +832,20 @@ webpackJsonp([0],[
 	exports.default = NavbarController;
 
 /***/ },
-/* 313 */
+/* 316 */
 /***/ function(module, exports) {
 
 	module.exports = "<nav class=\"navbar navbar-inverse navbar-fixed-top\"> <div class=container> <div class=navbar-header> <button type=button class=\"navbar-toggle collapsed\" data-toggle=collapse data-target=#navbar aria-expanded=false aria-controls=navbar> <span class=sr-only>Toggle navigation</span> <span class=icon-bar></span> <span class=icon-bar></span> <span class=icon-bar></span> </button> <a class=navbar-brand ui-sref=home>Бег в Пензе</a> </div> <div id=navbar class=\"navbar-collapse collapse\"> <ul class=\"nav navbar-nav\"> <li ng-class=\"{ active: $ctrl.state.news }\"><a ui-sref=news.list>НОВОСТИ</a></li> <li ng-class=\"{ active: $ctrl.state.calendar }\"><a ui-sref=calendar>КАЛЕНДАРЬ</a></li> <li ng-class=\"{ active: $ctrl.state.events }\"><a ui-sref=events.list>СОБЫТИЯ</a></li> <li ng-class=\"{ active: $ctrl.state.about }\"><a ui-sref=about>О ПРОЕКТЕ</a></li> </ul> <ul class=\"nav navbar-nav navbar-right\"> <li ng-if=!$ctrl.auth ng-class=\"{ active: $ctrl.state.login }\"> <a ui-sref=login> <i class=\"fa fa-sign-in\" aria-hidden=true></i> ВХОД </a> </li> <li ng-class=\"{ active: $ctrl.state.user }\" ng-if=$ctrl.auth> <a ui-sref=user> <i class=\"fa fa-user\" aria-hidden=true></i> </a> </li> <li ng-if=$ctrl.auth> <a href=# ng-click=$ctrl.logout()> <i class=\"fa fa-sign-out\" aria-hidden=true></i> ВЫХОД </a> </li> </ul> </div> </div> </nav>";
 
 /***/ },
-/* 314 */
+/* 317 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 315 */,
-/* 316 */
+/* 318 */,
+/* 319 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -569,15 +858,15 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _controller = __webpack_require__(317);
+	var _controller = __webpack_require__(320);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(318);
+	var _template = __webpack_require__(321);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(319);
+	__webpack_require__(322);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -587,7 +876,7 @@ webpackJsonp([0],[
 	});
 
 /***/ },
-/* 317 */
+/* 320 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -608,19 +897,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 318 */
+/* 321 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=footer> <div class=container> <div class=row> <div class=\"col-md-3 col-sm-4 col-xs-6\"> <div class=\"\"> <p>Мы в социальных сетях:</p> <ul class=list-inline> <li> <a target=_blank href=https://vk.com/penzarun title=\"В контакте\" rel=nofollow> <i class=\"fa fa-2x fa-vk\" aria-hidden=true></i> </a> </li> </ul> </div> </div> <div class=\"col-md-3 col-sm-4 col-xs-6\"> <div class=footer__contacts> <p>Контакты:</p> <address class=footer__address> <abbr title=Телефон>Тел:</abbr> 8-909-319-63-54<br> <abbr title=\"Электронная почта\">Эл. почта:</abbr> <a href=mailto:#>info@penzarun.ru</a> </address> </div> </div> </div> <div class=row> <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\"> <div class=footer__centerBlock> Бег в Пензе · Автор и разработчик <a href=https://vk.com/vikshv>Виктор&nbsp;Швецов</a> </div> </div> </div> <div class=row> <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\"> <div class=footer__centerBlock> Style based on <a target=_blank href=http://bootswatch.com/superhero/ rel=nofollow>Bootswatch</a> · Icons from <a target=_blank href=http://fortawesome.github.io/Font-Awesome/ rel=nofollow>Font Awesome</a> · Backend from <a target=_blank href=https://console.firebase.google.com/project/project-5043437142388192252/overview rel=nofollow>Firebase</a> </div> </div> </div> <div class=row> <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\"> <div class=footer__centerBlock> <a href=https://github.com/vikshv/penzarun>GitHub Project</a> · <a href=https://github.com/vikshv/penzarun/issues>Issues</a> </div> </div> </div> </div> </div>";
 
 /***/ },
-/* 319 */
+/* 322 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 320 */
+/* 323 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -633,7 +922,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _component = __webpack_require__(321);
+	var _component = __webpack_require__(324);
 
 	var _component2 = _interopRequireDefault(_component);
 
@@ -642,7 +931,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.eventsList', []).component('eventsList', _component2.default);
 
 /***/ },
-/* 321 */
+/* 324 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -651,15 +940,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(322);
+	var _controller = __webpack_require__(325);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(323);
+	var _template = __webpack_require__(326);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(324);
+	__webpack_require__(327);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -673,7 +962,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 322 */
+/* 325 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -694,19 +983,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 323 */
+/* 326 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=eventsList> <div class=eventsList__event ng-repeat=\"event in $ctrl.events\"> <div class=event__title> <div class=event__date> {{ event.date | date: 'd MMMM yyyy' }} </div> <div class=\"well well-lg well--event\"> <h4><a ui-sref=\"events.card({ id: event.id })\"> {{ event.title }} </a></h4> <p>{{ event.abstract }}</p> <p>Дистанция: <span class=event__distances>{{ event.distances }}</span></p> </div> </div> </div> <div class=eventsList__empty ng-if=!$ctrl.events.length> <div class=\"alert alert-warning\"> <strong>{{ $ctrl.emptyListMessage || 'Нет данных' }}</strong> </div> </div> </div>";
 
 /***/ },
-/* 324 */
+/* 327 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 325 */
+/* 328 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -719,7 +1008,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _component = __webpack_require__(326);
+	var _component = __webpack_require__(329);
 
 	var _component2 = _interopRequireDefault(_component);
 
@@ -728,7 +1017,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.progressBar', []).component('progressBar', _component2.default);
 
 /***/ },
-/* 326 */
+/* 329 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -737,15 +1026,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(327);
+	var _controller = __webpack_require__(330);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(328);
+	var _template = __webpack_require__(331);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(329);
+	__webpack_require__(332);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -758,7 +1047,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 327 */
+/* 330 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -776,19 +1065,19 @@ webpackJsonp([0],[
 	exports.default = ProgressBarController;
 
 /***/ },
-/* 328 */
+/* 331 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=spinerContainer> <i class=\"fa fa-circle-o-notch fa-spin fa-4x fa-fw\"></i><br><span>{{ $ctrl.text }}</span> </div>";
 
 /***/ },
-/* 329 */
+/* 332 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 330 */
+/* 333 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -801,11 +1090,11 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _component = __webpack_require__(331);
+	var _component = __webpack_require__(334);
 
 	var _component2 = _interopRequireDefault(_component);
 
-	var _directives = __webpack_require__(335);
+	var _directives = __webpack_require__(338);
 
 	var _directives2 = _interopRequireDefault(_directives);
 
@@ -814,7 +1103,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.uploadFileButton', [_directives2.default.name]).component('uploadFileButton', _component2.default);
 
 /***/ },
-/* 331 */
+/* 334 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -823,15 +1112,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(332);
+	var _controller = __webpack_require__(335);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(333);
+	var _template = __webpack_require__(336);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(334);
+	__webpack_require__(337);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -844,7 +1133,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 332 */
+/* 335 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -862,19 +1151,19 @@ webpackJsonp([0],[
 	exports.default = UploadFileButtonController;
 
 /***/ },
-/* 333 */
+/* 336 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=uploadFileButton> <input type=file class=uploadFileButton__file file=$ctrl.uploadFile> <button class=\"btn btn-primary uploadFileButton__button\" type=button> <i class=\"fa fa-file-text-o\" aria-hidden=true></i> </button> </div>";
 
 /***/ },
-/* 334 */
+/* 337 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 335 */
+/* 338 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -887,7 +1176,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _file = __webpack_require__(336);
+	var _file = __webpack_require__(339);
 
 	var _file2 = _interopRequireDefault(_file);
 
@@ -896,7 +1185,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.uploadFileButton.directives', [_file2.default.name]);
 
 /***/ },
-/* 336 */
+/* 339 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -909,7 +1198,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _directive = __webpack_require__(337);
+	var _directive = __webpack_require__(340);
 
 	var _directive2 = _interopRequireDefault(_directive);
 
@@ -920,7 +1209,7 @@ webpackJsonp([0],[
 	});
 
 /***/ },
-/* 337 */
+/* 340 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -943,7 +1232,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 338 */
+/* 341 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -956,31 +1245,31 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _home = __webpack_require__(339);
+	var _home = __webpack_require__(342);
 
 	var _home2 = _interopRequireDefault(_home);
 
-	var _news = __webpack_require__(371);
+	var _news = __webpack_require__(374);
 
 	var _news2 = _interopRequireDefault(_news);
 
-	var _calendar = __webpack_require__(387);
+	var _calendar = __webpack_require__(392);
 
 	var _calendar2 = _interopRequireDefault(_calendar);
 
-	var _events = __webpack_require__(401);
+	var _events = __webpack_require__(406);
 
 	var _events2 = _interopRequireDefault(_events);
 
-	var _about = __webpack_require__(452);
+	var _about = __webpack_require__(455);
 
 	var _about2 = _interopRequireDefault(_about);
 
-	var _login = __webpack_require__(456);
+	var _login = __webpack_require__(459);
 
 	var _login2 = _interopRequireDefault(_login);
 
-	var _user = __webpack_require__(460);
+	var _user = __webpack_require__(463);
 
 	var _user2 = _interopRequireDefault(_user);
 
@@ -989,7 +1278,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages', [_home2.default.name, _news2.default.name, _calendar2.default.name, _events2.default.name, _about2.default.name, _login2.default.name, _user2.default.name]);
 
 /***/ },
-/* 339 */
+/* 342 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1002,11 +1291,11 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _component = __webpack_require__(340);
+	var _component = __webpack_require__(343);
 
 	var _component2 = _interopRequireDefault(_component);
 
-	var _components = __webpack_require__(344);
+	var _components = __webpack_require__(347);
 
 	var _components2 = _interopRequireDefault(_components);
 
@@ -1022,7 +1311,7 @@ webpackJsonp([0],[
 	}]).component('home', _component2.default);
 
 /***/ },
-/* 340 */
+/* 343 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1031,15 +1320,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(341);
+	var _controller = __webpack_require__(344);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(342);
+	var _template = __webpack_require__(345);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(343);
+	__webpack_require__(346);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1050,7 +1339,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 341 */
+/* 344 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1071,19 +1360,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 342 */
+/* 345 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"page page--home\"> <jumbotron></jumbotron> <info></info> </div>";
 
 /***/ },
-/* 343 */
+/* 346 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 344 */
+/* 347 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1096,11 +1385,11 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _jumbotron = __webpack_require__(345);
+	var _jumbotron = __webpack_require__(348);
 
 	var _jumbotron2 = _interopRequireDefault(_jumbotron);
 
-	var _info = __webpack_require__(350);
+	var _info = __webpack_require__(353);
 
 	var _info2 = _interopRequireDefault(_info);
 
@@ -1109,7 +1398,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages.home.components', [_jumbotron2.default.name, _info2.default.name]);
 
 /***/ },
-/* 345 */
+/* 348 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1122,7 +1411,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _component = __webpack_require__(346);
+	var _component = __webpack_require__(349);
 
 	var _component2 = _interopRequireDefault(_component);
 
@@ -1131,7 +1420,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages.home.components.jumbotron', []).component('jumbotron', _component2.default);
 
 /***/ },
-/* 346 */
+/* 349 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1140,15 +1429,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(347);
+	var _controller = __webpack_require__(350);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(348);
+	var _template = __webpack_require__(351);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(349);
+	__webpack_require__(352);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1159,7 +1448,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 347 */
+/* 350 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1220,19 +1509,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 348 */
+/* 351 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=container> <div class=row> <div class=col-md-12> <div class=jumbotron> <div class=jumbotron__spinner ng-if=$ctrl.loadProgress> <i class=\"fa fa-circle-o-notch fa-spin fa-5x fa-fw\"></i> </div> <div ng-if=!$ctrl.loadProgress> <h1>{{ $ctrl.event.title }}</h1> <p> {{ $ctrl.event.date | date: 'EEEE, d MMMM yyyy' }}, {{ $ctrl.event.time }} </p> <p>{{ $ctrl.event.abstract }}</p> <p> <a class=\"btn btn-primary btn-lg\" ui-sref=\"events.card({ id: $ctrl.event.id })\"> Узнать больше </a> </p> </div> </div> </div> </div> <div></div></div>";
+	module.exports = "<div class=container> <div class=row> <div class=col-md-12> <div class=jumbotron> <div class=jumbotron__spinner ng-if=$ctrl.loadProgress> <i class=\"fa fa-circle-o-notch fa-spin fa-5x fa-fw\"></i> </div> <div ng-if=!$ctrl.loadProgress> <h1>{{ $ctrl.event.title }}</h1> <p> {{ $ctrl.event.date | date: 'EEEE, d MMMM yyyy' }}, {{ $ctrl.event.time }} </p> <p>{{ $ctrl.event.abstract }}</p> <p> <a class=\"btn btn-primary btn-lg\" ui-sref=\"events.card({ id: $ctrl.event.id })\">Подробнее</a> </p> </div> </div> </div> </div> <div></div></div>";
 
 /***/ },
-/* 349 */
+/* 352 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 350 */
+/* 353 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1245,11 +1534,11 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _component = __webpack_require__(351);
+	var _component = __webpack_require__(354);
 
 	var _component2 = _interopRequireDefault(_component);
 
-	var _components = __webpack_require__(355);
+	var _components = __webpack_require__(358);
 
 	var _components2 = _interopRequireDefault(_components);
 
@@ -1258,7 +1547,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages.home.components.info', [_components2.default.name]).component('info', _component2.default);
 
 /***/ },
-/* 351 */
+/* 354 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1267,15 +1556,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(352);
+	var _controller = __webpack_require__(355);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(353);
+	var _template = __webpack_require__(356);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(354);
+	__webpack_require__(357);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1285,7 +1574,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 352 */
+/* 355 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1306,19 +1595,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 353 */
+/* 356 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"container homeInfo\"> <div class=row> <div class=col-md-4> <info-news></info-news> </div> <div class=col-md-4> <info-event></info-event> </div> <div class=col-md-4> <info-update></info-update> </div> </div> </div>";
 
 /***/ },
-/* 354 */
+/* 357 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 355 */
+/* 358 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1331,15 +1620,15 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _infoNews = __webpack_require__(356);
+	var _infoNews = __webpack_require__(359);
 
 	var _infoNews2 = _interopRequireDefault(_infoNews);
 
-	var _infoEvent = __webpack_require__(361);
+	var _infoEvent = __webpack_require__(364);
 
 	var _infoEvent2 = _interopRequireDefault(_infoEvent);
 
-	var _infoUpdate = __webpack_require__(366);
+	var _infoUpdate = __webpack_require__(369);
 
 	var _infoUpdate2 = _interopRequireDefault(_infoUpdate);
 
@@ -1348,7 +1637,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages.home.components.info.components', [_infoNews2.default.name, _infoEvent2.default.name, _infoUpdate2.default.name]);
 
 /***/ },
-/* 356 */
+/* 359 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1361,7 +1650,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _component = __webpack_require__(357);
+	var _component = __webpack_require__(360);
 
 	var _component2 = _interopRequireDefault(_component);
 
@@ -1370,7 +1659,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages.home.components.info.components.news', []).component('infoNews', _component2.default);
 
 /***/ },
-/* 357 */
+/* 360 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1379,26 +1668,25 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(358);
+	var _controller = __webpack_require__(361);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(359);
+	var _template = __webpack_require__(362);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(360);
+	__webpack_require__(363);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = {
 	    template: _template2.default,
-	    controller: _controller2.default,
-	    bindings: {}
+	    controller: _controller2.default
 	};
 
 /***/ },
-/* 358 */
+/* 361 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1458,19 +1746,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 359 */
+/* 362 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=homeInfo__news> <h3>Новости</h3> <div class=list-group> <div class=\"list-group-item info__spiner\" ng-if=$ctrl.loadProgress> <i class=\"fa fa-circle-o-notch fa-spin fa-3x fa-fw\"></i> </div> <div ng-if=!$ctrl.loadProgress> <div class=list-group-item ng-repeat=\"news in $ctrl.news\"> <h4 class=list-group-item-heading> <a ui-sref=\"news.card({ id: news.id })\">{{ news.title }}</a> </h4> <p class=list-group-item-text>{{ news.abstract }}</p> </div> <div class=list-group-item ng-if=!$ctrl.news.length> <p class=list-group-item-text>Новостей пока нет</p> </div> </div> </div> </div>";
+	module.exports = "<div class=homeInfo__news> <h3>Новости</h3> <div class=list-group> <div class=\"list-group-item info__spiner\" ng-if=$ctrl.loadProgress> <i class=\"fa fa-circle-o-notch fa-spin fa-3x fa-fw\"></i> </div> <div ng-if=!$ctrl.loadProgress> <div class=list-group-item ng-repeat=\"news in $ctrl.news\"> <h5 class=list-group-item-heading> {{ news.date | date: 'd.MM.yyyy' }} </h5> <h4 class=list-group-item-heading> <a ui-sref=\"news.card({ id: news.id })\">{{ news.title }}</a> </h4> <p class=list-group-item-text>{{ news.abstract }}</p> </div> <div class=list-group-item ng-if=!$ctrl.news.length> <p class=list-group-item-text>Новостей пока нет</p> </div> </div> </div> </div>";
 
 /***/ },
-/* 360 */
+/* 363 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 361 */
+/* 364 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1483,7 +1771,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _component = __webpack_require__(362);
+	var _component = __webpack_require__(365);
 
 	var _component2 = _interopRequireDefault(_component);
 
@@ -1492,7 +1780,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages.home.components.info.components.event', []).component('infoEvent', _component2.default);
 
 /***/ },
-/* 362 */
+/* 365 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1501,15 +1789,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(363);
+	var _controller = __webpack_require__(366);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(364);
+	var _template = __webpack_require__(367);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(365);
+	__webpack_require__(368);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1520,7 +1808,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 363 */
+/* 366 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1581,19 +1869,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 364 */
+/* 367 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=homeInfo__events> <h3>Ближайшие события</h3> <div class=list-group> <div class=\"list-group-item info__spiner\" ng-if=$ctrl.loadProgress> <i class=\"fa fa-circle-o-notch fa-spin fa-3x fa-fw\"></i> </div> <div class=list-group-item ng-repeat=\"event in $ctrl.events\"> <h4 class=list-group-item-heading> <a ui-sref=\"events.card({ id: event.id })\">{{ event.title }}</a> </h4> <p class=list-group-item-text>{{ event.abstract }}</p> </div> </div> </div>";
+	module.exports = "<div class=homeInfo__events> <h3>Ближайшие события</h3> <div class=list-group> <div class=\"list-group-item info__spiner\" ng-if=$ctrl.loadProgress> <i class=\"fa fa-circle-o-notch fa-spin fa-3x fa-fw\"></i> </div> <div class=list-group-item ng-repeat=\"event in $ctrl.events\"> <h5 class=list-group-item-heading> {{ event.date | date: 'd.MM.yyyy' }} </h5> <h4 class=list-group-item-heading> <a ui-sref=\"events.card({ id: event.id })\">{{ event.title }}</a> </h4> <p class=list-group-item-text>{{ event.abstract }}</p> </div> </div> </div>";
 
 /***/ },
-/* 365 */
+/* 368 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 366 */
+/* 369 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1606,7 +1894,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _component = __webpack_require__(367);
+	var _component = __webpack_require__(370);
 
 	var _component2 = _interopRequireDefault(_component);
 
@@ -1615,7 +1903,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages.home.components.info.components.update', []).component('infoUpdate', _component2.default);
 
 /***/ },
-/* 367 */
+/* 370 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1624,15 +1912,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(368);
+	var _controller = __webpack_require__(371);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(369);
+	var _template = __webpack_require__(372);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(370);
+	__webpack_require__(373);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1643,7 +1931,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 368 */
+/* 371 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1703,19 +1991,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 369 */
+/* 372 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=homeInfo__updates> <h3>Обновления</h3> <div class=list-group> <div class=\"list-group-item info__spiner\" ng-if=$ctrl.loadProgress> <i class=\"fa fa-circle-o-notch fa-spin fa-3x fa-fw\"></i> </div> <div ng-if=!$ctrl.loadProgress> <div class=list-group-item ng-repeat=\"update in $ctrl.updates\"> <h4 class=list-group-item-heading>{{ update.title }}</h4> <p class=list-group-item-text>{{ update.content }}</p> </div> <div class=list-group-item ng-if=!$ctrl.updates.length> <p class=list-group-item-text>Обновлений пока нет</p> </div> </div> </div> </div>";
+	module.exports = "<div class=homeInfo__updates> <h3>Обновления</h3> <div class=list-group> <div class=\"list-group-item info__spiner\" ng-if=$ctrl.loadProgress> <i class=\"fa fa-circle-o-notch fa-spin fa-3x fa-fw\"></i> </div> <div ng-if=!$ctrl.loadProgress> <div class=list-group-item ng-repeat=\"update in $ctrl.updates\"> <h5 class=list-group-item-heading> {{ update.date | date: 'd.MM.yyyy' }} </h5> <h4 class=list-group-item-heading>{{ update.title }}</h4> <p class=list-group-item-text>{{ update.content }}</p> </div> <div class=list-group-item ng-if=!$ctrl.updates.length> <p class=list-group-item-text>Обновлений пока нет</p> </div> </div> </div> </div>";
 
 /***/ },
-/* 370 */
+/* 373 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 371 */
+/* 374 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1730,19 +2018,19 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _angularUiRouter = __webpack_require__(302);
+	var _angularUiRouter = __webpack_require__(303);
 
 	var _angularUiRouter2 = _interopRequireDefault(_angularUiRouter);
 
-	var _newsList = __webpack_require__(372);
+	var _newsList = __webpack_require__(375);
 
 	var _newsList2 = _interopRequireDefault(_newsList);
 
-	var _newsCard = __webpack_require__(377);
+	var _newsCard = __webpack_require__(380);
 
 	var _newsCard2 = _interopRequireDefault(_newsCard);
 
-	var _newsForm = __webpack_require__(382);
+	var _newsForm = __webpack_require__(387);
 
 	var _newsForm2 = _interopRequireDefault(_newsForm);
 
@@ -1794,7 +2082,7 @@ webpackJsonp([0],[
 	}
 
 /***/ },
-/* 372 */
+/* 375 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1807,7 +2095,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _component = __webpack_require__(373);
+	var _component = __webpack_require__(376);
 
 	var _component2 = _interopRequireDefault(_component);
 
@@ -1816,7 +2104,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages.news.list', []).component('newsListPage', _component2.default);
 
 /***/ },
-/* 373 */
+/* 376 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1825,15 +2113,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(374);
+	var _controller = __webpack_require__(377);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(375);
+	var _template = __webpack_require__(378);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(376);
+	__webpack_require__(379);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1843,7 +2131,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 374 */
+/* 377 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1852,129 +2140,82 @@ webpackJsonp([0],[
 	    value: true
 	});
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var NewsListPageController = function NewsListPageController(NewsService) {
-	    'ngInject';
+	var NewsListPageController = function () {
+	    NewsListPageController.$inject = ["NewsService"];
+	    function NewsListPageController(NewsService) {
+	        'ngInject';
 
-	    _classCallCheck(this, NewsListPageController);
-	};
-	NewsListPageController.$inject = ["NewsService"];
+	        _classCallCheck(this, NewsListPageController);
+
+	        this._loadNews(NewsService);
+	    }
+
+	    _createClass(NewsListPageController, [{
+	        key: '_loadNews',
+	        value: function _loadNews(NewsService) {
+	            var _this = this;
+
+	            this._startLoadProgress();
+	            NewsService.loadNews().then(function (result) {
+	                _this.news = result;
+	            }).then(function () {
+	                _this._stopLoadProgress();
+	            }).catch(function (error) {
+	                _this._stopLoadProgress();
+	                throw Error(error);
+	            });
+	        }
+	    }, {
+	        key: '_startLoadProgress',
+	        value: function _startLoadProgress() {
+	            this.loadProgress = true;
+	        }
+	    }, {
+	        key: '_stopLoadProgress',
+	        value: function _stopLoadProgress() {
+	            this.loadProgress = false;
+	        }
+	    }]);
+
+	    return NewsListPageController;
+	}();
 
 	exports.default = NewsListPageController;
 	;
 
 /***/ },
-/* 375 */
-/***/ function(module, exports) {
-
-	module.exports = "<div class=\"page page--newsList\"> <div class=container> <div class=row> <div class=col-md-12> News list page </div> </div> <div> </div></div></div>";
-
-/***/ },
-/* 376 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 377 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _angular = __webpack_require__(299);
-
-	var _angular2 = _interopRequireDefault(_angular);
-
-	var _component = __webpack_require__(378);
-
-	var _component2 = _interopRequireDefault(_component);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = _angular2.default.module('app.components.pages.news.card', []).component('newsCardPage', _component2.default);
-
-/***/ },
 /* 378 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _controller = __webpack_require__(379);
-
-	var _controller2 = _interopRequireDefault(_controller);
-
-	var _template = __webpack_require__(380);
-
-	var _template2 = _interopRequireDefault(_template);
-
-	__webpack_require__(381);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = {
-	    template: _template2.default,
-	    controller: _controller2.default,
-	    bindings: {
-	        id: '<'
-	    }
-	};
+	module.exports = "<progress-bar text=\"Загрузка новостей...\" ng-if=$ctrl.loadProgress></progress-bar> <div class=\"page page--newsList\" ng-if=!$ctrl.loadProgress> <div class=container> <div class=row> <div class=\"col-md-4 col-sm-6\" ng-repeat=\"news in $ctrl.news\"> <div class=thumbnail> <div class=caption> <h4><a ui-sref=\"news.card({ id: news.id })\">{{ news.title }}</a></h4> <p>{{ news.abstract }}</p> <p class=news__date>Дата: {{ news.date | date: 'd MMMM yyyy' }}</p> </div> </div> </div> </div> <div> </div></div></div>";
 
 /***/ },
 /* 379 */
 /***/ function(module, exports) {
 
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	var NewsCardPageController = function NewsCardPageController(NewsService) {
-	    'ngInject';
-
-	    _classCallCheck(this, NewsCardPageController);
-	};
-	NewsCardPageController.$inject = ["NewsService"];
-
-	exports.default = NewsCardPageController;
-	;
-
-/***/ },
-/* 380 */
-/***/ function(module, exports) {
-
-	module.exports = "<div class=\"page page--newsList\"> <div class=container> <div class=row> <div class=col-md-12> News card page </div> </div> <div> </div></div></div>";
-
-/***/ },
-/* 381 */
-/***/ function(module, exports) {
-
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 382 */
+/* 380 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	        value: true
 	});
 
 	var _angular = __webpack_require__(299);
 
 	var _angular2 = _interopRequireDefault(_angular);
+
+	var _angularSanitize = __webpack_require__(381);
+
+	var _angularSanitize2 = _interopRequireDefault(_angularSanitize);
 
 	var _component = __webpack_require__(383);
 
@@ -1982,9 +2223,11 @@ webpackJsonp([0],[
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = _angular2.default.module('app.components.pages.news.form', []).component('newsFormPage', _component2.default);
+	exports.default = _angular2.default.module('app.components.pages.news.card', [_angularSanitize2.default]).component('newsCardPage', _component2.default);
 
 /***/ },
+/* 381 */,
+/* 382 */,
 /* 383 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -2016,6 +2259,134 @@ webpackJsonp([0],[
 
 /***/ },
 /* 384 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var NewsCardPageController = function () {
+	    NewsCardPageController.$inject = ["$sce", "NewsService"];
+	    function NewsCardPageController($sce, NewsService) {
+	        'ngInject';
+
+	        _classCallCheck(this, NewsCardPageController);
+
+	        this.$sce = $sce;
+
+	        this._loadNews(NewsService);
+	    }
+
+	    _createClass(NewsCardPageController, [{
+	        key: 'getContentHtml',
+	        value: function getContentHtml() {
+	            return this.$sce.trustAsHtml(this.news.content);
+	        }
+	    }, {
+	        key: '_loadNews',
+	        value: function _loadNews(NewsService) {
+	            var _this = this;
+
+	            this._startLoadProgress();
+	            NewsService.getNewsById(this.id).then(function (result) {
+	                _this.news = result;
+	            }).then(function () {
+	                _this._stopLoadProgress();
+	            }).catch(function (error) {
+	                _this._stopLoadProgress();
+	                throw Error(error);
+	            });
+	        }
+	    }, {
+	        key: '_startLoadProgress',
+	        value: function _startLoadProgress() {
+	            this.loadProgress = true;
+	        }
+	    }, {
+	        key: '_stopLoadProgress',
+	        value: function _stopLoadProgress() {
+	            this.loadProgress = false;
+	        }
+	    }]);
+
+	    return NewsCardPageController;
+	}();
+
+	exports.default = NewsCardPageController;
+	;
+
+/***/ },
+/* 385 */
+/***/ function(module, exports) {
+
+	module.exports = "<progress-bar text=Загрузка... ng-if=$ctrl.loadProgress></progress-bar> <div class=\"page page--newsCard\" ng-if=!$ctrl.loadProgress> <div class=container> <div class=row> <div class=col-md-12> <div class=\"page-header news__header\"> <h4><span class=\"label label-default\">{{ $ctrl.news.date | date: 'd MMMM yyyy' }}</span></h4> <h3>{{ $ctrl.news.title }}</h3> <div class=row> <div class=\"col-md-10 col-sm-12\"> <p>{{ $ctrl.news.abstract }}</p> </div> </div> </div> </div> </div> <div class=row> <div class=col-md-12> <div class=\"well well-sm well--news\"> <div class=row> <div class=\"col-md-10 col-sm-12\"> <div class=news__content ng-bind-html=$ctrl.getContentHtml()></div> </div> </div> </div> </div> </div> <div> </div></div></div>";
+
+/***/ },
+/* 386 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 387 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _angular = __webpack_require__(299);
+
+	var _angular2 = _interopRequireDefault(_angular);
+
+	var _component = __webpack_require__(388);
+
+	var _component2 = _interopRequireDefault(_component);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _angular2.default.module('app.components.pages.news.form', []).component('newsFormPage', _component2.default);
+
+/***/ },
+/* 388 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _controller = __webpack_require__(389);
+
+	var _controller2 = _interopRequireDefault(_controller);
+
+	var _template = __webpack_require__(390);
+
+	var _template2 = _interopRequireDefault(_template);
+
+	__webpack_require__(391);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = {
+	    template: _template2.default,
+	    controller: _controller2.default,
+	    bindings: {
+	        id: '<'
+	    }
+	};
+
+/***/ },
+/* 389 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2205,19 +2576,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 385 */
+/* 390 */
 /***/ function(module, exports) {
 
 	module.exports = "<progress-bar text=\"Загрузка новости...\" ng-if=$ctrl.loadProgress></progress-bar> <div class=\"page page--newsForm\" ng-hide=$ctrl.loadProgress> <div class=container> <div class=row> <div class=col-md-12> <div class=\"well well--form\"> <form name=news class=\"\" ng-submit=$ctrl.submit()> <fieldset> <legend>{{ $ctrl.id ? 'Редактирование новости' : 'Добавление новости' }}</legend> <div class=form-group ng-class=\"{ 'has-error' : $ctrl.isHasError('title') }\"> <label for=title class=control-label>Заголовок</label> <input type=text class=form-control id=title name=title required ng-model=$ctrl.news.title ng-disabled=$ctrl.disabledForm autocomplete=off> <div ng-messages=news.title.$error ng-if=\"$ctrl.isHasError('title')\" role=alert> <div ng-message=required class=form__message--error>Введите заголовок</div> </div> </div> <div class=form-group> <label for=abstract class=control-label>Краткое описание</label> <textarea class=form-control id=abstract name=abstract rows=2 required ng-model=$ctrl.news.abstract ng-disabled=$ctrl.disabledForm autocomplete=off></textarea> <div ng-messages=news.abstract.$error ng-if=\"$ctrl.isHasError('abstract')\" role=alert> <div ng-message=required class=form__message--error>Введите краткое описание</div> </div> </div> <div class=form-group> <label for=newsContent class=control-label>Содержание</label> <div ckeditor=$ctrl.ckeditorOptions id=newsContent ng-model=$ctrl.news.content></div> </div> <div class=form-group> <button type=submit class=\"btn btn-primary\" ng-disabled=\"news.$invalid || $ctrl.disabledForm\"> <i class=\"fa fa-lg fa-spinner fa-spin\" ng-if=$ctrl.saveProgress></i> Сохранить </button> <button type=button class=\"btn btn-danger\" ng-if=$ctrl.id ng-click=$ctrl.onClickRemoveButton() ng-disabled=$ctrl.disabledForm> <i class=\"fa fa-lg fa-spinner fa-spin\" ng-if=$ctrl.removeProgress></i> Удалить </button> <button type=button class=\"btn btn-default\" ng-click=$ctrl.onClickCancelButton() ng-disabled=$ctrl.disabledForm>Отмена</button> </div> </fieldset> </form> </div> </div> </div> </div> </div>";
 
 /***/ },
-/* 386 */
+/* 391 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 387 */
+/* 392 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2230,15 +2601,15 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _angularUiRouter = __webpack_require__(302);
+	var _angularUiRouter = __webpack_require__(303);
 
 	var _angularUiRouter2 = _interopRequireDefault(_angularUiRouter);
 
-	var _components = __webpack_require__(388);
+	var _components = __webpack_require__(393);
 
 	var _components2 = _interopRequireDefault(_components);
 
-	var _component = __webpack_require__(397);
+	var _component = __webpack_require__(402);
 
 	var _component2 = _interopRequireDefault(_component);
 
@@ -2269,7 +2640,7 @@ webpackJsonp([0],[
 	}).component('calendar', _component2.default);
 
 /***/ },
-/* 388 */
+/* 393 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2282,7 +2653,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _calendarDatepicker = __webpack_require__(389);
+	var _calendarDatepicker = __webpack_require__(394);
 
 	var _calendarDatepicker2 = _interopRequireDefault(_calendarDatepicker);
 
@@ -2291,7 +2662,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages.calendar.components', [_calendarDatepicker2.default.name]);
 
 /***/ },
-/* 389 */
+/* 394 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2304,11 +2675,11 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _component = __webpack_require__(390);
+	var _component = __webpack_require__(395);
 
 	var _component2 = _interopRequireDefault(_component);
 
-	var _templates = __webpack_require__(394);
+	var _templates = __webpack_require__(399);
 
 	var _templates2 = _interopRequireDefault(_templates);
 
@@ -2317,7 +2688,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages.calendar.components.calendarDatepicker', [_templates2.default.name]).component('calendarDatepicker', _component2.default);
 
 /***/ },
-/* 390 */
+/* 395 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2326,15 +2697,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(391);
+	var _controller = __webpack_require__(396);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(392);
+	var _template = __webpack_require__(397);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(393);
+	__webpack_require__(398);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2349,7 +2720,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 391 */
+/* 396 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2396,19 +2767,19 @@ webpackJsonp([0],[
 	exports.default = CalendarDatepickerController;
 
 /***/ },
-/* 392 */
+/* 397 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=calendarDatepicker> <uib-datepicker class=\"well well-sm\" ng-model=$ctrl.date datepicker-options=$ctrl.options template-url=calendarDatepicker/templates/datepicker.html></uib-datepicker> </div>";
 
 /***/ },
-/* 393 */
+/* 398 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 394 */
+/* 399 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2421,11 +2792,11 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _datepicker = __webpack_require__(395);
+	var _datepicker = __webpack_require__(400);
 
 	var _datepicker2 = _interopRequireDefault(_datepicker);
 
-	var _day = __webpack_require__(396);
+	var _day = __webpack_require__(401);
 
 	var _day2 = _interopRequireDefault(_day);
 
@@ -2439,19 +2810,19 @@ webpackJsonp([0],[
 	}]);
 
 /***/ },
-/* 395 */
+/* 400 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=uib-datepicker ng-switch=datepickerMode role=application ng-keydown=keydown($event)> <uib-daypicker ng-switch-when=day tabindex=0 template-url=calendarDatepicker/templates/day.html></uib-daypicker> <uib-monthpicker ng-switch-when=month tabindex=0></uib-monthpicker> <uib-yearpicker ng-switch-when=year tabindex=0></uib-yearpicker> </div>";
 
 /***/ },
-/* 396 */
+/* 401 */
 /***/ function(module, exports) {
 
 	module.exports = "<table class=uib-daypicker role=grid aria-labelledby={{::uniqueId}}-title aria-activedescendant={{activeDateId}}> <thead> <tr> <th><button type=button class=\"btn btn-default btn-sm pull-left uib-left\" ng-click=move(-1) tabindex=-1><i class=\"glyphicon glyphicon-chevron-left\"></i></button></th> <th colspan=\"{{::5 + showWeeks}}\"><button id={{::uniqueId}}-title role=heading aria-live=assertive aria-atomic=true type=button class=\"btn btn-default btn-sm uib-title\" ng-click=toggleMode() ng-disabled=\"datepickerMode === maxMode\" tabindex=-1><strong>{{title}}</strong></button></th> <th><button type=button class=\"btn btn-default btn-sm pull-right uib-right\" ng-click=move(1) tabindex=-1><i class=\"glyphicon glyphicon-chevron-right\"></i></button></th> </tr> <tr> <th ng-if=showWeeks class=text-center></th> <th ng-repeat=\"label in ::labels track by $index\" class=text-center><span aria-label={{::label.full}}>{{::label.abbr}}</span></th> </tr> </thead> <tbody> <tr class=uib-weeks ng-repeat=\"row in rows track by $index\"> <td ng-if=showWeeks class=\"text-center h6\"><em>{{ weekNumbers[$index] }}</em></td> <td ng-repeat=\"dt in row\" class=\"uib-day text-center\" role=gridcell id={{::dt.uid}} ng-class=::dt.customClass> <button type=button class=\"btn btn-default btn-sm\" uib-is-class=\"\r\n            'btn-primary' for selectedDt,\r\n            'active' for activeDt\r\n            on dt\" ng-click=select(dt.date) ng-disabled=::dt.disabled tabindex=-1><span ng-class=\"::{'text-muted': dt.secondary, 'text-info': dt.current}\">{{::dt.label}}</span></button> </td> </tr> </tbody> </table>";
 
 /***/ },
-/* 397 */
+/* 402 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2460,15 +2831,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(398);
+	var _controller = __webpack_require__(403);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(399);
+	var _template = __webpack_require__(404);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(400);
+	__webpack_require__(405);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2483,7 +2854,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 398 */
+/* 403 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2641,19 +3012,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 399 */
+/* 404 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"page page--calendar\"> <div class=container> <div class=row> <div class=col-md-12> <div class=pageCalendar__nav> <ul class=\"nav nav-pills\"> <li role=presentation ng-class=\"{ active: $ctrl.filterIs('events') }\"> <a ui-sref=\"calendar($ctrl.getSrefOptions('events'))\">СОБЫТИЯ</a> </li> <li role=presentation ng-class=\"{ active: $ctrl.filterIs('probegs') }\"> <a ui-sref=\"calendar($ctrl.getSrefOptions('probegs'))\">ПРОБЕГИ</a> </li> <li role=presentation ng-class=\"{ active: $ctrl.filterIs('marathons') }\"> <a ui-sref=\"calendar($ctrl.getSrefOptions('marathons'))\">МАРАФОНЫ</a> </li> <li role=presentation ng-class=\"{ active: $ctrl.filterIs('trainings') }\"> <a ui-sref=\"calendar($ctrl.getSrefOptions('trainings'))\">ТРЕНИРОВКИ</a> </li> </ul> </div> </div> </div> <div class=row> <div class=col-md-10> <div class=pageCalendar__datepickers> <div class=\"well well-lg well--datepickers\"> <calendar-datepicker date=$ctrl.dateBegin options=$ctrl.datepickerOptions on-change=$ctrl.onChangeDateBegin(date)></calendar-datepicker> <calendar-datepicker date=$ctrl.dateEnd options=$ctrl.datepickerOptions on-change=$ctrl.onChangeDateEnd(date)></calendar-datepicker> </div> </div> </div> </div> <div class=row> <div class=\"col-md-10 col-sm-12 col-xs-12\"> <div class=pageCalendar__eventList> <progress-bar text=\"Загрузка списка событий...\" ng-if=$ctrl.loadProgress></progress-bar> <events-list events=$ctrl.getEvents() empty-list-message=\"Ничего не найдено\" ng-if=!$ctrl.loadProgress></events-list> </div> </div> </div> </div> </div>";
 
 /***/ },
-/* 400 */
+/* 405 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 401 */
+/* 406 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2668,27 +3039,27 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _angularUiRouter = __webpack_require__(302);
+	var _angularUiRouter = __webpack_require__(303);
 
 	var _angularUiRouter2 = _interopRequireDefault(_angularUiRouter);
 
-	var _eventFormPage = __webpack_require__(402);
+	var _eventFormPage = __webpack_require__(407);
 
 	var _eventFormPage2 = _interopRequireDefault(_eventFormPage);
 
-	var _eventCardPage = __webpack_require__(410);
+	var _eventCardPage = __webpack_require__(415);
 
 	var _eventCardPage2 = _interopRequireDefault(_eventCardPage);
 
-	var _eventsListPage = __webpack_require__(432);
+	var _eventsListPage = __webpack_require__(435);
 
 	var _eventsListPage2 = _interopRequireDefault(_eventsListPage);
 
-	var _eventStartlistPage = __webpack_require__(442);
+	var _eventStartlistPage = __webpack_require__(445);
 
 	var _eventStartlistPage2 = _interopRequireDefault(_eventStartlistPage);
 
-	var _eventRegisterPage = __webpack_require__(447);
+	var _eventRegisterPage = __webpack_require__(450);
 
 	var _eventRegisterPage2 = _interopRequireDefault(_eventRegisterPage);
 
@@ -2753,7 +3124,7 @@ webpackJsonp([0],[
 	}
 
 /***/ },
-/* 402 */
+/* 407 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2766,13 +3137,13 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _angularMessages = __webpack_require__(403);
+	var _angularMessages = __webpack_require__(408);
 
 	var _angularMessages2 = _interopRequireDefault(_angularMessages);
 
-	__webpack_require__(405);
+	__webpack_require__(410);
 
-	var _component = __webpack_require__(406);
+	var _component = __webpack_require__(411);
 
 	var _component2 = _interopRequireDefault(_component);
 
@@ -2781,10 +3152,10 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages.events.event.form', [_angularMessages2.default, 'ckeditor']).component('eventFormPage', _component2.default);
 
 /***/ },
-/* 403 */,
-/* 404 */,
-/* 405 */,
-/* 406 */
+/* 408 */,
+/* 409 */,
+/* 410 */,
+/* 411 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2793,15 +3164,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(407);
+	var _controller = __webpack_require__(412);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(408);
+	var _template = __webpack_require__(413);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(409);
+	__webpack_require__(414);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2814,7 +3185,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 407 */
+/* 412 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3058,19 +3429,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 408 */
+/* 413 */
 /***/ function(module, exports) {
 
 	module.exports = "<progress-bar text=\"Загрузка события...\" ng-if=$ctrl.loadProgress></progress-bar> <div class=\"page page--eventForm\" ng-hide=$ctrl.loadProgress> <div class=container> <div class=row> <div class=col-md-12> <div class=\"well well--form\"> <form name=event class=form-horizontal ng-submit=$ctrl.submit()> <fieldset> <legend>{{ $ctrl.id ? 'Редактирование события' : 'Добавление нового события' }}</legend> <div class=form-group ng-class=\"{ 'has-error' : $ctrl.isHasError('title') }\"> <label for=title class=\"col-md-2 control-label\">Заголовок</label> <div class=col-md-8> <input type=text class=form-control id=title name=title required ng-model=$ctrl.event.title ng-disabled=$ctrl.disabledForm autocomplete=off> <div ng-messages=event.title.$error ng-if=\"$ctrl.isHasError('title')\" role=alert> <div ng-message=required class=form__message--error>Введите заголовок</div> </div> </div> </div> <div class=form-group ng-class=\"{ 'has-error' : $ctrl.isHasError('date') }\"> <label for=date class=\"col-md-2 control-label\">Дата события</label> <div class=col-md-4> <div class=input-group> <input type=text id=date name=date required class=form-control autocomplete=off uib-datepicker-popup=\"{{ $ctrl.dateFormat }}\" ng-model=$ctrl.event.date is-open=$ctrl.datePopupIsOpen show-button-bar=false on-open-focus=true> <span class=input-group-btn> <button class=\"btn btn-primary\" type=button ng-click=$ctrl.openDatePopup()> <i class=\"fa fa-calendar\" aria-hidden=true></i> </button> </span> </div> <div ng-messages=event.date.$error ng-if=\"$ctrl.isHasError('date')\" role=alert> <div ng-message=required class=form__message--error>Введите дату события</div> </div> </div> </div> <div class=form-group ng-class=\"{ 'has-error' : $ctrl.isHasError('time') }\"> <label for=time class=\"col-md-2 control-label\">Время начала</label> <div class=col-md-4> <input type=text class=form-control id=time name=time required placeholder=11:00 ng-model=$ctrl.event.time ng-disabled=$ctrl.disabledForm autocomplete=off> <div ng-messages=event.time.$error ng-if=\"$ctrl.isHasError('time')\" role=alert> <div ng-message=required class=form__message--error>Введите время начала события</div> </div> </div> </div> <div class=form-group> <label for=place class=\"col-md-2 control-label\">Место проведения</label> <div class=col-md-4> <input type=text class=form-control id=place name=place placeholder=\"г. Пенза, Олимпийская аллея\" ng-model=$ctrl.event.place ng-disabled=$ctrl.disabledForm autocomplete=off> </div> </div> <div class=form-group> <label for=distances class=\"col-md-2 control-label\">Дистанции</label> <div class=col-md-4> <input type=text class=form-control id=distances name=distances placeholder=\"1 км, 3 км, 5 км, 10 км, полумарафон, марафон\" ng-model=$ctrl.event.distances ng-disabled=$ctrl.disabledForm autocomplete=off> </div> </div> <div class=form-group> <label for=tag class=\"col-md-2 control-label\">Теги</label> <div class=col-md-8> <label class=radio-inline> <input type=radio name=tag id=inlineRadio1 value=event ng-model=$ctrl.event.tag> <span class=\"label label-default label--md\">Событие</span> </label> <label class=radio-inline> <input type=radio name=tag id=inlineRadio1 value=probeg ng-model=$ctrl.event.tag> <span class=\"label label-warning label--md\">Пробег</span> </label> <label class=radio-inline> <input type=radio name=tag id=inlineRadio2 value=marathon ng-model=$ctrl.event.tag> <span class=\"label label-danger label--md\">Марафон</span> </label> <label class=radio-inline> <input type=radio name=tag id=inlineRadio3 value=training ng-model=$ctrl.event.tag> <span class=\"label label-success label--md\">Тренировка</span> </label> </div> </div> <div class=form-group></div> <div class=form-group ng-class=\"{ 'has-error' : $ctrl.isHasError('master') }\"> <label for=master class=\"col-md-2 control-label\">Организаторы</label> <div class=col-md-8> <input type=text class=form-control id=master name=master placeholder=\"Сообщество &ldquo;Бег в Пензе&rdquo;\" required ng-model=$ctrl.event.master ng-disabled=$ctrl.disabledForm> <div ng-messages=event.master.$error ng-if=\"$ctrl.isHasError('master')\" role=alert> <div ng-message=required class=form__message--error>Укажите организаторов</div> </div> </div> </div> <div class=form-group> <label for=masterUrl class=\"col-md-2 control-label\">Сайт организаторов</label> <div class=col-md-4> <div class=input-group> <span class=input-group-addon>www</span> <input type=text class=form-control id=masterUrl name=masterUrl ng-model=$ctrl.event.masterUrl ng-disabled=$ctrl.disabledForm> </div> </div> </div> <div class=form-group> <label for=masterPerson class=\"col-md-2 control-label\">Контактное лицо</label> <div class=col-md-4> <input type=text class=form-control id=masterPerson name=masterPerson ng-model=$ctrl.event.masterPerson ng-disabled=$ctrl.disabledForm> </div> </div> <div class=form-group> <label for=masterPhone class=\"col-md-2 control-label\">Телефон</label> <div class=col-md-4> <input type=text class=form-control id=masterPhone name=masterPhone ng-model=$ctrl.event.masterPhone ng-disabled=$ctrl.disabledForm> </div> </div> <div class=form-group> <label for=masterEmail class=\"col-md-2 control-label\">Адрес эл. почты</label> <div class=col-md-4> <input type=text class=form-control id=masterEmail name=masterEmail placeholder=info@penzarun.ru ng-model=$ctrl.event.masterEmail ng-disabled=$ctrl.disabledForm> </div> </div> <div class=form-group></div> <div class=form-group> <label for=abstract class=\"col-md-2 control-label\">Краткое описание</label> <div class=col-md-8> <textarea class=form-control id=abstract name=abstract rows=2 ng-model=$ctrl.event.abstract ng-disabled=$ctrl.disabledForm autocomplete=off></textarea> </div> </div> <div class=form-group> <label for=description class=\"col-md-2 control-label\">Подробное описание</label> <div class=col-md-8> <div ckeditor=$ctrl.ckeditorOptions id=eventDescription ng-model=$ctrl.event.description></div> </div> </div> <div class=form-group> <label for=description class=\"col-md-2 control-label\">Положение</label> <div class=col-md-8> <div class=input-group> <input type=text class=form-control readonly=readonly ng-value=$ctrl.provisionFile.name> <span class=input-group-btn> <upload-file-button upload-file=$ctrl.provisionFile></upload-file-button> </span> <span class=input-group-btn> <button class=\"btn btn-danger\" type=button ng-click=$ctrl.removeProvision() ng-disabled=!$ctrl.provisionFile.name> <i class=\"fa fa-times\" aria-hidden=true></i> </button> </span> </div> </div> </div> <div class=form-group></div> <div class=form-group> <div class=\"col-md-8 col-md-offset-2\"> <button type=submit class=\"btn btn-primary\" ng-disabled=\"event.$invalid || $ctrl.disabledForm\"> <i class=\"fa fa-lg fa-spinner fa-spin\" ng-if=$ctrl.saveProgress></i> Сохранить </button> <button type=button class=\"btn btn-danger\" ng-if=$ctrl.id ng-click=$ctrl.onClickRemoveButton() ng-disabled=$ctrl.disabledForm> <i class=\"fa fa-lg fa-spinner fa-spin\" ng-if=$ctrl.removeProgress></i> Удалить </button> <button type=button class=\"btn btn-default\" ng-click=$ctrl.onClickCancelButton() ng-disabled=$ctrl.disabledForm>Отмена</button> </div> </div> </fieldset> </form> </div> </div> </div> </div> </div>";
 
 /***/ },
-/* 409 */
+/* 414 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 410 */
+/* 415 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3083,19 +3454,19 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _component = __webpack_require__(411);
+	var _component = __webpack_require__(416);
 
 	var _component2 = _interopRequireDefault(_component);
 
-	var _eventCardHeader = __webpack_require__(415);
+	var _eventCardHeader = __webpack_require__(420);
 
 	var _eventCardHeader2 = _interopRequireDefault(_eventCardHeader);
 
-	var _eventCardBody = __webpack_require__(420);
+	var _eventCardBody = __webpack_require__(425);
 
 	var _eventCardBody2 = _interopRequireDefault(_eventCardBody);
 
-	var _eventCardFooter = __webpack_require__(427);
+	var _eventCardFooter = __webpack_require__(430);
 
 	var _eventCardFooter2 = _interopRequireDefault(_eventCardFooter);
 
@@ -3104,7 +3475,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages.events.event.card', [_eventCardHeader2.default.name, _eventCardBody2.default.name, _eventCardFooter2.default.name]).component('eventCardPage', _component2.default);
 
 /***/ },
-/* 411 */
+/* 416 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3113,15 +3484,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(412);
+	var _controller = __webpack_require__(417);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(413);
+	var _template = __webpack_require__(418);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(414);
+	__webpack_require__(419);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3134,7 +3505,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 412 */
+/* 417 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3216,19 +3587,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 413 */
+/* 418 */
 /***/ function(module, exports) {
 
 	module.exports = "<progress-bar text=\"Загрузка события...\" ng-if=$ctrl.loadProgress></progress-bar> <div class=\"page page--eventCard eventCard--{{ $ctrl.event.tag }}\" ng-if=!$ctrl.loadProgress> <event-card-header event=$ctrl.event></event-card-header> <event-card-body event=$ctrl.event provision-file-url=$ctrl.provisionFileUrl provision-file-size=$ctrl.provisionFileSize startlist-length=$ctrl.startlistLength></event-card-body> <event-card-footer event-id=$ctrl.event.id></event-card-footer> </div>";
 
 /***/ },
-/* 414 */
+/* 419 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 415 */
+/* 420 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3241,7 +3612,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _component = __webpack_require__(416);
+	var _component = __webpack_require__(421);
 
 	var _component2 = _interopRequireDefault(_component);
 
@@ -3250,7 +3621,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages.events.event.card.header', []).component('eventCardHeader', _component2.default);
 
 /***/ },
-/* 416 */
+/* 421 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3259,15 +3630,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(417);
+	var _controller = __webpack_require__(422);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(418);
+	var _template = __webpack_require__(423);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(419);
+	__webpack_require__(424);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3280,7 +3651,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 417 */
+/* 422 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3301,19 +3672,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 418 */
+/* 423 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=eventCard__header> <div class=container> <div class=row> <div class=\"col-lg-9 col-md-9 col-sm-12 col-xs-12\"> <div class=eventCard__jumbotron> <div class=eventCard__title> {{ $ctrl.event.title }} </div> <div class=eventCard__abstract>{{ $ctrl.event.abstract }}</div> </div> </div> </div> </div> <div class=eventHeader__info> <div class=info__title> <div class=container> <div class=row> <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"> Дата и время события </div> <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"> Место проведения </div> <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"> Организаторы </div> </div> </div> </div> <div class=info__division></div> <div class=info__content> <div class=container> <div class=row> <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12 col--date\"> <h4 class=content__item> {{ $ctrl.event.date | date: 'EEEE, d MMMM yyyy' }}, {{ $ctrl.event.time }} </h4> </div> <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12 col--place\"> <h4 class=content__item> {{ $ctrl.event.place }} </h4> </div> <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12 col--master\"> <h4 class=content__item> {{ $ctrl.event.master }} </h4> </div> </div> </div> </div> </div> </div>";
 
 /***/ },
-/* 419 */
+/* 424 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 420 */
+/* 425 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3326,11 +3697,11 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _angularSanitize = __webpack_require__(421);
+	var _angularSanitize = __webpack_require__(381);
 
 	var _angularSanitize2 = _interopRequireDefault(_angularSanitize);
 
-	var _component = __webpack_require__(423);
+	var _component = __webpack_require__(426);
 
 	var _component2 = _interopRequireDefault(_component);
 
@@ -3339,9 +3710,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages.events.event.card.body', [_angularSanitize2.default]).component('eventCardBody', _component2.default);
 
 /***/ },
-/* 421 */,
-/* 422 */,
-/* 423 */
+/* 426 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3350,15 +3719,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(424);
+	var _controller = __webpack_require__(427);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(425);
+	var _template = __webpack_require__(428);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(426);
+	__webpack_require__(429);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3374,7 +3743,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 424 */
+/* 427 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3427,19 +3796,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 425 */
+/* 428 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=eventCard__body> <div class=container> <div class=row> <div class=\"col-lg-9 col-md-9 col-sm-12 col-xs-12 leftBlock\"> <div class=eventCard__description ng-if=$ctrl.event.description ng-bind-html=$ctrl.getDescriptionHtml()></div> <div class=\"verticalLine hidden-sm hidden-xs\"></div> </div> <div class=\"col-lg-3 col-md-3 col-sm-12 col-xs-12 rightBlock\"> <div class=\"rightBlock__margin--top hidden-lg hidden-md\"></div> <div class=rightBlock__buttons> <a ng-href=\"{{ $ctrl.provisionFileUrl }}\" class=\"btn btn-default btn-lg btn-block btn--overflow\" ng-if=$ctrl.provisionFileUrl> <i class=\"fa fa-download\" aria-hidden=true></i> Положение ({{ $ctrl.getFileSize() }}) </a> <a class=\"btn btn-info btn-lg btn-block btn--overflow\" ng-if=$ctrl.startlistLength ui-sref=\"events.startlist({ id: $ctrl.event.id })\"> Список участников ({{ $ctrl.startlistLength }}) </a> </div> <div class=rightBlock__address> <h4 class=address__title>Контакты</h4> <address> <div> <strong>{{ $ctrl.event.master }}</strong> </div> <div ng-if=$ctrl.event.masterUrl> <abbr title=\"Адрес в сети Интернет\">www:</abbr> <a target=_blank rel=nofollow ng-href=\"http://www.{{ $ctrl.event.masterUrl }}\">{{ $ctrl.event.masterUrl }}</a> </div> </address> <address ng-if=$ctrl.event.masterPerson> <div> <strong>{{ $ctrl.event.masterPerson }}</strong> </div> <div ng-if=$ctrl.event.masterPhone> <abbr title=Телефон>Тел:</abbr> {{ $ctrl.event.masterPhone }} </div> <div ng-if=$ctrl.event.masterEmail> <abbr title=\"Электронная почта\">Эл. почта:</abbr> <a href=mailto:#>{{ $ctrl.event.masterEmail }}</a> </div> </address> </div> </div> </div> </div> </div>";
 
 /***/ },
-/* 426 */
+/* 429 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 427 */
+/* 430 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3452,7 +3821,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _component = __webpack_require__(428);
+	var _component = __webpack_require__(431);
 
 	var _component2 = _interopRequireDefault(_component);
 
@@ -3461,7 +3830,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages.events.event.card.footer', []).component('eventCardFooter', _component2.default);
 
 /***/ },
-/* 428 */
+/* 431 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3470,15 +3839,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(429);
+	var _controller = __webpack_require__(432);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(430);
+	var _template = __webpack_require__(433);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(431);
+	__webpack_require__(434);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3491,7 +3860,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 429 */
+/* 432 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3528,19 +3897,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 430 */
+/* 433 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=eventCard__footer> <div class=container> <div class=row> <div class=\"col-lg-9 col-md-9 col-sm-12 col-xs-12\"> <div class=btn-toolbar role=toolbar> <div class=btn-group role=group> <a class=\"btn btn-lg btn-primary\" ui-sref=\"events.register({ id: $ctrl.eventId })\" ng-if=$ctrl.isAuth()>Регистрация</a> </div> </div> </div> </div> </div> </div>";
 
 /***/ },
-/* 431 */
+/* 434 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 432 */
+/* 435 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3553,11 +3922,11 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _component = __webpack_require__(433);
+	var _component = __webpack_require__(436);
 
 	var _component2 = _interopRequireDefault(_component);
 
-	var _filter = __webpack_require__(437);
+	var _filter = __webpack_require__(440);
 
 	var _filter2 = _interopRequireDefault(_filter);
 
@@ -3566,7 +3935,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages.events.list', [_filter2.default.name]).component('eventsListPage', _component2.default);
 
 /***/ },
-/* 433 */
+/* 436 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3575,15 +3944,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(434);
+	var _controller = __webpack_require__(437);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(435);
+	var _template = __webpack_require__(438);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(436);
+	__webpack_require__(439);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3593,7 +3962,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 434 */
+/* 437 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3665,19 +4034,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 435 */
+/* 438 */
 /***/ function(module, exports) {
 
 	module.exports = "<progress-bar text=\"Загрузка списка событий...\" ng-if=$ctrl.progress></progress-bar> <div class=\"page page--eventsList\"> <div class=container ng-if=!$ctrl.progress> <div class=row> <div class=\"col-md-2 col-sm-3 col-xs-12\"> <events-list-filter handlers=$ctrl.filterHandlers></events-list-filter> </div> <div class=\"col-md-10 col-sm-9 col-xs-12\"> <events-list events=$ctrl.filtredEvents></events-list> </div> </div> </div> </div>";
 
 /***/ },
-/* 436 */
+/* 439 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 437 */
+/* 440 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3690,7 +4059,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _component = __webpack_require__(438);
+	var _component = __webpack_require__(441);
 
 	var _component2 = _interopRequireDefault(_component);
 
@@ -3699,7 +4068,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages.events.list.filter', []).component('eventsListFilter', _component2.default);
 
 /***/ },
-/* 438 */
+/* 441 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3708,15 +4077,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(439);
+	var _controller = __webpack_require__(442);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(440);
+	var _template = __webpack_require__(443);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(441);
+	__webpack_require__(444);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3729,7 +4098,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 439 */
+/* 442 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3805,19 +4174,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 440 */
+/* 443 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=eventsFilter> <div class=\"panel panel-primary\"> <div class=panel-heading> <h3 class=panel-title>Фильтр</h3> </div> <div class=panel-body> <div class=eventsFilter__block> <div class=checkbox> <label class=label--filter> <input type=checkbox value=probeg ng-click=$ctrl.onClickTag() ng-model=$ctrl.filter.probeg> Пробеги </label> </div> <div class=checkbox> <label class=label--filter> <input type=checkbox value=marathon ng-click=$ctrl.onClickTag() ng-model=$ctrl.filter.marathon> Марафоны </label> </div> <div class=checkbox> <label class=label--filter> <input type=checkbox value=training ng-click=$ctrl.onClickTag() ng-model=$ctrl.filter.training> Тренировки </label> </div> </div> </div> <div class=panel-footer ng-if=$ctrl.isActive()> <button type=button class=\"btn btn-block btn-default\" ng-click=$ctrl.resetFilter()>Очистить</button> </div> </div> </div>";
 
 /***/ },
-/* 441 */
+/* 444 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 442 */
+/* 445 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3830,7 +4199,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _component = __webpack_require__(443);
+	var _component = __webpack_require__(446);
 
 	var _component2 = _interopRequireDefault(_component);
 
@@ -3839,7 +4208,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages.events.startlist', []).component('eventStartlistPage', _component2.default);
 
 /***/ },
-/* 443 */
+/* 446 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3848,15 +4217,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(444);
+	var _controller = __webpack_require__(447);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(445);
+	var _template = __webpack_require__(448);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(446);
+	__webpack_require__(449);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3866,7 +4235,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 444 */
+/* 447 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3921,19 +4290,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 445 */
+/* 448 */
 /***/ function(module, exports) {
 
 	module.exports = "<progress-bar text=\"Загрузка списка участников...\" ng-if=$ctrl.progress></progress-bar> <div class=\"page page--eventStartlist\"> <div class=container ng-if=!$ctrl.progress> <div class=row> <div class=col-md-12> Здесь будет список участников </div> </div> </div> </div>";
 
 /***/ },
-/* 446 */
+/* 449 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 447 */
+/* 450 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3946,11 +4315,11 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _angularMessages = __webpack_require__(403);
+	var _angularMessages = __webpack_require__(408);
 
 	var _angularMessages2 = _interopRequireDefault(_angularMessages);
 
-	var _component = __webpack_require__(448);
+	var _component = __webpack_require__(451);
 
 	var _component2 = _interopRequireDefault(_component);
 
@@ -3959,7 +4328,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.components.pages.events.register', [_angularMessages2.default]).component('eventRegisterPage', _component2.default);
 
 /***/ },
-/* 448 */
+/* 451 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3968,15 +4337,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(449);
+	var _controller = __webpack_require__(452);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(450);
+	var _template = __webpack_require__(453);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(451);
+	__webpack_require__(454);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3989,7 +4358,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 449 */
+/* 452 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4011,20 +4380,18 @@ webpackJsonp([0],[
 
 	        this.$scope = $scope;
 	        this.$state = $state;
-	        this.EventService = EventService;
 
 	        this._initMember();
-	        this._initEvent();
+	        this._initEvent(EventService);
 	    }
 
 	    _createClass(EventRegisterPageController, [{
 	        key: '_initEvent',
-	        value: function _initEvent() {
+	        value: function _initEvent(EventService) {
 	            var _this = this;
 
 	            this._startProgress();
-	            this.EventService.getEvent(this.id).then(function (event) {
-	                console.log({ event: event });
+	            EventService.getEvent(this.id).then(function (event) {
 	                _this.event = event;
 	            }).then(function () {
 	                _this._stopProgress();
@@ -4074,19 +4441,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 450 */
+/* 453 */
 /***/ function(module, exports) {
 
 	module.exports = "<progress-bar text=\"Загрузка информации о событии...\" ng-if=$ctrl.progress></progress-bar> <div class=\"page page--eventRegister\"> <div class=container ng-hide=$ctrl.progress> <div class=row> <div class=col-md-12> <div class=\"well well--form\"> <form name=member class=form-horizontal ng-submit=$ctrl.submit()> <fieldset> <legend>Регистрация</legend> <div class=form-group> <label for=place class=\"col-md-2 control-label\">Событие</label> <div class=col-md-8> <p class=\"form-control-static form-control-static--event\"> {{ $ctrl.event.title }} </p> </div> </div> <div class=form-group> <label for=place class=\"col-md-2 control-label\">Дата и время</label> <div class=col-md-4> <p class=\"form-control-static form-control-static--event\"> {{ $ctrl.event.date | date: 'EEEE, d MMMM yyyy' }}, {{ $ctrl.event.time }} </p> </div> </div> <div class=form-group> <label for=place class=\"col-md-2 control-label\">Место проведения</label> <div class=col-md-4> <p class=\"form-control-static form-control-static--event\"> {{ $ctrl.event.place }} </p> </div> </div> <div class=form-group> <label for=place class=\"col-md-2 control-label\">Дистанции</label> <div class=col-md-4> <p class=\"form-control-static form-control-static--event\"> {{ $ctrl.event.distances }} </p> </div> </div> <div class=form-group ng-class=\"{ 'has-error' : $ctrl.isHasError('fio') }\"> <label for=fio class=\"col-md-2 control-label\">ФИО</label> <div class=col-md-8> <input type=text class=form-control name=fio required ng-model=$ctrl.member.fio ng-disabled=$ctrl.disabledForm autocomplete=off> <div ng-messages=member.fio.$error ng-if=\"$ctrl.isHasError('fio')\" role=alert> <div ng-message=required class=form__message--error>Введите ФИО</div> </div> </div> </div> <div class=form-group ng-class=\"{ 'has-error' : $ctrl.isHasError('age') }\"> <label for=age class=\"col-md-2 control-label\">Год рождения</label> <div class=col-md-4> <input type=text maxlength=4 class=form-control name=age required ng-model=$ctrl.member.age ng-disabled=$ctrl.disabledForm autocomplete=off> <div ng-messages=member.age.$error ng-if=\"$ctrl.isHasError('age')\" role=alert> <div ng-message=required class=form__message--error>Введите год рождения</div> </div> </div> </div> <div class=form-group> <label for=gender class=\"col-md-2 control-label\">Пол</label> <div class=col-md-4> <label class=radio-inline> <input type=radio name=gender value=муж checked=checked ng-model=$ctrl.member.gender> муж </label> <label class=radio-inline> <input type=radio name=gender value=жен ng-model=$ctrl.member.gender> жен </label> </div> </div> <div class=form-group ng-class=\"{ 'has-error' : $ctrl.isHasError('distance') }\"> <label for=distance class=\"col-md-2 control-label\">Дистанция</label> <div class=col-md-4> <input type=text maxlength=32 class=form-control name=distance required ng-model=$ctrl.member.distance ng-disabled=$ctrl.disabledForm autocomplete=off> <div ng-messages=member.distance.$error ng-if=\"$ctrl.isHasError('distance')\" role=alert> <div ng-message=required class=form__message--error>Введите дистанцию</div> </div> </div> </div> <div class=form-group> <label for=startNumber class=\"col-md-2 control-label\">Стартовый номер</label> <div class=col-md-4> <input type=text maxlength=8 class=form-control name=startNumber placeholder=\"без номера\"> </div> </div> <div class=form-group> <label for=city class=\"col-md-2 control-label\">Город</label> <div class=col-md-4> <input type=text maxlength=32 class=form-control name=city placeholder=Пенза> </div> </div> <div class=form-group> <label for=club class=\"col-md-2 control-label\">Клуб</label> <div class=col-md-4> <input type=text maxlength=64 class=form-control name=club placeholder=\"Не состою в клубе\"> </div> </div> <div class=form-group> <label for=сountry class=\"col-md-2 control-label\">Страна/Регион</label> <div class=col-md-4> <input type=text maxlength=64 class=form-control name=сountry placeholder=Россия> </div> </div> <div class=form-group></div> <div class=form-group> <div class=\"col-md-8 col-md-offset-2\"> <button type=submit class=\"btn btn-primary\" ng-disabled=\"member.$invalid || $ctrl.disabledForm\"> <i class=\"fa fa-lg fa-spinner fa-spin\" ng-if=$ctrl.registerProgress></i> Регистрация </button> <button type=button class=\"btn btn-default\" ng-click=$ctrl.onClickCancelButton() ng-disabled=$ctrl.disabledForm>Отмена</button> </div> </div> </fieldset> </form> </div> </div> </div> </div> </div>";
 
 /***/ },
-/* 451 */
+/* 454 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 452 */
+/* 455 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4099,15 +4466,15 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _controller = __webpack_require__(453);
+	var _controller = __webpack_require__(456);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(454);
+	var _template = __webpack_require__(457);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(455);
+	__webpack_require__(458);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4124,7 +4491,7 @@ webpackJsonp([0],[
 	});
 
 /***/ },
-/* 453 */
+/* 456 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -4143,19 +4510,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 454 */
+/* 457 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=page> <div class=container> <div class=row> <div class=col-md-12> About page </div> </div> <div> </div></div></div>";
 
 /***/ },
-/* 455 */
+/* 458 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 456 */
+/* 459 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4168,15 +4535,15 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _controller = __webpack_require__(457);
+	var _controller = __webpack_require__(460);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(458);
+	var _template = __webpack_require__(461);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(459);
+	__webpack_require__(462);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4193,7 +4560,7 @@ webpackJsonp([0],[
 	});
 
 /***/ },
-/* 457 */
+/* 460 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4270,19 +4637,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 458 */
+/* 461 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"page page--login\"> <div class=container> <div class=row> <div class=col-md-6> <div class=well> <form name=auth class=\"form-horizontal from--auth\" ng-submit=$ctrl.submit()> <fieldset> <legend>Авторизация</legend> <div class=form-group ng-class=\"{ 'has-error' : $ctrl.isHasError('email') }\"> <label for=inputEmail class=\"col-md-2 control-label\">Email</label> <div class=col-md-10> <input type=text class=form-control id=inputEmail name=email placeholder=Email required ng-model=$ctrl.auth.email ng-disabled=$ctrl.progress autocomplete=off> <div ng-messages=auth.email.$error ng-if=\"$ctrl.isHasError('email')\" role=alert> <div ng-message=required class=form__message--error>Введите email</div> </div> </div> </div> <div class=form-group ng-class=\"{ 'has-error' : $ctrl.isHasError('password') }\"> <label for=inputPassword class=\"col-md-2 control-label\">Пароль</label> <div class=col-md-10> <input type=password class=form-control id=inputPassword name=password required placeholder=Password ng-model=$ctrl.auth.password ng-disabled=$ctrl.progress autocomplete=off> <div ng-messages=auth.password.$error ng-if=\"$ctrl.isHasError('password')\" role=alert> <div ng-message=required class=form__message--error>Введите пароль</div> </div> </div> </div> <div class=form-group> <div class=\"col-md-10 col-md-offset-2\"> <button type=submit class=\"btn btn-success\" ng-disabled=\"auth.$invalid || $ctrl.progress\"> <i class=\"fa fa-lg fa-spinner fa-spin\" ng-if=$ctrl.progress></i> Войти </button> </div> </div> </fieldset> </form> </div> </div> </div> </div> </div>";
 
 /***/ },
-/* 459 */
+/* 462 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 460 */
+/* 463 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4295,11 +4662,11 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _angularUiRouter = __webpack_require__(302);
+	var _angularUiRouter = __webpack_require__(303);
 
 	var _angularUiRouter2 = _interopRequireDefault(_angularUiRouter);
 
-	var _component = __webpack_require__(461);
+	var _component = __webpack_require__(464);
 
 	var _component2 = _interopRequireDefault(_component);
 
@@ -4315,7 +4682,7 @@ webpackJsonp([0],[
 	}]).component('userPage', _component2.default);
 
 /***/ },
-/* 461 */
+/* 464 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4324,15 +4691,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(462);
+	var _controller = __webpack_require__(465);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(463);
+	var _template = __webpack_require__(466);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(464);
+	__webpack_require__(467);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4342,7 +4709,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 462 */
+/* 465 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -4360,19 +4727,19 @@ webpackJsonp([0],[
 	exports.default = UserPageController;
 
 /***/ },
-/* 463 */
+/* 466 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"page page--user\"> <div class=container> <div class=row> <div class=col-md-12> <div class=btn-toolbar role=toolbar> <div class=btn-group role=group> <a ui-sref=events.new class=\"btn btn-primary\">Добавить событие</a> </div> <div class=btn-group role=group> <a ui-sref=news.new class=\"btn btn-primary\">Добавить новость</a> </div> </div> </div> </div> </div> </div>";
 
 /***/ },
-/* 464 */
+/* 467 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 465 */
+/* 468 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4390,7 +4757,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.directives', []);
 
 /***/ },
-/* 466 */
+/* 469 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4403,31 +4770,31 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _authService = __webpack_require__(467);
+	var _authService = __webpack_require__(470);
 
 	var _authService2 = _interopRequireDefault(_authService);
 
-	var _eventService = __webpack_require__(469);
+	var _eventService = __webpack_require__(472);
 
 	var _eventService2 = _interopRequireDefault(_eventService);
 
-	var _firebaseService = __webpack_require__(471);
+	var _firebaseService = __webpack_require__(474);
 
 	var _firebaseService2 = _interopRequireDefault(_firebaseService);
 
-	var _fileStorageService = __webpack_require__(473);
+	var _fileStorageService = __webpack_require__(476);
 
 	var _fileStorageService2 = _interopRequireDefault(_fileStorageService);
 
-	var _startlistService = __webpack_require__(475);
+	var _startlistService = __webpack_require__(478);
 
 	var _startlistService2 = _interopRequireDefault(_startlistService);
 
-	var _updateService = __webpack_require__(477);
+	var _updateService = __webpack_require__(480);
 
 	var _updateService2 = _interopRequireDefault(_updateService);
 
-	var _newsService = __webpack_require__(479);
+	var _newsService = __webpack_require__(482);
 
 	var _newsService2 = _interopRequireDefault(_newsService);
 
@@ -4436,7 +4803,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.services', [_authService2.default.name, _eventService2.default.name, _firebaseService2.default.name, _fileStorageService2.default.name, _startlistService2.default.name, _updateService2.default.name, _newsService2.default.name]);
 
 /***/ },
-/* 467 */
+/* 470 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4449,7 +4816,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _controller = __webpack_require__(468);
+	var _controller = __webpack_require__(471);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
@@ -4458,7 +4825,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.services.auth', []).service('AuthService', _controller2.default);
 
 /***/ },
-/* 468 */
+/* 471 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4522,7 +4889,7 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 469 */
+/* 472 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4535,7 +4902,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _controller = __webpack_require__(470);
+	var _controller = __webpack_require__(473);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
@@ -4544,7 +4911,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.services.event', []).service('EventService', _controller2.default);
 
 /***/ },
-/* 470 */
+/* 473 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4701,7 +5068,7 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 471 */
+/* 474 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4714,7 +5081,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _controller = __webpack_require__(472);
+	var _controller = __webpack_require__(475);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
@@ -4723,7 +5090,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.firebaseService', []).service('FirebaseService', _controller2.default);
 
 /***/ },
-/* 472 */
+/* 475 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -4755,7 +5122,7 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 473 */
+/* 476 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4768,7 +5135,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _controller = __webpack_require__(474);
+	var _controller = __webpack_require__(477);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
@@ -4777,7 +5144,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.services.fileStorage', []).service('FileStorageService', _controller2.default);
 
 /***/ },
-/* 474 */
+/* 477 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4917,7 +5284,7 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 475 */
+/* 478 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4930,7 +5297,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _controller = __webpack_require__(476);
+	var _controller = __webpack_require__(479);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
@@ -4939,7 +5306,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.services.startlistService', []).service('StartlistService', _controller2.default);
 
 /***/ },
-/* 476 */
+/* 479 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4981,7 +5348,7 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 477 */
+/* 480 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4994,7 +5361,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _controller = __webpack_require__(478);
+	var _controller = __webpack_require__(481);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
@@ -5003,7 +5370,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.services.update', []).service('UpdateService', _controller2.default);
 
 /***/ },
-/* 478 */
+/* 481 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5063,7 +5430,7 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 479 */
+/* 482 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5076,7 +5443,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _controller = __webpack_require__(480);
+	var _controller = __webpack_require__(483);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
@@ -5085,7 +5452,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.services.news', []).service('NewsService', _controller2.default);
 
 /***/ },
-/* 480 */
+/* 483 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5123,7 +5490,7 @@ webpackJsonp([0],[
 	            return list.$loaded().then(function (result) {
 	                return result.map(function (news) {
 	                    return _this._mapNews(news);
-	                });
+	                }).reverse();
 	            });
 	        }
 	    }, {
@@ -5167,9 +5534,11 @@ webpackJsonp([0],[
 	            var title = news.title;
 	            var abstract = news.abstract;
 	            var content = news.content;
+	            var createTimestamp = news.createTimestamp;
 
 	            return {
 	                id: news.$id,
+	                date: createTimestamp,
 	                title: title,
 	                abstract: abstract,
 	                content: content
@@ -5213,7 +5582,7 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 481 */
+/* 484 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

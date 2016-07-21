@@ -77,6 +77,21 @@
   text-align: center;
   padding: 40px 0;
 }
+.page--newsList .news__date {
+  font-size: smaller;
+  border-top: 1px dotted #dddddd;
+  padding-top: 4px;
+  margin: 0;
+}
+.page--newsCard .news__header {
+  margin-top: 0;
+}
+.page--newsCard .news__content {
+  text-align: justify;
+}
+.page--newsCard .well--news {
+  background-color: rgba(78, 93, 108, 0.5);
+}
 .page--newsForm .well--form {
   background-color: rgba(78, 93, 108, 0.5);
 }
