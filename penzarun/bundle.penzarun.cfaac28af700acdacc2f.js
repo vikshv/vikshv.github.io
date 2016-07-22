@@ -36,15 +36,15 @@ webpackJsonp([0],[
 
 	var _components2 = _interopRequireDefault(_components);
 
-	var _directives = __webpack_require__(468);
+	var _directives = __webpack_require__(469);
 
 	var _directives2 = _interopRequireDefault(_directives);
 
-	var _services = __webpack_require__(469);
+	var _services = __webpack_require__(470);
 
 	var _services2 = _interopRequireDefault(_services);
 
-	__webpack_require__(484);
+	__webpack_require__(485);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -900,7 +900,7 @@ webpackJsonp([0],[
 /* 321 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=footer> <div class=container> <div class=row> <div class=\"col-md-3 col-sm-4 col-xs-6\"> <div class=\"\"> <p>Мы в социальных сетях:</p> <ul class=list-inline> <li> <a target=_blank href=https://vk.com/penzarun title=\"В контакте\" rel=nofollow> <i class=\"fa fa-2x fa-vk\" aria-hidden=true></i> </a> </li> </ul> </div> </div> <div class=\"col-md-3 col-sm-4 col-xs-6\"> <div class=footer__contacts> <p>Контакты:</p> <address class=footer__address> <abbr title=Телефон>Тел:</abbr> 8-909-319-63-54<br> <abbr title=\"Электронная почта\">Эл. почта:</abbr> <a href=mailto:#>info@penzarun.ru</a> </address> </div> </div> </div> <div class=row> <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\"> <div class=footer__centerBlock> Бег в Пензе · Автор и разработчик <a href=https://vk.com/vikshv>Виктор&nbsp;Швецов</a> </div> </div> </div> <div class=row> <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\"> <div class=footer__centerBlock> Style based on <a target=_blank href=http://bootswatch.com/superhero/ rel=nofollow>Bootswatch</a> · Icons from <a target=_blank href=http://fortawesome.github.io/Font-Awesome/ rel=nofollow>Font Awesome</a> · Backend from <a target=_blank href=https://console.firebase.google.com/project/project-5043437142388192252/overview rel=nofollow>Firebase</a> </div> </div> </div> <div class=row> <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\"> <div class=footer__centerBlock> <a href=https://github.com/vikshv/penzarun>GitHub Project</a> · <a href=https://github.com/vikshv/penzarun/issues>Issues</a> </div> </div> </div> </div> </div>";
+	module.exports = "<div class=footer> <div class=container> <div class=row> <div class=\"col-md-3 col-sm-4 col-xs-6\"> <div class=\"\"> <p>Мы в социальных сетях:</p> <ul class=list-inline> <li> <a target=_blank href=https://vk.com/penzarun title=\"В контакте\" rel=nofollow> <i class=\"fa fa-2x fa-vk\" aria-hidden=true></i> </a> </li> </ul> </div> </div> <div class=\"col-md-3 col-sm-4 col-xs-6\"> <div class=footer__contacts> <p>Контакты:</p> <address class=footer__address> <abbr title=Телефон>Тел:</abbr> 8-909-319-63-54<br> <abbr title=\"Электронная почта\">Эл. почта:</abbr> <a href=mailto:#>info@penzarun.ru</a> </address> </div> </div> </div> <div class=row> <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\"> <div class=footer__centerBlock> &copy; Бег в Пензе · Автор и разработчик <a href=https://vk.com/vikshv>Виктор&nbsp;Швецов</a> </div> </div> </div> <div class=row> <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\"> <div class=footer__centerBlock> Style based on <a target=_blank href=http://bootswatch.com/superhero/ rel=nofollow>Bootswatch</a> · Icons from <a target=_blank href=http://fortawesome.github.io/Font-Awesome/ rel=nofollow>Font Awesome</a> · Backend from <a target=_blank href=https://console.firebase.google.com/project/project-5043437142388192252/overview rel=nofollow>Firebase</a> </div> </div> </div> <div class=row> <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\"> <div class=footer__centerBlock> <a href=https://github.com/vikshv/penzarun>GitHub Project</a> · <a href=https://github.com/vikshv/penzarun/issues>Issues</a> </div> </div> </div> </div> </div>";
 
 /***/ },
 /* 322 */
@@ -1265,11 +1265,11 @@ webpackJsonp([0],[
 
 	var _about2 = _interopRequireDefault(_about);
 
-	var _login = __webpack_require__(459);
+	var _login = __webpack_require__(460);
 
 	var _login2 = _interopRequireDefault(_login);
 
-	var _user = __webpack_require__(463);
+	var _user = __webpack_require__(464);
 
 	var _user2 = _interopRequireDefault(_user);
 
@@ -2325,7 +2325,7 @@ webpackJsonp([0],[
 /* 385 */
 /***/ function(module, exports) {
 
-	module.exports = "<progress-bar text=Загрузка... ng-if=$ctrl.loadProgress></progress-bar> <div class=\"page page--newsCard\" ng-if=!$ctrl.loadProgress> <div class=container> <div class=row> <div class=col-md-12> <div class=\"page-header news__header\"> <h4><span class=\"label label-default\">{{ $ctrl.news.date | date: 'd MMMM yyyy' }}</span></h4> <h3>{{ $ctrl.news.title }}</h3> <div class=row> <div class=\"col-md-10 col-sm-12\"> <p>{{ $ctrl.news.abstract }}</p> </div> </div> </div> </div> </div> <div class=row> <div class=col-md-12> <div class=\"well well-sm well--news\"> <div class=row> <div class=\"col-md-10 col-sm-12\"> <div class=news__content ng-bind-html=$ctrl.getContentHtml()></div> </div> </div> </div> </div> </div> <div> </div></div></div>";
+	module.exports = "<progress-bar text=Загрузка... ng-if=$ctrl.loadProgress></progress-bar> <div class=\"page page--newsCard\" ng-if=!$ctrl.loadProgress> <div class=container> <div class=row> <div class=col-md-12> <div class=\"page-header news__header\"> <h4> <span class=\"label label-warning\">{{ $ctrl.news.date | date: 'd MMMM yyyy' }}</span> </h4> <h2 class=text-warning>{{ $ctrl.news.title }}</h2> <div class=row> <div class=\"col-md-10 col-sm-12\"> {{ $ctrl.news.abstract }} </div> </div> </div> </div> </div> <div class=row> <div class=col-md-12> <div class=well> <div class=row> <div class=\"col-md-10 col-sm-12\"> <div class=news__content ng-bind-html=$ctrl.getContentHtml()></div> </div> </div> </div> </div> </div> <div> </div></div></div>";
 
 /***/ },
 /* 386 */
@@ -2770,7 +2770,7 @@ webpackJsonp([0],[
 /* 397 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=calendarDatepicker> <uib-datepicker class=\"well well-sm\" ng-model=$ctrl.date datepicker-options=$ctrl.options template-url=calendarDatepicker/templates/datepicker.html></uib-datepicker> </div>";
+	module.exports = "<div class=calendarDatepicker> <div uib-datepicker class=\"well well-sm\" ng-model=$ctrl.date datepicker-options=$ctrl.options template-url=calendarDatepicker/templates/datepicker.html></div> </div>";
 
 /***/ },
 /* 398 */
@@ -2813,13 +2813,13 @@ webpackJsonp([0],[
 /* 400 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=uib-datepicker ng-switch=datepickerMode role=application ng-keydown=keydown($event)> <uib-daypicker ng-switch-when=day tabindex=0 template-url=calendarDatepicker/templates/day.html></uib-daypicker> <uib-monthpicker ng-switch-when=month tabindex=0></uib-monthpicker> <uib-yearpicker ng-switch-when=year tabindex=0></uib-yearpicker> </div>";
+	module.exports = "<div ng-switch=datepickerMode> <div uib-daypicker ng-switch-when=day tabindex=0 class=uib-daypicker template-url=calendarDatepicker/templates/day.html></div> <div uib-monthpicker ng-switch-when=month tabindex=0 class=uib-monthpicker></div> <div uib-yearpicker ng-switch-when=year tabindex=0 class=uib-yearpicker></div> </div>";
 
 /***/ },
 /* 401 */
 /***/ function(module, exports) {
 
-	module.exports = "<table class=uib-daypicker role=grid aria-labelledby={{::uniqueId}}-title aria-activedescendant={{activeDateId}}> <thead> <tr> <th><button type=button class=\"btn btn-default btn-sm pull-left uib-left\" ng-click=move(-1) tabindex=-1><i class=\"glyphicon glyphicon-chevron-left\"></i></button></th> <th colspan=\"{{::5 + showWeeks}}\"><button id={{::uniqueId}}-title role=heading aria-live=assertive aria-atomic=true type=button class=\"btn btn-default btn-sm uib-title\" ng-click=toggleMode() ng-disabled=\"datepickerMode === maxMode\" tabindex=-1><strong>{{title}}</strong></button></th> <th><button type=button class=\"btn btn-default btn-sm pull-right uib-right\" ng-click=move(1) tabindex=-1><i class=\"glyphicon glyphicon-chevron-right\"></i></button></th> </tr> <tr> <th ng-if=showWeeks class=text-center></th> <th ng-repeat=\"label in ::labels track by $index\" class=text-center><span aria-label={{::label.full}}>{{::label.abbr}}</span></th> </tr> </thead> <tbody> <tr class=uib-weeks ng-repeat=\"row in rows track by $index\"> <td ng-if=showWeeks class=\"text-center h6\"><em>{{ weekNumbers[$index] }}</em></td> <td ng-repeat=\"dt in row\" class=\"uib-day text-center\" role=gridcell id={{::dt.uid}} ng-class=::dt.customClass> <button type=button class=\"btn btn-default btn-sm\" uib-is-class=\"\r\n            'btn-primary' for selectedDt,\r\n            'active' for activeDt\r\n            on dt\" ng-click=select(dt.date) ng-disabled=::dt.disabled tabindex=-1><span ng-class=\"::{'text-muted': dt.secondary, 'text-info': dt.current}\">{{::dt.label}}</span></button> </td> </tr> </tbody> </table>";
+	module.exports = "<table role=grid aria-labelledby={{::uniqueId}}-title aria-activedescendant={{activeDateId}}> <thead> <tr> <th><button type=button class=\"btn btn-default btn-sm pull-left uib-left\" ng-click=move(-1) tabindex=-1><i class=\"glyphicon glyphicon-chevron-left\"></i></button></th> <th colspan=\"{{::5 + showWeeks}}\"><button id={{::uniqueId}}-title role=heading aria-live=assertive aria-atomic=true type=button class=\"btn btn-default btn-sm uib-title\" ng-click=toggleMode() ng-disabled=\"datepickerMode === maxMode\" tabindex=-1><strong>{{title}}</strong></button></th> <th><button type=button class=\"btn btn-default btn-sm pull-right uib-right\" ng-click=move(1) tabindex=-1><i class=\"glyphicon glyphicon-chevron-right\"></i></button></th> </tr> <tr> <th ng-if=showWeeks class=text-center></th> <th ng-repeat=\"label in ::labels track by $index\" class=text-center><span aria-label={{::label.full}}>{{::label.abbr}}</span></th> </tr> </thead> <tbody> <tr class=uib-weeks ng-repeat=\"row in rows track by $index\"> <td ng-if=showWeeks class=\"text-center h6\"><em>{{ weekNumbers[$index] }}</em></td> <td ng-repeat=\"dt in row\" class=\"uib-day text-center\" role=gridcell id={{::dt.uid}} ng-class=::dt.customClass> <button type=button class=\"btn btn-default btn-sm\" uib-is-class=\"\r\n            'btn-primary' for selectedDt,\r\n            'active' for activeDt\r\n            on dt\" ng-click=select(dt.date) ng-disabled=::dt.disabled tabindex=-1><span ng-class=\"::{'text-muted': dt.secondary, 'text-info': dt.current}\">{{::dt.label}}</span></button> </td> </tr> </tbody> </table>";
 
 /***/ },
 /* 402 */
@@ -4466,15 +4466,9 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _controller = __webpack_require__(456);
+	var _component = __webpack_require__(456);
 
-	var _controller2 = _interopRequireDefault(_controller);
-
-	var _template = __webpack_require__(457);
-
-	var _template2 = _interopRequireDefault(_template);
-
-	__webpack_require__(458);
+	var _component2 = _interopRequireDefault(_component);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4485,13 +4479,37 @@ webpackJsonp([0],[
 	        url: '/about',
 	        template: '<about></about>'
 	    });
-	}]).component('about', {
-	    template: _template2.default,
-	    controller: _controller2.default
-	});
+	}]).component('about', _component2.default);
 
 /***/ },
 /* 456 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _controller = __webpack_require__(457);
+
+	var _controller2 = _interopRequireDefault(_controller);
+
+	var _template = __webpack_require__(458);
+
+	var _template2 = _interopRequireDefault(_template);
+
+	__webpack_require__(459);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = {
+	    template: _template2.default,
+	    controller: _controller2.default
+	};
+
+/***/ },
+/* 457 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -4510,19 +4528,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 457 */
+/* 458 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=page> <div class=container> <div class=row> <div class=col-md-12> About page </div> </div> <div> </div></div></div>";
+	module.exports = "<div class=\"page page--about\"> <div class=container> <div class=row> <div class=\"col-md-8 col-sm-12\"> <div class=about__block> <p class=\"lead text-warning\">Цели и задачи</p> <p><span class=\"\">Бег в Пензе</span> - сайт и одноимённое сообщество <a href=https://vk.com/penzarun target=_blank>ВКонтакте</a>, целью которых является информирование профессионалов и любителей бега о спортивных легкоатлетических событиях города Пенза и Пензенской бласти. А также площадка для организации совместных пробегов, тренировок, поездок на спортивные мероприятия в другие регионы России и мира.</p> </div> <div class=about__block> <p class=\"lead text-warning\">Возможности сайта</p> <ul> <li>Новости из мира профессионального и любительского бега Пензы и области</li> <li>Календарь запланированных спортивных событий, пробегов, марафонов и тренировок</li> <li>Подробная информация о спортивных событиях</li> <li>Предварительная регистрация на пробег, марафон или тренировку - <em>в разработке</em></li> </ul> </div> <div class=about__block> <p class=\"lead text-warning\">Организаторы пробегов</p> <div class=row> <div class=\"col-md-6 col-sm-6\"> <address> <strong>Общество спорта \"Марафон\"</strong><br> г. Пенза, 440058<br> ул.Тепличная, 17-127<br> Акжигитов Фярит Исхакович<br> <abbr title=Телефон>Тел:</abbr> (8412) 93-85-56<br> <abbr title=\"Мобильный телефон\">Моб:</abbr> 8-905-016-48-97<br> <abbr title=\"Электронная почта\">Эл. почта:</abbr> <a href=mailto:#>marafon-penza@yandex.ru</a> </address> </div> <div class=\"col-md-6 col-sm-6\"> <address> <strong>Сообщество любителей бега \"Бег в Пензе\"</strong><br> Швецов Виктор Владимирович<br> Группа ВКонтакте: <a target=_blank rel=nofollow href=https://vk.com/penzarun>vk.com/penzarun</a><br> <abbr title=\"Мобильный телефон\">Моб:</abbr> 8-909-319-63-54<br> <abbr title=\"Электронная почта\">Эл. почта:</abbr> <a href=mailto:#>info@penzarun.ru</a> </address> </div> </div> </div> </div> </div> <div> </div></div></div>";
 
 /***/ },
-/* 458 */
+/* 459 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 459 */
+/* 460 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4535,15 +4553,15 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _controller = __webpack_require__(460);
+	var _controller = __webpack_require__(461);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(461);
+	var _template = __webpack_require__(462);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(462);
+	__webpack_require__(463);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4560,7 +4578,7 @@ webpackJsonp([0],[
 	});
 
 /***/ },
-/* 460 */
+/* 461 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4637,19 +4655,19 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 461 */
+/* 462 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"page page--login\"> <div class=container> <div class=row> <div class=col-md-6> <div class=well> <form name=auth class=\"form-horizontal from--auth\" ng-submit=$ctrl.submit()> <fieldset> <legend>Авторизация</legend> <div class=form-group ng-class=\"{ 'has-error' : $ctrl.isHasError('email') }\"> <label for=inputEmail class=\"col-md-2 control-label\">Email</label> <div class=col-md-10> <input type=text class=form-control id=inputEmail name=email placeholder=Email required ng-model=$ctrl.auth.email ng-disabled=$ctrl.progress autocomplete=off> <div ng-messages=auth.email.$error ng-if=\"$ctrl.isHasError('email')\" role=alert> <div ng-message=required class=form__message--error>Введите email</div> </div> </div> </div> <div class=form-group ng-class=\"{ 'has-error' : $ctrl.isHasError('password') }\"> <label for=inputPassword class=\"col-md-2 control-label\">Пароль</label> <div class=col-md-10> <input type=password class=form-control id=inputPassword name=password required placeholder=Password ng-model=$ctrl.auth.password ng-disabled=$ctrl.progress autocomplete=off> <div ng-messages=auth.password.$error ng-if=\"$ctrl.isHasError('password')\" role=alert> <div ng-message=required class=form__message--error>Введите пароль</div> </div> </div> </div> <div class=form-group> <div class=\"col-md-10 col-md-offset-2\"> <button type=submit class=\"btn btn-success\" ng-disabled=\"auth.$invalid || $ctrl.progress\"> <i class=\"fa fa-lg fa-spinner fa-spin\" ng-if=$ctrl.progress></i> Войти </button> </div> </div> </fieldset> </form> </div> </div> </div> </div> </div>";
 
 /***/ },
-/* 462 */
+/* 463 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 463 */
+/* 464 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4666,7 +4684,7 @@ webpackJsonp([0],[
 
 	var _angularUiRouter2 = _interopRequireDefault(_angularUiRouter);
 
-	var _component = __webpack_require__(464);
+	var _component = __webpack_require__(465);
 
 	var _component2 = _interopRequireDefault(_component);
 
@@ -4682,7 +4700,7 @@ webpackJsonp([0],[
 	}]).component('userPage', _component2.default);
 
 /***/ },
-/* 464 */
+/* 465 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4691,15 +4709,15 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _controller = __webpack_require__(465);
+	var _controller = __webpack_require__(466);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
-	var _template = __webpack_require__(466);
+	var _template = __webpack_require__(467);
 
 	var _template2 = _interopRequireDefault(_template);
 
-	__webpack_require__(467);
+	__webpack_require__(468);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4709,7 +4727,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 465 */
+/* 466 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -4727,19 +4745,19 @@ webpackJsonp([0],[
 	exports.default = UserPageController;
 
 /***/ },
-/* 466 */
+/* 467 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"page page--user\"> <div class=container> <div class=row> <div class=col-md-12> <div class=btn-toolbar role=toolbar> <div class=btn-group role=group> <a ui-sref=events.new class=\"btn btn-primary\">Добавить событие</a> </div> <div class=btn-group role=group> <a ui-sref=news.new class=\"btn btn-primary\">Добавить новость</a> </div> </div> </div> </div> </div> </div>";
 
 /***/ },
-/* 467 */
+/* 468 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 468 */
+/* 469 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4757,52 +4775,6 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.directives', []);
 
 /***/ },
-/* 469 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _angular = __webpack_require__(299);
-
-	var _angular2 = _interopRequireDefault(_angular);
-
-	var _authService = __webpack_require__(470);
-
-	var _authService2 = _interopRequireDefault(_authService);
-
-	var _eventService = __webpack_require__(472);
-
-	var _eventService2 = _interopRequireDefault(_eventService);
-
-	var _firebaseService = __webpack_require__(474);
-
-	var _firebaseService2 = _interopRequireDefault(_firebaseService);
-
-	var _fileStorageService = __webpack_require__(476);
-
-	var _fileStorageService2 = _interopRequireDefault(_fileStorageService);
-
-	var _startlistService = __webpack_require__(478);
-
-	var _startlistService2 = _interopRequireDefault(_startlistService);
-
-	var _updateService = __webpack_require__(480);
-
-	var _updateService2 = _interopRequireDefault(_updateService);
-
-	var _newsService = __webpack_require__(482);
-
-	var _newsService2 = _interopRequireDefault(_newsService);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = _angular2.default.module('app.services', [_authService2.default.name, _eventService2.default.name, _firebaseService2.default.name, _fileStorageService2.default.name, _startlistService2.default.name, _updateService2.default.name, _newsService2.default.name]);
-
-/***/ },
 /* 470 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -4816,7 +4788,53 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _controller = __webpack_require__(471);
+	var _authService = __webpack_require__(471);
+
+	var _authService2 = _interopRequireDefault(_authService);
+
+	var _eventService = __webpack_require__(473);
+
+	var _eventService2 = _interopRequireDefault(_eventService);
+
+	var _firebaseService = __webpack_require__(475);
+
+	var _firebaseService2 = _interopRequireDefault(_firebaseService);
+
+	var _fileStorageService = __webpack_require__(477);
+
+	var _fileStorageService2 = _interopRequireDefault(_fileStorageService);
+
+	var _startlistService = __webpack_require__(479);
+
+	var _startlistService2 = _interopRequireDefault(_startlistService);
+
+	var _updateService = __webpack_require__(481);
+
+	var _updateService2 = _interopRequireDefault(_updateService);
+
+	var _newsService = __webpack_require__(483);
+
+	var _newsService2 = _interopRequireDefault(_newsService);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _angular2.default.module('app.services', [_authService2.default.name, _eventService2.default.name, _firebaseService2.default.name, _fileStorageService2.default.name, _startlistService2.default.name, _updateService2.default.name, _newsService2.default.name]);
+
+/***/ },
+/* 471 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _angular = __webpack_require__(299);
+
+	var _angular2 = _interopRequireDefault(_angular);
+
+	var _controller = __webpack_require__(472);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
@@ -4825,7 +4843,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.services.auth', []).service('AuthService', _controller2.default);
 
 /***/ },
-/* 471 */
+/* 472 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4889,7 +4907,7 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 472 */
+/* 473 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4902,7 +4920,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _controller = __webpack_require__(473);
+	var _controller = __webpack_require__(474);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
@@ -4911,7 +4929,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.services.event', []).service('EventService', _controller2.default);
 
 /***/ },
-/* 473 */
+/* 474 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5068,7 +5086,7 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 474 */
+/* 475 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5081,7 +5099,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _controller = __webpack_require__(475);
+	var _controller = __webpack_require__(476);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
@@ -5090,7 +5108,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.firebaseService', []).service('FirebaseService', _controller2.default);
 
 /***/ },
-/* 475 */
+/* 476 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -5122,7 +5140,7 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 476 */
+/* 477 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5135,7 +5153,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _controller = __webpack_require__(477);
+	var _controller = __webpack_require__(478);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
@@ -5144,7 +5162,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.services.fileStorage', []).service('FileStorageService', _controller2.default);
 
 /***/ },
-/* 477 */
+/* 478 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5284,7 +5302,7 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 478 */
+/* 479 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5297,7 +5315,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _controller = __webpack_require__(479);
+	var _controller = __webpack_require__(480);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
@@ -5306,7 +5324,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.services.startlistService', []).service('StartlistService', _controller2.default);
 
 /***/ },
-/* 479 */
+/* 480 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5348,7 +5366,7 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 480 */
+/* 481 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5361,7 +5379,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _controller = __webpack_require__(481);
+	var _controller = __webpack_require__(482);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
@@ -5370,7 +5388,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.services.update', []).service('UpdateService', _controller2.default);
 
 /***/ },
-/* 481 */
+/* 482 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5430,7 +5448,7 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 482 */
+/* 483 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5443,7 +5461,7 @@ webpackJsonp([0],[
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _controller = __webpack_require__(483);
+	var _controller = __webpack_require__(484);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
@@ -5452,7 +5470,7 @@ webpackJsonp([0],[
 	exports.default = _angular2.default.module('app.services.news', []).service('NewsService', _controller2.default);
 
 /***/ },
-/* 483 */
+/* 484 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5582,7 +5600,7 @@ webpackJsonp([0],[
 	;
 
 /***/ },
-/* 484 */
+/* 485 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
