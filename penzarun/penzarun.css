@@ -89,6 +89,10 @@
 .page--newsCard .news__content {
   text-align: justify;
 }
+.page--newsCard .comments {
+  margin-top: 80px;
+  margin-bottom: 40px;
+}
 .page--newsForm .well--form {
   background-color: rgba(78, 93, 108, 0.5);
 }
@@ -126,6 +130,9 @@
 }
 .penzarun .page.page--eventCard {
   margin-top: 0;
+}
+.penzarun .page.page--eventCard .comments {
+  margin-bottom: 40px;
 }
 .eventCard__header {
   text-align: left;
@@ -224,9 +231,6 @@
 }
 .eventCard__body {
   margin-bottom: 40px;
-}
-.eventCard__body .body__paragraph {
-  margin-bottom: 20px;
 }
 .eventCard__body .body__title {
   font-size: 18px;
